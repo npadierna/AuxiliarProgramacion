@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head >
+        <title>JurídicApp</title>
+    </h:head>
+
+    <h:body >
+        <h:form id="mainForm" >
+            <p:dataTable draggableColumns="true" id="mainTable" paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rows="10" rowsPerPageTemplate="10,15,30"
+                         stickyHeader="true" style="width: 98%; font-size: 13px;"
+                         value="#{juridicalBean.allJuridical}"
+                         var="juridical" >
+                <f:facet name="header" >
+                    Listado de Jurídicas
+                </f:facet>
+                
+                <p:column filterBy="issue" filterMatchMode="exact"
+                          headerText="Obra" style="font-size: 15px;" >
+                    <h:outputText style="font-size: 13px;"
+                                  value="#{juridical.issue}" ></h:outputText>
+                </p:column>
+
+                <p:column headerText="Año" style="font-size: 15px;" >
+                    <h:outputText style="font-size: 13px;"
+                                  value="#{juridical.year}" ></h:outputText>
+                </p:column>
+
+                <p:column headerText="Autor(es)" style="font-size: 15px;" >
+                </p:column>
+
+                <p:column headerText="N° Contrato(s)" style="font-size: 15px;" >
+                </p:column>
+
+                <p:column headerText="Soporte" style="font-size: 15px;" >
+                </p:column>
+
+                <p:column headerText="ISBN" sortBy="isbn"
+                          style="font-size: 15px;" >
+                    <h:outputText style="font-size: 13px;"
+                                  value="#{juridical.isbn}" ></h:outputText>
+                </p:column>
+
+                <p:column headerText="Archivos" style="font-size: 15px;" >
+                </p:column>
+
+                <p:column headerText="Observaciones" style="font-size: 15px;" >
+                </p:column>
+
+                <f:facet name="footer" >
+                    Total Jurísdicas: #{juridicalBean.allJuridical.size()}
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
