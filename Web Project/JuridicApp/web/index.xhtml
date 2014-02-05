@@ -11,52 +11,87 @@
 
     <h:body >
         <h:form id="mainForm" >
-            <p:dataTable draggableColumns="true" id="mainTable" paginator="true"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rows="10" rowsPerPageTemplate="10,15,30"
-                         stickyHeader="true" style="width: 98%; font-size: 13px;"
-                         value="#{juridicalBean.allJuridical}"
-                         var="juridical" >
-                <f:facet name="header" >
-                    Listado de Jurídicas
-                </f:facet>
-                
-                <p:column filterBy="issue" filterMatchMode="exact"
-                          headerText="Obra" style="font-size: 15px;" >
-                    <h:outputText style="font-size: 13px;"
-                                  value="#{juridical.issue}" ></h:outputText>
-                </p:column>
+            <center>
+                <p:dataTable draggableColumns="true" id="mainTable" paginator="true"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rows="10" rowsPerPageTemplate="10,15,30"
+                             style="width: 98%; font-size: 13px;"
+                             value="#{juridicalBean.allJuridical}"
+                             var="juridical" >
+                    <f:facet name="header" >
+                        Listado de Jurídicas
+                    </f:facet>
 
-                <p:column headerText="Año" style="font-size: 15px;" >
-                    <h:outputText style="font-size: 13px;"
-                                  value="#{juridical.year}" ></h:outputText>
-                </p:column>
+                    <p:column filterBy="issue" filterMatchMode="exact"
+                              headerText="Obra" style="font-size: 15px;" >
+                        <h:outputText style="font-size: 13px;"
+                                      value="#{juridical.issue}" >
+                        </h:outputText>
+                    </p:column>
 
-                <p:column headerText="Autor(es)" style="font-size: 15px;" >
-                </p:column>
+                    <p:column headerText="Año" sortBy="year"
+                              style="font-size: 15px;" >
+                        <h:outputText style="font-size: 13px;"
+                                      value="#{juridical.year}" >
+                        </h:outputText>
+                    </p:column>
 
-                <p:column headerText="N° Contrato(s)" style="font-size: 15px;" >
-                </p:column>
+                    <p:column headerText="Tipo" sortBy="issue"
+                              style="font-size: 15px;" >
+                        <h:outputText style="font-size: 13px;"
+                                      value="#{juridical.issue}" >
+                        </h:outputText>
+                    </p:column>
 
-                <p:column headerText="Soporte" style="font-size: 15px;" >
-                </p:column>
+                    <p:column headerText="Autor(es)" id="seeAuthors"
+                              style="font-size: 15px;" >
+                        <p:commandLink id="showAuthors"
+                                       oncomplete="PF('authorsListDialogue').show()" >
+                            <center>
+                                <h:outputText title="Ver autores"
+                                              value="Ver autores" >
+                                </h:outputText>
+                            </center>
+                        </p:commandLink>
+                    </p:column>
 
-                <p:column headerText="ISBN" sortBy="isbn"
-                          style="font-size: 15px;" >
-                    <h:outputText style="font-size: 13px;"
-                                  value="#{juridical.isbn}" ></h:outputText>
-                </p:column>
+                    <p:column headerText="N° Contrato(s)"
+                              style="font-size: 15px;" >
+                    </p:column>
 
-                <p:column headerText="Archivos" style="font-size: 15px;" >
-                </p:column>
+                    <p:column headerText="Soporte" style="font-size: 15px;" >
+                    </p:column>
 
-                <p:column headerText="Observaciones" style="font-size: 15px;" >
-                </p:column>
+                    <p:column headerText="ISBN" sortBy="isbn"
+                              style="font-size: 15px;" >
+                        <h:outputText style="font-size: 13px;"
+                                      value="#{juridical.isbn}" >
+                        </h:outputText>
+                    </p:column>
 
-                <f:facet name="footer" >
-                    Total Jurísdicas: #{juridicalBean.allJuridical.size()}
-                </f:facet>
-            </p:dataTable>
+                    <p:column headerText="Archivos" style="font-size: 15px;" >
+                    </p:column>
+
+                    <p:column headerText="Observaciones" style="font-size: 15px;" >
+                    </p:column>
+
+                    <f:facet name="footer" >
+                        Total Jurídicas: #{juridicalBean.allJuridical.size()}
+                    </f:facet>
+                </p:dataTable>
+            </center>
+
+            <p:dialog header="Listado de Autores" hideEffect="explode"
+                      id="dialog" resizable="false" showEffect="fade"
+                      widgetVar="authorsListDialogue" >  
+
+                <h:panelGrid id="display" columns="2" cellpadding="4" >
+                    <h:outputText value="Nombre:" >
+                    </h:outputText>  
+                    <h:outputText value="Foo" >
+                    </h:outputText> 
+                </h:panelGrid>  
+            </p:dialog>
         </h:form>
     </h:body>
 </html>
