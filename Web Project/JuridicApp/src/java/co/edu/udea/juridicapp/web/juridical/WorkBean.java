@@ -2,7 +2,7 @@ package co.edu.udea.juridicapp.web.juridical;
 
 import co.edu.udea.juridicapp.persistence.dao.IJuridicalDAO;
 import co.edu.udea.juridicapp.persistence.dao.impl.JuridicalDAO;
-import co.edu.udea.juridicapp.persistence.entity.Juridical;
+import co.edu.udea.juridicapp.persistence.entity.Work;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.SessionScoped;
@@ -13,24 +13,24 @@ import javax.faces.bean.SessionScoped;
  * @author Neiber Padierna P&eacute;rez
  */
 @SessionScoped()
-public class JuridicalBean implements Serializable {
+public class WorkBean implements Serializable {
 
     //private static final long serialVersionUID = 1L;
     private IJuridicalDAO juridicalDAO;
-    private List<Juridical> allJuridical;
+    private List<Work> allJuridical;
 
-    public JuridicalBean() {
+    public WorkBean() {
         super();
         this.juridicalDAO = new JuridicalDAO();
     }
 
-    public List<Juridical> getAllJuridical() {
+    public List<Work> getAllJuridical() {
         this.allJuridical = this.findAllJuridical();
 
         return (this.allJuridical);
     }
 
-    private List<Juridical> findAllJuridical() {
+    private List<Work> findAllJuridical() {
 
         return (this.juridicalDAO.findAllJuridical());
     }

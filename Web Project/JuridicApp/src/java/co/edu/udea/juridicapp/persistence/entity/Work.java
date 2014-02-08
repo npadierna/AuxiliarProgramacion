@@ -9,7 +9,7 @@ import java.util.List;
  * @author Miguel Ossa Ruiz
  * @author Neiber Padierna P&eacute;rez
  */
-public class Juridical implements Serializable {
+public class Work implements Serializable {
 
     //private static final long serialVersionUID = 1L;
     private Date year;
@@ -18,7 +18,7 @@ public class Juridical implements Serializable {
     private String kind;
     private List<Author> authors;
 
-    public Juridical(Date year, String isbn, String issue, String kind) {
+    public Work(Date year, String isbn, String issue, String kind) {
         this.year = year;
         this.isbn = isbn;
         this.issue = issue;

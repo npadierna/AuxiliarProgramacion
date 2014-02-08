@@ -1,6 +1,6 @@
 package co.edu.udea.juridicapp.persistence.dao;
 
-import co.edu.udea.juridicapp.persistence.entity.Juridical;
+import co.edu.udea.juridicapp.persistence.entity.Work;
 import java.util.List;
 
 /**
@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface IJuridicalDAO {
 
-    public List<Juridical> findAllJuridical();
+    public List<Work> findAllJuridical();
 }

@@ -16,8 +16,8 @@
     </application>
     
     <managed-bean>
-        <managed-bean-name>juridicalBean</managed-bean-name>
-        <managed-bean-class>co.edu.udea.juridicapp.web.juridical.JuridicalBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
+        <managed-bean-name>workBean</managed-bean-name>
+        <managed-bean-class>co.edu.udea.juridicapp.web.juridical.WorkBean</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
 </faces-config>

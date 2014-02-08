@@ -5,6 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
+
     <h:head >
         <title>JurídicApp</title>
     </h:head>
@@ -12,14 +13,15 @@
     <h:body >
         <h:form id="mainForm" >
             <center>
-                <p:dataTable draggableColumns="true" id="mainTable" paginator="true"
+                <p:dataTable draggableColumns="true" id="mainTable"
+                             paginator="true"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rows="10" rowsPerPageTemplate="10,15,30"
                              style="width: 98%; font-size: 13px;"
-                             value="#{juridicalBean.allJuridical}"
+                             value="#{workBean.allJuridical}"
                              var="juridical" >
                     <f:facet name="header" >
-                        Listado de Jurídicas
+                        Listado de Obras
                     </f:facet>
 
                     <p:column filterBy="issue" filterMatchMode="exact"
@@ -76,7 +78,7 @@
                     </p:column>
 
                     <f:facet name="footer" >
-                        Total Jurídicas: #{juridicalBean.allJuridical.size()}
+                        Total Obras #{workBean.allJuridical.size()}
                     </f:facet>
                 </p:dataTable>
             </center>
