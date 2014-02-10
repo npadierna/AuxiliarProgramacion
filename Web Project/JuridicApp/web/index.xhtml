@@ -13,10 +13,12 @@
     <h:body >
         <h:form id="mainForm" >
             <center>
-                <p:dataTable draggableColumns="true" id="mainTable"
+                <p:dataTable draggableColumns="true" id="mainTable" 
                              paginator="true"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rows="10" rowsPerPageTemplate="10,15,30"
+                             rows="10"  rowKey="#{juridical.issue}" rowsPerPageTemplate="10,15,30" 
+                             selection="#{workBean.selectedJuridica}"
+                             selectionMode="single"
                              style="width: 98%; font-size: 13px;"
                              value="#{workBean.allJuridical}"
                              var="juridical" >
@@ -25,28 +27,43 @@
                     </f:facet>
 
                     <p:column filterBy="issue" filterMatchMode="exact"
-                              headerText="Obra" style="font-size: 15px;" >
+                              style="font-size: 15px;" >
+                        <f:facet id="issue" name="header">  
+                            <h:outputText value="Obra" >
+                            </h:outputText>  
+                        </f:facet>  
                         <h:outputText style="font-size: 13px;"
                                       value="#{juridical.issue}" >
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Año" sortBy="year"
+                    <p:column sortBy="year"
                               style="font-size: 15px;" >
+                        <f:facet id="year" name="header">  
+                            <h:outputText value="Year" >
+                            </h:outputText>  
+                        </f:facet>  
                         <h:outputText style="font-size: 13px;"
                                       value="#{juridical.year}" >
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Tipo" sortBy="issue"
-                              style="font-size: 15px;" >
+                    <p:column sortBy="issue" style="font-size: 15px;" >
+                        <f:facet id="type" name="header">  
+                            <h:outputText value="Tipo" >
+                            </h:outputText>  
+                        </f:facet> 
                         <h:outputText style="font-size: 13px;"
                                       value="#{juridical.issue}" >
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Autor(es)" id="seeAuthors"
+                    <p:column id="seeAuthors"
                               style="font-size: 15px;" >
+                        <f:facet id="authors" name="header">  
+                            <h:outputText value="Autor(es)" >
+                            </h:outputText>  
+                        </f:facet> 
                         <p:commandLink id="showAuthors"
                                        oncomplete="PF('authorsListDialogue').show()" >
                             <center>
@@ -57,31 +74,95 @@
                         </p:commandLink>
                     </p:column>
 
-                    <p:column headerText="N° Contrato(s)"
-                              style="font-size: 15px;" >
+                    <p:column style="font-size: 15px;" >
+                        <f:facet id="contract" name="header">  
+                            <h:outputText value="Contrato(s)" >
+                            </h:outputText> 
+                        </f:facet> 
                     </p:column>
 
-                    <p:column headerText="Soporte" style="font-size: 15px;" >
+                    <p:column style="font-size: 15px;" >
+                        <f:facet id="support" name="header">  
+                            <h:outputText value="Soporte" >
+                            </h:outputText>  
+                        </f:facet> 
                     </p:column>
 
-                    <p:column headerText="ISBN" sortBy="isbn"
+                    <p:column sortBy="isbn"
                               style="font-size: 15px;" >
+                        <f:facet id="isbn" name="header">  
+                            <h:outputText value="ISBN" >
+                            </h:outputText>  
+                        </f:facet> 
                         <h:outputText style="font-size: 13px;"
                                       value="#{juridical.isbn}" >
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Archivos" style="font-size: 15px;" >
+                    <p:column style="font-size: 15px;" >
+                        <f:facet id="archivos" name="header">  
+                            <h:outputText value="Archivos" >
+                            </h:outputText> 
+                        </f:facet> 
                     </p:column>
 
-                    <p:column headerText="Observaciones" style="font-size: 15px;" >
+                    <p:column style="font-size: 15px;" >
+                        <f:facet id="observaciones" name="header">  
+                            <h:outputText value="Observaciones" >
+                            </h:outputText>  
+                        </f:facet> 
                     </p:column>
 
-                    <f:facet name="footer" >
+                    <f:facet  id="button" name="footer" >
+                        <p:button id="viewButton" value="Ver" 
+                                  icon="ui-icon-search" outcome="oeuvre">  
+                        </p:button>
+                    </f:facet>
+
+                    <f:facet  id="obras" name="footer" >
                         Total Obras #{workBean.allJuridical.size()}
                     </f:facet>
+                    
                 </p:dataTable>
             </center>
+
+            <h:panelGrid columns="2">  
+                <p:panel header="Exportar Todas las Tablas">  
+                    <h:commandLink>  
+                        <p:graphicImage value="/download_excel.jpg" >
+                        </p:graphicImage>  
+                        <p:dataExporter type="xls" target="mainTable" 
+                                        fileName="obras" >        
+                        </p:dataExporter>  
+                    </h:commandLink>  
+
+                    <h:commandLink>  
+                        <p:graphicImage value="/download_pdf.jpg" >
+                        </p:graphicImage>  
+                        <p:dataExporter type="pdf" target="mainTable" 
+                                        fileName="obras">
+                        </p:dataExporter>  
+                    </h:commandLink>  
+                </p:panel>  
+
+                <p:panel header="Exportar Solo esta Tabla">  
+                    <h:commandLink>  
+                        <p:graphicImage value="/download_excel.jpg" > 
+                        </p:graphicImage>  
+                        <p:dataExporter type="xls" target="mainTable" 
+                                        fileName="obras" pageOnly="true"> 
+                        </p:dataExporter>  
+                    </h:commandLink>  
+
+                    <h:commandLink>  
+                        <p:graphicImage value="/download_pdf.jpg" > 
+                        </p:graphicImage>  
+                        <p:dataExporter type="pdf" target="mainTable" 
+                                        fileName="obras" pageOnly="true">
+                        </p:dataExporter>  
+                    </h:commandLink>  
+                </p:panel>  
+            </h:panelGrid>  
 
             <p:dialog header="Listado de Autores" hideEffect="explode"
                       id="dialog" resizable="false" showEffect="fade"

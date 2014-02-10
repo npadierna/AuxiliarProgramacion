@@ -18,6 +18,7 @@ public class WorkBean implements Serializable {
     //private static final long serialVersionUID = 1L;
     private IJuridicalDAO juridicalDAO;
     private List<Work> allJuridical;
+    private Work selectedJuridica;
 
     public WorkBean() {
         super();
@@ -34,4 +35,13 @@ public class WorkBean implements Serializable {
 
         return (this.juridicalDAO.findAllJuridical());
     }
+
+    public Work getSelectedJuridica() {
+        return selectedJuridica;
+    }
+
+    public void setSelectedJuridica(Work selectedJuridica) {
+        this.selectedJuridica = selectedJuridica;
+    }
+    
 }
