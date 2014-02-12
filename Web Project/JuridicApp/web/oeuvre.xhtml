@@ -14,47 +14,108 @@
         </h:head>
 
         <h:body>
+            <f:metadata>  
+                <f:viewParam name="isbn" value="" />  
+            </f:metadata>  
             <p:tabView id="tabView">  
 
-                <p:tab id="titulo" title="Título" >
+                <p:tab id="obra" title="Obra" >
 
                     <h:panelGrid columns="2" cellpadding="10">  
-                        <h:outputText value="titulo" /> 
+                        <h:outputText value="Nombre muy largos, una descripción (*)." >
+                        </h:outputText> 
                     </h:panelGrid> 
-                   
+
                 </p:tab>
 
 
                 <p:tab id="fecha" title="Fecha">  
                     <h:panelGrid columns="2" cellpadding="10">  
-                        <h:outputText value="fecha" /> 
+                        <h:outputText value="Año de terminación de la obra. Realmente importa el año (*)." > 
+                        </h:outputText>
                     </h:panelGrid>  
                 </p:tab>  
                 <p:tab id="tipo" title="Tipo">  
                     <h:panelGrid columns="2" cellpadding="10">  
-                        <h:outputText value="tipo" /> 
+                        <h:outputText value="Muchos tipos al mismo tiempo. Se debe permitir ingresar nuevos (*)." >
+                        </h:outputText>
                     </h:panelGrid>  
                 </p:tab>  
                 <p:tab id="autor" title="Autor">  
                     <h:panelGrid columns="2" cellpadding="10">  
-                        <h:outputText value="autor" /> 
+                        <h:outputText value="Un autor por fila, lo recomendable, para hacer filtros." >
+                        </h:outputText>
                     </h:panelGrid>  
                 </p:tab>  
+
+                <p:tab id="relationship" title="Vinculo Universitario">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <h:outputText value="Vínculo con la U: El vínculo con el momento de entregar la obra (*)." >
+                        </h:outputText>
+                    </h:panelGrid>  
+                </p:tab>  
+
                 <p:tab id="adquisicion" title="Forma de Adquisición">  
                     <h:panelGrid columns="2" cellpadding="10">  
-                        <h:outputText value="adquisición" /> 
+                        <h:outputText value="Forma de aquisición pueden ser muchas (*)." /> 
                     </h:panelGrid>  
                 </p:tab>  
-                <p:tab id="idcontrado" title="Número del Contrato">  
+
+                <p:tab id="idcontrado" title="Nº Contrato">  
                     <h:panelGrid columns="2" cellpadding="10">  
-                        <h:outputText value="contrato" /> 
+                        <h:outputText value="El N° Contrato puede ser diferente o igual para varios autores (*)." /> 
                     </h:panelGrid>  
-                </p:tab>  
-                <p:tab id="soporte" title="Soporte">  
+                </p:tab> 
+
+                <p:tab id="support" title="Soporte">  
                     <h:panelGrid columns="2" cellpadding="10">  
-                        <h:outputText value="soporte" /> 
+                        <h:outputText value="Soporte" >
+                        </h:outputText> 
                     </h:panelGrid>  
                 </p:tab>  
+
+                <p:tab id="idDNDAContract" title="Contrato DNDA">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <h:outputText value=" Registro contrato DNDA: Es el del contratante que solo es uno (*)." >
+                        </h:outputText> 
+                    </h:panelGrid>  
+                </p:tab>  
+
+                <p:tab id="idDNDAOeuvre" title="Obra DNDA">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <h:outputText value="Registro Obra DNDA: Único para la obra, pero se debe tener en cuenta la contratación." >
+                        </h:outputText> 
+                    </h:panelGrid>  
+                </p:tab>  
+
+                <p:tab id="isbn" title="ISBN">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <h:outputText value="Puede darse que cuando se entrege la obra no se tenga ISBN (*)." >
+                        </h:outputText> 
+                    </h:panelGrid>  
+                </p:tab>  
+                
+                <p:tab id="file" title="Archivo">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <h:outputText value="archivo" >
+                        </h:outputText> 
+                    </h:panelGrid>  
+                </p:tab> 
+                
+                <p:tab id="dependency" title="Dependencia Encargada">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <h:outputText value="Dependencia Acádemica: Una sola dependencia académica por contrato. Un autor depende de una dependencia dentro de la Universidad." >
+                        </h:outputText> 
+                    </h:panelGrid>  
+                </p:tab> 
+                
+                <p:tab id="coments" title="Observaciones">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <h:outputText value="Observaciones o comentarios" >
+                        </h:outputText> 
+                    </h:panelGrid>  
+                </p:tab> 
+
             </p:tabView>
         </h:body>
     </f:view>
