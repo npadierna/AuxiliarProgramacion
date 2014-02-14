@@ -40,7 +40,7 @@
                     <p:column sortBy="year"
                               style="font-size: 15px;" >
                         <f:facet id="year" name="header">  
-                            <h:outputText value="Year" >
+                            <h:outputText value="Fecha" >
                             </h:outputText>  
                         </f:facet>  
                         <h:outputText style="font-size: 13px;"
@@ -76,7 +76,7 @@
 
                     <p:column style="font-size: 15px;" >
                         <f:facet id="contract" name="header">  
-                            <h:outputText value="Contrato(s)" >
+                            <h:outputText value="Contrato" >
                             </h:outputText> 
                         </f:facet> 
                     </p:column>
@@ -115,14 +115,14 @@
 
                     <f:facet  id="button" name="footer" >
                         <p:button id="viewButton" value="Ver" 
-                                  icon="ui-icon-search" outcome="oeuvre">
+                                  icon="ui-icon-search" outcome="work">
                             <f:param name="obra" value="" >
                             </f:param> 
                         </p:button>
                     </f:facet>
 
                     <f:facet  id="obras" name="footer" >
-                        Total Obras #{workBean.allJuridical.size()}
+                        Total Obras: #{workBean.allJuridical.size()}
                     </f:facet>
 
                 </p:dataTable>
