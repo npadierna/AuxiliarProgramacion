@@ -12,142 +12,257 @@
     </h:head>
 
     <h:body>
-        <h:form id="mainForm" >
-            <p:panel header="Descripción De La Obra" >
-                <p:wizard backLabel="Atrás" id="viewWizard"
-                          nextLabel="Siguiente" >
-                    <!--                    <p:tabView id="tabView" dynamic="true"
-                                                   orientation="top" scrollable="true" >-->
+        <p:layout fullPage="true"> 
+            <p:layoutUnit closable="false" collapsible="false" position="south" 
+                          resizable="false" size="50" >   
+            </p:layoutUnit> 
 
-                    <p:tab id="work" title="Obra" >
-                        <center>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <h:outputText
-                                    value="Registro DNDA:" >
-                                </h:outputText>
-                                <p:inputText ></p:inputText>
+            <p:layoutUnit closable="false" collapsible="true" effect="drop" 
+                          header="Usuario" position="east" resizable="false" 
+                          size="200" >  
+                <h:outputText value="Datos del usuario" />  
+            </p:layoutUnit>  
 
-                                <h:outputText value="Nombre de la Obra:" >
-                                </h:outputText>
-                                <p:inputText ></p:inputText>
+            <p:layoutUnit position="center">  
 
-                                <h:outputText
-                                    value="Fecha de Entrega:" >
-                                </h:outputText>
-                                <p:calendar effect="explode" >
-                                </p:calendar>
+                <h:form id="mainForm" >
+                    <p:panel header="Descripción De La Obra" >
+                        <p:wizard backLabel="Atrás" id="viewWizard"
+                                  nextLabel="Siguiente" >
+                            <!--                    <p:tabView id="tabView" dynamic="true"
+                                                           orientation="top" scrollable="true" >-->
 
-                                <h:outputText value="Descripción de la Obra:" >
-                                </h:outputText>
-                                <p:inputTextarea autoResize="false" cols="30"
-                                                 counter="counter"
-                                                 counterTemplate="{0} Caracteres Restantes."
-                                                 maxlength="150" rows="5" >
-                                </p:inputTextarea>
-                            </h:panelGrid>
+                            <p:tab id="work" title="Obra" >
+                                <center>
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <h:outputText
+                                            value="Registro DNDA:" >
+                                        </h:outputText>
+                                        <p:inputText ></p:inputText>
 
-                            <h:outputText id="counter" >
-                            </h:outputText>
-                        </center>
-                    </p:tab>
+                                        <h:outputText value="Nombre de la Obra:" >
+                                        </h:outputText>
+                                        <p:inputText ></p:inputText>
 
-                    <p:tab id="author" title="Autor(es)" >
-                        <center>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <h:outputText value="Tipo de documento: " >
-                                </h:outputText>
-                                <p:inputText ></p:inputText>
+                                        <h:outputText
+                                            value="Fecha de Entrega:" >
+                                        </h:outputText>
+                                        <p:calendar effect="explode" >
+                                        </p:calendar>
 
-                                <h:outputText value="Número de documento: " >
-                                </h:outputText>
-                                <p:inputText ></p:inputText>
+                                        <h:outputText value="Descripción de la Obra:" >
+                                        </h:outputText>
+                                        <p:inputTextarea autoResize="false" cols="30"
+                                                         counter="counter"
+                                                         counterTemplate="{0} Caracteres Restantes."
+                                                         maxlength="150" rows="5" >
+                                        </p:inputTextarea>
+                                    </h:panelGrid>
 
-                                <h:outputText value="Nombres completos: " >
-                                </h:outputText>
-                                <p:inputText ></p:inputText>
+                                    <h:outputText id="counter" >
+                                    </h:outputText>
+                                </center>
+                            </p:tab>
 
-                                <h:outputText value="Apellidos completos: " >
-                                </h:outputText>
-                                <p:inputText ></p:inputText>
+                            <p:tab id="author" title="Autor(es)" >
+                                <center>
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <h:outputText value="Tipo de documento:" >
+                                        </h:outputText>
+                                        <p:inputText ></p:inputText>
 
-                                <h:outputText
-                                    value="Vínculo con la U: El vínculo con el momento de entregar la obra (*)." >
-                                </h:outputText>
+                                        <h:outputText value="Número de documento:" >
+                                        </h:outputText>
+                                        <p:inputText ></p:inputText>
 
-                                <h:outputText
-                                    value="El N° Contrato puede ser diferente o igual para varios autores (*)." >
-                                </h:outputText>
-                            </h:panelGrid>
-                        </center>
-                    </p:tab>
+                                        <h:outputText value="Nombres completos: " >
+                                        </h:outputText>
+                                        <p:inputText ></p:inputText>
 
-                    <p:tab id="tipo" title="Tipo" >
-                        <center>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <h:outputText
-                                    value="Muchos tipos al mismo tiempo. Se debe permitir ingresar nuevos (*)." >
-                                </h:outputText>
+                                        <h:outputText value="Apellidos completos:" >
+                                        </h:outputText>
+                                        <p:inputText ></p:inputText>
 
-                                <h:outputText
-                                    value="Forma de aquisición pueden ser muchas (*)." >
-                                </h:outputText>
-                            </h:panelGrid>
-                        </center>
-                    </p:tab>
+                                        <h:outputText
+                                            value="Vínculo con la Universidad:" >
+                                        </h:outputText>
+                                        <p:inputText> </p:inputText>
 
-                    <p:tab id="support" title="Soporte" >
-                        <center>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <h:outputText value="Soporte" >
-                                </h:outputText>
-                            </h:panelGrid>
-                        </center>
-                    </p:tab>
+                                        <h:outputText
+                                            value="Número del Contrato:" >
+                                        </h:outputText>
+                                        <p:inputText> </p:inputText>
+                                    </h:panelGrid>
+                                </center>
+                            </p:tab>
 
-                    <p:tab id="isbn" title="ISBN" >
-                        <center>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <h:outputText
-                                    value="Puede darse que cuando se entrege la obra no se tenga ISBN (*)." >
-                                </h:outputText>
-                            </h:panelGrid>
-                        </center>
-                    </p:tab>
+                            <p:tab id="tipo" title="Tipo" >
+                                <center>
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <h:outputText
+                                            value="Tipo de la obra:" >
+                                        </h:outputText>
+                                        <p:inputText></p:inputText>
 
-                    <p:tab id="file" title="Archivos" >
-                        <center>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <h:outputText value="archivo" >
-                                </h:outputText>
-                            </h:panelGrid>
-                        </center>
-                    </p:tab>
+                                        <h:outputText
+                                            value="Forma de adquisición:" >
+                                        </h:outputText>
+                                        <p:inputText> </p:inputText>
+                                    </h:panelGrid>
+                                </center>
+                            </p:tab>
 
-                    <p:tab id="dependency" title="Dependencia" >
-                        <center>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <h:outputText
-                                    value=" Registro DNDA:" >
-                                </h:outputText>
-                                <p:inputText ></p:inputText>
+                            <p:tab id="support" title="Soporte" >
+                                <center>
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <h:outputText value="Soporte:" >
+                                        </h:outputText>
+                                        <p:inputText></p:inputText>
+                                    </h:panelGrid>
+                                </center>
+                            </p:tab>
 
-                                <h:outputText
-                                    value="Dependencia Acádemica: Una sola dependencia académica por contrato. Un autor depende de una dependencia dentro de la Universidad." >
-                                </h:outputText>
-                            </h:panelGrid>
-                        </center>
-                    </p:tab>
+                            <p:tab id="isbn" title="ISBN" >
+                                <center>
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <h:outputText
+                                            value="Registro ISBN:" >
+                                        </h:outputText>
+                                        <p:inputText></p:inputText>
+                                    </h:panelGrid>
+                                </center>
+                            </p:tab>
 
-                    <p:tab id="coments" title="Observaciones" >
-                        <center>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <h:outputText value="Observaciones o comentarios" >
-                                </h:outputText>
-                            </h:panelGrid>
-                        </center>
-                    </p:tab>
-                </p:wizard>
-            </p:panel>
-        </h:form>
+                            <p:tab id="file" title="Archivos" >
+                                <center>
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <h:outputText value="Archivo(s)" >
+                                        </h:outputText>
+                                        <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                                      dragDropSupport="true" 
+                                                      cancelLabel="Cancelar" 
+                                                      label="Adjuntar"
+                                                      mode="advanced"
+                                                      uploadLabel="Subir" 
+                                                      sizeLimit="512000" >
+                                        </p:fileUpload>                                 
+                                    </h:panelGrid>
+                                </center>
+                            </p:tab>
+
+                            <p:tab id="dependency" title="Dependencia" >
+                                <center>
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <h:outputText
+                                            value=" Registro DNDA:" >
+                                        </h:outputText>
+                                        <p:inputText ></p:inputText>
+
+                                        <h:outputText
+                                            value="Dependencia Acádemica Encargada:" >
+                                        </h:outputText>
+                                        <p:inputText> </p:inputText>
+                                    </h:panelGrid>
+                                </center>
+                            </p:tab>
+
+                            <p:tab id="coments" title="Observaciones" >
+                                <center>
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <h:outputText value="Observaciones o comentarios:" >
+                                        </h:outputText>
+                                        <p:inputTextarea></p:inputTextarea>
+                                    </h:panelGrid>
+                                </center>
+                            </p:tab>
+
+                            <p:tab id="confirmation" title="Confimación" >
+                                <center>
+                                    <h:panelGrid columns="4" cellpadding="10" >
+                                        <h:outputText
+                                            value="Registro DNDA Obra:" >
+                                        </h:outputText>
+                                        <h:outputText value="NOMBRE">
+                                        </h:outputText>
+
+                                        <h:outputText value="Nombre de la Obra:" >
+                                        </h:outputText>
+                                        <h:outputText value="NOMBRE DE LA OBRA">
+                                        </h:outputText>
+
+                                        <h:outputText
+                                            value="Fecha de Entrega:" >
+                                        </h:outputText>
+                                        <h:outputText value="FECHA">
+                                        </h:outputText>
+
+                                        <h:outputText value="Nombres del autor:" >
+                                        </h:outputText>
+                                        <h:outputText value="NOMBRE DEL AUTOR">
+                                        </h:outputText>
+
+                                        <h:outputText value="Apellidos del autor:" >
+                                        </h:outputText>
+                                        <h:outputText value="APELLIDS DEL AUTOR">
+                                        </h:outputText>
+
+                                        <h:outputText
+                                            value="Vínculo con la Universidad:" >
+                                        </h:outputText>
+                                        <h:outputText value="VÍNCULO CON LA UNIVERSIDAD">
+                                        </h:outputText>
+
+                                        <h:outputText
+                                            value="Número del Contrato:" >
+                                        </h:outputText>
+                                        <h:outputText value="NÚMERO DE CONTRATO">
+                                        </h:outputText>
+
+                                        <h:outputText
+                                            value="Tipo de la obra:" >
+                                        </h:outputText>
+                                        <h:outputText value="TIPO DE OBRA">
+                                        </h:outputText>
+
+                                        <h:outputText
+                                            value="Forma de adquisición:" >
+                                        </h:outputText>
+                                        <h:outputText value="FORMA DE ADQUISICIÓN">
+                                        </h:outputText>
+
+                                        <h:outputText value="Soporte:" >
+                                        </h:outputText>
+                                        <h:outputText value="SOPORTE">
+                                        </h:outputText>
+
+                                        <h:outputText
+                                            value="Registro ISBN:" >
+                                        </h:outputText>
+                                        <h:outputText value="ISBN">
+                                        </h:outputText>
+
+                                        <h:outputText
+                                            value="Registro DNDA:" >
+                                        </h:outputText>
+                                        <h:outputText value="DNDA">
+                                        </h:outputText>
+
+                                        <h:outputText
+                                            value="Dependencia Acádemica Encargada:" >
+                                        </h:outputText>
+                                        <h:outputText value="DEPENDENCIA">
+                                        </h:outputText>
+
+                                    </h:panelGrid>
+                                    <p:button id="save" value="Guardar"
+                                              icon="ui-icon-disk" outcome="index">
+                                    </p:button>
+                                </center>
+                            </p:tab>
+                        </p:wizard>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
     </h:body>
 </html>
