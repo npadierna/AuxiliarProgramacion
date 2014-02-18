@@ -53,6 +53,6 @@
         <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>faces/co/edu/udea/juridicapp/web/index.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>
