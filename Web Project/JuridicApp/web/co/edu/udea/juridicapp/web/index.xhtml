@@ -7,7 +7,10 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head >
-        <title>JurídicApp</title>
+         <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+            <title>JuridicApp</title>
+        </f:facet>
     </h:head>
 
     <h:body >
@@ -127,11 +130,9 @@
                             </p:column>
 
                             <f:facet  id="button" name="footer" >
-                                <p:button id="viewButton" value="Ver" 
-                                          icon="ui-icon-search" outcome="selectedwork">
-                                    <f:param name="obra" value="" >
-                                    </f:param> 
-                                </p:button>
+                                <p:commandButton id="viewButton" value="Ver"
+                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/work/selectedwork.xhtml';" >
+                                </p:commandButton>
                             </f:facet>
 
                             <f:facet  id="obras" name="footer" >
@@ -144,7 +145,7 @@
                     <h:panelGrid columns="2">  
                         <p:panel header="Exportar Todas las Tablas">  
                             <h:commandLink>  
-                                <p:graphicImage value="/faces/co/edu/udea/juridicapp/web/util/images/download_excel.jpg" >
+                                <p:graphicImage value="/faces/co/edu/udea/juridicapp/util/images/download_excel.jpg" >
                                 </p:graphicImage>  
                                 <p:dataExporter type="xls" target="mainTable" 
                                                 fileName="obras" >        
@@ -152,7 +153,7 @@
                             </h:commandLink>  
 
                             <h:commandLink>  
-                                <p:graphicImage value="/faces/co/edu/udea/juridicapp/web/util/images/download_pdf.jpg" >
+                                <p:graphicImage value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.jpg" >
                                 </p:graphicImage>  
                                 <p:dataExporter type="pdf" target="mainTable" 
                                                 fileName="obras">
@@ -162,7 +163,7 @@
 
                         <p:panel header="Exportar Solo esta Tabla">  
                             <h:commandLink>  
-                                <p:graphicImage value="/faces/co/edu/udea/juridicapp/web/util/images/download_excel.jpg" > 
+                                <p:graphicImage value="/faces/co/edu/udea/juridicapp/util/images/download_excel.jpg" > 
                                 </p:graphicImage>  
                                 <p:dataExporter type="xls" target="mainTable" 
                                                 fileName="obras" pageOnly="true"> 
@@ -170,7 +171,7 @@
                             </h:commandLink>  
 
                             <h:commandLink>  
-                                <p:graphicImage value="/faces/co/edu/udea/juridicapp/web/util/images/download_pdf.jpg" > 
+                                <p:graphicImage value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.jpg" > 
                                 </p:graphicImage>  
                                 <p:dataExporter type="pdf" target="mainTable" 
                                                 fileName="obras" pageOnly="true">

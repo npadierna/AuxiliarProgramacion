@@ -13,13 +13,15 @@
     <h:body>
         <p:layout fullPage="true">
             <p:layoutUnit closable="false" collapsible="false" position="south"
-                          resizable="false" size="50">
+                          resizable="false" size="60">
+                <p:commandButton id="home" value="Regresar"
+                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';" >
+                </p:commandButton>
             </p:layoutUnit>
 
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
                           header="Usuario" position="east" resizable="false" 
-                          size="200" >  
-                <h:outputText value="Datos del usuario" />  
+                          size="200" >
             </p:layoutUnit>  
 
             <p:layoutUnit position="center">
@@ -145,7 +147,7 @@
                             <p:tab id="file" title="Archivos" >
                                 <center>
                                     <h:panelGrid columns="2" cellpadding="10" >
-                                        <h:outputText value="Ubicación del/los Archivo(s)" >
+                                        <h:outputText value="Ubicación del/los Archivo(s):" >
                                         </h:outputText>
                                         <h:outputText value="RUTA" >
                                         </h:outputText>                   
