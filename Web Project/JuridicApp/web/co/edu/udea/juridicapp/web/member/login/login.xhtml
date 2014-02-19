@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head >
+        <script type="text/javascript" src="../../../util/javascript/loginRequestFunction.js" />
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+            <title>Login</title>
+        </f:facet>
+    </h:head>
+
+    <h:body >
+        <h:form id="loginForm" >
+            <center>
+                <p:panel id="loginPanel" style="width: 800px;" >
+                    <center>
+                        <p:growl id="growlLogin" showDetail="true" life="3000" />
+                        <h1>Iniciar Sesión</h1>
+                        <h:panelGrid columns="3" cellpadding="5" >
+                            <h:outputLabel for="email" value="Correo Electrónico: *" />
+                            <p:inputText id="email" 
+                                         label="Correo electrónico."
+                                         
+                                   >
+
+                            </p:inputText>
+
+                            <p:watermark for="email" value="Obligatorio" />
+
+                            <h:outputLabel for="password" value="Contraseña: *" />
+                            <p:password id="password" 
+                                        label="Contraseña"
+                                        
+                                         />
+                            <p:watermark for="password" value="Obligatorio" />
+
+                            <f:facet name="footer" >
+                                <center>
+                                    <p:commandButton id="logInButton"
+                                                     value="Iniciar Sesión"
+                                                     update="growlLogin"                                                                                               
+                                                     oncomplete="handleLoginRequest(xhr, status, args)" >
+                                    </p:commandButton>
+                                </center>
+                            </f:facet>
+                        </h:panelGrid>
+                    </center>
+                </p:panel>
+            </center>
+        </h:form>
+    </h:body>
+</html>

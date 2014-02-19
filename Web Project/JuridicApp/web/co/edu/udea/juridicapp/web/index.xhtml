@@ -7,7 +7,7 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head >
-         <f:facet name="first">
+        <f:facet name="first">
             <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
             <title>JuridicApp</title>
         </f:facet>
@@ -21,8 +21,21 @@
 
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
                           header="Usuario" position="east" resizable="false" 
-                          size="200" >  
-                <h:outputText value="Datos del usuario" />  
+                          size="200" > 
+                <center>
+                    <p:panel id="memberManagementPanel" >
+                        <center>
+                            <p:commandLink onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/login/login.xhtml';">
+                                <h:outputText value="Iniciar Sesión"/>
+                            </p:commandLink>
+                            <p:spacer height="5" width="25" />
+
+                            <p:commandButton id="registerButton" value="Registrarse"
+                                             onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/registration/registermember.xhtml';" >
+                            </p:commandButton>
+                        </center>
+                    </p:panel>
+                </center>
             </p:layoutUnit>  
 
             <p:layoutUnit position="center">  
@@ -130,8 +143,9 @@
                             </p:column>
 
                             <f:facet  id="button" name="footer" >
-                                <p:commandButton id="viewButton" value="Ver"
-                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/work/selectedwork.xhtml';" >
+                                <p:commandButton icon="ui-icon-search" id="viewButton" 
+                                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/work/selectedwork.xhtml';" 
+                                                 value="Ver" >
                                 </p:commandButton>
                             </f:facet>
 
