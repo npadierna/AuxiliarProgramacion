@@ -1,14 +1,174 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+            <title>Actualizar Datos</title>
+            <script type="text/javascript" src="../../../../util/javascript/passwordChanged.js" />               
+        </f:facet>
+    </h:head>
+
+
+    <h:body>
+        <p:layout fullPage="true"> 
+            <p:layoutUnit closable="false" collapsible="false" position="south" 
+                          resizable="false" size="50" >   
+            </p:layoutUnit> 
+
+            <p:layoutUnit closable="false" collapsible="true" effect="drop" 
+                          header="NOMBRE USUARIO" position="east" resizable="false" 
+                          size="200" > 
+                <center>
+                    <p:panel id="memberManagementPanel" >
+                        <center>
+                            <p:commandButton id="registerButton" value="Cerrar Sesión"
+                                             onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';" >
+                            </p:commandButton>
+                        </center>
+                    </p:panel>
+                </center>
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="center">  
+
+                <h:form id="mainForm" >
+                    <center>
+                        <table align="center" >
+                            <tr>
+                                <td>                    
+                                    <ui:include src="logoutinfomember.xhtml" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h:form id="formChangePassword" >
+                            <p:growl id="growlChangePassword" showDetail="true" life="3000" />
+
+                            <p:fieldset id="updatePasswordFieldSet" legend="Actualizar Contraseña"
+                                        toggleable="true" toggleSpeed="500" collapsed="true" >
+
+                                <h:panelGrid columns="2" cellpadding="5" id="newPasswordPanelGrid" >
+
+                                    <h:outputLabel for="lastPassword" value ="Contraseña antigua: *" />
+                                    <p:password id="lastPassword" 
+                                                disabled="false" required="true"
+                                                label="Contraseña Antigua"
+                                                requiredMessage="Por favor ingrese su anterior contraseña." />
+
+                                    <h:outputLabel for="newPassword" value ="Contraseña nueva: *" />
+                                    <p:password id="newPassword"
+                                                disabled="false" match="confirmNewPassword"
+                                                required="true" label="Nueva Contraseña" feedback="true"
+                                                requiredMessage="Por favor ingrese la nueva contraseña." />
+
+                                    <h:outputLabel for="confirmNewPassword"
+                                                   value ="Confirme la contraseña: *" />
+                                    <p:password id="confirmNewPassword" 
+                                                disabled="false" required="true"
+                                                label="Confirmación Contraseña" feedback="true"
+                                                requiredMessage="Confirme la nueva contraseña." />
+                                </h:panelGrid>
+
+                                <p:watermark for="lastPassword" value="Obligatorio" />
+                                <p:watermark for="newPassword" value="Obligatorio" />
+                                <p:watermark for="confirmNewPassword" value="Obligatorio" />
+
+                                <center>
+                                    <p:commandButton id="changePasswordButton"
+                                                     value="Cambiar Contraseña" update ="growlChangePassword"
+
+                                                     oncomplete="handlePasswordChangedRequest(xhr, status, args)" />
+                                </center>
+                            </p:fieldset>
+                        </h:form>
+
+                        <p:spacer height="20" />
+
+                        <h:form id="formUpdateData" >
+                            <p:growl id="growlUpdateData" showDetail="true" life="3000" />
+
+                            <p:fieldset legend="Actualizar Datos Personales" toggleable="true"
+                                        toggleSpeed="500" >
+                                <h:panelGrid columns="2" cellpadding="5" >
+                                    <h:outputLabel value ="Tipo de Documento: " />
+                                    <h:inputText id="documentType"
+
+                                                 disabled="true" />
+
+                                    <h:outputLabel value ="Número de Documento: " />
+                                    <h:inputText id="idNumber" 
+
+                                                 disabled="true" />
+
+                                    <h:outputLabel value ="Nombre(s): *" />
+                                    <h:inputText id="fullName" 
+                                                 disabled="false" required="true"
+                                                 label="Nombre Completo."
+                                                 requiredMessage="Por favor ingrese su nombre completo." />
+
+                                    <h:outputLabel value ="Apellidos: *" />
+                                    <h:inputText id="lastNames" 
+                                                 disabled="false" required="true"
+                                                 label="Apellido(s)."
+                                                 requiredMessage="Por favor ingrese su(s) apellido(s)." />
+
+                                    <h:outputText value="E-mail: *" />
+                                    <h:inputText id="email" 
+                                                 disabled="false" required="true"
+                                                 label="E-mail"
+                                                 requiredMessage="Por favor ingrese su E-mail." />
+                                </h:panelGrid>
+
+                                <p:watermark for="fullName" value="Obligatorio" />
+                                <p:watermark for="lastNames" value="Obligatorio" />
+
+                                <center>
+                                    <p:commandButton id="updateMemberButton"
+                                                     value="Actualizar Datos" update ="growlUpdateData"
+
+                                                     oncomplete="handlePasswordChangedRequest(xhr, status, args)" />
+                                </center>
+                            </p:fieldset>
+                        </h:form>
+
+                        <p:spacer height="20" />
+
+                        <h:form id="formUnsubscribe" >
+                            <p:growl id="growlUnsubscribe" showDetail="true" life="3000" />
+
+                            <p:fieldset legend="Dar de Baja" toggleable="true"
+                                        toggleSpeed="500" collapsed="true" >
+                                <h:outputLabel for="lastPassword" value ="Si desea darse de 
+                                               baja, ingrese su contraseña y presione el botón 
+                                               Dar de Baja." />
+                                <br/><br/>
+
+                                <center>
+                                    <h:panelGrid id="deleteMemberPanelGrid" columns="3"
+                                                 cellpadding="10" >
+                                        <p:outputLabel value="Contraseña: *" />
+                                        <p:password id="confirmPasswordForDelete"
+                                                    disabled="false" required="true"
+                                                    label="Contraseña"
+                                                    requiredMessage="Por favor ingrese su contraseña." />
+                                        <p:commandButton id="unsubscribe" value="Dar de Baja"
+                                                         update="growlUnsubscribe"
+                                                         oncomplete="handleDeleteRequest(xhr, status, args)"/>
+                                    </h:panelGrid>
+                                </center>
+                            </p:fieldset>
+                        </h:form>
+                    </center>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
 </html>

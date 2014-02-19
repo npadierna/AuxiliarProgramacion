@@ -9,20 +9,22 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui" >
 
-    <h:form id="logoutInfoMemberForm" >
+    <h:form id="logoutAndUpdateInfoForm" >
         <script type="text/javascript" src="../../../../util/javascript/logOutRequestFunction.js" />
-        
+
         <p align="right" >
             <p:spacer height="5px" width="20px" />
 
             <p:commandLink onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/update/updateinfomember.xhtml';" >
-                <h:outputText value="NOMBRE USUARIO" >
+                <h:outputText value="NOMBRE USUARIO"
+                              style="font-size: 17px;" >
                 </h:outputText>
             </p:commandLink>
 
             <p:spacer height="5px" width="20px" />
 
-            <p:commandLink oncomplete="handleLogoutRequest(xhr, status, args)" >
+            <p:commandLink onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
+                           oncomplete="handleLogoutRequest(xhr, status, args)" >
                 <h:outputText value="Cerrar Sesión" style="font-size: 17px;" />
             </p:commandLink>
         </p>
