@@ -1,14 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+    "http://www.w3.org/TR/html4/loose.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" >
+
+    <f:view contentType="text/html" >
+        <h:head>
+            <f:facet name="first" >
+                <title>Usuario Eliminado</title>
+                <script type="text/javascript" 
+                        src="../../../../util/javascript/jsFunctions.js" >
+                </script>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form id="deletedMemberForm" >
+                <center>
+                    <p:spacer height="30px" >
+                    </p:spacer>
+                    <h:panelGrid columns="1" >
+                        <p:panel id="deletedMemberPanel" >
+                            <center> 
+                                <h1>SOCIO ELIMINADO SATISFACTORIAMENTE</h1>
+                                <br/><br/>
+                                <h:outputLabel value="Usted ha sido eliminado 
+                                               satisfactoriamente.">
+                                </h:outputLabel>
+                            </center>
+                        </p:panel>
+                    </h:panelGrid>
+                    <br/><br/><br/>
+                    <p:commandLink onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';" 
+                                   value="Regresar">
+                    </p:commandLink>
+                </center>
+            </h:form> 
+        </h:body>
+    </f:view>
 </html>
