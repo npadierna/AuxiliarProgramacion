@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" >
+
+    <persistence-unit name="JuridicAppPU" transaction-type="JTA"    >
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>jndi/juridicapp</jta-data-source>
+
+        <class>co.edu.udea.juridicapp.persistence.entity.Acquisition</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.Author</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.AuthorWork</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.AuthorWorkAcquisition</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.Comment</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.Contract</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.Dependency</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.Dnda</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.File</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.Profile</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.Role</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.Support</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.Type</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.User</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.Work</class>
+        <class>co.edu.udea.juridicapp.persistence.entity.WorkType</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql"
+                      value="true" />
+            <property name="hibernate.archive.autodetection"
+                      value="class" />
+            <property name="hibernate.transaction.manager_lookup_class"
+                      value="org.hibernate.transaction.SunONETransactionManagerLookup" />
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/JuridicApp" />
+            <property name="javax.persistence.jdbc.password"
+                      value="230491" />
+            <property name="javax.persistence.jdbc.driver"
+                      value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.user"
+                      value="root" />
+            <property name="hibernate.hbm2ddl.auto"
+                      value="update" />
+        </properties>
+    </persistence-unit>
+</persistence>
