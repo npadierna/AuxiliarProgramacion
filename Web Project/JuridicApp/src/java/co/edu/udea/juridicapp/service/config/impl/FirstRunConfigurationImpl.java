@@ -1,9 +1,15 @@
 package co.edu.udea.juridicapp.service.config.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IAcquisitionDAO;
+import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
+import co.edu.udea.juridicapp.persistence.dao.IProfileDAO;
+import co.edu.udea.juridicapp.persistence.dao.IRoleDAO;
 import co.edu.udea.juridicapp.persistence.dao.ISupportDAO;
 import co.edu.udea.juridicapp.persistence.dao.ITypeDAO;
 import co.edu.udea.juridicapp.persistence.entity.Acquisition;
+import co.edu.udea.juridicapp.persistence.entity.Dependency;
+import co.edu.udea.juridicapp.persistence.entity.Profile;
+import co.edu.udea.juridicapp.persistence.entity.Role;
 import co.edu.udea.juridicapp.persistence.entity.Support;
 import co.edu.udea.juridicapp.persistence.entity.Type;
 import co.edu.udea.juridicapp.service.config.IFirstRunConfiguration;
@@ -17,6 +23,12 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     private ISupportDAO supportDAO;
     @Autowired()
     private ITypeDAO typeDAO;
+    @Autowired()
+    private IDependencyDAO dependencyDAO;
+    @Autowired()
+    private IProfileDAO profileDAO;
+    @Autowired()
+    private IRoleDAO roleDAO;
 
     @Override()
     public void createDefaultData() {
@@ -25,6 +37,9 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         this.createDefaultAcquisitions();
         this.createDefaultSupports();
         this.createDefaultTypes();
+        this.createDefaultDependencies();
+        this.createDefaultProfiles();
+        this.createDefaultRoles();
     }
 
     @Override()
@@ -58,14 +73,71 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
 
     @Override()
     public void createDefaultDependencies() {
+        System.out.println(" + Creating the default \"DEPENDENCY\" data.");
+
+        if (this.dependencyDAO.countDependencies() == 0) {
+            Dependency dependency = new Dependency("Drai Facultad de ingeniería");
+            this.dependencyDAO.saveDependency(dependency);
+        }
     }
 
     @Override()
     public void createDefaultProfiles() {
+        System.out.println(" + Creating the default \"PROFILE\" data.");
+
+        if (this.profileDAO.countProfiles() == 0) {
+            Profile profile = new Profile("Secretaria");
+            this.profileDAO.saveProfile(profile);
+        }
     }
 
     @Override()
     public void createDefaultRoles() {
+        System.out.println(" + Creating the default \"ROLE\" data.");
+
+        if (this.roleDAO.countRoles() == 0) {
+            Role role = new Role("Profesor Vinculado");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Profesor Ocasional");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Profesor Visitante");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Profesor Ad Honórem");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Profesor De Cátedra");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Estudiante De Pregrado");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Estudiante De Postgrado");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Empleado De Carrera");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Empleado De Libre Nombramiento");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Empleado Provisional");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Empleado Ocasional");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Contratista");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("Externo");
+            this.roleDAO.saveRole(role);
+
+            role = new Role("No Aplica");
+            this.roleDAO.saveRole(role);
+        }
     }
 
     @Override()

@@ -14,53 +14,82 @@
     <h:body>
         <h:form id="registrerForm">
             <center>
-                <p:panel id="registrerPanel" header="Registrarse">
+                <p:panel id="registrerPanel" header="Registrarse" style="font-weight:bold" >
 
-                    <p:growl id="growlRegistrer" showDetail="false" life="3000" />
-                    <h:panelGrid columns="2">
+                    <p:growl id="growlRegistrer" showDetail="false" life="3000" >
+                    </p:growl>
+                        <h:panelGrid columns="2" cellpadding="5" >
+                            <h:outputLabel for="documentType" value="Tipo Documento:"
+                                           style="font-weight:bold" >
+                            </h:outputLabel>
+                            <p:selectOneMenu id="documentType" 
+                                             value="#{registerUserBean.documentType}"
+                                             required="true" label="Tipo Documento">
+                                <f:selectItems value="#{registerUserBean.documentsType}">
+                                </f:selectItems>
+                            </p:selectOneMenu>
 
-                        <h:outputLabel for="userName" value="Nombre de Usuario:">
-                        </h:outputLabel>
-                        <p:inputText id="userName" value="#{loginMemberBean.userName}"
-                                     required="true" label="Usuario">
-                        </p:inputText>
+                            <h:outputLabel for="idNumber" value="Número Documento:"
+                                           style="font-weight:bold" >
+                            </h:outputLabel>
+                            <p:inputText id="idNumber" 
+                                         value="#{registerUserBean.idNumber}"
+                                         required="true" label="Número Documento"
+                                         size="20" >
+                            </p:inputText>
 
-                        <h:outputLabel for="password" value="Contraseña:">
-                        </h:outputLabel>
-                        <p:password id="password" value="#{loginMemberBean.password}"
-                                    feedback="true" required="true"
-                                    match="password2"
-                                    label="Contraseña" size="20">
-                        </p:password>
+                            <h:outputLabel for="userName" value="Nombre de Usuario:"
+                                           style="font-weight:bold" >
+                            </h:outputLabel>
+                            <p:inputText id="userName" 
+                                         value="#{registerUserBean.newUser.userName}"
+                                         required="true" label="Usuario" size="20">
+                            </p:inputText>
 
-                        <h:outputLabel for="password2" value="Confirmar Contraseña:">
-                        </h:outputLabel>
-                        <p:password id="password2" value="#{loginMemberBean.password}"
-                                    feedback="true" required="true"
-                                    label="Confirmar Contraseña" size="20">
-                        </p:password>
+                            <h:outputLabel for="password" value="Contraseña:"
+                                           style="font-weight:bold">
+                            </h:outputLabel>
+                            <p:password id="password" 
+                                        value="#{registerUserBean.newUser.password}"
+                                        feedback="true" required="true"
+                                        match="password2"
+                                        label="Contraseña" size="20">
+                            </p:password>
+
+                            <h:outputLabel for="password2" value="Confirmar Contraseña:"
+                                           style="font-weight:bold">
+                            </h:outputLabel>
+                            <p:password id="password2" 
+                                        value="#{registerUserBean.newUser.password}"
+                                        feedback="true" required="true"
+                                        label="Confirmar Contraseña" size="20">
+                            </p:password>
 
 
-                        <p:commandButton id="registerButton"
-                                         value="Registrarse" update="registrerPanel"
-                                         oncomplete="handleRegistryOkRequest(xhr, status, args)" >
-                        </p:commandButton>
-                        <p:commandButton id="clearButton" update="registrerPanel"
-                                         type="reset" process="@this" ajax="true"
-                                         value="Limpiar" >
+                            <p:commandButton id="registerButton"
+                                             value="Registrarse" update="registrerPanel"
+                                             actionListener="#{registerUserBean.doSubscribtion}"
+                                            >
+                            </p:commandButton>
+                            <p:commandButton id="clearButton" update="registrerPanel"
+                                             type="reset" process="@this" ajax="true"
+                                             value="Limpiar" >
 
-                            <p:resetInput target="userName">
-                            </p:resetInput>
-                            <p:resetInput target="password">
-                            </p:resetInput>
-                        </p:commandButton>                  
-                    </h:panelGrid>
-                    <p:watermark for="userName" value="Obligatorio">
-                    </p:watermark>
-                    <p:watermark for="password" value="Obligatorio">
-                    </p:watermark>
-                    <p:watermark for="password2" value="Obligatorio">
-                    </p:watermark>
+                                <p:resetInput target="userName">
+                                </p:resetInput>
+                                <p:resetInput target="password">
+                                </p:resetInput>
+                            </p:commandButton> 
+
+                        </h:panelGrid>
+                        <p:watermark for="idNumber" value="Obligatorio">
+                        </p:watermark>
+                        <p:watermark for="userName" value="Obligatorio">
+                        </p:watermark>
+                        <p:watermark for="password" value="Obligatorio">
+                        </p:watermark>
+                        <p:watermark for="password2" value="Obligatorio">
+                        </p:watermark>
                 </p:panel>
             </center>
         </h:form>

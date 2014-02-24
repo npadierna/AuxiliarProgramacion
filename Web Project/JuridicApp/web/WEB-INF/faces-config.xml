@@ -31,4 +31,11 @@
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>registerUserBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.member.data.registration.RegistrationUserBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

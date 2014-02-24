@@ -8,14 +8,14 @@ import java.util.List;
  * @author Miguel Ossa Ruiz
  * @author Neiber Padierna P&eacute;rez
  */
-public enum DocumentTypeMemberEnum {
+public enum DocumentTypeUserEnum {
 
     CEDULA_DE_CIUDADANIA("Cédula De Ciudadanía"),
     TARJETA_DE_IDENTIDAD("Tarjeta De Identidad"),
     CEDULA_DE_EXTRANJERIA("Cédula De Extrajería");
     private String documentType;
 
-    private DocumentTypeMemberEnum(String documentType) {
+    private DocumentTypeUserEnum(String documentType) {
         this.setDocumentType(documentType);
     }
 
@@ -31,7 +31,7 @@ public enum DocumentTypeMemberEnum {
     public static List<String> obtainDocumentsTypeList() {
         List<String> documentsTypeList = new ArrayList<>();
 
-        for (DocumentTypeMemberEnum e : DocumentTypeMemberEnum.values()) {
+        for (DocumentTypeUserEnum e : DocumentTypeUserEnum.values()) {
             documentsTypeList.add(e.getDocumentType());
         }
 

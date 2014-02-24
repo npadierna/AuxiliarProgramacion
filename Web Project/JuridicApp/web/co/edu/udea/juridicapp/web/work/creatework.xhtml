@@ -29,7 +29,7 @@
                     <p:panel header="Crear Nueva Obra" >
                         <p:wizard backLabel="Atrás" id="viewWizard"
                                   nextLabel="Siguiente" >
-                            
+
                             <p:tab id="work" title="Obra" >
                                 <center>
                                     <h:panelGrid columns="2" cellpadding="10" >
@@ -131,23 +131,6 @@
                                 </center>
                             </p:tab>
 
-                            <p:tab id="file" title="Archivos" >
-                                <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
-                                        <h:outputText value="Archivo(s)" >
-                                        </h:outputText>
-                                        <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                                                      dragDropSupport="true" 
-                                                      cancelLabel="Cancelar" 
-                                                      label="Adjuntar"
-                                                      mode="advanced"
-                                                      uploadLabel="Subir" 
-                                                      sizeLimit="512000" >
-                                        </p:fileUpload>                                 
-                                    </h:panelGrid>
-                                </center>
-                            </p:tab>
-
                             <p:tab id="dependency" title="Dependencia" >
                                 <center>
                                     <h:panelGrid columns="2" cellpadding="10" >
@@ -177,6 +160,23 @@
                                     </h:panelGrid>
                                     <h:outputText id="counterComents">
                                     </h:outputText>
+                                </center>
+                            </p:tab>
+
+                            <p:tab id="file" title="Archivos" >
+                                <center>
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <h:outputText value="Archivo(s)" >
+                                        </h:outputText>
+                                        <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                                      dragDropSupport="true" 
+                                                      cancelLabel="Cancelar" 
+                                                      label="Adjuntar"
+                                                      mode="advanced"
+                                                      uploadLabel="Subir" 
+                                                      sizeLimit="512000" >
+                                        </p:fileUpload>                                 
+                                    </h:panelGrid>
                                 </center>
                             </p:tab>
 

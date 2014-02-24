@@ -45,11 +45,11 @@
                         <p:dataTable draggableColumns="true" id="mainTable" 
                                      paginator="true"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rows="10"  rowKey="#{juridical.issue}" rowsPerPageTemplate="10,15,30" 
-                                     selection="#{workBean.selectedJuridica}"
+                                     rows="10"  rowsPerPageTemplate="10,15,30" 
+                                     
                                      selectionMode="single"
                                      style="width: 98%; font-size: 13px;"
-                                     value="#{workBean.allJuridical}"
+                                    
                                      var="juridical" >
                             <f:facet name="header" >
                                 Listado de Obras
@@ -62,7 +62,7 @@
                                     </h:outputText>  
                                 </f:facet>  
                                 <h:outputText style="font-size: 13px;"
-                                              value="#{juridical.issue}" >
+                                              >
                                 </h:outputText>
                             </p:column>
 
@@ -73,7 +73,7 @@
                                     </h:outputText>  
                                 </f:facet>  
                                 <h:outputText style="font-size: 13px;"
-                                              value="#{juridical.year}" >
+                                               >
                                 </h:outputText>
                             </p:column>
 
@@ -83,7 +83,7 @@
                                     </h:outputText>  
                                 </f:facet> 
                                 <h:outputText style="font-size: 13px;"
-                                              value="#{juridical.issue}" >
+                                               >
                                 </h:outputText>
                             </p:column>
 
@@ -124,7 +124,7 @@
                                     </h:outputText>  
                                 </f:facet> 
                                 <h:outputText style="font-size: 13px;"
-                                              value="#{juridical.isbn}" >
+                                               >
                                 </h:outputText>
                             </p:column>
 
@@ -150,7 +150,7 @@
                             </f:facet>
 
                             <f:facet  id="obras" name="footer" >
-                                Total Obras: #{workBean.allJuridical.size()}
+                                
                             </f:facet>
 
                         </p:dataTable>
