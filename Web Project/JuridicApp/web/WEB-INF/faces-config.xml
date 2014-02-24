@@ -20,14 +20,14 @@
     <managed-bean>
         <managed-bean-name>workBean</managed-bean-name>
         <managed-bean-class>
-            co.edu.udea.juridicapp.web.juridical.WorkBean
+            co.edu.udea.juridicapp.web.bean.juridical.WorkBean
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>loginUserBean</managed-bean-name>
         <managed-bean-class>
-            co.edu.udea.juridicapp.web.member.login.LoginUserBean
+            co.edu.udea.juridicapp.web.bean.member.login.LoginUserBean
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>

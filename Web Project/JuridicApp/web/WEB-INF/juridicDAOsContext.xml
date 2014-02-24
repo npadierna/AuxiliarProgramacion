@@ -2,13 +2,69 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd" >
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd" >
 
     <bean name="acquisitionDAO"
           class="co.edu.udea.juridicapp.persistence.dao.impl.AcquisitionDAO" >
     </bean>
 
     <bean name="authorDAO"
-              class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorDAO" >
+          class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorDAO" >
+    </bean>
+
+    <bean name="authorWorkAcquisitionDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorWorkAcquisitionDAO" >
+    </bean>
+
+    <bean name="authorWordDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorWorkDAO" >
+    </bean>
+
+    <bean name="commentDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.CommentDAO" >
+    </bean>
+
+    <bean name="contractDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.ContractDAO" >
+    </bean>
+
+    <bean name="dependencyDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.DependencyDAO" >
+    </bean>
+
+    <bean name="dndaDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.DndaDAO" >
+    </bean>
+
+    <bean name="fileDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.FileDAO" >
+    </bean>
+
+    <bean name="profileDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.ProfileDAO" >
+    </bean>
+
+    <bean name="roleDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.RoleDAO" >
+    </bean>
+
+    <bean name="supportDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.SupportDAO" >
+    </bean>
+
+    <bean name="typeDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.TypeDAO" >
+    </bean>
+
+    <bean name="userDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.UserDAO" >
+    </bean>
+
+    <bean name="workDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.WorkDAO" >
+    </bean>
+
+    <bean name="workTypeDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.WorkTypeDAO" >
     </bean>
 </beans>

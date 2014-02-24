@@ -4,7 +4,12 @@ import co.edu.udea.juridicapp.persistence.dao.IProfileDAO;
 import co.edu.udea.juridicapp.persistence.entity.Profile;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository()
+@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
 public class ProfileDAO extends AbstractEntityDAO implements IProfileDAO {
 
     public ProfileDAO() {
@@ -12,18 +17,21 @@ public class ProfileDAO extends AbstractEntityDAO implements IProfileDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Profile deleteProfile(Profile profile) {
 
         return ((Profile) super.delete(profile));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Profile> findAllProfiles() {
 
         return ((List<Profile>) super.findAll(Profile.class));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Profile> findProfilesByAttributes(Object... attributes) {
 
         return ((List<Profile>) super.findByAttributes(Profile.class,
@@ -37,12 +45,14 @@ public class ProfileDAO extends AbstractEntityDAO implements IProfileDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public String saveProfile(Profile profile) {
 
         return ((String) super.save(profile));
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Profile updateProfile(Profile profile) {
         return ((Profile) super.update(profile));
     }

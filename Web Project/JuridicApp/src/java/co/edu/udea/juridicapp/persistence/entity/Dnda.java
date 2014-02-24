@@ -79,9 +79,9 @@ public class Dnda implements IEntityContext, Serializable {
         return (this.getNumber());
     }
 
-    @Override
+    @Override()
     public void setKey(Object key) {
-        this.setNumber((String) number);
+        this.setNumber((String) key);
     }
 
     @Override()

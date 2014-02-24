@@ -5,7 +5,12 @@ import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWorkPK;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository()
+@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
 public class AuthorWorkDAO extends AbstractEntityDAO implements IAuthorWorkDAO {
 
     public AuthorWorkDAO() {
@@ -13,18 +18,21 @@ public class AuthorWorkDAO extends AbstractEntityDAO implements IAuthorWorkDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public AuthorWork deleteAuthorWork(AuthorWork authorWork) {
 
         return ((AuthorWork) super.delete(authorWork));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<AuthorWork> findAllAuthorWorks() {
 
         return ((List<AuthorWork>) super.findAll(AuthorWork.class));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<AuthorWork> findAuthorWorksByAttributes(Object... attributes) {
 
         return ((List<AuthorWork>) super.findByAttributes(AuthorWork.class,
@@ -38,12 +46,14 @@ public class AuthorWorkDAO extends AbstractEntityDAO implements IAuthorWorkDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public AuthorWorkPK saveAuthorWork(AuthorWork authorWork) {
 
         return ((AuthorWorkPK) super.save(authorWork));
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public AuthorWork updateAuthorWork(AuthorWork authorWork) {
         return ((AuthorWork) super.update(authorWork));
     }

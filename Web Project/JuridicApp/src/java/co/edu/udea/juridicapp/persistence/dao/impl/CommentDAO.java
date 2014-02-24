@@ -5,7 +5,12 @@ import co.edu.udea.juridicapp.persistence.entity.Comment;
 import co.edu.udea.juridicapp.persistence.entity.CommentPK;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository()
+@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
 public class CommentDAO extends AbstractEntityDAO implements ICommentDAO {
 
     public CommentDAO() {
@@ -13,18 +18,21 @@ public class CommentDAO extends AbstractEntityDAO implements ICommentDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Comment deleteComment(Comment comment) {
 
         return ((Comment) super.delete(comment));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Comment> findAllComments() {
 
         return ((List<Comment>) super.findAll(Comment.class));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Comment> findCommentsByAttributes(Object... attributes) {
 
         return ((List<Comment>) super.findByAttributes(Comment.class,
@@ -38,12 +46,14 @@ public class CommentDAO extends AbstractEntityDAO implements ICommentDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public CommentPK saveComment(Comment comment) {
 
         return ((CommentPK) super.save(comment));
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Comment updateComment(Comment comment) {
         return ((Comment) super.update(comment));
     }

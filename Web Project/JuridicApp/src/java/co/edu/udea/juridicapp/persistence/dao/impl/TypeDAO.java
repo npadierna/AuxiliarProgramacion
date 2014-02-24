@@ -4,7 +4,12 @@ import co.edu.udea.juridicapp.persistence.dao.ITypeDAO;
 import co.edu.udea.juridicapp.persistence.entity.Type;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository()
+@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
 public class TypeDAO extends AbstractEntityDAO implements ITypeDAO {
 
     public TypeDAO() {
@@ -12,18 +17,21 @@ public class TypeDAO extends AbstractEntityDAO implements ITypeDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Type deleteType(Type type) {
 
         return ((Type) super.delete(type));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Type> findAllTypes() {
 
         return ((List<Type>) super.findAll(Type.class));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Type> findTypesByAttributes(Object... attributes) {
 
         return ((List<Type>) super.findByAttributes(Type.class,
@@ -37,12 +45,14 @@ public class TypeDAO extends AbstractEntityDAO implements ITypeDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public String saveType(Type type) {
 
         return ((String) super.save(type));
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Type updateType(Type type) {
         return ((Type) super.update(type));
     }

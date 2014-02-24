@@ -1,4 +1,4 @@
-package co.edu.udea.juridicapp.web.juridical;
+package co.edu.udea.juridicapp.web.bean.juridical;
 
 import co.edu.udea.juridicapp.persistence.dao.IWorkDAO;
 import co.edu.udea.juridicapp.persistence.dao.impl.WorkDAO;
@@ -6,7 +6,7 @@ import co.edu.udea.juridicapp.persistence.entity.Work;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.SessionScoped;
- 
+
 /**
  *
  * @author Miguel Ossa Ruiz
@@ -43,5 +43,4 @@ public class WorkBean implements Serializable {
     public void setSelectedJuridica(Work selectedJuridica) {
         this.selectedJuridica = selectedJuridica;
     }
-
 }

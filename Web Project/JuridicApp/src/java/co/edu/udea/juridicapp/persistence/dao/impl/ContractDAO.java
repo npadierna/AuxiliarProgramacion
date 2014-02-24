@@ -4,7 +4,12 @@ import co.edu.udea.juridicapp.persistence.dao.IContractDAO;
 import co.edu.udea.juridicapp.persistence.entity.Contract;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository()
+@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
 public class ContractDAO extends AbstractEntityDAO implements IContractDAO {
 
     public ContractDAO() {
@@ -12,18 +17,21 @@ public class ContractDAO extends AbstractEntityDAO implements IContractDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Contract deleteContract(Contract contract) {
 
         return ((Contract) super.delete(contract));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Contract> findAllContracts() {
 
         return ((List<Contract>) super.findAll(Contract.class));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Contract> findContractsByAttributes(Object... attributes) {
 
         return ((List<Contract>) super.findByAttributes(Contract.class,
@@ -37,12 +45,14 @@ public class ContractDAO extends AbstractEntityDAO implements IContractDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public String saveContract(Contract contract) {
 
         return ((String) super.save(contract));
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Contract updateContract(Contract contract) {
         return ((Contract) super.update(contract));
     }

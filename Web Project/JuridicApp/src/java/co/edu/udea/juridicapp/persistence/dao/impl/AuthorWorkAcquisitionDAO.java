@@ -5,7 +5,12 @@ import co.edu.udea.juridicapp.persistence.entity.AuthorWorkAcquisition;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWorkAcquisitionPK;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository()
+@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
 public class AuthorWorkAcquisitionDAO extends AbstractEntityDAO implements
         IAuthorWorkAcquisitionDAO {
 
@@ -14,6 +19,7 @@ public class AuthorWorkAcquisitionDAO extends AbstractEntityDAO implements
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public AuthorWorkAcquisition deleteAuthorWorkAcquisition(
             AuthorWorkAcquisition authorWorkAcquisition) {
 
@@ -21,6 +27,7 @@ public class AuthorWorkAcquisitionDAO extends AbstractEntityDAO implements
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<AuthorWorkAcquisition> findAllAuthorWorkAcquisitions() {
 
         return ((List<AuthorWorkAcquisition>) super.findAll(
@@ -28,6 +35,7 @@ public class AuthorWorkAcquisitionDAO extends AbstractEntityDAO implements
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<AuthorWorkAcquisition> findAuthorWorkAcquisitionsByAttributes(
             Object... attributes) {
 
@@ -45,6 +53,7 @@ public class AuthorWorkAcquisitionDAO extends AbstractEntityDAO implements
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public AuthorWorkAcquisitionPK saveAuthorWorkAcquisition(
             AuthorWorkAcquisition authorWorkAcquisition) {
 
@@ -52,6 +61,7 @@ public class AuthorWorkAcquisitionDAO extends AbstractEntityDAO implements
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public AuthorWorkAcquisition updateAuthorWorkAcquisition(
             AuthorWorkAcquisition authorWorkAcquisition) {
         return ((AuthorWorkAcquisition) super.update(authorWorkAcquisition));

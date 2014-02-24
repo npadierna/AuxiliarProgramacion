@@ -4,7 +4,12 @@ import co.edu.udea.juridicapp.persistence.dao.IRoleDAO;
 import co.edu.udea.juridicapp.persistence.entity.Role;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository()
+@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
 public class RoleDAO extends AbstractEntityDAO implements IRoleDAO {
 
     public RoleDAO() {
@@ -12,18 +17,21 @@ public class RoleDAO extends AbstractEntityDAO implements IRoleDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Role deleteRole(Role role) {
 
         return ((Role) super.delete(role));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Role> findAllRoles() {
 
         return ((List<Role>) super.findAll(Role.class));
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Role> findRolesByAttributes(Object... attributes) {
 
         return ((List<Role>) super.findByAttributes(Role.class,
@@ -37,12 +45,14 @@ public class RoleDAO extends AbstractEntityDAO implements IRoleDAO {
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public String saveRole(Role role) {
 
         return ((String) super.save(role));
     }
 
     @Override()
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Role updateRole(Role role) {
         return ((Role) super.update(role));
     }
