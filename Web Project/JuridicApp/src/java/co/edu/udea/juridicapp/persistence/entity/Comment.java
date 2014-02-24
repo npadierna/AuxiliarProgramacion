@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -21,10 +18,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author rebien
- */
 @Entity
 @Table(name = "COMMENT")
 @XmlRootElement

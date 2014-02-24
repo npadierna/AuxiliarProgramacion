@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "WorkType.findByWorkId", query = "SELECT w FROM WorkType w WHERE w.workTypePK.workId = :workId"),
     @NamedQuery(name = "WorkType.findByTypeName", query = "SELECT w FROM WorkType w WHERE w.workTypePK.typeName = :typeName")})
 public class WorkType implements IEntityContext, Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected WorkTypePK workTypePK;
@@ -112,5 +113,5 @@ public class WorkType implements IEntityContext, Serializable {
     public void setKey(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

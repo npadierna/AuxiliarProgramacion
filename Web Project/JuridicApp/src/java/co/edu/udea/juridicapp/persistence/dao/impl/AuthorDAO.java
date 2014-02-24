@@ -3,6 +3,7 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 import co.edu.udea.juridicapp.persistence.dao.IAuthorDAO;
 import co.edu.udea.juridicapp.persistence.entity.Author;
 import co.edu.udea.juridicapp.persistence.entity.AuthorPK;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AuthorDAO extends AbstractEntityDAO implements IAuthorDAO {
@@ -25,31 +26,44 @@ public class AuthorDAO extends AbstractEntityDAO implements IAuthorDAO {
 
     @Override()
     public List<Author> findAuthorsByAttributes(Object... attributes) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return ((List<Author>) super.findByAttributes(Author.class,
+                attributes));
     }
 
     @Override()
     public Author findAuthor(AuthorPK key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return ((Author) super.find(Author.class, key));
     }
 
     @Override()
     public AuthorPK saveAuthor(Author author) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return ((AuthorPK) super.save(author));
     }
 
     @Override()
     public Author updateAuthor(Author author) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ((Author) super.update(author));
     }
 
     @Override()
     public long countAuthors() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (super.count(Author.class));
     }
 
     @Override()
-    public List<Author> executeNamedQueryForAuthors(String namedQuery, String parameterName, Object parameterValue) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Author> executeNamedQueryForAuthors(String namedQuery, 
+            String parameterName, Object parameterValue) {
+        
+        List<Author> authorsFound = new ArrayList<>();
+
+        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
+                parameterValue)) {
+            authorsFound.add((Author) o);
+        }
+
+        return (authorsFound);
     }
 }

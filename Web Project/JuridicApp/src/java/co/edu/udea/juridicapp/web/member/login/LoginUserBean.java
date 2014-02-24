@@ -1,8 +1,8 @@
 package co.edu.udea.juridicapp.web.member.login;
 
-import co.edu.udea.juridicapp.persistence.dao.IMemberDAO;
-import co.edu.udea.juridicapp.persistence.dao.impl.MemberDAO;
-import co.edu.udea.juridicapp.persistence.entity.Member;
+import co.edu.udea.juridicapp.persistence.dao.IUserDAO;
+import co.edu.udea.juridicapp.persistence.dao.impl.UserDAO;
+import co.edu.udea.juridicapp.persistence.entity.User;
 import java.io.Serializable;
 import javax.faces.bean.SessionScoped;
 
@@ -12,26 +12,26 @@ import javax.faces.bean.SessionScoped;
  * @author Neiber Padierna P&eacute;rez
  */
 @SessionScoped()
-public class LoginMemberBean implements Serializable {
+public class LoginUserBean implements Serializable {
 
     //private static final long serialVersionUID;
-    private IMemberDAO memberDAO;
-    private Member loggedMember;
+    private IUserDAO userDAO;
+    private User user;
     private String userName;
     private String password;
     private String rol;
 
-    public LoginMemberBean() {
+    public LoginUserBean() {
         super();
-        this.memberDAO = new MemberDAO();
+        this.userDAO = new UserDAO();
     }
 
-    public Member getLoggedMember() {
-        return loggedMember;
+    public User getLoggedUser() {
+        return user;
     }
 
-    public void setLoggedMember(Member loggedMember) {
-        this.loggedMember = loggedMember;
+    public void setLoggedUser(User user) {
+        this.user = user;
     }
 
     public String getPassword() {
