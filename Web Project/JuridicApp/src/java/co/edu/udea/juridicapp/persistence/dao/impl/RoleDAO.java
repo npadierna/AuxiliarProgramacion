@@ -55,7 +55,6 @@ public class RoleDAO extends AbstractEntityDAO implements IRoleDAO {
     @Override()
     public List<Role> executeNamedQueryForRoles(String namedQuery,
             String parameterName, Object parameterValue) {
-
         List<Role> rolesFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

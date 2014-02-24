@@ -55,7 +55,6 @@ public class TypeDAO extends AbstractEntityDAO implements ITypeDAO {
     @Override()
     public List<Type> executeNamedQueryForTypes(String namedQuery,
             String parameterName, Object parameterValue) {
-
         List<Type> typesFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

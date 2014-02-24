@@ -1,5 +1,3 @@
-
-
 package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IDndaDAO;
@@ -7,9 +5,8 @@ import co.edu.udea.juridicapp.persistence.entity.Dnda;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class DndaDAO extends AbstractEntityDAO implements IDndaDAO {
-     
+
     public DndaDAO() {
         super();
     }
@@ -56,9 +53,8 @@ public class DndaDAO extends AbstractEntityDAO implements IDndaDAO {
     }
 
     @Override()
-    public List<Dnda> executeNamedQueryForDndas(String namedQuery, 
+    public List<Dnda> executeNamedQueryForDndas(String namedQuery,
             String parameterName, Object parameterValue) {
-        
         List<Dnda> dndasFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

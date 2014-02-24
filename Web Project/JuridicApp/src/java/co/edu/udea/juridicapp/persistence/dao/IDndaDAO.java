@@ -1,12 +1,10 @@
-
-
 package co.edu.udea.juridicapp.persistence.dao;
 
 import co.edu.udea.juridicapp.persistence.entity.Dnda;
 import java.util.List;
 
 public interface IDndaDAO {
-    
+
     public Dnda deleteDnda(Dnda dnda);
 
     public List<Dnda> findAllDndas();

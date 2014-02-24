@@ -55,7 +55,6 @@ public class ProfileDAO extends AbstractEntityDAO implements IProfileDAO {
     @Override()
     public List<Profile> executeNamedQueryForProfiles(String namedQuery,
             String parameterName, Object parameterValue) {
-
         List<Profile> profilesFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

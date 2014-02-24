@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -20,22 +16,21 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author rebien
- */
-@Entity
-@Table(name = "ROLE")
-@XmlRootElement
+@Entity()
 @NamedQueries({
     @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
-    @NamedQuery(name = "Role.findByProfile", query = "SELECT r FROM Role r WHERE r.profile = :profile"),
-    @NamedQuery(name = "Role.findByDescription", query = "SELECT r FROM Role r WHERE r.description = :description")})
+    @NamedQuery(name = "Role.findByProfile",
+            query = "SELECT r FROM Role r WHERE r.profile = :profile"),
+    @NamedQuery(name = "Role.findByDescription",
+            query = "SELECT r FROM Role r WHERE r.description = :description")})
+@Table(name = "ROLE")
+@XmlRootElement()
 public class Role implements IEntityContext, Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+
+    private static final long serialVersionUID = 3753879352471195648L;
+    @Id()
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 35)
     @Column(name = "profile")
     private String profile;
@@ -46,6 +41,7 @@ public class Role implements IEntityContext, Serializable {
     private List<AuthorWork> authorWorkList;
 
     public Role() {
+        super();
     }
 
     public Role(String profile) {
@@ -53,7 +49,8 @@ public class Role implements IEntityContext, Serializable {
     }
 
     public String getProfile() {
-        return profile;
+
+        return (this.profile);
     }
 
     public void setProfile(String profile) {
@@ -61,55 +58,65 @@ public class Role implements IEntityContext, Serializable {
     }
 
     public String getDescription() {
-        return description;
+
+        return (this.description);
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<AuthorWork> getAuthorWorkList() {
-        return authorWorkList;
+
+        return (this.authorWorkList);
     }
 
     public void setAuthorWorkList(List<AuthorWork> authorWorkList) {
         this.authorWorkList = authorWorkList;
     }
 
-    @Override
+    @Override()
+    public Object getKey() {
+
+        return (this.getProfile());
+    }
+
+    @Override()
+    public void setKey(Object key) {
+        this.setProfile((String) key);
+    }
+
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (profile != null ? profile.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Role)) {
-            return false;
+
+            return (false);
         }
+
         Role other = (Role) object;
-        if ((this.profile == null && other.profile != null) || (this.profile != null && !this.profile.equals(other.profile))) {
-            return false;
+        if (((this.profile == null) && (other.profile != null))
+                || ((this.profile != null)
+                && !(this.profile.equals(other.profile)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.Role[ profile=" + profile + " ]";
-    }
 
-    @Override
-    public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ("co.edu.udea.juridicapp.persistence.entity.Role[ profile="
+                + this.getProfile() + " ]");
     }
-
-    @Override
-    public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

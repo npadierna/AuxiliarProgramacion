@@ -1,4 +1,3 @@
-
 package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.ICommentDAO;
@@ -7,10 +6,9 @@ import co.edu.udea.juridicapp.persistence.entity.CommentPK;
 import java.util.ArrayList;
 import java.util.List;
 
+public class CommentDAO extends AbstractEntityDAO implements ICommentDAO {
 
-public class CommentDAO extends AbstractEntityDAO implements ICommentDAO{
-    
-     public CommentDAO() {
+    public CommentDAO() {
         super();
     }
 
@@ -56,9 +54,8 @@ public class CommentDAO extends AbstractEntityDAO implements ICommentDAO{
     }
 
     @Override()
-    public List<Comment> executeNamedQueryForComments(String namedQuery, 
+    public List<Comment> executeNamedQueryForComments(String namedQuery,
             String parameterName, Object parameterValue) {
-        
         List<Comment> commentsFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

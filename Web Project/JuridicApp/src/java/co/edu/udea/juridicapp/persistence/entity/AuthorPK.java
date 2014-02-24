@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -11,24 +7,23 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author rebien
- */
-@Embeddable
+@Embeddable()
 public class AuthorPK implements Serializable {
+
+    private static final long serialVersionUID = 8696583936858317824L;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 45)
     @Column(name = "document_type")
     private String documentType;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 20)
     @Column(name = "id_number")
     private String idNumber;
 
     public AuthorPK() {
+        super();
     }
 
     public AuthorPK(String documentType, String idNumber) {
@@ -37,7 +32,8 @@ public class AuthorPK implements Serializable {
     }
 
     public String getDocumentType() {
-        return documentType;
+
+        return (this.documentType);
     }
 
     public void setDocumentType(String documentType) {
@@ -45,40 +41,53 @@ public class AuthorPK implements Serializable {
     }
 
     public String getIdNumber() {
-        return idNumber;
+
+        return (this.idNumber);
     }
 
     public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
 
-    @Override
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (documentType != null ? documentType.hashCode() : 0);
         hash += (idNumber != null ? idNumber.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof AuthorPK)) {
-            return false;
+
+            return (false);
         }
+
         AuthorPK other = (AuthorPK) object;
-        if ((this.documentType == null && other.documentType != null) || (this.documentType != null && !this.documentType.equals(other.documentType))) {
-            return false;
+        if (((this.documentType == null) && (other.documentType != null))
+                || ((this.documentType != null)
+                && !(this.documentType.equals(other.documentType)))) {
+
+            return (false);
         }
-        if ((this.idNumber == null && other.idNumber != null) || (this.idNumber != null && !this.idNumber.equals(other.idNumber))) {
-            return false;
+
+        if (((this.idNumber == null) && (other.idNumber != null))
+                || ((this.idNumber != null)
+                && !(this.idNumber.equals(other.idNumber)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.AuthorPK[ documentType=" + documentType + ", idNumber=" + idNumber + " ]";
+
+        return ("co.edu.udea.juridicapp.persistence.entity.AuthorPK[ documentType="
+                + this.getDocumentType() + ", idNumber=" + this.getIdNumber()
+                + " ]");
     }
-    
 }

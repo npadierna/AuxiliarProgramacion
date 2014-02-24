@@ -1,5 +1,3 @@
-
-
 package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IContractDAO;
@@ -7,8 +5,8 @@ import co.edu.udea.juridicapp.persistence.entity.Contract;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContractDAO extends AbstractEntityDAO implements IContractDAO{
-    
+public class ContractDAO extends AbstractEntityDAO implements IContractDAO {
+
     public ContractDAO() {
         super();
     }
@@ -55,9 +53,8 @@ public class ContractDAO extends AbstractEntityDAO implements IContractDAO{
     }
 
     @Override()
-    public List<Contract> executeNamedQueryForContracts(String namedQuery, 
+    public List<Contract> executeNamedQueryForContracts(String namedQuery,
             String parameterName, Object parameterValue) {
-        
         List<Contract> contractsFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

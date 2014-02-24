@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -10,21 +6,20 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
-/**
- *
- * @author rebien
- */
-@Embeddable
+@Embeddable()
 public class CommentPK implements Serializable {
+
+    private static final long serialVersionUID = 6482725099022643200L;
     @Basic(optional = false)
     @Column(name = "id")
     private long id;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Column(name = "work_id")
     private long workId;
 
     public CommentPK() {
+        super();
     }
 
     public CommentPK(long id, long workId) {
@@ -33,7 +28,8 @@ public class CommentPK implements Serializable {
     }
 
     public long getId() {
-        return id;
+
+        return (this.id);
     }
 
     public void setId(long id) {
@@ -41,40 +37,47 @@ public class CommentPK implements Serializable {
     }
 
     public long getWorkId() {
-        return workId;
+
+        return (this.workId);
     }
 
     public void setWorkId(long workId) {
         this.workId = workId;
     }
 
-    @Override
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (int) id;
         hash += (int) workId;
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof CommentPK)) {
-            return false;
+
+            return (false);
         }
+
         CommentPK other = (CommentPK) object;
         if (this.id != other.id) {
-            return false;
+
+            return (false);
         }
+
         if (this.workId != other.workId) {
-            return false;
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.CommentPK[ id=" + id + ", workId=" + workId + " ]";
+        return ("co.edu.udea.juridicapp.persistence.entity.CommentPK[ id="
+                + this.getId() + ", workId=" + this.getWorkId() + " ]");
     }
-    
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -19,21 +15,19 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author rebien
- */
-@Entity
-@Table(name = "FILE")
-@XmlRootElement
+@Entity()
 @NamedQueries({
     @NamedQuery(name = "File.findAll", query = "SELECT f FROM File f"),
-    @NamedQuery(name = "File.findByPath", query = "SELECT f FROM File f WHERE f.path = :path")})
+    @NamedQuery(name = "File.findByPath",
+            query = "SELECT f FROM File f WHERE f.path = :path")})
+@Table(name = "FILE")
+@XmlRootElement()
 public class File implements IEntityContext, Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+
+    private static final long serialVersionUID = 5624738972218021888L;
+    @Id()
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 150)
     @Column(name = "path")
     private String path;
@@ -41,6 +35,7 @@ public class File implements IEntityContext, Serializable {
     private List<AuthorWorkAcquisition> authorWorkAcquisitionList;
 
     public File() {
+        super();
     }
 
     public File(String path) {
@@ -48,55 +43,65 @@ public class File implements IEntityContext, Serializable {
     }
 
     public String getPath() {
-        return path;
+
+        return (this.path);
     }
 
     public void setPath(String path) {
         this.path = path;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<AuthorWorkAcquisition> getAuthorWorkAcquisitionList() {
-        return authorWorkAcquisitionList;
+
+        return (this.authorWorkAcquisitionList);
     }
 
-    public void setAuthorWorkAcquisitionList(List<AuthorWorkAcquisition> authorWorkAcquisitionList) {
+    public void setAuthorWorkAcquisitionList(
+            List<AuthorWorkAcquisition> authorWorkAcquisitionList) {
         this.authorWorkAcquisitionList = authorWorkAcquisitionList;
     }
 
-    @Override
+    @Override()
+    public Object getKey() {
+
+        return (this.getPath());
+    }
+
+    @Override()
+    public void setKey(Object key) {
+        this.setPath((String) key);
+    }
+
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (path != null ? path.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof File)) {
-            return false;
+
+            return (false);
         }
+
         File other = (File) object;
-        if ((this.path == null && other.path != null) || (this.path != null && !this.path.equals(other.path))) {
-            return false;
+        if (((this.path == null) && (other.path != null)) || ((this.path != null)
+                && !(this.path.equals(other.path)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.File[ path=" + path + " ]";
-    }
 
-    @Override
-    public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ("co.edu.udea.juridicapp.persistence.entity.File[ path="
+                + this.getPath() + " ]");
     }
-
-    @Override
-    public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 @Embeddable()
 public class WorkTypePK implements Serializable {
 
+    private static final long serialVersionUID = 1761685017608673280L;
     @Basic(optional = false)
     @NotNull()
     @Column(name = "work_id")
@@ -30,7 +31,8 @@ public class WorkTypePK implements Serializable {
     }
 
     public long getWorkId() {
-        return workId;
+
+        return (this.workId);
     }
 
     public void setWorkId(long workId) {
@@ -38,7 +40,8 @@ public class WorkTypePK implements Serializable {
     }
 
     public String getTypeName() {
-        return typeName;
+
+        return (this.typeName);
     }
 
     public void setTypeName(String typeName) {
@@ -50,27 +53,37 @@ public class WorkTypePK implements Serializable {
         int hash = 0;
         hash += (int) workId;
         hash += (typeName != null ? typeName.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
     @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof WorkTypePK)) {
-            return false;
+
+            return (false);
         }
+
         WorkTypePK other = (WorkTypePK) object;
         if (this.workId != other.workId) {
-            return false;
+
+            return (false);
         }
-        if ((this.typeName == null && other.typeName != null) || (this.typeName != null && !this.typeName.equals(other.typeName))) {
-            return false;
+
+        if (((this.typeName == null) && (other.typeName != null))
+                || ((this.typeName != null)
+                && !(this.typeName.equals(other.typeName)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
     @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.WorkTypePK[ workId=" + workId + ", typeName=" + typeName + " ]";
+
+        return ("co.edu.udea.juridicapp.persistence.entity.WorkTypePK[ workId="
+                + this.getWorkId() + ", typeName=" + this.getTypeName() + " ]");
     }
 }

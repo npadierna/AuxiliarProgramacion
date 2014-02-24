@@ -5,8 +5,8 @@ import co.edu.udea.juridicapp.persistence.entity.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileDAO extends AbstractEntityDAO implements IFileDAO{
-     
+public class FileDAO extends AbstractEntityDAO implements IFileDAO {
+
     public FileDAO() {
         super();
     }
@@ -53,9 +53,8 @@ public class FileDAO extends AbstractEntityDAO implements IFileDAO{
     }
 
     @Override()
-    public List<File> executeNamedQueryForFiles(String namedQuery, 
+    public List<File> executeNamedQueryForFiles(String namedQuery,
             String parameterName, Object parameterValue) {
-        
         List<File> filesFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

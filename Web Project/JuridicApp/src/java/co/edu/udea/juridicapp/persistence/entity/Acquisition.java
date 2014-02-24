@@ -17,15 +17,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity()
-@Table(name = "ACQUISITION")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Acquisition.findAll", query = "SELECT a FROM Acquisition a"),
-    @NamedQuery(name = "Acquisition.findByType", query = "SELECT a FROM Acquisition a WHERE a.type = :type"),
-    @NamedQuery(name = "Acquisition.findByDescription", query = "SELECT a FROM Acquisition a WHERE a.description = :description")})
+    @NamedQuery(name = "Acquisition.findAll",
+            query = "SELECT a FROM Acquisition a"),
+    @NamedQuery(name = "Acquisition.findByType",
+            query = "SELECT a FROM Acquisition a WHERE a.type = :type"),
+    @NamedQuery(name = "Acquisition.findByDescription",
+            query = "SELECT a FROM Acquisition a WHERE a.description = :description")})
+@Table(name = "ACQUISITION")
+@XmlRootElement()
 public class Acquisition implements IEntityContext, Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 9058864101910780928L;
     @Id()
     @Basic(optional = false)
     @NotNull()
@@ -47,7 +50,8 @@ public class Acquisition implements IEntityContext, Serializable {
     }
 
     public String getType() {
-        return type;
+
+        return (this.type);
     }
 
     public void setType(String type) {
@@ -55,7 +59,8 @@ public class Acquisition implements IEntityContext, Serializable {
     }
 
     public String getDescription() {
-        return description;
+
+        return (this.description);
     }
 
     public void setDescription(String description) {
@@ -64,11 +69,19 @@ public class Acquisition implements IEntityContext, Serializable {
 
     @XmlTransient()
     public List<AuthorWorkAcquisition> getAuthorWorkAcquisitionList() {
-        return authorWorkAcquisitionList;
+
+        return (this.authorWorkAcquisitionList);
     }
 
-    public void setAuthorWorkAcquisitionList(List<AuthorWorkAcquisition> authorWorkAcquisitionList) {
+    public void setAuthorWorkAcquisitionList(
+            List<AuthorWorkAcquisition> authorWorkAcquisitionList) {
         this.authorWorkAcquisitionList = authorWorkAcquisitionList;
+    }
+
+    @Override()
+    public Object getKey() {
+
+        return (this.getType());
     }
 
     @Override()
@@ -80,30 +93,31 @@ public class Acquisition implements IEntityContext, Serializable {
     public int hashCode() {
         int hash = 0;
         hash += (type != null ? type.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
     @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Acquisition)) {
-            return false;
+
+            return (false);
         }
+
         Acquisition other = (Acquisition) object;
-        if ((this.type == null && other.type != null) || (this.type != null && !this.type.equals(other.type))) {
-            return false;
+        if (((this.type == null) && (other.type != null)) || ((this.type != null)
+                && !(this.type.equals(other.type)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
     @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.Acquisition[ type=" + type + " ]";
-    }
 
-    @Override()
-    public Object getKey() {
-
-        return (this.getType());
+        return ("co.edu.udea.juridicapp.persistence.entity.Acquisition[ type="
+                + this.getType() + " ]");
     }
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -19,21 +15,19 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author rebien
- */
-@Entity
-@Table(name = "DNDA")
-@XmlRootElement
+@Entity()
 @NamedQueries({
     @NamedQuery(name = "Dnda.findAll", query = "SELECT d FROM Dnda d"),
-    @NamedQuery(name = "Dnda.findByNumber", query = "SELECT d FROM Dnda d WHERE d.number = :number")})
+    @NamedQuery(name = "Dnda.findByNumber",
+            query = "SELECT d FROM Dnda d WHERE d.number = :number")})
+@Table(name = "DNDA")
+@XmlRootElement()
 public class Dnda implements IEntityContext, Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+
+    private static final long serialVersionUID = 7128773475845724160L;
+    @Id()
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 30)
     @Column(name = "number")
     private String number;
@@ -43,6 +37,7 @@ public class Dnda implements IEntityContext, Serializable {
     private List<Dependency> dependencyList;
 
     public Dnda() {
+        super();
     }
 
     public Dnda(String number) {
@@ -50,64 +45,75 @@ public class Dnda implements IEntityContext, Serializable {
     }
 
     public String getNumber() {
-        return number;
+
+        return (this.number);
     }
 
     public void setNumber(String number) {
         this.number = number;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<AuthorWork> getAuthorWorkList() {
-        return authorWorkList;
+
+        return (this.authorWorkList);
     }
 
     public void setAuthorWorkList(List<AuthorWork> authorWorkList) {
         this.authorWorkList = authorWorkList;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<Dependency> getDependencyList() {
-        return dependencyList;
+
+        return (this.dependencyList);
     }
 
     public void setDependencyList(List<Dependency> dependencyList) {
         this.dependencyList = dependencyList;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (number != null ? number.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Dnda)) {
-            return false;
-        }
-        Dnda other = (Dnda) object;
-        if ((this.number == null && other.number != null) || (this.number != null && !this.number.equals(other.number))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.Dnda[ number=" + number + " ]";
-    }
-
-    @Override
+    @Override()
     public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return (this.getNumber());
     }
 
     @Override
     public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setNumber((String) number);
     }
-    
+
+    @Override()
+    public int hashCode() {
+        int hash = 0;
+        hash += (number != null ? number.hashCode() : 0);
+
+        return (hash);
+    }
+
+    @Override()
+    public boolean equals(Object object) {
+        if (!(object instanceof Dnda)) {
+
+            return (false);
+        }
+
+        Dnda other = (Dnda) object;
+        if (((this.number == null) && (other.number != null))
+                || ((this.number != null)
+                && !(this.number.equals(other.number)))) {
+
+            return (false);
+        }
+
+        return (true);
+    }
+
+    @Override()
+    public String toString() {
+
+        return ("co.edu.udea.juridicapp.persistence.entity.Dnda[ number="
+                + this.getNumber() + " ]");
+    }
 }

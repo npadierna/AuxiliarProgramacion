@@ -55,7 +55,6 @@ public class SupportDAO extends AbstractEntityDAO implements ISupportDAO {
     @Override()
     public List<Support> executeNamedQueryForSupports(String namedQuery,
             String parameterName, Object parameterValue) {
-
         List<Support> supportsFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

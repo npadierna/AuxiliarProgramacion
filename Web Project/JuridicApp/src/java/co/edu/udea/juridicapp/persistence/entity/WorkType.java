@@ -14,28 +14,33 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-@Entity
-@Table(name = "WORK_TYPE")
-@XmlRootElement
+@Entity()
 @NamedQueries({
     @NamedQuery(name = "WorkType.findAll", query = "SELECT w FROM WorkType w"),
-    @NamedQuery(name = "WorkType.findByWorkId", query = "SELECT w FROM WorkType w WHERE w.workTypePK.workId = :workId"),
-    @NamedQuery(name = "WorkType.findByTypeName", query = "SELECT w FROM WorkType w WHERE w.workTypePK.typeName = :typeName")})
+    @NamedQuery(name = "WorkType.findByWorkId",
+            query = "SELECT w FROM WorkType w WHERE w.workTypePK.workId = :workId"),
+    @NamedQuery(name = "WorkType.findByTypeName",
+            query = "SELECT w FROM WorkType w WHERE w.workTypePK.typeName = :typeName")})
+@Table(name = "WORK_TYPE")
+@XmlRootElement()
 public class WorkType implements IEntityContext, Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
+    private static final long serialVersionUID = 5359015147593081856L;
+    @EmbeddedId()
     protected WorkTypePK workTypePK;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "workType")
     private List<AuthorWork> authorWorkList;
-    @JoinColumn(name = "type_name", referencedColumnName = "name", insertable = false, updatable = false)
+    @JoinColumn(name = "type_name", referencedColumnName = "name",
+            insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Type type;
-    @JoinColumn(name = "work_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "work_id", referencedColumnName = "id",
+            insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Work work;
 
     public WorkType() {
+        super();
     }
 
     public WorkType(WorkTypePK workTypePK) {
@@ -47,16 +52,18 @@ public class WorkType implements IEntityContext, Serializable {
     }
 
     public WorkTypePK getWorkTypePK() {
-        return workTypePK;
+
+        return (this.workTypePK);
     }
 
     public void setWorkTypePK(WorkTypePK workTypePK) {
         this.workTypePK = workTypePK;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<AuthorWork> getAuthorWorkList() {
-        return authorWorkList;
+
+        return (this.authorWorkList);
     }
 
     public void setAuthorWorkList(List<AuthorWork> authorWorkList) {
@@ -64,7 +71,8 @@ public class WorkType implements IEntityContext, Serializable {
     }
 
     public Type getType() {
-        return type;
+
+        return (this.type);
     }
 
     public void setType(Type type) {
@@ -72,46 +80,55 @@ public class WorkType implements IEntityContext, Serializable {
     }
 
     public Work getWork() {
-        return work;
+
+        return (this.work);
     }
 
     public void setWork(Work work) {
         this.work = work;
     }
 
-    @Override
+    @Override()
+    public Object getKey() {
+
+        return (this.getWorkTypePK());
+    }
+
+    @Override()
+    public void setKey(Object key) {
+        this.setWorkTypePK((WorkTypePK) key);
+    }
+
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (workTypePK != null ? workTypePK.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof WorkType)) {
-            return false;
+
+            return (false);
         }
+
         WorkType other = (WorkType) object;
-        if ((this.workTypePK == null && other.workTypePK != null) || (this.workTypePK != null && !this.workTypePK.equals(other.workTypePK))) {
-            return false;
+        if (((this.workTypePK == null) && (other.workTypePK != null))
+                || ((this.workTypePK != null)
+                && !(this.workTypePK.equals(other.workTypePK)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.WorkType[ workTypePK=" + workTypePK + " ]";
-    }
 
-    @Override
-    public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ("co.edu.udea.juridicapp.persistence.entity.WorkType[ workTypePK="
+                + this.getWorkTypePK() + " ]");
     }
-
-    @Override
-    public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

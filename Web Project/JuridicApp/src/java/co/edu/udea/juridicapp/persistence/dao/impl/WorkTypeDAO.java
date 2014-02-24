@@ -56,7 +56,6 @@ public class WorkTypeDAO extends AbstractEntityDAO implements IWorkTypeDAO {
     @Override()
     public List<WorkType> executeNamedQueryForWorkTypes(String namedQuery,
             String parameterName, Object parameterValue) {
-
         List<WorkType> workTypesFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

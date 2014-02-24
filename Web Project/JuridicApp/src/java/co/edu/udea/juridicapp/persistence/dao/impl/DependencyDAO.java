@@ -1,5 +1,3 @@
-
-
 package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
@@ -7,9 +5,8 @@ import co.edu.udea.juridicapp.persistence.entity.Dependency;
 import java.util.ArrayList;
 import java.util.List;
 
+public class DependencyDAO extends AbstractEntityDAO implements IDependencyDAO {
 
-public class DependencyDAO extends AbstractEntityDAO implements IDependencyDAO{
-    
     public DependencyDAO() {
         super();
     }
@@ -21,13 +18,13 @@ public class DependencyDAO extends AbstractEntityDAO implements IDependencyDAO{
     }
 
     @Override()
-    public List<Dependency> findAllDependencys() {
+    public List<Dependency> findAllDependencies() {
 
         return ((List<Dependency>) super.findAll(Dependency.class));
     }
 
     @Override()
-    public List<Dependency> findDependencysByAttributes(Object... attributes) {
+    public List<Dependency> findDependenciesByAttributes(Object... attributes) {
 
         return ((List<Dependency>) super.findByAttributes(Dependency.class,
                 attributes));
@@ -51,14 +48,13 @@ public class DependencyDAO extends AbstractEntityDAO implements IDependencyDAO{
     }
 
     @Override()
-    public long countDependencys() {
+    public long countDependencies() {
         return (super.count(Dependency.class));
     }
 
     @Override()
-    public List<Dependency> executeNamedQueryForDependencys(String namedQuery, 
+    public List<Dependency> executeNamedQueryForDependencies(String namedQuery,
             String parameterName, Object parameterValue) {
-        
         List<Dependency> dependencysFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

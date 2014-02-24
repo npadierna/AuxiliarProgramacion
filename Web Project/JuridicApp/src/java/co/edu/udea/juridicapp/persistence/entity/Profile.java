@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -20,22 +16,21 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author rebien
- */
-@Entity
-@Table(name = "PROFILE")
-@XmlRootElement
+@Entity()
 @NamedQueries({
     @NamedQuery(name = "Profile.findAll", query = "SELECT p FROM Profile p"),
-    @NamedQuery(name = "Profile.findByRole", query = "SELECT p FROM Profile p WHERE p.role = :role"),
-    @NamedQuery(name = "Profile.findByDescription", query = "SELECT p FROM Profile p WHERE p.description = :description")})
+    @NamedQuery(name = "Profile.findByRole",
+            query = "SELECT p FROM Profile p WHERE p.role = :role"),
+    @NamedQuery(name = "Profile.findByDescription",
+            query = "SELECT p FROM Profile p WHERE p.description = :description")})
+@Table(name = "PROFILE")
+@XmlRootElement()
 public class Profile implements IEntityContext, Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+
+    private static final long serialVersionUID = 6781430206875302912L;
+    @Id()
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 25)
     @Column(name = "role")
     private String role;
@@ -46,6 +41,7 @@ public class Profile implements IEntityContext, Serializable {
     private List<User> userList;
 
     public Profile() {
+        super();
     }
 
     public Profile(String role) {
@@ -53,7 +49,8 @@ public class Profile implements IEntityContext, Serializable {
     }
 
     public String getRole() {
-        return role;
+
+        return (this.role);
     }
 
     public void setRole(String role) {
@@ -61,55 +58,64 @@ public class Profile implements IEntityContext, Serializable {
     }
 
     public String getDescription() {
-        return description;
+
+        return (this.description);
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<User> getUserList() {
-        return userList;
+
+        return (this.userList);
     }
 
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
 
-    @Override
+    @Override()
+    public Object getKey() {
+
+        return (this.getRole());
+    }
+
+    @Override()
+    public void setKey(Object key) {
+        this.setRole((String) key);
+    }
+
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (role != null ? role.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Profile)) {
-            return false;
+
+            return (false);
         }
+
         Profile other = (Profile) object;
-        if ((this.role == null && other.role != null) || (this.role != null && !this.role.equals(other.role))) {
-            return false;
+        if (((this.role == null) && (other.role != null)) || ((this.role != null)
+                && !(this.role.equals(other.role)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.Profile[ role=" + role + " ]";
-    }
 
-    @Override
-    public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ("co.edu.udea.juridicapp.persistence.entity.Profile[ role="
+                + this.getRole() + " ]");
     }
-
-    @Override
-    public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

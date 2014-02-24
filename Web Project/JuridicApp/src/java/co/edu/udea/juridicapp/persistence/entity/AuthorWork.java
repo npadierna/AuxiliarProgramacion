@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -26,84 +22,101 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author rebien
- */
-@Entity
+@Entity()
 @Table(name = "AUTHOR_WORK")
-@XmlRootElement
+@XmlRootElement()
 @NamedQueries({
-    @NamedQuery(name = "AuthorWork.findAll", query = "SELECT a FROM AuthorWork a"),
-    @NamedQuery(name = "AuthorWork.findByWorkTypeId", query = "SELECT a FROM AuthorWork a WHERE a.authorWorkPK.workTypeId = :workTypeId"),
-    @NamedQuery(name = "AuthorWork.findByWorkTypeName", query = "SELECT a FROM AuthorWork a WHERE a.authorWorkPK.workTypeName = :workTypeName"),
-    @NamedQuery(name = "AuthorWork.findByDocumentType", query = "SELECT a FROM AuthorWork a WHERE a.authorWorkPK.documentType = :documentType"),
-    @NamedQuery(name = "AuthorWork.findByIdNumber", query = "SELECT a FROM AuthorWork a WHERE a.authorWorkPK.idNumber = :idNumber"),
-    @NamedQuery(name = "AuthorWork.findByContract", query = "SELECT a FROM AuthorWork a WHERE a.authorWorkPK.contract = :contract"),
-    @NamedQuery(name = "AuthorWork.findByIsbn", query = "SELECT a FROM AuthorWork a WHERE a.isbn = :isbn"),
-    @NamedQuery(name = "AuthorWork.findByStarting", query = "SELECT a FROM AuthorWork a WHERE a.starting = :starting"),
-    @NamedQuery(name = "AuthorWork.findByDelivering", query = "SELECT a FROM AuthorWork a WHERE a.delivering = :delivering")})
+    @NamedQuery(name = "AuthorWork.findAll",
+            query = "SELECT a FROM AuthorWork a"),
+    @NamedQuery(name = "AuthorWork.findByWorkTypeId",
+            query = "SELECT a FROM AuthorWork a WHERE a.authorWorkPK.workTypeId = :workTypeId"),
+    @NamedQuery(name = "AuthorWork.findByWorkTypeName",
+            query = "SELECT a FROM AuthorWork a WHERE a.authorWorkPK.workTypeName = :workTypeName"),
+    @NamedQuery(name = "AuthorWork.findByDocumentType",
+            query = "SELECT a FROM AuthorWork a WHERE a.authorWorkPK.documentType = :documentType"),
+    @NamedQuery(name = "AuthorWork.findByIdNumber",
+            query = "SELECT a FROM AuthorWork a WHERE a.authorWorkPK.idNumber = :idNumber"),
+    @NamedQuery(name = "AuthorWork.findByContract",
+            query = "SELECT a FROM AuthorWork a WHERE a.authorWorkPK.contract = :contract"),
+    @NamedQuery(name = "AuthorWork.findByIsbn",
+            query = "SELECT a FROM AuthorWork a WHERE a.isbn = :isbn"),
+    @NamedQuery(name = "AuthorWork.findByStarting",
+            query = "SELECT a FROM AuthorWork a WHERE a.starting = :starting"),
+    @NamedQuery(name = "AuthorWork.findByDelivering",
+            query = "SELECT a FROM AuthorWork a WHERE a.delivering = :delivering")})
 public class AuthorWork implements IEntityContext, Serializable {
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
+
+    private static final long serialVersionUID = 5346671195390452736L;
+    @EmbeddedId()
     protected AuthorWorkPK authorWorkPK;
     @Size(max = 35)
     @Column(name = "isbn")
     private String isbn;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Column(name = "starting")
     @Temporal(TemporalType.DATE)
     private Date starting;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Column(name = "delivering")
     @Temporal(TemporalType.DATE)
     private Date delivering;
-    @JoinColumn(name = "contract", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "contract", referencedColumnName = "id",
+            insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Contract contract1;
     @JoinColumn(name = "role", referencedColumnName = "profile")
     @ManyToOne(optional = false)
     private Role role;
     @JoinColumns({
-        @JoinColumn(name = "document_type", referencedColumnName = "document_type", insertable = false, updatable = false),
-        @JoinColumn(name = "id_number", referencedColumnName = "id_number", insertable = false, updatable = false)})
+        @JoinColumn(name = "document_type",
+                referencedColumnName = "document_type", insertable = false,
+                updatable = false),
+        @JoinColumn(name = "id_number", referencedColumnName = "id_number",
+                insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private Author author;
     @JoinColumn(name = "dnda", referencedColumnName = "number")
-    @ManyToOne
+    @ManyToOne()
     private Dnda dnda;
     @JoinColumn(name = "support_type", referencedColumnName = "type")
     @ManyToOne(optional = false)
     private Support supportType;
     @JoinColumns({
-        @JoinColumn(name = "work_type_id", referencedColumnName = "work_id", insertable = false, updatable = false),
-        @JoinColumn(name = "work_type_name", referencedColumnName = "type_name", insertable = false, updatable = false)})
+        @JoinColumn(name = "work_type_id", referencedColumnName = "work_id",
+                insertable = false, updatable = false),
+        @JoinColumn(name = "work_type_name", referencedColumnName = "type_name",
+                insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private WorkType workType;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "authorWork")
     private List<AuthorWorkAcquisition> authorWorkAcquisitionList;
 
     public AuthorWork() {
+        super();
     }
 
     public AuthorWork(AuthorWorkPK authorWorkPK) {
         this.authorWorkPK = authorWorkPK;
     }
 
-    public AuthorWork(AuthorWorkPK authorWorkPK, Date starting, Date delivering) {
+    public AuthorWork(AuthorWorkPK authorWorkPK, Date starting,
+            Date delivering) {
         this.authorWorkPK = authorWorkPK;
         this.starting = starting;
         this.delivering = delivering;
     }
 
-    public AuthorWork(long workTypeId, String workTypeName, String documentType, String idNumber, String contract) {
-        this.authorWorkPK = new AuthorWorkPK(workTypeId, workTypeName, documentType, idNumber, contract);
+    public AuthorWork(long workTypeId, String workTypeName, String documentType,
+            String idNumber, String contract) {
+        this.authorWorkPK = new AuthorWorkPK(workTypeId, workTypeName,
+                documentType, idNumber, contract);
     }
 
     public AuthorWorkPK getAuthorWorkPK() {
-        return authorWorkPK;
+
+        return (this.authorWorkPK);
     }
 
     public void setAuthorWorkPK(AuthorWorkPK authorWorkPK) {
@@ -111,7 +124,8 @@ public class AuthorWork implements IEntityContext, Serializable {
     }
 
     public String getIsbn() {
-        return isbn;
+
+        return (this.isbn);
     }
 
     public void setIsbn(String isbn) {
@@ -119,7 +133,8 @@ public class AuthorWork implements IEntityContext, Serializable {
     }
 
     public Date getStarting() {
-        return starting;
+
+        return (this.starting);
     }
 
     public void setStarting(Date starting) {
@@ -127,7 +142,8 @@ public class AuthorWork implements IEntityContext, Serializable {
     }
 
     public Date getDelivering() {
-        return delivering;
+
+        return (this.delivering);
     }
 
     public void setDelivering(Date delivering) {
@@ -135,7 +151,8 @@ public class AuthorWork implements IEntityContext, Serializable {
     }
 
     public Contract getContract1() {
-        return contract1;
+
+        return (this.contract1);
     }
 
     public void setContract1(Contract contract1) {
@@ -143,7 +160,8 @@ public class AuthorWork implements IEntityContext, Serializable {
     }
 
     public Role getRole() {
-        return role;
+
+        return (this.role);
     }
 
     public void setRole(Role role) {
@@ -151,7 +169,8 @@ public class AuthorWork implements IEntityContext, Serializable {
     }
 
     public Author getAuthor() {
-        return author;
+
+        return (this.author);
     }
 
     public void setAuthor(Author author) {
@@ -159,7 +178,8 @@ public class AuthorWork implements IEntityContext, Serializable {
     }
 
     public Dnda getDnda() {
-        return dnda;
+
+        return (this.dnda);
     }
 
     public void setDnda(Dnda dnda) {
@@ -167,7 +187,8 @@ public class AuthorWork implements IEntityContext, Serializable {
     }
 
     public Support getSupportType() {
-        return supportType;
+
+        return (this.supportType);
     }
 
     public void setSupportType(Support supportType) {
@@ -175,55 +196,66 @@ public class AuthorWork implements IEntityContext, Serializable {
     }
 
     public WorkType getWorkType() {
-        return workType;
+
+        return (this.workType);
     }
 
     public void setWorkType(WorkType workType) {
         this.workType = workType;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<AuthorWorkAcquisition> getAuthorWorkAcquisitionList() {
-        return authorWorkAcquisitionList;
+
+        return (this.authorWorkAcquisitionList);
     }
 
-    public void setAuthorWorkAcquisitionList(List<AuthorWorkAcquisition> authorWorkAcquisitionList) {
+    public void setAuthorWorkAcquisitionList(
+            List<AuthorWorkAcquisition> authorWorkAcquisitionList) {
         this.authorWorkAcquisitionList = authorWorkAcquisitionList;
     }
 
-    @Override
+    @Override()
+    public Object getKey() {
+
+        return (this.getAuthorWorkPK());
+    }
+
+    @Override()
+    public void setKey(Object key) {
+        this.setAuthorWorkPK((AuthorWorkPK) key);
+    }
+
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (authorWorkPK != null ? authorWorkPK.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof AuthorWork)) {
-            return false;
+
+            return (false);
         }
+
         AuthorWork other = (AuthorWork) object;
-        if ((this.authorWorkPK == null && other.authorWorkPK != null) || (this.authorWorkPK != null && !this.authorWorkPK.equals(other.authorWorkPK))) {
-            return false;
+        if (((this.authorWorkPK == null) && (other.authorWorkPK != null))
+                || ((this.authorWorkPK != null)
+                && !(this.authorWorkPK.equals(other.authorWorkPK)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.AuthorWork[ authorWorkPK=" + authorWorkPK + " ]";
-    }
 
-    @Override
-    public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ("co.edu.udea.juridicapp.persistence.entity.AuthorWork[ authorWorkPK="
+                + this.getAuthorWorkPK() + " ]");
     }
-
-    @Override
-    public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

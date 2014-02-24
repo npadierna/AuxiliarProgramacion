@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -24,28 +20,27 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author rebien
- */
-@Entity
-@Table(name = "WORK")
-@XmlRootElement
+@Entity()
 @NamedQueries({
     @NamedQuery(name = "Work.findAll", query = "SELECT w FROM Work w"),
-    @NamedQuery(name = "Work.findById", query = "SELECT w FROM Work w WHERE w.id = :id"),
-    @NamedQuery(name = "Work.findByTitle", query = "SELECT w FROM Work w WHERE w.title = :title"),
-    @NamedQuery(name = "Work.findByDescription", query = "SELECT w FROM Work w WHERE w.description = :description")})
+    @NamedQuery(name = "Work.findById",
+            query = "SELECT w FROM Work w WHERE w.id = :id"),
+    @NamedQuery(name = "Work.findByTitle",
+            query = "SELECT w FROM Work w WHERE w.title = :title"),
+    @NamedQuery(name = "Work.findByDescription",
+            query = "SELECT w FROM Work w WHERE w.description = :description")})
+@Table(name = "WORK")
+@XmlRootElement()
 public class Work implements IEntityContext, Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
+    private static final long serialVersionUID = 1468388231673335808L;
+    @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 55)
     @Column(name = "title")
     private String title;
@@ -61,6 +56,7 @@ public class Work implements IEntityContext, Serializable {
     private Dependency dependency;
 
     public Work() {
+        super();
     }
 
     public Work(Long id) {
@@ -73,7 +69,8 @@ public class Work implements IEntityContext, Serializable {
     }
 
     public Long getId() {
-        return id;
+
+        return (this.id);
     }
 
     public void setId(Long id) {
@@ -81,7 +78,8 @@ public class Work implements IEntityContext, Serializable {
     }
 
     public String getTitle() {
-        return title;
+
+        return (this.title);
     }
 
     public void setTitle(String title) {
@@ -89,25 +87,28 @@ public class Work implements IEntityContext, Serializable {
     }
 
     public String getDescription() {
-        return description;
+
+        return (this.description);
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<Comment> getCommentList() {
-        return commentList;
+
+        return (this.commentList);
     }
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<WorkType> getWorkTypeList() {
-        return workTypeList;
+
+        return (this.workTypeList);
     }
 
     public void setWorkTypeList(List<WorkType> workTypeList) {
@@ -115,45 +116,54 @@ public class Work implements IEntityContext, Serializable {
     }
 
     public Dependency getDependency() {
-        return dependency;
+
+        return (this.dependency);
     }
 
     public void setDependency(Dependency dependency) {
         this.dependency = dependency;
     }
 
-    @Override
+    @Override()
+    public Object getKey() {
+
+        return (this.getId());
+    }
+
+    @Override()
+    public void setKey(Object key) {
+        this.setId((Long) key);
+    }
+
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Work)) {
-            return false;
+
+            return (false);
         }
+
         Work other = (Work) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
+        if (((this.id == null) && (other.id != null)) || ((this.id != null)
+                && !(this.id.equals(other.id)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.Work[ id=" + id + " ]";
-    }
 
-    @Override
-    public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ("co.edu.udea.juridicapp.persistence.entity.Work[ id="
+                + this.getId() + " ]");
     }
 }

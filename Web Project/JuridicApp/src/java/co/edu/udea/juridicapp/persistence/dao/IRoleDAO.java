@@ -1,13 +1,10 @@
-
-
 package co.edu.udea.juridicapp.persistence.dao;
 
 import co.edu.udea.juridicapp.persistence.entity.Role;
 import java.util.List;
 
-
 public interface IRoleDAO {
-    
+
     public Role deleteRole(Role role);
 
     public List<Role> findAllRoles();

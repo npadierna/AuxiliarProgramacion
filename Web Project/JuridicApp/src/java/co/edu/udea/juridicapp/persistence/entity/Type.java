@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -20,22 +16,21 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author rebien
- */
-@Entity
-@Table(name = "TYPE")
-@XmlRootElement
+@Entity()
 @NamedQueries({
     @NamedQuery(name = "Type.findAll", query = "SELECT t FROM Type t"),
-    @NamedQuery(name = "Type.findByName", query = "SELECT t FROM Type t WHERE t.name = :name"),
-    @NamedQuery(name = "Type.findByDescription", query = "SELECT t FROM Type t WHERE t.description = :description")})
+    @NamedQuery(name = "Type.findByName",
+            query = "SELECT t FROM Type t WHERE t.name = :name"),
+    @NamedQuery(name = "Type.findByDescription",
+            query = "SELECT t FROM Type t WHERE t.description = :description")})
+@Table(name = "TYPE")
+@XmlRootElement()
 public class Type implements IEntityContext, Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+
+    private static final long serialVersionUID = 4586395163987108864L;
+    @Id()
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
@@ -46,6 +41,7 @@ public class Type implements IEntityContext, Serializable {
     private List<WorkType> workTypeList;
 
     public Type() {
+        super();
     }
 
     public Type(String name) {
@@ -53,7 +49,8 @@ public class Type implements IEntityContext, Serializable {
     }
 
     public String getName() {
-        return name;
+
+        return (this.name);
     }
 
     public void setName(String name) {
@@ -61,55 +58,64 @@ public class Type implements IEntityContext, Serializable {
     }
 
     public String getDescription() {
-        return description;
+
+        return (this.description);
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<WorkType> getWorkTypeList() {
-        return workTypeList;
+
+        return (this.workTypeList);
     }
 
     public void setWorkTypeList(List<WorkType> workTypeList) {
         this.workTypeList = workTypeList;
     }
 
-    @Override
+    @Override()
+    public Object getKey() {
+
+        return (this.getName());
+    }
+
+    @Override()
+    public void setKey(Object key) {
+        this.setName((String) key);
+    }
+
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (name != null ? name.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Type)) {
-            return false;
+
+            return (false);
         }
+
         Type other = (Type) object;
-        if ((this.name == null && other.name != null) || (this.name != null && !this.name.equals(other.name))) {
-            return false;
+        if (((this.name == null) && (other.name != null)) || ((this.name != null)
+                && !(this.name.equals(other.name)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.Type[ name=" + name + " ]";
-    }
 
-    @Override
-    public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ("co.edu.udea.juridicapp.persistence.entity.Type[ name="
+                + this.getName() + " ]");
     }
-
-    @Override
-    public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

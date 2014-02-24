@@ -56,7 +56,6 @@ public class UserDAO extends AbstractEntityDAO implements IUserDAO {
     @Override()
     public List<User> executeNamedQueryForUsers(String namedQuery,
             String parameterName, Object parameterValue) {
-
         List<User> usersFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

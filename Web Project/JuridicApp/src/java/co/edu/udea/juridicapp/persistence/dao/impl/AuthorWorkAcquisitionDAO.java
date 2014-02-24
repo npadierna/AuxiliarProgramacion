@@ -1,4 +1,3 @@
-
 package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorWorkAcquisitionDAO;
@@ -7,10 +6,9 @@ import co.edu.udea.juridicapp.persistence.entity.AuthorWorkAcquisitionPK;
 import java.util.ArrayList;
 import java.util.List;
 
+public class AuthorWorkAcquisitionDAO extends AbstractEntityDAO implements
+        IAuthorWorkAcquisitionDAO {
 
-public class AuthorWorkAcquisitionDAO extends AbstractEntityDAO implements 
-        IAuthorWorkAcquisitionDAO{
-    
     public AuthorWorkAcquisitionDAO() {
         super();
     }
@@ -66,10 +64,9 @@ public class AuthorWorkAcquisitionDAO extends AbstractEntityDAO implements
 
     @Override()
     public List<AuthorWorkAcquisition> executeNamedQueryForAuthorWorkAcquisitions(
-            String namedQuery, 
+            String namedQuery,
             String parameterName, Object parameterValue) {
-        
-        List<AuthorWorkAcquisition> authorWorkAcquisitionsFound = 
+        List<AuthorWorkAcquisition> authorWorkAcquisitionsFound =
                 new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

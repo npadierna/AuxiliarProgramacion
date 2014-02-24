@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -22,22 +18,22 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author rebien
- */
-@Entity
-@Table(name = "DEPENDENCY")
-@XmlRootElement
+@Entity()
 @NamedQueries({
-    @NamedQuery(name = "Dependency.findAll", query = "SELECT d FROM Dependency d"),
-    @NamedQuery(name = "Dependency.findByName", query = "SELECT d FROM Dependency d WHERE d.name = :name"),
-    @NamedQuery(name = "Dependency.findByDescription", query = "SELECT d FROM Dependency d WHERE d.description = :description")})
+    @NamedQuery(name = "Dependency.findAll",
+            query = "SELECT d FROM Dependency d"),
+    @NamedQuery(name = "Dependency.findByName",
+            query = "SELECT d FROM Dependency d WHERE d.name = :name"),
+    @NamedQuery(name = "Dependency.findByDescription",
+            query = "SELECT d FROM Dependency d WHERE d.description = :description")})
+@Table(name = "DEPENDENCY")
+@XmlRootElement()
 public class Dependency implements IEntityContext, Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+
+    private static final long serialVersionUID = 3817477884820840448L;
+    @Id()
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 35)
     @Column(name = "name")
     private String name;
@@ -47,12 +43,13 @@ public class Dependency implements IEntityContext, Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dependency")
     private List<User> userList;
     @JoinColumn(name = "dnda", referencedColumnName = "number")
-    @ManyToOne
+    @ManyToOne()
     private Dnda dnda;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dependency")
     private List<Work> workList;
 
     public Dependency() {
+        super();
     }
 
     public Dependency(String name) {
@@ -60,7 +57,8 @@ public class Dependency implements IEntityContext, Serializable {
     }
 
     public String getName() {
-        return name;
+
+        return (this.name);
     }
 
     public void setName(String name) {
@@ -68,16 +66,18 @@ public class Dependency implements IEntityContext, Serializable {
     }
 
     public String getDescription() {
-        return description;
+
+        return (this.description);
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<User> getUserList() {
-        return userList;
+
+        return (this.userList);
     }
 
     public void setUserList(List<User> userList) {
@@ -85,55 +85,64 @@ public class Dependency implements IEntityContext, Serializable {
     }
 
     public Dnda getDnda() {
-        return dnda;
+
+        return (this.dnda);
     }
 
     public void setDnda(Dnda dnda) {
         this.dnda = dnda;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<Work> getWorkList() {
-        return workList;
+
+        return (this.workList);
     }
 
     public void setWorkList(List<Work> workList) {
         this.workList = workList;
     }
 
-    @Override
+    @Override()
+    public Object getKey() {
+
+        return (this.getName());
+    }
+
+    @Override()
+    public void setKey(Object key) {
+        this.setName((String) key);
+    }
+
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (name != null ? name.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Dependency)) {
-            return false;
+
+            return (false);
         }
+
         Dependency other = (Dependency) object;
-        if ((this.name == null && other.name != null) || (this.name != null && !this.name.equals(other.name))) {
-            return false;
+        if (((this.name == null) && (other.name != null)) || ((this.name != null)
+                && !(this.name.equals(other.name)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.Dependency[ name=" + name + " ]";
-    }
 
-    @Override
-    public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ("co.edu.udea.juridicapp.persistence.entity.Dependency[ name="
+                + this.getName() + " ]");
     }
-
-    @Override
-    public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

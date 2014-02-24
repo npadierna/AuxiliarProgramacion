@@ -1,4 +1,3 @@
-
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -18,34 +17,41 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity
-@Table(name = "COMMENT")
-@XmlRootElement
+@Entity()
 @NamedQueries({
     @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
-    @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.commentPK.id = :id"),
-    @NamedQuery(name = "Comment.findByWorkId", query = "SELECT c FROM Comment c WHERE c.commentPK.workId = :workId"),
-    @NamedQuery(name = "Comment.findByText", query = "SELECT c FROM Comment c WHERE c.text = :text"),
-    @NamedQuery(name = "Comment.findByDateTime", query = "SELECT c FROM Comment c WHERE c.dateTime = :dateTime")})
+    @NamedQuery(name = "Comment.findById",
+            query = "SELECT c FROM Comment c WHERE c.commentPK.id = :id"),
+    @NamedQuery(name = "Comment.findByWorkId",
+            query = "SELECT c FROM Comment c WHERE c.commentPK.workId = :workId"),
+    @NamedQuery(name = "Comment.findByText",
+            query = "SELECT c FROM Comment c WHERE c.text = :text"),
+    @NamedQuery(name = "Comment.findByDateTime",
+            query = "SELECT c FROM Comment c WHERE c.dateTime = :dateTime")})
+@Table(name = "COMMENT")
+@XmlRootElement()
 public class Comment implements IEntityContext, Serializable {
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
+
+    private static final long serialVersionUID = 3933693485501532160L;
+    @EmbeddedId()
     protected CommentPK commentPK;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 250)
     @Column(name = "text")
     private String text;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Column(name = "date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
-    @JoinColumn(name = "work_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "work_id", referencedColumnName = "id",
+            insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Work work;
 
     public Comment() {
+        super();
     }
 
     public Comment(CommentPK commentPK) {
@@ -63,7 +69,8 @@ public class Comment implements IEntityContext, Serializable {
     }
 
     public CommentPK getCommentPK() {
-        return commentPK;
+
+        return (this.commentPK);
     }
 
     public void setCommentPK(CommentPK commentPK) {
@@ -71,7 +78,8 @@ public class Comment implements IEntityContext, Serializable {
     }
 
     public String getText() {
-        return text;
+
+        return (this.text);
     }
 
     public void setText(String text) {
@@ -79,7 +87,8 @@ public class Comment implements IEntityContext, Serializable {
     }
 
     public Date getDateTime() {
-        return dateTime;
+
+        return (this.dateTime);
     }
 
     public void setDateTime(Date dateTime) {
@@ -87,46 +96,55 @@ public class Comment implements IEntityContext, Serializable {
     }
 
     public Work getWork() {
-        return work;
+
+        return (this.work);
     }
 
     public void setWork(Work work) {
         this.work = work;
     }
 
-    @Override
+    @Override()
+    public Object getKey() {
+
+        return (this.getCommentPK());
+    }
+
+    @Override()
+    public void setKey(Object key) {
+        this.setCommentPK((CommentPK) key);
+    }
+
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (commentPK != null ? commentPK.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Comment)) {
-            return false;
+
+            return (false);
         }
+
         Comment other = (Comment) object;
-        if ((this.commentPK == null && other.commentPK != null) || (this.commentPK != null && !this.commentPK.equals(other.commentPK))) {
-            return false;
+        if (((this.commentPK == null) && (other.commentPK != null))
+                || ((this.commentPK != null)
+                && !(this.commentPK.equals(other.commentPK)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.Comment[ commentPK=" + commentPK + " ]";
-    }
 
-    @Override
-    public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ("co.edu.udea.juridicapp.persistence.entity.Comment[ commentPK="
+                + this.getCommentPK() + " ]");
     }
-
-    @Override
-    public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

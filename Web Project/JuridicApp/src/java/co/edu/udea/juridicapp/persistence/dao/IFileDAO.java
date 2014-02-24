@@ -1,11 +1,10 @@
-
 package co.edu.udea.juridicapp.persistence.dao;
 
 import co.edu.udea.juridicapp.persistence.entity.File;
 import java.util.List;
 
 public interface IFileDAO {
-    
+
     public File deleteFile(File file);
 
     public List<File> findAllFiles();

@@ -31,15 +31,15 @@ public class WorkDAO extends AbstractEntityDAO implements IWorkDAO {
     }
 
     @Override()
-    public Work findWork(long key) {
+    public Work findWork(Long key) {
 
         return ((Work) super.find(Work.class, key));
     }
 
     @Override()
-    public long saveWork(Work work) {
+    public Long saveWork(Work work) {
 
-        return ((long) super.save(work));
+        return ((Long) super.save(work));
     }
 
     @Override()
@@ -55,7 +55,6 @@ public class WorkDAO extends AbstractEntityDAO implements IWorkDAO {
     @Override()
     public List<Work> executeNamedQueryForWorks(String namedQuery,
             String parameterName, Object parameterValue) {
-
         List<Work> worksFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,

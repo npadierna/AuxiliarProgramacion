@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 @Embeddable()
 public class UserPK implements Serializable {
 
+    private static final long serialVersionUID = 1718987581849290752L;
     @Basic(optional = false)
     @NotNull()
     @Size(min = 1, max = 45)
@@ -31,7 +32,8 @@ public class UserPK implements Serializable {
     }
 
     public String getDocumentType() {
-        return documentType;
+
+        return (this.documentType);
     }
 
     public void setDocumentType(String documentType) {
@@ -39,7 +41,8 @@ public class UserPK implements Serializable {
     }
 
     public String getIdNumber() {
-        return idNumber;
+
+        return (this.idNumber);
     }
 
     public void setIdNumber(String idNumber) {
@@ -51,27 +54,40 @@ public class UserPK implements Serializable {
         int hash = 0;
         hash += (documentType != null ? documentType.hashCode() : 0);
         hash += (idNumber != null ? idNumber.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
     @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof UserPK)) {
-            return false;
+
+            return (false);
         }
+
         UserPK other = (UserPK) object;
-        if ((this.documentType == null && other.documentType != null) || (this.documentType != null && !this.documentType.equals(other.documentType))) {
-            return false;
+        if (((this.documentType == null) && (other.documentType != null))
+                || ((this.documentType != null)
+                && !(this.documentType.equals(other.documentType)))) {
+
+            return (false);
         }
-        if ((this.idNumber == null && other.idNumber != null) || (this.idNumber != null && !this.idNumber.equals(other.idNumber))) {
-            return false;
+
+        if (((this.idNumber == null) && (other.idNumber != null))
+                || ((this.idNumber != null)
+                && !(this.idNumber.equals(other.idNumber)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
     @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.UserPK[ documentType=" + documentType + ", idNumber=" + idNumber + " ]";
+
+        return ("co.edu.udea.juridicapp.persistence.entity.UserPK[ documentType="
+                + this.getDocumentType() + ", idNumber=" + this.getIdNumber()
+                + " ]");
     }
 }

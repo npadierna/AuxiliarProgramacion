@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -18,30 +14,31 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author rebien
- */
-@Entity
-@Table(name = "USER")
-@XmlRootElement
+@Entity()
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-    @NamedQuery(name = "User.findByDocumentType", query = "SELECT u FROM User u WHERE u.userPK.documentType = :documentType"),
-    @NamedQuery(name = "User.findByIdNumber", query = "SELECT u FROM User u WHERE u.userPK.idNumber = :idNumber"),
-    @NamedQuery(name = "User.findByUserName", query = "SELECT u FROM User u WHERE u.userName = :userName"),
-    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
+    @NamedQuery(name = "User.findByDocumentType",
+            query = "SELECT u FROM User u WHERE u.userPK.documentType = :documentType"),
+    @NamedQuery(name = "User.findByIdNumber",
+            query = "SELECT u FROM User u WHERE u.userPK.idNumber = :idNumber"),
+    @NamedQuery(name = "User.findByUserName",
+            query = "SELECT u FROM User u WHERE u.userName = :userName"),
+    @NamedQuery(name = "User.findByPassword",
+            query = "SELECT u FROM User u WHERE u.password = :password")})
+@Table(name = "USER")
+@XmlRootElement()
 public class User implements IEntityContext, Serializable {
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
+
+    private static final long serialVersionUID = 2453343269715335168L;
+    @EmbeddedId()
     protected UserPK userPK;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 25)
     @Column(name = "user_name")
     private String userName;
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 25)
     @Column(name = "password")
     private String password;
@@ -53,6 +50,7 @@ public class User implements IEntityContext, Serializable {
     private Profile role;
 
     public User() {
+        super();
     }
 
     public User(UserPK userPK) {
@@ -70,7 +68,8 @@ public class User implements IEntityContext, Serializable {
     }
 
     public UserPK getUserPK() {
-        return userPK;
+
+        return (this.userPK);
     }
 
     public void setUserPK(UserPK userPK) {
@@ -78,7 +77,8 @@ public class User implements IEntityContext, Serializable {
     }
 
     public String getUserName() {
-        return userName;
+
+        return (this.userName);
     }
 
     public void setUserName(String userName) {
@@ -86,7 +86,8 @@ public class User implements IEntityContext, Serializable {
     }
 
     public String getPassword() {
-        return password;
+
+        return (this.password);
     }
 
     public void setPassword(String password) {
@@ -94,7 +95,8 @@ public class User implements IEntityContext, Serializable {
     }
 
     public Dependency getDependency() {
-        return dependency;
+
+        return (this.dependency);
     }
 
     public void setDependency(Dependency dependency) {
@@ -102,46 +104,55 @@ public class User implements IEntityContext, Serializable {
     }
 
     public Profile getRole() {
-        return role;
+
+        return (this.role);
     }
 
     public void setRole(Profile role) {
         this.role = role;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (userPK != null ? userPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.userPK == null && other.userPK != null) || (this.userPK != null && !this.userPK.equals(other.userPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.User[ userPK=" + userPK + " ]";
-    }
-
-    @Override
+    @Override()
     public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return (this.getUserPK());
     }
 
     @Override
     public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setUserPK((UserPK) key);
     }
-    
+
+    @Override()
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.userPK != null ? this.userPK.hashCode() : 0);
+
+        return (hash);
+    }
+
+    @Override()
+    public boolean equals(Object object) {
+        if (!(object instanceof User)) {
+
+            return (false);
+        }
+
+        User other = (User) object;
+        if (((this.userPK == null) && (other.userPK != null))
+                || ((this.userPK != null)
+                && !(this.userPK.equals(other.userPK)))) {
+
+            return (false);
+        }
+
+        return (true);
+    }
+
+    @Override()
+    public String toString() {
+
+        return ("co.edu.udea.juridicapp.persistence.entity.User[ userPK="
+                + this.getUserPK() + " ]");
+    }
 }

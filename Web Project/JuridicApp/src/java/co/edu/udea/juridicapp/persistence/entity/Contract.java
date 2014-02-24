@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
@@ -20,21 +16,19 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author rebien
- */
-@Entity
-@Table(name = "CONTRACT")
-@XmlRootElement
+@Entity()
 @NamedQueries({
     @NamedQuery(name = "Contract.findAll", query = "SELECT c FROM Contract c"),
-    @NamedQuery(name = "Contract.findById", query = "SELECT c FROM Contract c WHERE c.id = :id")})
+    @NamedQuery(name = "Contract.findById",
+            query = "SELECT c FROM Contract c WHERE c.id = :id")})
+@Table(name = "CONTRACT")
+@XmlRootElement()
 public class Contract implements IEntityContext, Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+
+    private static final long serialVersionUID = 3782084044581242880L;
+    @Id()
     @Basic(optional = false)
-    @NotNull
+    @NotNull()
     @Size(min = 1, max = 30)
     @Column(name = "id")
     private String id;
@@ -42,6 +36,7 @@ public class Contract implements IEntityContext, Serializable {
     private List<AuthorWork> authorWorkList;
 
     public Contract() {
+        super();
     }
 
     public Contract(String id) {
@@ -49,55 +44,64 @@ public class Contract implements IEntityContext, Serializable {
     }
 
     public String getId() {
-        return id;
+
+        return (this.id);
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    @XmlTransient
+    @XmlTransient()
     public List<AuthorWork> getAuthorWorkList() {
-        return authorWorkList;
+
+        return (this.authorWorkList);
     }
 
     public void setAuthorWorkList(List<AuthorWork> authorWorkList) {
         this.authorWorkList = authorWorkList;
     }
 
-    @Override
+    @Override()
+    public Object getKey() {
+
+        return (this.getId());
+    }
+
+    @Override()
+    public void setKey(Object key) {
+        this.setId((String) key);
+    }
+
+    @Override()
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
-        return hash;
+
+        return (hash);
     }
 
-    @Override
+    @Override()
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Contract)) {
-            return false;
+
+            return (false);
         }
+
         Contract other = (Contract) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
+        if (((this.id == null) && (other.id != null)) || ((this.id != null)
+                && !(this.id.equals(other.id)))) {
+
+            return (false);
         }
-        return true;
+
+        return (true);
     }
 
-    @Override
+    @Override()
     public String toString() {
-        return "co.edu.udea.juridicapp.persistence.entity.Contract[ id=" + id + " ]";
-    }
 
-    @Override
-    public Object getKey() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ("co.edu.udea.juridicapp.persistence.entity.Contract[ id="
+                + this.getId() + " ]");
     }
-
-    @Override
-    public void setKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

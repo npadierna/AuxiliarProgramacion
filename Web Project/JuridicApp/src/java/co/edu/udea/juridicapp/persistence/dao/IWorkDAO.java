@@ -11,9 +11,9 @@ public interface IWorkDAO {
 
     public List<Work> findWorksByAttributes(Object... attributes);
 
-    public Work findWork(long key);
+    public Work findWork(Long key);
 
-    public long saveWork(Work work);
+    public Long saveWork(Work work);
 
     public Work updateWork(Work work);
 

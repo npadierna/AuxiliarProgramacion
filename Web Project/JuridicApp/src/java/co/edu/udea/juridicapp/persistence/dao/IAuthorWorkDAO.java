@@ -1,13 +1,11 @@
-
 package co.edu.udea.juridicapp.persistence.dao;
 
 import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWorkPK;
 import java.util.List;
 
-
 public interface IAuthorWorkDAO {
-    
+
     public AuthorWork deleteAuthorWork(AuthorWork author);
 
     public List<AuthorWork> findAllAuthorWorks();

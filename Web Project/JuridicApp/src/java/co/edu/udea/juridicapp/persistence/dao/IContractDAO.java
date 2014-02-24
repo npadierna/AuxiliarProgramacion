@@ -1,11 +1,10 @@
-
 package co.edu.udea.juridicapp.persistence.dao;
 
 import co.edu.udea.juridicapp.persistence.entity.Contract;
 import java.util.List;
 
 public interface IContractDAO {
-    
+
     public Contract deleteContract(Contract contract);
 
     public List<Contract> findAllContracts();

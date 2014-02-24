@@ -54,9 +54,8 @@ public class AuthorDAO extends AbstractEntityDAO implements IAuthorDAO {
     }
 
     @Override()
-    public List<Author> executeNamedQueryForAuthors(String namedQuery, 
+    public List<Author> executeNamedQueryForAuthors(String namedQuery,
             String parameterName, Object parameterValue) {
-        
         List<Author> authorsFound = new ArrayList<>();
 
         for (Object o : super.executeNamedQuery(namedQuery, parameterName,
