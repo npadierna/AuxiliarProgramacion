@@ -1,6 +1,7 @@
 package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorWorkDAO;
+import co.edu.udea.juridicapp.persistence.entity.Author;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWorkPK;
 import java.util.List;
@@ -42,6 +43,20 @@ public class AuthorWorkDAO extends AbstractEntityDAO implements IAuthorWorkDAO {
     public AuthorWork findAuthorWork(AuthorWorkPK key) {
 
         return ((AuthorWork) super.find(AuthorWork.class, key));
+    }
+
+    @Override()
+    public List<AuthorWork> findAuthorWorkByAuthor(Author author) {
+        List<AuthorWork> authorWorksFound = null;
+
+        if ((author != null) && (author.getKey() != null)) {
+            authorWorksFound = this.findAuthorWorksByAttributes(
+                    "authorWorkPK.idNumber", author.getAuthorPK().getIdNumber(),
+                    "authorWorkPK.documentType",
+                    author.getAuthorPK().getDocumentType());
+        }
+
+        return (authorWorksFound);
     }
 
     @Override()

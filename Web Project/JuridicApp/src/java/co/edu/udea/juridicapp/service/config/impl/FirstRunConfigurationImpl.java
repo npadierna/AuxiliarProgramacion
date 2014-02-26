@@ -1,18 +1,25 @@
 package co.edu.udea.juridicapp.service.config.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IAcquisitionDAO;
+import co.edu.udea.juridicapp.persistence.dao.IAuthorDAO;
+import co.edu.udea.juridicapp.persistence.dao.IAuthorWorkDAO;
 import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
 import co.edu.udea.juridicapp.persistence.dao.IProfileDAO;
 import co.edu.udea.juridicapp.persistence.dao.IRoleDAO;
 import co.edu.udea.juridicapp.persistence.dao.ISupportDAO;
 import co.edu.udea.juridicapp.persistence.dao.ITypeDAO;
+import co.edu.udea.juridicapp.persistence.dao.IUserDAO;
 import co.edu.udea.juridicapp.persistence.entity.Acquisition;
+import co.edu.udea.juridicapp.persistence.entity.Author;
+import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
 import co.edu.udea.juridicapp.persistence.entity.Dependency;
 import co.edu.udea.juridicapp.persistence.entity.Profile;
 import co.edu.udea.juridicapp.persistence.entity.Role;
 import co.edu.udea.juridicapp.persistence.entity.Support;
 import co.edu.udea.juridicapp.persistence.entity.Type;
+import co.edu.udea.juridicapp.persistence.entity.User;
 import co.edu.udea.juridicapp.service.config.IFirstRunConfiguration;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
@@ -20,15 +27,21 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     @Autowired()
     private IAcquisitionDAO acquisitionDAO;
     @Autowired()
-    private ISupportDAO supportDAO;
+    private IAuthorDAO authorDAO;
     @Autowired()
-    private ITypeDAO typeDAO;
+    private IAuthorWorkDAO authorWorkDAO;
     @Autowired()
     private IDependencyDAO dependencyDAO;
     @Autowired()
     private IProfileDAO profileDAO;
     @Autowired()
     private IRoleDAO roleDAO;
+    @Autowired()
+    private ISupportDAO supportDAO;
+    @Autowired()
+    private ITypeDAO typeDAO;
+    @Autowired()
+    private IUserDAO userDAO;
 
     @Override()
     public void createDefaultData() {
@@ -40,6 +53,8 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         this.createDefaultDependencies();
         this.createDefaultProfiles();
         this.createDefaultRoles();
+
+        this.tester();
     }
 
     @Override()
@@ -188,5 +203,15 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
             type = new Type("Otro");
             this.typeDAO.saveType(type);
         }
+    }
+
+    private void tester() {
+        User user = this.userDAO.findUserByLogin("neiber.padierna", "neiber123");
+
+        Author author = new Author(user.getUserPK().getDocumentType(),
+                user.getUserPK().getIdNumber());
+        this.authorDAO.saveAuthor(author);
+
+        List<AuthorWork> authorWorks = this.authorWorkDAO.findAuthorWorkByAuthor(author);
     }
 }

@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -91,20 +92,13 @@ public class RegistrationUserBean implements Serializable {
             this.person.setUser(this.user);
 
             this.personDAO.savePerson(this.person);
-//            User u = this.user;
-//
-//            u.setUserPK(new UserPK(this.documentType,
-//                    this.idNumber.trim()));
-//            this.user = u;
-//            this.userDAO.saveUser(this.user);
-//            this.user = new User();
-//            this.documentType = null;
-//            this.idNumber = null;
         }
     }
 
     @PostConstruct()
     private void createFields() {
+        FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+
         this.person = new Person();
         this.user = new User();
         this.documentsType = DocumentTypeUserEnum.obtainDocumentsTypeList();

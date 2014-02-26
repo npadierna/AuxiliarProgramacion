@@ -10,7 +10,7 @@
         <script type="text/javascript" src="../../../util/javascript/loginRequestFunction.js" />
         <f:facet name="first">
             <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
-            <title>Login</title>
+            <title>Iniciar Sesión</title>
         </f:facet>
     </h:head>
 
@@ -19,31 +19,34 @@
             <center>
                 <p:panel id="loginPanel" style="width: 800px;" >
                     <center>
-                        <p:growl id="growlLogin" showDetail="true" life="3000" />
+                        <p:growl id="growlLogin" showDetail="true"
+                                 life="3000" >
+                        </p:growl>
+
                         <h1>Iniciar Sesión</h1>
                         <h:panelGrid columns="3" cellpadding="5" >
-                            <h:outputLabel for="email" value="Correo Electrónico: *" />
-                            <p:inputText id="email" 
-                                         label="Correo electrónico."
-                                         
-                                   >
-
+                            <h:outputLabel for="userName"
+                                           value="Nombre De Usuario: *" >
+                            </h:outputLabel>
+                            <p:inputText id="userName" 
+                                         label="Nombre De Usuario." >
                             </p:inputText>
+                            <p:watermark for="userName" value="Obligatorio" >
+                            </p:watermark>
 
-                            <p:watermark for="email" value="Obligatorio" />
-
-                            <h:outputLabel for="password" value="Contraseña: *" />
+                            <h:outputLabel for="password" value="Contraseña: *" >
+                            </h:outputLabel>
                             <p:password id="password" 
-                                        label="Contraseña"
-                                        
-                                         />
-                            <p:watermark for="password" value="Obligatorio" />
+                                        label="Contraseña" ></p:password>
+                            <p:watermark for="password"
+                                         value="Obligatorio" >
+                            </p:watermark>
 
                             <f:facet name="footer" >
                                 <center>
                                     <p:commandButton id="logInButton"
                                                      value="Iniciar Sesión"
-                                                     update="growlLogin"                                                                                               
+                                                     update="growlLogin"
                                                      oncomplete="handleLoginRequest(xhr, status, args)" >
                                     </p:commandButton>
                                 </center>

@@ -45,6 +45,19 @@ public class UserDAO extends AbstractEntityDAO implements IUserDAO {
     }
 
     @Override()
+    public User findUserByLogin(String userName, String password) {
+        List<User> usersFound = this.findUsersByAttributes("userName", userName,
+                "password", password);
+
+        if ((usersFound != null) && !(usersFound.isEmpty())) {
+
+            return (usersFound.get(0));
+        }
+
+        return (null);
+    }
+
+    @Override()
     @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public UserPK saveUser(User user) {
 

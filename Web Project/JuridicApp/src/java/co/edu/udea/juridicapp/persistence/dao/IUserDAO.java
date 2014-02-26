@@ -14,6 +14,8 @@ public interface IUserDAO {
 
     public User findUser(UserPK key);
 
+    public User findUserByLogin(String userName, String password);
+
     public UserPK saveUser(User user);
 
     public User updateUser(User user);

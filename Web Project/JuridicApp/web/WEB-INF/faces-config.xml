@@ -10,13 +10,11 @@
             <default-locale>en_US</default-locale>
         </locale-config>
     </application>
-
     <application>
         <el-resolver>
             org.springframework.web.jsf.el.SpringBeanFacesELResolver
         </el-resolver>
     </application>
-
     <managed-bean>
         <managed-bean-name>workBean</managed-bean-name>
         <managed-bean-class>
@@ -32,7 +30,7 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>registerUserBean</managed-bean-name>
+        <managed-bean-name>registrationUserBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.member.data.registration.RegistrationUserBean
         </managed-bean-class>

@@ -8,12 +8,15 @@
       xmlns:f="http://java.sun.com/jsf/core" >
 
     <h:head>
-        <script type="text/javascript"
-                src="../../../../util/javascript/registryRequestFunction.js" />
-        <title>Registro</title>
+        <f:facet name="registerMemberView" >
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+            <title>Registro</title>
+            <script type="text/javascript"
+                    src="../../../../util/javascript/registryRequestFunction.js" />
+        </f:facet>
     </h:head>
     <h:body>
-        <h:form id="registrerForm">
+        <h:form id="registrerForm" >
             <center>
                 <p:panel id="registrerPanel" header="Registro De Usuario"
                          style="font-weight:bold" >
@@ -27,9 +30,9 @@
                                        style="font-weight:bold" >
                         </h:outputLabel>
                         <p:selectOneMenu id="personDocumentType" 
-                                         value="#{registerUserBean.documentType}"
+                                         value="#{registrationUserBean.documentType}"
                                          required="true" label="Tipo Documento" >
-                            <f:selectItems value="#{registerUserBean.documentsType}" >
+                            <f:selectItems value="#{registrationUserBean.documentsType}" >
                             </f:selectItems>
                         </p:selectOneMenu>
 
@@ -38,7 +41,7 @@
                                        style="font-weight:bold" >
                         </h:outputLabel>
                         <p:inputText id="personIdNumber" 
-                                     value="#{registerUserBean.idNumber}"
+                                     value="#{registrationUserBean.idNumber}"
                                      required="true" label="Número Documento"
                                      size="20" >
                         </p:inputText>
@@ -47,7 +50,7 @@
                                        style="font-weight:bold" >
                         </h:outputLabel>
                         <p:inputText id="personFirstNames"
-                                     value="#{registerUserBean.person.firstNames}"
+                                     value="#{registrationUserBean.person.firstNames}"
                                      required="true" label="Nombres" size="20" >
                         </p:inputText>
 
@@ -55,7 +58,7 @@
                                        style="font-weight:bold" >
                         </h:outputLabel>
                         <p:inputText id="personLastNames"
-                                     value="#{registerUserBean.person.lastNames}"
+                                     value="#{registrationUserBean.person.lastNames}"
                                      required="true" label="Apellidos" size="20" >
                         </p:inputText>
 
@@ -63,7 +66,7 @@
                                        style="font-weight:bold" >
                         </h:outputLabel>
                         <p:inputText id="userName" 
-                                     value="#{registerUserBean.user.userName}"
+                                     value="#{registrationUserBean.user.userName}"
                                      required="true" label="Usuario" size="20" >
                         </p:inputText>
 
@@ -71,7 +74,7 @@
                                        style="font-weight:bold" >
                         </h:outputLabel>
                         <p:password id="userPassword" 
-                                    value="#{registerUserBean.user.password}"
+                                    value="#{registrationUserBean.user.password}"
                                     feedback="true" required="true"
                                     match="userPassword2"
                                     label="Contraseña" size="20" >
@@ -81,7 +84,7 @@
                                        style="font-weight:bold" >
                         </h:outputLabel>
                         <p:password id="userPassword2" 
-                                    value="#{registerUserBean.user.password}"
+                                    value="#{registrationUserBean.user.password}"
                                     feedback="true" required="true"
                                     label="Confirmar Contraseña" size="20" >
                         </p:password>
@@ -90,14 +93,14 @@
                                        style="font-weight:bold" >
                         </h:outputLabel>
                         <p:inputText id="personEmail"
-                                     value="#{registerUserBean.person.email}"
+                                     value="#{registrationUserBean.person.email}"
                                      label="Correo Electrónico" required="true"
                                      size="20" >
                         </p:inputText>
 
                         <p:commandButton id="registerButton"
                                          value="Registrarse" update="registrerPanel"
-                                         actionListener="#{registerUserBean.doSubscribtion}" >
+                                         actionListener="#{registrationUserBean.doSubscribtion}" >
                         </p:commandButton>
                         <p:commandButton id="clearButton" update="registrerPanel"
                                          type="reset" process="@this" ajax="true"
