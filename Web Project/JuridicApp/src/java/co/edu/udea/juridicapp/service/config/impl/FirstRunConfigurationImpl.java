@@ -54,7 +54,7 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         this.createDefaultProfiles();
         this.createDefaultRoles();
 
-        this.tester();
+        //this.tester();
     }
 
     @Override()

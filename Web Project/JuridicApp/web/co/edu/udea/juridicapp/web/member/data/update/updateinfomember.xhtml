@@ -44,15 +44,17 @@
 
                 <h:form id="mainForm" >
                     <center>
-                        <table align="center" >
-                            <tr>
-                                <td>                    
-                                    <ui:include src="logoutinfomember.xhtml" >
-                                    </ui:include>
-                                </td>
-                            </tr>
-                        </table>
 
+                        <h:form id="workForm" >
+                            <h:panelGrid columns="2">
+                                    <p:commandButton id="createButton" value="Crear Nueva Obra"
+                                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/work/creatework.xhtml';" >
+                                    </p:commandButton>
+                                     <p:commandButton id="editButton" value="Editar una Obra"
+                                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';" >
+                                    </p:commandButton>
+                            </h:panelGrid>
+                        </h:form>
                         <h:form id="formChangePassword" >
                             <p:growl id="growlChangePassword" showDetail="true" life="3000" />
 
