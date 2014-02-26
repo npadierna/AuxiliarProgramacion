@@ -2,7 +2,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IFileDAO;
 import co.edu.udea.juridicapp.persistence.entity.File;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -63,15 +62,11 @@ public class FileDAO extends AbstractEntityDAO implements IFileDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<File> executeNamedQueryForFiles(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<File> filesFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            filesFound.add((File) o);
-        }
-
-        return (filesFound);
+        return ((List<File>) super.executeNamedQuery(namedQuery, parameterName,
+                parameterValue));
     }
 }

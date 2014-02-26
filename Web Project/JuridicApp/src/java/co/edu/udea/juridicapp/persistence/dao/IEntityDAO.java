@@ -23,6 +23,6 @@ public interface IEntityDAO {
     @SuppressWarnings("rawtypes")
     public long count(Class clazz);
 
-    public List<IEntityContext> executeNamedQuery(String namedQuery,
+    public Object executeNamedQuery(String namedQuery,
             String paramName, Object paramValue);
 }

@@ -6,9 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -48,6 +50,14 @@ public class User implements IEntityContext, Serializable {
     @JoinColumn(name = "role", referencedColumnName = "role")
     @ManyToOne(optional = false)
     private Profile role;
+    @JoinColumns({
+        @JoinColumn(name = "document_type",
+                referencedColumnName = "document_type", insertable = false,
+                updatable = false),
+        @JoinColumn(name = "id_number", referencedColumnName = "id_number",
+                insertable = false, updatable = false)})
+    @OneToOne(optional = false)
+    private Person person;
 
     public User() {
         super();
@@ -112,13 +122,22 @@ public class User implements IEntityContext, Serializable {
         this.role = role;
     }
 
+    public Person getPerson() {
+
+        return (this.person);
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
     @Override()
     public Object getKey() {
 
         return (this.getUserPK());
     }
 
-    @Override
+    @Override()
     public void setKey(Object key) {
         this.setUserPK((UserPK) key);
     }
@@ -126,7 +145,7 @@ public class User implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (this.userPK != null ? this.userPK.hashCode() : 0);
+        hash += (userPK != null ? userPK.hashCode() : 0);
 
         return (hash);
     }

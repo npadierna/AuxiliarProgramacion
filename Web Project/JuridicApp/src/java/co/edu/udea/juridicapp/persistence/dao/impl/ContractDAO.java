@@ -2,7 +2,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IContractDAO;
 import co.edu.udea.juridicapp.persistence.entity.Contract;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -63,15 +62,11 @@ public class ContractDAO extends AbstractEntityDAO implements IContractDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Contract> executeNamedQueryForContracts(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<Contract> contractsFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            contractsFound.add((Contract) o);
-        }
-
-        return (contractsFound);
+        return ((List<Contract>) super.executeNamedQuery(namedQuery,
+                parameterName, parameterValue));
     }
 }

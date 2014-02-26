@@ -2,7 +2,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.ITypeDAO;
 import co.edu.udea.juridicapp.persistence.entity.Type;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -63,15 +62,11 @@ public class TypeDAO extends AbstractEntityDAO implements ITypeDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Type> executeNamedQueryForTypes(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<Type> typesFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            typesFound.add((Type) o);
-        }
-
-        return (typesFound);
+        return ((List<Type>) super.executeNamedQuery(namedQuery, parameterName,
+                parameterValue));
     }
 }

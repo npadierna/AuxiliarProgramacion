@@ -77,6 +77,7 @@ public class CommentPK implements Serializable {
 
     @Override()
     public String toString() {
+
         return ("co.edu.udea.juridicapp.persistence.entity.CommentPK[ id="
                 + this.getId() + ", workId=" + this.getWorkId() + " ]");
     }

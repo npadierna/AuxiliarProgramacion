@@ -2,7 +2,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IAcquisitionDAO;
 import co.edu.udea.juridicapp.persistence.entity.Acquisition;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -67,15 +66,11 @@ public class AcquisitionDAO extends AbstractEntityDAO
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Acquisition> executeNamedQueryForAcquisitions(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<Acquisition> acquisitionsFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            acquisitionsFound.add((Acquisition) o);
-        }
-
-        return (acquisitionsFound);
+        return ((List<Acquisition>) super.executeNamedQuery(namedQuery,
+                parameterName, parameterValue));
     }
 }

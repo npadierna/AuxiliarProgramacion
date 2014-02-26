@@ -3,7 +3,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 import co.edu.udea.juridicapp.persistence.dao.ICommentDAO;
 import co.edu.udea.juridicapp.persistence.entity.Comment;
 import co.edu.udea.juridicapp.persistence.entity.CommentPK;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -64,15 +63,11 @@ public class CommentDAO extends AbstractEntityDAO implements ICommentDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Comment> executeNamedQueryForComments(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<Comment> commentsFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            commentsFound.add((Comment) o);
-        }
-
-        return (commentsFound);
+        return ((List<Comment>) super.executeNamedQuery(namedQuery,
+                parameterName, parameterValue));
     }
 }

@@ -76,7 +76,7 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         System.out.println(" + Creating the default \"DEPENDENCY\" data.");
 
         if (this.dependencyDAO.countDependencies() == 0) {
-            Dependency dependency = new Dependency("Drai Facultad de ingeniería");
+            Dependency dependency = new Dependency("DRAI Facultad De Ingeniería");
             this.dependencyDAO.saveDependency(dependency);
         }
     }

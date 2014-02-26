@@ -103,8 +103,8 @@ public class Profile implements IEntityContext, Serializable {
         }
 
         Profile other = (Profile) object;
-        if (((this.role == null) && (other.role != null)) || ((this.role != null)
-                && !(this.role.equals(other.role)))) {
+        if (((this.role == null) && (other.role != null))
+                || ((this.role != null) && !(this.role.equals(other.role)))) {
 
             return (false);
         }

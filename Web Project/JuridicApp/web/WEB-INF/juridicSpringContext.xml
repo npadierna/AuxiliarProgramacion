@@ -26,7 +26,8 @@
 
     <tx:annotation-driven />
 
-    <jee:jndi-lookup id="dataSource" jndi-name="jndi/juridicapp" ></jee:jndi-lookup>
+    <jee:jndi-lookup id="dataSource" jndi-name="jndi/juridicapp" >
+    </jee:jndi-lookup>
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" >

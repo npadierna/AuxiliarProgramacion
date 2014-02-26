@@ -3,7 +3,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 import co.edu.udea.juridicapp.persistence.dao.IAuthorDAO;
 import co.edu.udea.juridicapp.persistence.entity.Author;
 import co.edu.udea.juridicapp.persistence.entity.AuthorPK;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -64,15 +63,11 @@ public class AuthorDAO extends AbstractEntityDAO implements IAuthorDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Author> executeNamedQueryForAuthors(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<Author> authorsFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            authorsFound.add((Author) o);
-        }
-
-        return (authorsFound);
+        return ((List<Author>) super.executeNamedQuery(namedQuery, parameterName,
+                parameterValue));
     }
 }

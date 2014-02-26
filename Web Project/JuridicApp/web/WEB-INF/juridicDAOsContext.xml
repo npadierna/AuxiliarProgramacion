@@ -40,6 +40,10 @@
           class="co.edu.udea.juridicapp.persistence.dao.impl.FileDAO" >
     </bean>
 
+    <bean name="personDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.PersonDAO" >
+    </bean>
+
     <bean name="profileDAO"
           class="co.edu.udea.juridicapp.persistence.dao.impl.ProfileDAO" >
     </bean>

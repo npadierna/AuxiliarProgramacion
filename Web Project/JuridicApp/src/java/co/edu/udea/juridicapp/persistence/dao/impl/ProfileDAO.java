@@ -2,7 +2,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IProfileDAO;
 import co.edu.udea.juridicapp.persistence.entity.Profile;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -63,15 +62,11 @@ public class ProfileDAO extends AbstractEntityDAO implements IProfileDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Profile> executeNamedQueryForProfiles(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<Profile> profilesFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            profilesFound.add((Profile) o);
-        }
-
-        return (profilesFound);
+        return ((List<Profile>) super.executeNamedQuery(namedQuery,
+                parameterName, parameterValue));
     }
 }

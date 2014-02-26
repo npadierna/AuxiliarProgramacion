@@ -2,7 +2,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
 import co.edu.udea.juridicapp.persistence.entity.Dependency;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -63,15 +62,11 @@ public class DependencyDAO extends AbstractEntityDAO implements IDependencyDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Dependency> executeNamedQueryForDependencies(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<Dependency> dependencysFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            dependencysFound.add((Dependency) o);
-        }
-
-        return (dependencysFound);
+        return ((List<Dependency>) super.executeNamedQuery(namedQuery,
+                parameterName, parameterValue));
     }
 }

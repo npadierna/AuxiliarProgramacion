@@ -23,8 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity()
-@Table(name = "AUTHOR_WORK")
-@XmlRootElement()
 @NamedQueries({
     @NamedQuery(name = "AuthorWork.findAll",
             query = "SELECT a FROM AuthorWork a"),
@@ -44,6 +42,8 @@ import javax.xml.bind.annotation.XmlTransient;
             query = "SELECT a FROM AuthorWork a WHERE a.starting = :starting"),
     @NamedQuery(name = "AuthorWork.findByDelivering",
             query = "SELECT a FROM AuthorWork a WHERE a.delivering = :delivering")})
+@Table(name = "AUTHOR_WORK")
+@XmlRootElement()
 public class AuthorWork implements IEntityContext, Serializable {
 
     private static final long serialVersionUID = 5346671195390452736L;

@@ -39,7 +39,8 @@ public class AuthorWorkAcquisition implements IEntityContext, Serializable {
     @EmbeddedId()
     protected AuthorWorkAcquisitionPK authorWorkAcquisitionPK;
     @JoinTable(name = "AUTHOR_WORK_FILE", joinColumns = {
-        @JoinColumn(name = "acquisition", referencedColumnName = "acquisition"),
+        @JoinColumn(name = "acquisition",
+                referencedColumnName = "acquisition"),
         @JoinColumn(name = "work_type_id",
                 referencedColumnName = "work_type_id"),
         @JoinColumn(name = "work_type_name",
@@ -53,8 +54,9 @@ public class AuthorWorkAcquisition implements IEntityContext, Serializable {
     @ManyToMany()
     private List<File> fileList;
     @JoinColumns({
-        @JoinColumn(name = "work_type_id", referencedColumnName = "work_type_id",
-                insertable = false, updatable = false),
+        @JoinColumn(name = "work_type_id",
+                referencedColumnName = "work_type_id", insertable = false,
+                updatable = false),
         @JoinColumn(name = "work_type_name",
                 referencedColumnName = "work_type_name", insertable = false,
                 updatable = false),

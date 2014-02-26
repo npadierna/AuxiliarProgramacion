@@ -3,7 +3,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 import co.edu.udea.juridicapp.persistence.dao.IAuthorWorkAcquisitionDAO;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWorkAcquisition;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWorkAcquisitionPK;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -73,17 +72,12 @@ public class AuthorWorkAcquisitionDAO extends AbstractEntityDAO implements
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<AuthorWorkAcquisition> executeNamedQueryForAuthorWorkAcquisitions(
             String namedQuery,
             String parameterName, Object parameterValue) {
-        List<AuthorWorkAcquisition> authorWorkAcquisitionsFound =
-                new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            authorWorkAcquisitionsFound.add((AuthorWorkAcquisition) o);
-        }
-
-        return (authorWorkAcquisitionsFound);
+        return ((List<AuthorWorkAcquisition>) super.executeNamedQuery(
+                namedQuery, parameterName, parameterValue));
     }
 }

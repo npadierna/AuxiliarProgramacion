@@ -181,6 +181,7 @@ public class AuthorWorkAcquisitionPK implements Serializable {
                 + this.getAcquisition() + ", workTypeId=" + this.getWorkTypeId()
                 + ", workTypeName=" + this.getWorkTypeName()
                 + ", documentType=" + this.getDocumentType() + ", idNumber="
-                + this.getIdNumber() + ", contract=" + this.getContract() + " ]");
+                + this.getIdNumber() + ", contract=" + this.getContract()
+                + " ]");
     }
 }

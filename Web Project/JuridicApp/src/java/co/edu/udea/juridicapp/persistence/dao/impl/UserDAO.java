@@ -3,7 +3,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 import co.edu.udea.juridicapp.persistence.dao.IUserDAO;
 import co.edu.udea.juridicapp.persistence.entity.User;
 import co.edu.udea.juridicapp.persistence.entity.UserPK;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -64,15 +63,11 @@ public class UserDAO extends AbstractEntityDAO implements IUserDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<User> executeNamedQueryForUsers(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<User> usersFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            usersFound.add((User) o);
-        }
-
-        return (usersFound);
+        return ((List<User>) super.executeNamedQuery(namedQuery, parameterName,
+                parameterValue));
     }
 }

@@ -2,7 +2,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.ISupportDAO;
 import co.edu.udea.juridicapp.persistence.entity.Support;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -63,15 +62,11 @@ public class SupportDAO extends AbstractEntityDAO implements ISupportDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Support> executeNamedQueryForSupports(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<Support> supportsFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            supportsFound.add((Support) o);
-        }
-
-        return (supportsFound);
+        return ((List<Support>) super.executeNamedQuery(namedQuery,
+                parameterName, parameterValue));
     }
 }

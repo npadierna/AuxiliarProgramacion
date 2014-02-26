@@ -3,7 +3,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 import co.edu.udea.juridicapp.persistence.dao.IWorkTypeDAO;
 import co.edu.udea.juridicapp.persistence.entity.WorkType;
 import co.edu.udea.juridicapp.persistence.entity.WorkTypePK;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -64,15 +63,11 @@ public class WorkTypeDAO extends AbstractEntityDAO implements IWorkTypeDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<WorkType> executeNamedQueryForWorkTypes(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<WorkType> workTypesFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            workTypesFound.add((WorkType) o);
-        }
-
-        return (workTypesFound);
+        return ((List<WorkType>) super.executeNamedQuery(namedQuery,
+                parameterName, parameterValue));
     }
 }

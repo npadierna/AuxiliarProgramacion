@@ -2,7 +2,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IWorkDAO;
 import co.edu.udea.juridicapp.persistence.entity.Work;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -63,15 +62,11 @@ public class WorkDAO extends AbstractEntityDAO implements IWorkDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Work> executeNamedQueryForWorks(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<Work> worksFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            worksFound.add((Work) o);
-        }
-
-        return (worksFound);
+        return ((List<Work>) super.executeNamedQuery(namedQuery, parameterName,
+                parameterValue));
     }
 }

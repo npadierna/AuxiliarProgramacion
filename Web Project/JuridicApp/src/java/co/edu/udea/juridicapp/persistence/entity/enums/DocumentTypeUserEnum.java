@@ -11,8 +11,10 @@ import java.util.List;
 public enum DocumentTypeUserEnum {
 
     CEDULA_DE_CIUDADANIA("Cédula De Ciudadanía"),
-    TARJETA_DE_IDENTIDAD("Tarjeta De Identidad"),
-    CEDULA_DE_EXTRANJERIA("Cédula De Extrajería");
+    CEDULA_DE_EXTRANJERIA("Cédula De Extrajería"),
+    NUMERO_IDENTIFICACION_PERSONAL("Número Único De Identificación Personal"),
+    REGISTRO_CIVIL("Registro Civil"),
+    TARJETA_DE_IDENTIDAD("Tarjeta De Identidad");
     private String documentType;
 
     private DocumentTypeUserEnum(String documentType) {

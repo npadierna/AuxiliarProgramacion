@@ -2,7 +2,6 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IRoleDAO;
 import co.edu.udea.juridicapp.persistence.entity.Role;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -63,15 +62,11 @@ public class RoleDAO extends AbstractEntityDAO implements IRoleDAO {
     }
 
     @Override()
+    @SuppressWarnings("unchecked")
     public List<Role> executeNamedQueryForRoles(String namedQuery,
             String parameterName, Object parameterValue) {
-        List<Role> rolesFound = new ArrayList<>();
 
-        for (Object o : super.executeNamedQuery(namedQuery, parameterName,
-                parameterValue)) {
-            rolesFound.add((Role) o);
-        }
-
-        return (rolesFound);
+        return ((List<Role>) super.executeNamedQuery(namedQuery, parameterName,
+                parameterValue));
     }
 }
