@@ -32,7 +32,7 @@
 
                             <p:tab id="work" title="Obra" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid  cellpadding="10" columns="2">
                                         <h:outputText
                                             value="Registro DNDA:" >
                                         </h:outputText>
@@ -64,7 +64,7 @@
 
                             <p:tab id="author" title="Autor(es)" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2"  >
                                         <h:outputText value="Tipo de documento:" >
                                         </h:outputText>
                                         <p:inputText ></p:inputText>
@@ -96,7 +96,7 @@
 
                             <p:tab id="tipo" title="Tipo" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2" >
                                         <h:outputText
                                             value="Tipo de la obra:" >
                                         </h:outputText>
@@ -112,7 +112,7 @@
 
                             <p:tab id="support" title="Soporte" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2" >
                                         <h:outputText value="Soporte:" >
                                         </h:outputText>
                                         <p:inputText></p:inputText>
@@ -122,7 +122,7 @@
 
                             <p:tab id="isbn" title="ISBN" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2" >
                                         <h:outputText
                                             value="Registro ISBN:" >
                                         </h:outputText>
@@ -133,7 +133,7 @@
 
                             <p:tab id="dependency" title="Dependencia" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2" >
                                         <h:outputText
                                             value=" Registro DNDA:" >
                                         </h:outputText>
@@ -149,7 +149,7 @@
 
                             <p:tab id="coments" title="Observaciones" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2" >
                                         <h:outputText value="Observaciones o comentarios:" >
                                         </h:outputText>
                                         <p:inputTextarea autoResize="false" cols="30"
@@ -165,7 +165,7 @@
 
                             <p:tab id="file" title="Archivos" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2" >
                                         <h:outputText value="Archivo(s)" >
                                         </h:outputText>
                                         <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
@@ -173,8 +173,8 @@
                                                       cancelLabel="Cancelar" 
                                                       label="Adjuntar"
                                                       mode="advanced"
-                                                      uploadLabel="Subir" 
-                                                      sizeLimit="512000" >
+                                                      sizeLimit="512000" 
+                                                      uploadLabel="Subir" >
                                         </p:fileUpload>                                 
                                     </h:panelGrid>
                                 </center>
@@ -258,8 +258,8 @@
                                         </h:outputText>
 
                                     </h:panelGrid>
-                                    <p:button id="save" value="Guardar"
-                                              icon="ui-icon-disk" outcome="index">
+                                    <p:button id="save" icon="ui-icon-disk" 
+                                             outcome="index" value="Guardar" >
                                     </p:button>
                                 </center>
                             </p:tab>                            

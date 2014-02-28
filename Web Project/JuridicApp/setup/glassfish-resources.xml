@@ -29,7 +29,7 @@
                           validate-atmost-once-period-in-seconds="0"
                           wrap-jdbc-objects="false" >
         <property name="serverName" value="localhost" />
-        <property name="portNumber" value="3306" />
+        <property name="portNumber" value="" />
         <property name="databaseName" value="JuridicApp" />
         <property name="User" value="root" />
         <property name="Password" value="" />

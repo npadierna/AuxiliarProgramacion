@@ -25,45 +25,41 @@
                     </p:growl>
 
                     <h:panelGrid columns="2" cellpadding="5" >
-                        <h:outputLabel for="personDocumentType"
-                                       value="Tipo Documento:"
-                                       style="font-weight:bold" >
+                        <h:outputLabel for="personDocumentType" style="font-weight:bold" 
+                                       value="Tipo Documento:">
                         </h:outputLabel>
-                        <p:selectOneMenu id="personDocumentType" 
-                                         value="#{registrationUserBean.documentType}"
-                                         required="true" label="Tipo Documento" >
+                        <p:selectOneMenu id="personDocumentType"  label="Tipo Documento" 
+                                          required="true" 
+                                          value="#{registrationUserBean.documentType}">
                             <f:selectItems value="#{registrationUserBean.documentsType}" >
                             </f:selectItems>
                         </p:selectOneMenu>
 
-                        <h:outputLabel for="personIdNumber"
-                                       value="Número Documento:"
-                                       style="font-weight:bold" >
+                        <h:outputLabel for="personIdNumber"  style="font-weight:bold"
+                                       value="Número Documento:" >
                         </h:outputLabel>
-                        <p:inputText id="personIdNumber" 
-                                     value="#{registrationUserBean.idNumber}"
-                                     required="true" label="Número Documento"
-                                     size="20" >
+                        <p:inputText id="personIdNumber" label="Número Documento"
+                                     required="true" size="20" 
+                                     value="#{registrationUserBean.idNumber}" >
                         </p:inputText>
 
-                        <h:outputLabel for="personFirstNames" value="Nombres:"
-                                       style="font-weight:bold" >
+                        <h:outputLabel for="personFirstNames" 
+                                       style="font-weight:bold" value="Nombres:" >
                         </h:outputLabel>
-                        <p:inputText id="personFirstNames"
-                                     value="#{registrationUserBean.person.firstNames}"
-                                     required="true" label="Nombres" size="20" >
+                        <p:inputText id="personFirstNames" label="Nombres" 
+                                     required="true" size="20" 
+                                     value="#{registrationUserBean.person.firstNames}" >
                         </p:inputText>
 
                         <h:outputLabel for="personLastNames" value="Apellidos:"
                                        style="font-weight:bold" >
                         </h:outputLabel>
-                        <p:inputText id="personLastNames"
-                                     value="#{registrationUserBean.person.lastNames}"
-                                     required="true" label="Apellidos" size="20" >
+                        <p:inputText id="personLastNames" label="Apellidos" size="20"
+                                     required="true" value="#{registrationUserBean.person.lastNames}" >
                         </p:inputText>
 
-                        <h:outputLabel for="userName" value="Nombre de Usuario:"
-                                       style="font-weight:bold" >
+                        <h:outputLabel for="userName"  style="font-weight:bold" 
+                                       value="Nombre de Usuario:">
                         </h:outputLabel>
                         <p:inputText id="userName" 
                                      value="#{registrationUserBean.user.userName}"

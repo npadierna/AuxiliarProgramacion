@@ -14,8 +14,8 @@
         <p:layout fullPage="true">
             <p:layoutUnit closable="false" collapsible="false" position="south"
                           resizable="false" size="60">
-                <p:commandButton id="home" value="Regresar"
-                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';" >
+                <p:commandButton id="home" onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';" 
+                                 value="Regresar">
                 </p:commandButton>
             </p:layoutUnit>
 
@@ -31,7 +31,7 @@
                                   nextLabel="Siguiente" >
                             <p:tab id="work" title="Obra" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2" >
                                         <h:outputText
                                             value="Registro DNDA:" >
                                         </h:outputText>
@@ -59,7 +59,7 @@
 
                             <p:tab id="author" title="Autor(es)" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2" >
                                         <h:outputText value="Tipo de documento:" >
                                         </h:outputText>
                                         <h:outputText value="TIPO DOCUMENTO" >
@@ -100,7 +100,7 @@
 
                             <p:tab id="tipo" title="Tipo" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid  cellpadding="10" columns="2" >
                                         <h:outputText
                                             value="Tipo de la obra:" >
                                         </h:outputText>
@@ -121,7 +121,7 @@
 
                             <p:tab id="support" title="Soporte" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2"  >
                                         <h:outputText value="Soporte:" >
                                         </h:outputText>
                                         <h:outputText value="SOPORTE" >
@@ -133,7 +133,7 @@
 
                             <p:tab id="isbn" title="ISBN" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2" >
                                         <h:outputText
                                             value="Registro ISBN:" >
                                         </h:outputText>
@@ -146,7 +146,7 @@
 
                             <p:tab id="file" title="Archivos" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2"  >
                                         <h:outputText value="Ubicación del/los Archivo(s):" >
                                         </h:outputText>
                                         <h:outputText value="RUTA" >
@@ -177,7 +177,7 @@
 
                             <p:tab id="coments" title="Observaciones" >
                                 <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
+                                    <h:panelGrid cellpadding="10" columns="2">
                                         <h:outputText value="Observaciones o comentarios:" >
                                         </h:outputText>
                                         <p:inputTextarea disabled="true" 

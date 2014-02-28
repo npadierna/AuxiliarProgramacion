@@ -71,7 +71,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>
-            faces/co/edu/udea/juridicapp/web/index.xhtml
+            faces/co/edu/udea/juridicapp/web/member/login/login.xhtml
         </welcome-file>
     </welcome-file-list>    
     <persistence-unit-ref>

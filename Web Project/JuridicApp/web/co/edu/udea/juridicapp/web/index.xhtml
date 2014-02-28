@@ -19,11 +19,11 @@
 
     <h:body>
         <p:layout fullPage="true" >
-            <p:layoutUnit closable="false" collapsible="false" position="south" 
+            <p:layoutUnit collapsible="false" closable="false" position="south" 
                           resizable="false" size="50" >   
             </p:layoutUnit> 
 
-            <p:layoutUnit closable="false" collapsible="true" effect="drop" 
+            <p:layoutUnit collapsible="true" closable="false" effect="drop" 
                           header="Usuario" position="east" resizable="false" 
                           size="200" > 
                 <center>
@@ -37,8 +37,8 @@
                             <p:spacer height="5" width="25" ></p:spacer>
 
                             <p:commandButton id="registerButton"
-                                             value="Registrarse"
-                                             onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/registration/registermember.xhtml';" >
+                                             onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/registration/registermember.xhtml';" 
+                                             value="Registrarse">
                             </p:commandButton>
                         </center>
                     </p:panel>
@@ -176,8 +176,8 @@
                                 <p:graphicImage
                                     value="/faces/co/edu/udea/juridicapp/util/images/download_excel.jpg" >
                                 </p:graphicImage>  
-                                <p:dataExporter type="xls" target="mainTable" 
-                                                fileName="obras" >
+                                <p:dataExporter fileName="obras" target="mainTable" 
+                                                type="xls" >
                                 </p:dataExporter>
                             </h:commandLink>
 
@@ -185,8 +185,8 @@
                                 <p:graphicImage
                                     value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.jpg" >
                                 </p:graphicImage>  
-                                <p:dataExporter type="pdf" target="mainTable" 
-                                                fileName="obras" >
+                                <p:dataExporter fileName="obras" target="mainTable" 
+                                               type="pdf" >
                                 </p:dataExporter>
                             </h:commandLink>
                         </p:panel>
@@ -196,8 +196,8 @@
                                 <p:graphicImage
                                     value="/faces/co/edu/udea/juridicapp/util/images/download_excel.jpg" > 
                                 </p:graphicImage>
-                                <p:dataExporter type="xls" target="mainTable" 
-                                                fileName="obras" pageOnly="true" >
+                                <p:dataExporter fileName="obras" pageOnly="true"
+                                                type="xls" target="mainTable" >
                                 </p:dataExporter>
                             </h:commandLink>
 
@@ -205,8 +205,8 @@
                                 <p:graphicImage
                                     value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.jpg" > 
                                 </p:graphicImage>
-                                <p:dataExporter type="pdf" target="mainTable" 
-                                                fileName="obras" pageOnly="true" >
+                                <p:dataExporter fileName="obras" pageOnly="true" 
+                                                type="pdf" target="mainTable" >
                                 </p:dataExporter>
                             </h:commandLink>
                         </p:panel>
@@ -216,7 +216,7 @@
                               id="dialog" resizable="false" showEffect="fade"
                               widgetVar="authorsListDialogue" >
 
-                        <h:panelGrid id="display" columns="2" cellpadding="4" >
+                        <h:panelGrid cellpadding="4" columns="2" id="display">
                             <h:outputText value="Nombre:" ></h:outputText>
                             <h:outputText value="Foo" ></h:outputText>
                         </h:panelGrid>
