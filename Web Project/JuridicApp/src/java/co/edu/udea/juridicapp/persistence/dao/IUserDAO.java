@@ -1,7 +1,7 @@
 package co.edu.udea.juridicapp.persistence.dao;
 
+import co.edu.udea.juridicapp.persistence.entity.PersonPK;
 import co.edu.udea.juridicapp.persistence.entity.User;
-import co.edu.udea.juridicapp.persistence.entity.UserPK;
 import java.util.List;
 
 public interface IUserDAO {
@@ -12,11 +12,11 @@ public interface IUserDAO {
 
     public List<User> findUsersByAttributes(Object... attributes);
 
-    public User findUser(UserPK key);
+    public User findUser(PersonPK key);
 
     public User findUserByLogin(String userName, String password);
 
-    public UserPK saveUser(User user);
+    public PersonPK saveUser(User user);
 
     public User updateUser(User user);
 

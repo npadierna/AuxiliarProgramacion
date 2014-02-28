@@ -16,13 +16,6 @@
         </el-resolver>
     </application>
     <managed-bean>
-        <managed-bean-name>workBean</managed-bean-name>
-        <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.juridical.WorkBean
-        </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
         <managed-bean-name>loginUserBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.member.login.LoginUserBean
@@ -40,6 +33,19 @@
         <managed-bean-name>updateUserBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.member.data.update.UpdateUserBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>workListBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.work.WorkListBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>    
+    <managed-bean>
+        <managed-bean-name>creatorWorkBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.work.create.CreatorWorkBean
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>

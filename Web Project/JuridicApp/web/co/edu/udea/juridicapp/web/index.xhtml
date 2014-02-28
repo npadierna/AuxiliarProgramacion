@@ -54,7 +54,8 @@
                                      rows="10" rowsPerPageTemplate="10,15,30" 
                                      selectionMode="single"
                                      style="width:98%; font-size:13px;"
-                                     var="juridical" >
+                                     value="#{workListBean.works}"
+                                     var="work" >
 
                             <f:facet name="header" >
                                 Listado De Obras
@@ -63,11 +64,11 @@
                             <p:column filterBy="issue" filterMatchMode="exact"
                                       style="font-size:15px;" >
                                 <f:facet id="issue" name="header">  
-                                    <h:outputText value="Obra" >
+                                    <h:outputText value="Nombre De La Obra" >
                                     </h:outputText>  
-                                </f:facet>  
+                                </f:facet>
                                 <h:outputText style="font-size:13px;"
-                                              value="obra" >
+                                              value="#{work.title}" >
                                 </h:outputText>
                             </p:column>
 
@@ -186,7 +187,7 @@
                                     value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.jpg" >
                                 </p:graphicImage>  
                                 <p:dataExporter fileName="obras" target="mainTable" 
-                                               type="pdf" >
+                                                type="pdf" >
                                 </p:dataExporter>
                             </h:commandLink>
                         </p:panel>
@@ -216,7 +217,7 @@
                               id="dialog" resizable="false" showEffect="fade"
                               widgetVar="authorsListDialogue" >
 
-                        <h:panelGrid cellpadding="4" columns="2" id="display">
+                        <h:panelGrid cellpadding="4" columns="2" id="display" >
                             <h:outputText value="Nombre:" ></h:outputText>
                             <h:outputText value="Foo" ></h:outputText>
                         </h:panelGrid>

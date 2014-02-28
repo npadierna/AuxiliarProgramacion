@@ -21,9 +21,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author a"),
     @NamedQuery(name = "Author.findByDocumentType",
-            query = "SELECT a FROM Author a WHERE a.authorPK.documentType = :documentType"),
+            query = "SELECT a FROM Author a WHERE a.personPK.documentType = :documentType"),
     @NamedQuery(name = "Author.findByIdNumber",
-            query = "SELECT a FROM Author a WHERE a.authorPK.idNumber = :idNumber"),
+            query = "SELECT a FROM Author a WHERE a.personPK.idNumber = :idNumber"),
     @NamedQuery(name = "Author.findByPhoneNumber",
             query = "SELECT a FROM Author a WHERE a.phoneNumber = :phoneNumber"),
     @NamedQuery(name = "Author.findByMobileNumber",
@@ -34,7 +34,7 @@ public class Author implements IEntityContext, Serializable {
 
     private static final long serialVersionUID = 7906012567735675008L;
     @EmbeddedId()
-    protected AuthorPK authorPK;
+    protected PersonPK personPK;
     @Size(max = 10)
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -56,21 +56,21 @@ public class Author implements IEntityContext, Serializable {
         super();
     }
 
-    public Author(AuthorPK authorPK) {
-        this.authorPK = authorPK;
+    public Author(PersonPK personPK) {
+        this.personPK = personPK;
     }
 
     public Author(String documentType, String idNumber) {
-        this.authorPK = new AuthorPK(documentType, idNumber);
+        this.personPK = new PersonPK(documentType, idNumber);
     }
 
-    public AuthorPK getAuthorPK() {
+    public PersonPK getPersonPK() {
 
-        return (this.authorPK);
+        return (this.personPK);
     }
 
-    public void setAuthorPK(AuthorPK authorPK) {
-        this.authorPK = authorPK;
+    public void setPersonPK(PersonPK personPK) {
+        this.personPK = personPK;
     }
 
     public String getPhoneNumber() {
@@ -113,18 +113,18 @@ public class Author implements IEntityContext, Serializable {
     @Override()
     public Object getKey() {
 
-        return (this.getAuthorPK());
+        return (this.getPersonPK());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setAuthorPK((AuthorPK) key);
+        this.setPersonPK((PersonPK) key);
     }
 
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (authorPK != null ? authorPK.hashCode() : 0);
+        hash += (personPK != null ? personPK.hashCode() : 0);
 
         return (hash);
     }
@@ -137,9 +137,9 @@ public class Author implements IEntityContext, Serializable {
         }
 
         Author other = (Author) object;
-        if (((this.authorPK == null) && (other.authorPK != null))
-                || ((this.authorPK != null)
-                && !(this.authorPK.equals(other.authorPK)))) {
+        if (((this.personPK == null) && (other.personPK != null))
+                || ((this.personPK != null)
+                && !(this.personPK.equals(other.personPK)))) {
 
             return (false);
         }
@@ -151,6 +151,6 @@ public class Author implements IEntityContext, Serializable {
     public String toString() {
 
         return ("co.edu.udea.juridicapp.persistence.entity.Author[ authorPK="
-                + this.getAuthorPK() + " ]");
+                + this.getPersonPK() + " ]");
     }
 }

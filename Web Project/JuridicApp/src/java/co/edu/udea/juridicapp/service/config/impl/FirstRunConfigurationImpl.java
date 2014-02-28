@@ -13,6 +13,7 @@ import co.edu.udea.juridicapp.persistence.entity.Acquisition;
 import co.edu.udea.juridicapp.persistence.entity.Author;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
 import co.edu.udea.juridicapp.persistence.entity.Dependency;
+import co.edu.udea.juridicapp.persistence.entity.PersonPK;
 import co.edu.udea.juridicapp.persistence.entity.Profile;
 import co.edu.udea.juridicapp.persistence.entity.Role;
 import co.edu.udea.juridicapp.persistence.entity.Support;
@@ -208,8 +209,8 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     private void tester() {
         User user = this.userDAO.findUserByLogin("neiber.padierna", "neiber123");
 
-        Author author = new Author(user.getUserPK().getDocumentType(),
-                user.getUserPK().getIdNumber());
+        Author author = new Author(user.getPersonPK().getDocumentType(),
+                user.getPersonPK().getIdNumber());
         this.authorDAO.saveAuthor(author);
 
         List<AuthorWork> authorWorks = this.authorWorkDAO.findAuthorWorkByAuthor(author);

@@ -51,9 +51,9 @@ public class AuthorWorkDAO extends AbstractEntityDAO implements IAuthorWorkDAO {
 
         if ((author != null) && (author.getKey() != null)) {
             authorWorksFound = this.findAuthorWorksByAttributes(
-                    "authorWorkPK.idNumber", author.getAuthorPK().getIdNumber(),
+                    "authorWorkPK.idNumber", author.getPersonPK().getIdNumber(),
                     "authorWorkPK.documentType",
-                    author.getAuthorPK().getDocumentType());
+                    author.getPersonPK().getDocumentType());
         }
 
         return (authorWorksFound);

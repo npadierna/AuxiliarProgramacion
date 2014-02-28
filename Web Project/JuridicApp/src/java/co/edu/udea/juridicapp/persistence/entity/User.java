@@ -20,9 +20,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findByDocumentType",
-            query = "SELECT u FROM User u WHERE u.userPK.documentType = :documentType"),
+            query = "SELECT u FROM User u WHERE u.personPK.documentType = :documentType"),
     @NamedQuery(name = "User.findByIdNumber",
-            query = "SELECT u FROM User u WHERE u.userPK.idNumber = :idNumber"),
+            query = "SELECT u FROM User u WHERE u.personPK.idNumber = :idNumber"),
     @NamedQuery(name = "User.findByUserName",
             query = "SELECT u FROM User u WHERE u.userName = :userName"),
     @NamedQuery(name = "User.findByPassword",
@@ -33,7 +33,7 @@ public class User implements IEntityContext, Serializable {
 
     private static final long serialVersionUID = 2453343269715335168L;
     @EmbeddedId()
-    protected UserPK userPK;
+    protected PersonPK personPK;
     @Basic(optional = false)
     @NotNull()
     @Size(min = 1, max = 25)
@@ -63,27 +63,27 @@ public class User implements IEntityContext, Serializable {
         super();
     }
 
-    public User(UserPK userPK) {
-        this.userPK = userPK;
+    public User(PersonPK personPK) {
+        this.personPK = personPK;
     }
 
-    public User(UserPK userPK, String userName, String password) {
-        this.userPK = userPK;
+    public User(PersonPK personPK, String userName, String password) {
+        this.personPK = personPK;
         this.userName = userName;
         this.password = password;
     }
 
     public User(String documentType, String idNumber) {
-        this.userPK = new UserPK(documentType, idNumber);
+        this.personPK = new PersonPK(documentType, idNumber);
     }
 
-    public UserPK getUserPK() {
+    public PersonPK getPersonPK() {
 
-        return (this.userPK);
+        return (this.personPK);
     }
 
-    public void setUserPK(UserPK userPK) {
-        this.userPK = userPK;
+    public void setPersonPK(PersonPK personPK) {
+        this.personPK = personPK;
     }
 
     public String getUserName() {
@@ -134,18 +134,18 @@ public class User implements IEntityContext, Serializable {
     @Override()
     public Object getKey() {
 
-        return (this.getUserPK());
+        return (this.getPersonPK());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setUserPK((UserPK) key);
+        this.setPersonPK((PersonPK) key);
     }
 
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (userPK != null ? userPK.hashCode() : 0);
+        hash += (personPK != null ? personPK.hashCode() : 0);
 
         return (hash);
     }
@@ -158,9 +158,9 @@ public class User implements IEntityContext, Serializable {
         }
 
         User other = (User) object;
-        if (((this.userPK == null) && (other.userPK != null))
-                || ((this.userPK != null)
-                && !(this.userPK.equals(other.userPK)))) {
+        if (((this.personPK == null) && (other.personPK != null))
+                || ((this.personPK != null)
+                && !(this.personPK.equals(other.personPK)))) {
 
             return (false);
         }
@@ -172,6 +172,6 @@ public class User implements IEntityContext, Serializable {
     public String toString() {
 
         return ("co.edu.udea.juridicapp.persistence.entity.User[ userPK="
-                + this.getUserPK() + " ]");
+                + this.getPersonPK() + " ]");
     }
 }

@@ -1,7 +1,7 @@
 package co.edu.udea.juridicapp.persistence.dao;
 
 import co.edu.udea.juridicapp.persistence.entity.Author;
-import co.edu.udea.juridicapp.persistence.entity.AuthorPK;
+import co.edu.udea.juridicapp.persistence.entity.PersonPK;
 import java.util.List;
 
 public interface IAuthorDAO {
@@ -12,9 +12,9 @@ public interface IAuthorDAO {
 
     public List<Author> findAuthorsByAttributes(Object... attributes);
 
-    public Author findAuthor(AuthorPK key);
+    public Author findAuthor(PersonPK key);
 
-    public AuthorPK saveAuthor(Author author);
+    public PersonPK saveAuthor(Author author);
 
     public Author updateAuthor(Author author);
 

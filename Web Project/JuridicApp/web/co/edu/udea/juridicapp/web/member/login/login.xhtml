@@ -4,10 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core" >
 
-    <h:head >
-        <script type="text/javascript" src="../../../util/javascript/loginRequestFunction.js" >
+    <h:head>
+        <script type="text/javascript"
+                src="../../../util/javascript/loginRequestFunction.js" >
         </script>
         <f:facet name="first">
             <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
@@ -20,11 +21,11 @@
             <center>
                 <p:panel id="loginPanel" style="width: 800px;" >
                     <center>
-                        <p:growl id="growlLogin" life="3000" showDetail="true">
+                        <p:growl id="growlLogin" life="3000" showDetail="true" >
                         </p:growl>
 
                         <h1>Iniciar Sesión</h1>
-                        <h:panelGrid cellpadding="5" columns="3">
+                        <h:panelGrid cellpadding="5" columns="3" >
                             <h:outputLabel for="userName"
                                            value="Nombre De Usuario: *" >
                             </h:outputLabel>
@@ -32,7 +33,7 @@
                                          required="true" requiredMessage="Por 
                                          favor ingrese su nombre de usuario." 
                                          validatorMessage="Nombre de usuario inválido." 
-                                         value="#{loginUserBean.userName}">
+                                         value="#{loginUserBean.userName}" >
                             </p:inputText>
                             <p:watermark for="userName" value="Obligatorio" >
                             </p:watermark>
@@ -43,7 +44,7 @@
                                         requiredMessage="Por favor ingrese su contraseña."
                                         rendered="true" 
                                         validatorMessage="Contraseña inválida."
-                                        value="#{loginUserBean.password}">
+                                        value="#{loginUserBean.password}" >
                             </p:password>
                             <p:watermark for="password"
                                          value="Obligatorio" >
@@ -52,10 +53,10 @@
                             <f:facet name="footer" >
                                 <center>
                                     <p:commandButton actionListener="#{loginUserBean.logIn}"
-                                                     action="#{updateUserBean.receiveLoggedUser(loginUserBean.loggedMember)}"
-                                                     id="logInButton" 
+                                                     action="#{updateUserBean.receiveLoggedUser(loginUserBean.loggedUser)}"
+                                                     id="logInButton"
                                                      oncomplete="handleLoginRequest(xhr, status, args)" 
-                                                     update="growlLogin" value="Iniciar Sesión">
+                                                     update="growlLogin" value="Iniciar Sesión" >
                                     </p:commandButton>
                                 </center>
                             </f:facet>

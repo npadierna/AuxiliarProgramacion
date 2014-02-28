@@ -8,22 +8,22 @@
       xmlns:p="http://primefaces.org/ui" >
 
     <h:head>
-        <title>Obra</title>
+        <title>Crear Obra</title>
     </h:head>
 
     <h:body>
-        <p:layout fullPage="true"> 
+        <p:layout fullPage="true" >
             <p:layoutUnit closable="false" collapsible="false" position="south" 
                           resizable="false" size="50" >   
-            </p:layoutUnit> 
+            </p:layoutUnit>
 
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
                           header="Usuario" position="east" resizable="false" 
-                          size="200" >  
-                <h:outputText value="Datos del usuario" />  
+                          size="200" >
+                <h:outputText value="Datos del usuario" ></h:outputText>
             </p:layoutUnit>  
 
-            <p:layoutUnit position="center">  
+            <p:layoutUnit position="center" >
 
                 <h:form id="mainForm" >
                     <p:panel header="Crear Nueva Obra" >
@@ -32,7 +32,7 @@
 
                             <p:tab id="work" title="Obra" >
                                 <center>
-                                    <h:panelGrid  cellpadding="10" columns="2">
+                                    <h:panelGrid  cellpadding="10" columns="2" >
                                         <h:outputText
                                             value="Registro DNDA:" >
                                         </h:outputText>
@@ -40,7 +40,9 @@
 
                                         <h:outputText value="Nombre de la Obra:" >
                                         </h:outputText>
-                                        <p:inputText ></p:inputText>
+                                        <p:inputText
+                                            value="#{creatorWorkBean.work.title}" >
+                                        </p:inputText>
 
                                         <h:outputText
                                             value="Fecha de Entrega:" >
@@ -53,7 +55,8 @@
                                         <p:inputTextarea autoResize="false" cols="30"
                                                          counter="counter"
                                                          counterTemplate="{0} Caracteres Restantes."
-                                                         maxlength="150" rows="5" >
+                                                         maxlength="150" rows="5"
+                                                         value="#{creatorWorkBean.work.description}" >
                                         </p:inputTextarea>
                                     </h:panelGrid>
 

@@ -1,11 +1,9 @@
-
 package co.edu.udea.juridicapp.web.bean.member.data.update;
 
 import co.edu.udea.juridicapp.persistence.dao.IPersonDAO;
 import co.edu.udea.juridicapp.persistence.dao.IUserDAO;
 import co.edu.udea.juridicapp.persistence.entity.User;
 import java.io.Serializable;
-import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -17,8 +15,8 @@ import org.springframework.stereotype.Component;
 
 @Component()
 @SessionScoped()
-public class UpdateUserBean implements Serializable{
-    
+public final class UpdateUserBean implements Serializable {
+
     public static final String DELETE_MEMBER_KEY = "deleted";
     public static final String LOGGED_MEMBER_KEY = "loggedMember";
     public static final String PASSWORD_CHANGED_KEY = "changed";
@@ -150,5 +148,4 @@ public class UpdateUserBean implements Serializable{
     private User updatePassword(User loggedUser) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
-
 }

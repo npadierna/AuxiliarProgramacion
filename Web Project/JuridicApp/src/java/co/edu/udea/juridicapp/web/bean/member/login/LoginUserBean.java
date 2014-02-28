@@ -1,11 +1,8 @@
 package co.edu.udea.juridicapp.web.bean.member.login;
 
-import co.edu.udea.juridicapp.persistence.dao.IPersonDAO;
 import co.edu.udea.juridicapp.persistence.dao.IUserDAO;
-import co.edu.udea.juridicapp.persistence.dao.impl.UserDAO;
 import co.edu.udea.juridicapp.persistence.entity.User;
 import java.io.Serializable;
-import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -22,11 +19,9 @@ import org.springframework.stereotype.Component;
  */
 @Component()
 @SessionScoped()
-public class LoginUserBean implements Serializable {
+public final class LoginUserBean implements Serializable {
 
-    //private static final long serialVersionUID;c
-    @Autowired()
-    private IPersonDAO personDAO;
+    private static final long serialVersionUID = 3591280342111745024L;
     @Autowired()
     private IUserDAO userDAO;
     private String userName;
@@ -36,14 +31,14 @@ public class LoginUserBean implements Serializable {
 
     public LoginUserBean() {
         super();
-        
-        this.userDAO = new UserDAO();
-        this.loggedUser = null;
+
+        this.setLoggedUser(null);
         this.loggedIn = false;
     }
 
     public User getLoggedUser() {
-        return loggedUser;
+
+        return (this.loggedUser);
     }
 
     public void setLoggedUser(User loggedUser) {
@@ -51,7 +46,8 @@ public class LoginUserBean implements Serializable {
     }
 
     public String getPassword() {
-        return password;
+
+        return (this.password);
     }
 
     public void setPassword(String password) {
@@ -59,7 +55,8 @@ public class LoginUserBean implements Serializable {
     }
 
     public String getUserName() {
-        return userName;
+
+        return (this.userName);
     }
 
     public void setUserName(String userName) {
@@ -71,7 +68,8 @@ public class LoginUserBean implements Serializable {
         FacesMessage msg = null;
 
         if ((this.password != null)) {
-            this.loggedUser = this.findUserByLogin(this.userName, this.password);
+            this.loggedUser = this.userDAO.findUserByLogin(
+                    this.userName, this.password);
             if (this.loggedUser == null) {
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
                         "Datos Inválidos",
@@ -94,16 +92,5 @@ public class LoginUserBean implements Serializable {
                 .getExternalContext().getSession(false);
         session.invalidate();
         this.loggedIn = false;
-    }
-
-    public User findUserByLogin(String userName, String password) {
-        User userFound = this.userDAO.findUserByLogin(userName, password);
-
-        if ((userFound != null)) {
-
-            return (userFound);
-        }
-
-        return (null);
     }
 }

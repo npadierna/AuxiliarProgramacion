@@ -1,13 +1,11 @@
 package co.edu.udea.juridicapp.web.bean.member.data.registration;
 
 import co.edu.udea.juridicapp.persistence.dao.IPersonDAO;
-import co.edu.udea.juridicapp.persistence.dao.IUserDAO;
 import co.edu.udea.juridicapp.persistence.entity.Dependency;
 import co.edu.udea.juridicapp.persistence.entity.Person;
 import co.edu.udea.juridicapp.persistence.entity.PersonPK;
 import co.edu.udea.juridicapp.persistence.entity.Profile;
 import co.edu.udea.juridicapp.persistence.entity.User;
-import co.edu.udea.juridicapp.persistence.entity.UserPK;
 import co.edu.udea.juridicapp.persistence.entity.enums.DocumentTypeUserEnum;
 import java.io.Serializable;
 import java.util.List;
@@ -20,13 +18,11 @@ import org.springframework.stereotype.Component;
 
 @Component()
 @SessionScoped()
-public class RegistrationUserBean implements Serializable {
+public final class RegistrationUserBean implements Serializable {
 
     private static final long serialVersionUID = 123456789L;
     @Autowired()
     private IPersonDAO personDAO;
-    @Autowired()
-    private IUserDAO userDAO;
     private Person person;
     private User user;
     private String documentType;
@@ -35,6 +31,9 @@ public class RegistrationUserBean implements Serializable {
 
     public RegistrationUserBean() {
         super();
+
+        this.setPerson(new Person());
+        this.setUser(new User());
     }
 
     public List<String> getDocumentsType() {
@@ -82,7 +81,7 @@ public class RegistrationUserBean implements Serializable {
         if ((this.documentType != null) && (this.idNumber != null)
                 && (this.user.getUserName() != null)
                 && (this.user.getPassword() != null)) {
-            this.user.setUserPK(new UserPK(this.documentType,
+            this.user.setPersonPK(new PersonPK(this.documentType,
                     this.idNumber.trim()));
             this.user.setDependency(new Dependency("DRAI Facultad De Ingeniería"));
             this.user.setRole(new Profile("Secretaria"));
@@ -99,8 +98,6 @@ public class RegistrationUserBean implements Serializable {
     private void createFields() {
         FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 
-        this.person = new Person();
-        this.user = new User();
         this.documentsType = DocumentTypeUserEnum.obtainDocumentsTypeList();
     }
 }

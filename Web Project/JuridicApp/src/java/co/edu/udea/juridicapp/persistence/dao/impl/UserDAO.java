@@ -1,8 +1,8 @@
 package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IUserDAO;
+import co.edu.udea.juridicapp.persistence.entity.PersonPK;
 import co.edu.udea.juridicapp.persistence.entity.User;
-import co.edu.udea.juridicapp.persistence.entity.UserPK;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -39,7 +39,7 @@ public class UserDAO extends AbstractEntityDAO implements IUserDAO {
     }
 
     @Override()
-    public User findUser(UserPK key) {
+    public User findUser(PersonPK key) {
 
         return ((User) super.find(User.class, key));
     }
@@ -59,9 +59,9 @@ public class UserDAO extends AbstractEntityDAO implements IUserDAO {
 
     @Override()
     @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
-    public UserPK saveUser(User user) {
+    public PersonPK saveUser(User user) {
 
-        return ((UserPK) super.save(user));
+        return ((PersonPK) super.save(user));
     }
 
     @Override()
