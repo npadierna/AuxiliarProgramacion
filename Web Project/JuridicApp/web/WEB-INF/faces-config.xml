@@ -41,7 +41,15 @@
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.work.WorkListBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope></managed-bean>    
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>workSelectorBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.work.WorkSelectorBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <managed-bean>
         <managed-bean-name>creatorWorkBean</managed-bean-name>
         <managed-bean-class>

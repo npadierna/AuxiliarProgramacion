@@ -1,84 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:p="http://primefaces.org/ui"
+      xmlns:p="http://primefaces.org/ui" 
       xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head>
-        <title>Selected Work</title>
+        <title>Selección De Obra</title>
     </h:head>
 
     <h:body>
-        <p:layout fullPage="true">
+        <p:layout fullPage="true" >
             <p:layoutUnit closable="false" collapsible="false" position="south"
-                          resizable="false" size="60">
-                <p:commandButton id="home" onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';" 
-                                 value="Regresar">
+                          resizable="false" size="60" >
+                <p:commandButton id="home"
+                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';" 
+                                 value="Volver al Listado de Obras" >
                 </p:commandButton>
             </p:layoutUnit>
 
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
-                          header="Usuario" position="east" resizable="false" 
-                          size="200" >
+                          header="Usuario" position="north" resizable="false" 
+                          size="150" >
             </p:layoutUnit>  
 
-            <p:layoutUnit position="center">
-                <h:form id="mainForm">
-                    <p:panel header="Descripción de la Obra">
-                        <p:wizard backLabel="Atrás" id="mainWizard" 
-                                  nextLabel="Siguiente" >
+            <p:layoutUnit position="center" >
+                <h:form id="mainForm" >
+                    <p:panel header="Descripción De La Obra" >
+                        <p:tabView id="mainTabView" >
                             <p:tab id="work" title="Obra" >
                                 <center>
-                                    <h:panelGrid cellpadding="10" columns="2" >
-                                        <h:outputText
-                                            value="Registro DNDA:" >
-                                        </h:outputText>
-                                        <h:outputText value="REGISTRO DNDA">
-                                        </h:outputText>
+                                    <p:accordionPanel>
+                                        <p:tab title="Datos De La Obra" >
+                                            <h:panelGrid cellpadding="10" columns="2" >
+                                                <h:outputText value="Nombre De La Obra:" >
+                                                </h:outputText>
+                                                <h:outputText value="NOMBRE DE LA OBRA">
+                                                </h:outputText>
 
-                                        <h:outputText value="Nombre de la Obra:" >
-                                        </h:outputText>
-                                        <h:outputText value="NOMBRE DE LA OBRA">
-                                        </h:outputText>
+                                                <h:outputText
+                                                    value="Fecha de Entrega:" >
+                                                </h:outputText>
+                                                <h:outputText
+                                                    value="FECHA DE ENTREGA" >
+                                                </h:outputText>
 
-                                        <h:outputText
-                                            value="Fecha de Entrega:" >
-                                        </h:outputText>
-                                        <p:calendar  mode="inline" disabled="false">
-                                        </p:calendar>
+                                                <h:outputText value="Descripción de la Obra:" >
+                                                </h:outputText>
+                                                <p:inputTextarea disabled="true" value="DESCRIPCIÓN">
+                                                </p:inputTextarea> 
+                                            </h:panelGrid>
+                                        </p:tab>
+                                        <p:tab title="Datos De La Dependencia" >
+                                            <h:panelGrid columns="2" cellpadding="10" >
+                                                <h:outputText
+                                                    value="Registro DNDA:" >
+                                                </h:outputText>
+                                                <h:outputText
+                                                    value="REGISTRO DNDA:" >
+                                                </h:outputText>
 
-                                        <h:outputText value="Descripción de la Obra:" >
-                                        </h:outputText>
-                                        <p:inputTextarea disabled="true" value="DESCRIPCIÓN">
-                                        </p:inputTextarea> 
-                                    </h:panelGrid>
+                                                <h:outputText
+                                                    value="Dependencia Acádemica:" >
+                                                </h:outputText>
+                                                <h:outputText
+                                                    value="DEPENDENCIA ACADEMICA ENCARGADA" >
+                                                </h:outputText>
+                                            </h:panelGrid>
+                                        </p:tab>
+                                    </p:accordionPanel>
                                 </center>
                             </p:tab>
 
                             <p:tab id="author" title="Autor(es)" >
                                 <center>
                                     <h:panelGrid cellpadding="10" columns="2" >
-                                        <h:outputText value="Tipo de documento:" >
-                                        </h:outputText>
-                                        <h:outputText value="TIPO DOCUMENTO" >
-                                        </h:outputText>
-
-                                        <h:outputText value="Número de documento:" >
-                                        </h:outputText>
-                                        <h:outputText value="NÚMERO DE DOCUMENTO" >
-                                        </h:outputText>
-
-                                        <h:outputText value="Nombres completos: " >
-                                        </h:outputText>
-                                        <h:outputText value="NOMBRES COMPLETOS" >
-                                        </h:outputText>
-
-                                        <h:outputText value="Apellidos completos:" >
-                                        </h:outputText>
-                                        <h:outputText value="APELLIDOS COMPLETOS" >
-                                        </h:outputText>
 
                                         <h:outputText
                                             value="Vínculo con la Universidad:" >
@@ -94,52 +92,75 @@
                                             value="NÚMERO DE CONTRATO" >
                                         </h:outputText>
 
-                                    </h:panelGrid>
-                                </center>
-                            </p:tab>
-
-                            <p:tab id="tipo" title="Tipo" >
-                                <center>
-                                    <h:panelGrid  cellpadding="10" columns="2" >
                                         <h:outputText
-                                            value="Tipo de la obra:" >
+                                            value="Tipo De Obra:" >
                                         </h:outputText>
                                         <h:outputText
-                                            value="TIPO DE LA OBRA" >
+                                            value="TIPOS DE OBRAS" >
                                         </h:outputText>
 
                                         <h:outputText
-                                            value="Forma de adquisición:" >
+                                            value="Forma De Adquisición:" >
                                         </h:outputText>
                                         <h:outputText
                                             value="FORMA DE ADQUISICIÓN" >
                                         </h:outputText>
 
-                                    </h:panelGrid>
-                                </center>
-                            </p:tab>
-
-                            <p:tab id="support" title="Soporte" >
-                                <center>
-                                    <h:panelGrid cellpadding="10" columns="2"  >
-                                        <h:outputText value="Soporte:" >
-                                        </h:outputText>
-                                        <h:outputText value="SOPORTE" >
-                                        </h:outputText>
-
-                                    </h:panelGrid>
-                                </center>
-                            </p:tab>
-
-                            <p:tab id="isbn" title="ISBN" >
-                                <center>
-                                    <h:panelGrid cellpadding="10" columns="2" >
                                         <h:outputText
-                                            value="Registro ISBN:" >
+                                            value="Soporte:" >
                                         </h:outputText>
                                         <h:outputText
-                                            value="REGISTRO ISBN:" >
+                                            value="SOPORTE" >
                                         </h:outputText>
+
+                                        <h:outputText
+                                            value="ISBN:" >
+                                        </h:outputText>
+                                        <h:outputText
+                                            value="ISBN" >
+                                        </h:outputText>
+
+                                        <p:dataTable id="authorsDataTable"
+                                                     paginator="true"
+                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                     rows="10"
+                                                     rowsPerPageTemplate="10,15,30"
+                                                     style="width:98%; font-size:13px;" >
+
+                                            <f:facet name="header" >
+                                                Listado De Autores
+                                            </f:facet>
+
+                                            <p:column style="font-size:15px;" >
+                                                <f:facet id="documentType" name="header">  
+                                                    <h:outputText value="Tipo De Documento" >
+                                                    </h:outputText>  
+                                                </f:facet>
+                                                <h:outputText style="font-size:13px;"
+                                                              value="Tipo de Documento" >
+                                                </h:outputText>
+                                            </p:column>
+
+                                            <p:column style="font-size:15px;" >
+                                                <f:facet id="documentNumber" name="header">  
+                                                    <h:outputText value="Número De Documento" >
+                                                    </h:outputText>  
+                                                </f:facet>
+                                                <h:outputText style="font-size:13px;"
+                                                              value="Número de Documento" >
+                                                </h:outputText>
+                                            </p:column>
+
+                                            <p:column style="font-size:15px;" >
+                                                <f:facet id="fullName" name="header">  
+                                                    <h:outputText value="Nombre Completo" >
+                                                    </h:outputText>  
+                                                </f:facet>
+                                                <h:outputText style="font-size:13px;"
+                                                              value="Apellidos + Nombres" >
+                                                </h:outputText>
+                                            </p:column>
+                                        </p:dataTable>
                                     </h:panelGrid>
                                 </center>
                             </p:tab>
@@ -155,26 +176,6 @@
                                 </center>
                             </p:tab>
 
-                            <p:tab id="dependency" title="Dependencia" >
-                                <center>
-                                    <h:panelGrid columns="2" cellpadding="10" >
-                                        <h:outputText
-                                            value="Registro DNDA:" >
-                                        </h:outputText>
-                                        <h:outputText
-                                            value="REGISTRO DNDA:" >
-                                        </h:outputText>
-
-                                        <h:outputText
-                                            value="Dependencia Acádemica Encargada:" >
-                                        </h:outputText>
-                                        <h:outputText
-                                            value="DEPENDENCIA ACADEMICA ENCARGADA" >
-                                        </h:outputText>
-                                    </h:panelGrid>
-                                </center>
-                            </p:tab>
-
                             <p:tab id="coments" title="Observaciones" >
                                 <center>
                                     <h:panelGrid cellpadding="10" columns="2">
@@ -186,8 +187,7 @@
                                     </h:panelGrid>
                                 </center>
                             </p:tab>
-
-                        </p:wizard>
+                        </p:tabView>
                     </p:panel>
                 </h:form>
             </p:layoutUnit>

@@ -2,7 +2,7 @@ package co.edu.udea.juridicapp.web.bean.work;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorWorkDAO;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
@@ -16,38 +16,38 @@ import org.springframework.stereotype.Component;
  */
 @Component()
 @SessionScoped()
-public final class WorkListBean implements Serializable {
+public class WorkSelectorBean {
 
-    private static final long serialVersionUID = 2915088641135538176L;
+    //    private static final long serialVersionUID = 2915088641135538176L;
     @Autowired()
     private IAuthorWorkDAO authorWorkDAO;
-    private List<AuthorWork> authorWorks;
     private AuthorWork selectedAuthorWork;
+    private List<AuthorWork> authorsWorks;
 
-    public WorkListBean() {
+    public WorkSelectorBean() {
         super();
-    }
-
-    public List<AuthorWork> getAuthorWorks() {
-
-        return (this.authorWorks);
-    }
-
-    public void setAuthorWorks(List<AuthorWork> authorWorks) {
-        this.authorWorks = authorWorks;
     }
 
     public AuthorWork getSelectedAuthorWork() {
 
-        return (this.selectedAuthorWork);
+        return selectedAuthorWork;
     }
 
-    public void setSelectedAuthorWork(AuthorWork selectedAuthorWord) {
-        this.selectedAuthorWork = selectedAuthorWord;
+    public void setSelectedAuthorWork(AuthorWork selectedAuthorWork) {
+        this.selectedAuthorWork = selectedAuthorWork;
+    }
+
+    public List<AuthorWork> getAuthorsWorks() {
+
+        return authorsWorks;
+    }
+
+    public void setAuthorsWorks(List<AuthorWork> authorsWorks) {
+        this.authorsWorks = authorsWorks;
     }
 
     @PostConstruct()
     private void createFields() {
-        this.setAuthorWorks(this.authorWorkDAO.findAllAuthorWorks());
+        this.setAuthorsWorks(new ArrayList<AuthorWork>());
     }
 }

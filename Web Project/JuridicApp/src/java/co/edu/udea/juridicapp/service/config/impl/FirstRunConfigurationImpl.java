@@ -13,7 +13,6 @@ import co.edu.udea.juridicapp.persistence.entity.Acquisition;
 import co.edu.udea.juridicapp.persistence.entity.Author;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
 import co.edu.udea.juridicapp.persistence.entity.Dependency;
-import co.edu.udea.juridicapp.persistence.entity.PersonPK;
 import co.edu.udea.juridicapp.persistence.entity.Profile;
 import co.edu.udea.juridicapp.persistence.entity.Role;
 import co.edu.udea.juridicapp.persistence.entity.Support;
@@ -55,7 +54,7 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         this.createDefaultProfiles();
         this.createDefaultRoles();
 
-        //this.tester();
+        this.tester();
     }
 
     @Override()
@@ -102,7 +101,13 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         System.out.println(" + Creating the default \"PROFILE\" data.");
 
         if (this.profileDAO.countProfiles() == 0) {
-            Profile profile = new Profile("Secretaria");
+            Profile profile = new Profile("Administrador");
+            this.profileDAO.saveProfile(profile);
+
+            profile = new Profile("Gestor De Contratos");
+            this.profileDAO.saveProfile(profile);
+
+            profile = new Profile("Consultor");
             this.profileDAO.saveProfile(profile);
         }
     }
@@ -211,8 +216,10 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
 
         Author author = new Author(user.getPersonPK().getDocumentType(),
                 user.getPersonPK().getIdNumber());
-        this.authorDAO.saveAuthor(author);
+//        this.authorDAO.saveAuthor(author);
 
         List<AuthorWork> authorWorks = this.authorWorkDAO.findAuthorWorkByAuthor(author);
+
+        List<AuthorWork> allWorks = this.authorWorkDAO.findAllAuthorWorks();
     }
 }

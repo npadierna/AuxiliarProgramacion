@@ -81,16 +81,16 @@ public final class RegistrationUserBean implements Serializable {
         if ((this.documentType != null) && (this.idNumber != null)
                 && (this.user.getUserName() != null)
                 && (this.user.getPassword() != null)) {
-            this.user.setPersonPK(new PersonPK(this.documentType,
-                    this.idNumber.trim()));
-            this.user.setDependency(new Dependency("DRAI Facultad De Ingeniería"));
-            this.user.setRole(new Profile("Secretaria"));
-
-            this.person.setPersonPK(new PersonPK(this.documentType,
-                    this.idNumber.trim()));
-            this.person.setUser(this.user);
-
-            this.personDAO.savePerson(this.person);
+//            this.user.setPersonPK(new PersonPK(this.documentType,
+//                    this.idNumber.trim()));
+//            this.user.setDependency(new Dependency("DRAI Facultad De Ingeniería"));
+//            this.user.setRole(new Profile("Secretaria"));
+//
+//            this.person.setPersonPK(new PersonPK(this.documentType,
+//                    this.idNumber.trim()));
+//            this.person.setUser(this.user);
+//
+//            this.personDAO.savePerson(this.person);
         }
     }
 

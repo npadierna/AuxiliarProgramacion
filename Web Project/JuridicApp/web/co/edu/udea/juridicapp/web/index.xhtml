@@ -24,8 +24,8 @@
             </p:layoutUnit> 
 
             <p:layoutUnit collapsible="true" closable="false" effect="drop" 
-                          header="Usuario" position="east" resizable="false" 
-                          size="200" > 
+                          header="Usuario" position="north" resizable="false" 
+                          size="130" > 
                 <center>
                     <p:panel id="memberManagementPanel" >
                         <center>
@@ -38,7 +38,7 @@
 
                             <p:commandButton id="registerButton"
                                              onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/registration/registermember.xhtml';" 
-                                             value="Registrarse">
+                                             value="Cerrar Sesión">
                             </p:commandButton>
                         </center>
                     </p:panel>
@@ -51,11 +51,12 @@
                         <p:dataTable draggableColumns="true" id="mainTable"
                                      paginator="true"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rows="10" rowsPerPageTemplate="10,15,30" 
+                                     rowKey="#{authorWork.key}"
+                                     rows="10" rowsPerPageTemplate="10,15,30"
                                      selectionMode="single"
                                      style="width:98%; font-size:13px;"
-                                     value="#{workListBean.works}"
-                                     var="work" >
+                                     value="#{workListBean.authorWorks}"
+                                     var="authorWork" >
 
                             <f:facet name="header" >
                                 Listado De Obras
@@ -68,53 +69,71 @@
                                     </h:outputText>  
                                 </f:facet>
                                 <h:outputText style="font-size:13px;"
-                                              value="#{work.title}" >
+                                              value="#{authorWork.authorWorkPK.workTypeId}" >
                                 </h:outputText>
                             </p:column>
 
-                            <p:column sortBy="year"
+                            <p:column sortBy="#{authorWork.delivering}"
                                       style="font-size:15px;" >
                                 <f:facet id="year" name="header" >
-                                    <h:outputText value="Fecha" ></h:outputText>  
+                                    <h:outputText value="Fecha De Entrega" ></h:outputText>  
                                 </f:facet>  
                                 <h:outputText style="font-size:13px;"
-                                              value="fecha" >
+                                              value="#{authorWork.delivering}" >
                                 </h:outputText>
                             </p:column>
 
-                            <p:column sortBy="issue" style="font-size:15px;" >
+                            <p:column sortBy="#{authorWork.authorWorkPK.workTypeName}"
+                                      style="font-size:15px;" >
                                 <f:facet id="type" name="header">  
                                     <h:outputText value="Tipo" >
                                     </h:outputText>  
                                 </f:facet>
                                 <h:outputText style="font-size:13px;"
-                                              value="tipo" >
+                                              value="#{authorWork.authorWorkPK.workTypeName}" >
                                 </h:outputText>
                             </p:column>
 
-                            <p:column id="seeAuthors"
+                            <p:column sortBy="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}"
                                       style="font-size:15px;" >
-                                <f:facet id="authors" name="header" >
-                                    <h:outputText value="Autor(es)" >
+                                <f:facet id="author" name="header" >
+                                    <h:outputText value="Autor" >
                                     </h:outputText>  
-                                </f:facet> 
-                                <p:commandLink id="showAuthors"
-                                               oncomplete="PF('authorsListDialogue').show()" >
-                                    <center>
-                                        <h:outputText title="Ver Autores"
-                                                      value="Ver Autores" >
-                                        </h:outputText>
-                                    </center>
-                                </p:commandLink>
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}" >
+                                </h:outputText>
                             </p:column>
 
-                            <p:column style="font-size:15px;" >
+                            <p:column sortBy="#{authorWork.contract1.id}"
+                                      style="font-size:15px;" >
                                 <f:facet id="contract" name="header" > 
-                                    <h:outputText value="Contrato" >
+                                    <h:outputText value="N° Contrato" >
                                     </h:outputText> 
                                 </f:facet>
                                 <h:outputText style="font-size:13px;"
-                                              value="contrato" >
+                                              value="#{authorWork.contract1.id}" >
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column style="font-size:15px;" >
+                                <f:facet id="isbn" name="header" > 
+                                    <h:outputText value="ISBN" >
+                                    </h:outputText>
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorWork.isbn}" >
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column sortBy="#{authorWork.dnda.number}"
+                                      style="font-size:15px;" >
+                                <f:facet id="dnda" name="header" >
+                                    <h:outputText value="DNDA" >
+                                    </h:outputText>  
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorWork.dnda.number}" >
                                 </h:outputText>
                             </p:column>
 
@@ -124,18 +143,7 @@
                                     </h:outputText>  
                                 </f:facet>
                                 <h:outputText style="font-size:13px;"
-                                              value="soporte" >
-                                </h:outputText>
-                            </p:column>
-
-                            <p:column sortBy="isbn"
-                                      style="font-size:15px;" >
-                                <f:facet id="isbn" name="header" > 
-                                    <h:outputText value="ISBN" >
-                                    </h:outputText>
-                                </f:facet>
-                                <h:outputText style="font-size:13px;"
-                                              value="isbn" >
+                                              value="#{authorWork.supportType.type}" >
                                 </h:outputText>
                             </p:column>
 
@@ -145,17 +153,7 @@
                                     </h:outputText>
                                 </f:facet>
                                 <h:outputText style="font-size:13px;"
-                                              value="archivos" >
-                                </h:outputText>
-                            </p:column>
-
-                            <p:column style="font-size:15px;" >
-                                <f:facet id="observaciones" name="header" >
-                                    <h:outputText value="Observaciones" >
-                                    </h:outputText>  
-                                </f:facet>
-                                <h:outputText style="font-size:13px;"
-                                              value="observaciones" >
+                                              value="Archivos" >
                                 </h:outputText>
                             </p:column>
 
