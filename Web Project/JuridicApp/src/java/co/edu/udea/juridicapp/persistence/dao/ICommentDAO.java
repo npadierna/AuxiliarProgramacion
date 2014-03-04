@@ -11,6 +11,8 @@ public interface ICommentDAO {
     public List<Comment> findAllComments();
 
     public List<Comment> findCommentsByAttributes(Object... attributes);
+    
+    public List<Comment> findCommnetsByWorkId(Long workId);
 
     public Comment findComment(CommentPK key);
 

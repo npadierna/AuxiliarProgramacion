@@ -54,7 +54,7 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         this.createDefaultProfiles();
         this.createDefaultRoles();
 
-        this.tester();
+//        this.tester();
     }
 
     @Override()
@@ -218,8 +218,8 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
                 user.getPersonPK().getIdNumber());
 //        this.authorDAO.saveAuthor(author);
 
-        List<AuthorWork> authorWorks = this.authorWorkDAO.findAuthorWorkByAuthor(author);
+        List<AuthorWork> authorWorks = this.authorWorkDAO.findAuthorsWorksByAuthor(author);
 
-        List<AuthorWork> allWorks = this.authorWorkDAO.findAllAuthorWorks();
+        List<AuthorWork> allWorks = this.authorWorkDAO.findAllAuthorsWorks();
     }
 }

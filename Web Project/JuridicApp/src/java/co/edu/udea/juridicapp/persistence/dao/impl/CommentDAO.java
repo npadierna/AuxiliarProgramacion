@@ -39,6 +39,13 @@ public class CommentDAO extends AbstractEntityDAO implements ICommentDAO {
     }
 
     @Override()
+    public List<Comment> findCommnetsByWorkId(Long workId) {
+
+        return (this.executeNamedQueryForComments("Comment.findByWorkId",
+                "workId", workId));
+    }
+
+    @Override()
     public Comment findComment(CommentPK key) {
 
         return ((Comment) super.find(Comment.class, key));

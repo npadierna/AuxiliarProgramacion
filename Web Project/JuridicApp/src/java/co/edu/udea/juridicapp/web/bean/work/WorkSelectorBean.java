@@ -1,7 +1,10 @@
 package co.edu.udea.juridicapp.web.bean.work;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorWorkDAO;
+import co.edu.udea.juridicapp.persistence.dao.ICommentDAO;
+import co.edu.udea.juridicapp.persistence.entity.Author;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
+import co.edu.udea.juridicapp.persistence.entity.Comment;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -21,21 +24,23 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public class WorkSelectorBean {
 
-    //    private static final long serialVersionUID = 2915088641135538176L;
+    private static final long serialVersionUID = 3054628927294284800L;
     @Autowired()
     private IAuthorWorkDAO authorWorkDAO;
+    @Autowired()
+    private ICommentDAO commentDAO;
     private AuthorWork selectedAuthorWork;
     private List<AuthorWork> authorsWorks;
+    private List<Comment> workComments;
     private boolean onSelected;
 
     public WorkSelectorBean() {
         super();
-        this.onSelected = false;
     }
 
     public AuthorWork getSelectedAuthorWork() {
 
-        return selectedAuthorWork;
+        return (this.selectedAuthorWork);
     }
 
     public void setSelectedAuthorWork(AuthorWork selectedAuthorWork) {
@@ -44,32 +49,59 @@ public class WorkSelectorBean {
 
     public List<AuthorWork> getAuthorsWorks() {
 
-        return authorsWorks;
+        return (this.authorsWorks);
     }
 
     public void setAuthorsWorks(List<AuthorWork> authorsWorks) {
         this.authorsWorks = authorsWorks;
     }
 
+    public List<Comment> getWorkComments() {
+
+        return (this.workComments);
+    }
+
+    public void setWorkComments(List<Comment> workComments) {
+        this.workComments = workComments;
+    }
+
     public void onSelectedAuthorWork(AuthorWork selectedAuthorWork) {
         RequestContext context = RequestContext.getCurrentInstance();
-        FacesMessage msg = null;
+        FacesMessage msg;
+
         if (selectedAuthorWork != null) {
             this.selectedAuthorWork = selectedAuthorWork;
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cargando...",
-                    selectedAuthorWork.getAuthorWorkPK().getWorkTypeName( ));
+                    selectedAuthorWork.getAuthorWorkPK().getWorkTypeName());
             this.onSelected = true;
+
+            this.findAuthorsWorks();
+            this.findWorkComments();
         } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
                     "Datos Inválidos",
                     "Por favor seleccione una obra Valida.");
         }
+
         FacesContext.getCurrentInstance().addMessage(null, msg);
         context.addCallbackParam("onSelected", onSelected);
     }
 
     @PostConstruct()
     private void createFields() {
+        this.onSelected = false;
+
         this.setAuthorsWorks(new ArrayList<AuthorWork>());
+        this.setWorkComments(new ArrayList<Comment>());
+    }
+
+    private void findAuthorsWorks() {
+        this.setAuthorsWorks(this.authorWorkDAO.findAuthorsWorksByWorkId(
+                this.getSelectedAuthorWork().getAuthorWorkPK().getWorkTypeId()));
+    }
+
+    private void findWorkComments() {
+        this.setWorkComments(this.commentDAO.findCommnetsByWorkId(
+                this.getSelectedAuthorWork().getAuthorWorkPK().getWorkTypeId()));
     }
 }

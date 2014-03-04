@@ -26,7 +26,7 @@ public class AuthorWorkDAO extends AbstractEntityDAO implements IAuthorWorkDAO {
 
     @Override()
     @SuppressWarnings("unchecked")
-    public List<AuthorWork> findAllAuthorWorks() {
+    public List<AuthorWork> findAllAuthorsWorks() {
 
         return ((List<AuthorWork>) super.findAll(AuthorWork.class));
     }
@@ -46,7 +46,7 @@ public class AuthorWorkDAO extends AbstractEntityDAO implements IAuthorWorkDAO {
     }
 
     @Override()
-    public List<AuthorWork> findAuthorWorkByAuthor(Author author) {
+    public List<AuthorWork> findAuthorsWorksByAuthor(Author author) {
         List<AuthorWork> authorWorksFound = null;
 
         if ((author != null) && (author.getKey() != null)) {
@@ -57,6 +57,13 @@ public class AuthorWorkDAO extends AbstractEntityDAO implements IAuthorWorkDAO {
         }
 
         return (authorWorksFound);
+    }
+
+    @Override()
+    public List<AuthorWork> findAuthorsWorksByWorkId(Long workId) {
+
+        return (this.executeNamedQueryForAuthorsWorks(
+                "AuthorWork.findByWorkTypeId", "workTypeId", workId));
     }
 
     @Override()
@@ -73,13 +80,13 @@ public class AuthorWorkDAO extends AbstractEntityDAO implements IAuthorWorkDAO {
     }
 
     @Override()
-    public long countAuthorWorks() {
+    public long countAuthorsWorks() {
         return (super.count(AuthorWork.class));
     }
 
     @Override()
     @SuppressWarnings("unchecked")
-    public List<AuthorWork> executeNamedQueryForAuthorWorks(String namedQuery,
+    public List<AuthorWork> executeNamedQueryForAuthorsWorks(String namedQuery,
             String parameterName, Object parameterValue) {
 
         return ((List<AuthorWork>) super.executeNamedQuery(namedQuery,

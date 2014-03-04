@@ -54,6 +54,6 @@ public final class WorkListBean implements Serializable {
 
     @PostConstruct()
     private void createFields() {
-        this.setAuthorWorks(this.authorWorkDAO.findAllAuthorWorks());
+        this.setAuthorWorks(this.authorWorkDAO.findAllAuthorsWorks());
     }
 }

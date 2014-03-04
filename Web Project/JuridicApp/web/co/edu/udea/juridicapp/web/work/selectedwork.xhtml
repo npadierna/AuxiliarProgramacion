@@ -37,19 +37,21 @@
                                             <h:panelGrid cellpadding="10" columns="2" >
                                                 <h:outputText value="Nombre de la Obra:" >
                                                 </h:outputText>
-                                                <h:outputText value="NOMBRE DE LA OBRA">
+                                                <h:outputText
+                                                    value="#{workSelectorBean.selectedAuthorWork.workType.work.title}" >
                                                 </h:outputText>
 
                                                 <h:outputText
                                                     value="Fecha de Entrega:" >
                                                 </h:outputText>
                                                 <h:outputText
-                                                    value="FECHA DE ENTREGA" >
+                                                    value="#{workSelectorBean.selectedAuthorWork.delivering}" >
                                                 </h:outputText>
 
                                                 <h:outputText value="Descripción de la Obra:" >
                                                 </h:outputText>
-                                                <p:inputTextarea disabled="true" value="DESCRIPCIÓN">
+                                                <p:inputTextarea disabled="true"
+                                                                 value="#{workSelectorBean.selectedAuthorWork.workType.work.description}" >
                                                 </p:inputTextarea> 
                                             </h:panelGrid>
                                         </p:tab>
@@ -59,14 +61,14 @@
                                                     value="Registro DNDA:" >
                                                 </h:outputText>
                                                 <h:outputText
-                                                    value="REGISTRO DNDA:" >
+                                                    value="#{workSelectorBean.selectedAuthorWork.workType.work.dependency.dnda.number}" >
                                                 </h:outputText>
 
                                                 <h:outputText
                                                     value="Dependencia Acádemica:" >
                                                 </h:outputText>
                                                 <h:outputText
-                                                    value="DEPENDENCIA ACADEMICA ENCARGADA" >
+                                                    value="#{workSelectorBean.selectedAuthorWork.workType.work.dependency.name}" >
                                                 </h:outputText>
                                             </h:panelGrid>
                                         </p:tab>
@@ -76,92 +78,109 @@
 
                             <p:tab id="author" title="Autor(es)" >
                                 <center>
-                                    <h:panelGrid cellpadding="10" columns="2" >
+                                    <p:dataTable id="authorsDataTable"
+                                                 paginator="true"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 rows="5"
+                                                 rowsPerPageTemplate="5,7,10"
+                                                 style="width:98%; font-size:13px;"
+                                                 value="#{workSelectorBean.authorsWorks}"
+                                                 var="authorWork" >
 
-                                        <h:outputText
-                                            value="Vínculo con la Universidad:" >
-                                        </h:outputText>
-                                        <h:outputText
-                                            value="VÍNCULO UNIVERSITARIO" >
-                                        </h:outputText>
+                                        <f:facet name="header" >
+                                            Listado De Autores
+                                        </f:facet>
 
-                                        <h:outputText
-                                            value="Número del Contrato:" >
-                                        </h:outputText>
-                                        <h:outputText
-                                            value="NÚMERO DE CONTRATO" >
-                                        </h:outputText>
-
-                                        <h:outputText
-                                            value="Tipo De Obra:" >
-                                        </h:outputText>
-                                        <h:outputText
-                                            value="TIPOS DE OBRAS" >
-                                        </h:outputText>
-
-                                        <h:outputText
-                                            value="Forma De Adquisición:" >
-                                        </h:outputText>
-                                        <h:outputText
-                                            value="FORMA DE ADQUISICIÓN" >
-                                        </h:outputText>
-
-                                        <h:outputText
-                                            value="Soporte:" >
-                                        </h:outputText>
-                                        <h:outputText
-                                            value="SOPORTE" >
-                                        </h:outputText>
-
-                                        <h:outputText
-                                            value="ISBN:" >
-                                        </h:outputText>
-                                        <h:outputText
-                                            value="ISBN" >
-                                        </h:outputText>
-
-                                        <p:dataTable id="authorsDataTable"
-                                                     paginator="true"
-                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                     rows="10"
-                                                     rowsPerPageTemplate="10,15,30"
-                                                     style="width:98%; font-size:13px;" >
-
-                                            <f:facet name="header" >
-                                                Listado De Autores
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="documentType" name="header">  
+                                                <h:outputText value="Tipo De Documento" >
+                                                </h:outputText>  
                                             </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{authorWork.authorWorkPK.documentType}" >
+                                            </h:outputText>
+                                        </p:column>
 
-                                            <p:column style="font-size:15px;" >
-                                                <f:facet id="documentType" name="header">  
-                                                    <h:outputText value="Tipo De Documento" >
-                                                    </h:outputText>  
-                                                </f:facet>
-                                                <h:outputText style="font-size:13px;"
-                                                              value="Tipo de Documento" >
-                                                </h:outputText>
-                                            </p:column>
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="documentNumber" name="header">  
+                                                <h:outputText value="Número De Documento" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{authorWork.authorWorkPK.idNumber}" >
+                                            </h:outputText>
+                                        </p:column>
 
-                                            <p:column style="font-size:15px;" >
-                                                <f:facet id="documentNumber" name="header">  
-                                                    <h:outputText value="Número De Documento" >
-                                                    </h:outputText>  
-                                                </f:facet>
-                                                <h:outputText style="font-size:13px;"
-                                                              value="Número de Documento" >
-                                                </h:outputText>
-                                            </p:column>
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="fullName" name="header">  
+                                                <h:outputText value="Nombre Completo" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}" >
+                                            </h:outputText>
+                                        </p:column>
 
-                                            <p:column style="font-size:15px;" >
-                                                <f:facet id="fullName" name="header">  
-                                                    <h:outputText value="Nombre Completo" >
-                                                    </h:outputText>  
-                                                </f:facet>
-                                                <h:outputText style="font-size:13px;"
-                                                              value="Apellidos + Nombres" >
-                                                </h:outputText>
-                                            </p:column>
-                                        </p:dataTable>
-                                    </h:panelGrid>
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="fullName" name="header">  
+                                                <h:outputText value="Vínculo Con La Universidad" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{authorWork.role.profile}" >
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="fullName" name="header">  
+                                                <h:outputText value="N° Contrato" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{authorWork.contract1.id}" >
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="fullName" name="header">  
+                                                <h:outputText value="Tipo" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{authorWork.workType.workTypePK.typeName}" >
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="fullName" name="header">  
+                                                <h:outputText value="ISBN" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{authorWork.isbn}" >
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <!--                                        <p:column style="font-size:15px;" >
+                                                                                    <f:facet id="fullName" name="header">  
+                                                                                        <h:outputText value="Forma De Adquisición" >
+                                                                                        </h:outputText>  
+                                                                                    </f:facet>
+                                                                                    <h:outputText style="font-size:13px;"
+                                                                                                  value="" >
+                                                                                    </h:outputText>
+                                                                                </p:column>-->
+
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="fullName" name="header">  
+                                                <h:outputText value="Soporte" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{authorWork.supportType.type}" >
+                                            </h:outputText>
+                                        </p:column>
+                                    </p:dataTable>
                                 </center>
                             </p:tab>
 
