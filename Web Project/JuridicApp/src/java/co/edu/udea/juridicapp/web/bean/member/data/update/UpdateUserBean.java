@@ -133,8 +133,10 @@ public final class UpdateUserBean implements Serializable {
     }
 
     public void receiveLoggedUser(User loggedUser) {
-        this.loggedUser = loggedUser;
-        this.userName = this.loggedUser.getUserName();
+        if (loggedUser != null) {
+            this.loggedUser = loggedUser;
+            this.userName = this.loggedUser.getUserName();
+        }
     }
 
     private User updateUser(User loggedUser, String userName) {

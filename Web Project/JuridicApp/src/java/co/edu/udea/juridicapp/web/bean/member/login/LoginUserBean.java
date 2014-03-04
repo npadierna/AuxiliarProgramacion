@@ -67,7 +67,7 @@ public final class LoginUserBean implements Serializable {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage msg = null;
 
-        if ((this.password != null)) {
+        if ((this.password != null) && (this.userName != null)) {
             this.loggedUser = this.userDAO.findUserByLogin(
                     this.userName, this.password);
             if (this.loggedUser == null) {
