@@ -16,6 +16,13 @@
         </el-resolver>
     </application>
     <managed-bean>
+        <managed-bean-name>creatorEntityBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.admin.creator.CreatorEntityBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>loginUserBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.member.login.LoginUserBean

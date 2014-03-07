@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 public final class LoginUserBean implements Serializable {
 
     private static final long serialVersionUID = 3591280342111745024L;
+    private static final String LOGGED_IN_KEY = "loggedIn";
     @Autowired()
     private IUserDAO userDAO;
     private String userName;
@@ -67,6 +68,7 @@ public final class LoginUserBean implements Serializable {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage msg = null;
 
+        this.loggedIn = false;
         if ((this.password != null) && (this.userName != null)) {
             this.loggedUser = this.userDAO.findUserByLogin(
                     this.userName, this.password);
@@ -84,7 +86,7 @@ public final class LoginUserBean implements Serializable {
         this.setPassword("");
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        context.addCallbackParam("loggedIn", loggedIn);
+        context.addCallbackParam(LoginUserBean.LOGGED_IN_KEY, loggedIn);
     }
 
     public void logOut(ActionEvent actionEvent) {

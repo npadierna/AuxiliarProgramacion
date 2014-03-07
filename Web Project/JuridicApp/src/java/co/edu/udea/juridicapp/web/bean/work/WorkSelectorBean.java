@@ -2,7 +2,6 @@ package co.edu.udea.juridicapp.web.bean.work;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorWorkDAO;
 import co.edu.udea.juridicapp.persistence.dao.ICommentDAO;
-import co.edu.udea.juridicapp.persistence.entity.Author;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
 import co.edu.udea.juridicapp.persistence.entity.Comment;
 import java.util.ArrayList;

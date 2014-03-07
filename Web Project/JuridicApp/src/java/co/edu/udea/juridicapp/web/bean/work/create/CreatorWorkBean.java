@@ -16,17 +16,17 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public final class CreatorWorkBean implements Serializable {
 
-    //private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2901939557872617472L;
     @Autowired()
     private IAuthorDAO authorDAO;
     @Autowired()
     private IDependencyDAO dependencyDAO;
     private List<String> dependenciesNames;
     private Work work;
+    private String dependecyName;
 
     public CreatorWorkBean() {
-        this.setDependenciesNames(new ArrayList<String>());
-        this.setWork(new Work());
+        super();
     }
 
     public List<String> getDependenciesNames() {
@@ -47,8 +47,20 @@ public final class CreatorWorkBean implements Serializable {
         this.work = work;
     }
 
+    public String getDependecyName() {
+
+        return (this.dependecyName);
+    }
+
+    public void setDependecyName(String dependecyName) {
+        this.dependecyName = dependecyName;
+    }
+
     @PostConstruct()
     private void createFields() {
+        this.setDependenciesNames(new ArrayList<String>());
+        this.setWork(new Work());
+
         List<Dependency> dependenciesFound = this.dependencyDAO.findAllDependencies();
 
         if ((dependenciesFound != null) && !(dependenciesFound.isEmpty())) {

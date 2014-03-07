@@ -8,13 +8,15 @@
       xmlns:f="http://java.sun.com/jsf/core" >
 
     <h:head>
-        <f:facet name="registerMemberView" >
+        <script type="text/javascript"
+                src="../../../../util/javascript/registryRequestFunction.js" >
+        </script>
+        <f:facet name="registerMember" >
             <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
             <title>Registro</title>
-            <script type="text/javascript"
-                    src="../../../../util/javascript/registryRequestFunction.js" />
         </f:facet>
     </h:head>
+
     <h:body>
         <h:form id="registrerForm" >
             <center>
@@ -29,8 +31,8 @@
                                        value="Tipo Documento:">
                         </h:outputLabel>
                         <p:selectOneMenu id="personDocumentType"  label="Tipo Documento" 
-                                          required="true" 
-                                          value="#{registrationUserBean.documentType}">
+                                         required="true" 
+                                         value="#{registrationUserBean.documentType}">
                             <f:selectItems value="#{registrationUserBean.documentsType}" >
                             </f:selectItems>
                         </p:selectOneMenu>

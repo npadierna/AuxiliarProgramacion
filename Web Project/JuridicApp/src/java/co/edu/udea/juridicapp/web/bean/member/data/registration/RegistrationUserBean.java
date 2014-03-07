@@ -1,10 +1,7 @@
 package co.edu.udea.juridicapp.web.bean.member.data.registration;
 
 import co.edu.udea.juridicapp.persistence.dao.IPersonDAO;
-import co.edu.udea.juridicapp.persistence.entity.Dependency;
 import co.edu.udea.juridicapp.persistence.entity.Person;
-import co.edu.udea.juridicapp.persistence.entity.PersonPK;
-import co.edu.udea.juridicapp.persistence.entity.Profile;
 import co.edu.udea.juridicapp.persistence.entity.User;
 import co.edu.udea.juridicapp.persistence.entity.enums.DocumentTypeUserEnum;
 import java.io.Serializable;
@@ -20,7 +17,7 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public final class RegistrationUserBean implements Serializable {
 
-    private static final long serialVersionUID = 123456789L;
+    private static final long serialVersionUID = 3757147504987197440L;
     @Autowired()
     private IPersonDAO personDAO;
     private Person person;

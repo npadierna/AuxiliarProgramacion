@@ -8,7 +8,11 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head>
-        <title>Selección De Obra</title>
+        <f:facet name="selectedWork" >
+            <meta content='text/html; charset=UTF-8'
+                  http-equiv="Content-Type" />
+            <title>Selección De Obra</title>
+        </f:facet>
     </h:head>
 
     <h:body>
@@ -23,7 +27,7 @@
 
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
                           header="Usuario" position="north" resizable="false" 
-                          size="150" >
+                          size="130" >
             </p:layoutUnit>  
 
             <p:layoutUnit position="center" >
@@ -32,47 +36,46 @@
                         <p:tabView id="mainTabView" >
                             <p:tab id="work" title="Obra" >
                                 <center>
-                                    <p:accordionPanel>
-                                        <p:tab title="Datos De La Obra" >
-                                            <h:panelGrid cellpadding="10" columns="2" >
-                                                <h:outputText value="Nombre de la Obra:" >
-                                                </h:outputText>
-                                                <h:outputText
-                                                    value="#{workSelectorBean.selectedAuthorWork.workType.work.title}" >
-                                                </h:outputText>
+                                    <p:fieldset legend="Datos De La Obra" >
+                                        <h:panelGrid cellpadding="10" columns="2" >
+                                            <h:outputText value="Nombre de la Obra:" >
+                                            </h:outputText>
+                                            <h:outputText
+                                                value="#{workSelectorBean.selectedAuthorWork.workType.work.title}" >
+                                            </h:outputText>
 
-                                                <h:outputText
-                                                    value="Fecha de Entrega:" >
-                                                </h:outputText>
-                                                <h:outputText
-                                                    value="#{workSelectorBean.selectedAuthorWork.delivering}" >
-                                                </h:outputText>
+                                            <h:outputText
+                                                value="Fecha de Entrega:" >
+                                            </h:outputText>
+                                            <h:outputText
+                                                value="#{workSelectorBean.selectedAuthorWork.delivering}" >
+                                            </h:outputText>
 
-                                                <h:outputText value="Descripción de la Obra:" >
-                                                </h:outputText>
-                                                <p:inputTextarea disabled="true"
-                                                                 value="#{workSelectorBean.selectedAuthorWork.workType.work.description}" >
-                                                </p:inputTextarea> 
-                                            </h:panelGrid>
-                                        </p:tab>
-                                        <p:tab title="Datos De La Dependencia" >
-                                            <h:panelGrid columns="2" cellpadding="10" >
-                                                <h:outputText
-                                                    value="Registro DNDA:" >
-                                                </h:outputText>
-                                                <h:outputText
-                                                    value="#{workSelectorBean.selectedAuthorWork.workType.work.dependency.dnda.number}" >
-                                                </h:outputText>
+                                            <h:outputText value="Descripción de la Obra:" >
+                                            </h:outputText>
+                                            <p:inputTextarea disabled="true"
+                                                             value="#{workSelectorBean.selectedAuthorWork.workType.work.description}" >
+                                            </p:inputTextarea> 
+                                        </h:panelGrid>
+                                    </p:fieldset>
+                                    <p:spacer width="10px" ></p:spacer>
+                                    <p:fieldset legend="Datos De La Dependencia" >
+                                        <h:panelGrid columns="2" cellpadding="10" >
+                                            <h:outputText
+                                                value="Registro DNDA:" >
+                                            </h:outputText>
+                                            <h:outputText
+                                                value="#{workSelectorBean.selectedAuthorWork.workType.work.dependency.dnda.number}" >
+                                            </h:outputText>
 
-                                                <h:outputText
-                                                    value="Dependencia Acádemica:" >
-                                                </h:outputText>
-                                                <h:outputText
-                                                    value="#{workSelectorBean.selectedAuthorWork.workType.work.dependency.name}" >
-                                                </h:outputText>
-                                            </h:panelGrid>
-                                        </p:tab>
-                                    </p:accordionPanel>
+                                            <h:outputText
+                                                value="Dependencia Acádemica:" >
+                                            </h:outputText>
+                                            <h:outputText
+                                                value="#{workSelectorBean.selectedAuthorWork.workType.work.dependency.name}" >
+                                            </h:outputText>
+                                        </h:panelGrid>
+                                    </p:fieldset>
                                 </center>
                             </p:tab>
 
@@ -197,13 +200,21 @@
 
                             <p:tab id="coments" title="Observaciones" >
                                 <center>
-                                    <h:panelGrid cellpadding="10" columns="2">
-                                        <h:outputText value="Observaciones o comentarios:" >
-                                        </h:outputText>
-                                        <p:inputTextarea disabled="true" 
-                                                         value="COMENTARIOS">
-                                        </p:inputTextarea>
-                                    </h:panelGrid>
+                                    <p:dataTable resizableColumns="true"
+                                                 value="#{workSelectorBean.workComments}"
+                                                 var="comment" >
+                                        <p:column headerText="Comentario" >
+                                            <h:outputText
+                                                value="#{comment.text}" >
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column headerText="Fecha" width="200" >
+                                            <h:outputText
+                                                value="#{comment.dateTime}" >
+                                            </h:outputText>
+                                        </p:column>
+                                    </p:dataTable>
                                 </center>
                             </p:tab>
                         </p:tabView>

@@ -8,7 +8,11 @@
       xmlns:p="http://primefaces.org/ui" >
 
     <h:head>
-        <title>Crear Obra</title>
+        <f:facet name="workCreator" >
+            <meta content='text/html; charset=UTF-8'
+                  http-equiv="Content-Type" />
+            <title>Crear Nueva Obra</title>
+        </f:facet>
     </h:head>
 
     <h:body>
@@ -18,8 +22,8 @@
             </p:layoutUnit>
 
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
-                          header="Usuario" position="east" resizable="false" 
-                          size="200" >
+                          header="Usuario" position="north" resizable="false" 
+                          size="150" >
                 <h:outputText value="Datos del usuario" ></h:outputText>
             </p:layoutUnit>  
 
@@ -32,36 +36,58 @@
 
                             <p:tab id="work" title="Obra" >
                                 <center>
-                                    <h:panelGrid  cellpadding="10" columns="2" >
-                                        <h:outputText
-                                            value="Registro DNDA:" >
-                                        </h:outputText>
-                                        <p:inputText ></p:inputText>
+                                    <p:accordionPanel activeIndex="0,1"
+                                                      multiple="true" >
+                                        <p:tab title="Datos De La Obra" >
+                                            <h:panelGrid  cellpadding="10" columns="2" >
+                                                <h:outputText
+                                                    value="Registro DNDA:" >
+                                                </h:outputText>
+                                                <p:inputText value="Esto no va aquí" >
+                                                </p:inputText>
 
-                                        <h:outputText value="Nombre de la Obra:" >
-                                        </h:outputText>
-                                        <p:inputText
-                                            value="#{creatorWorkBean.work.title}" >
-                                        </p:inputText>
+                                                <h:outputText value="Nombre de la Obra:" >
+                                                </h:outputText>
+                                                <p:inputText
+                                                    value="#{creatorWorkBean.work.title}" >
+                                                </p:inputText>
 
-                                        <h:outputText
-                                            value="Fecha de Entrega:" >
-                                        </h:outputText>
-                                        <p:calendar effect="explode" >
-                                        </p:calendar>
+                                                <h:outputText
+                                                    value="Fecha de Entrega:" >
+                                                </h:outputText>
+                                                <p:calendar effect="explode" >
+                                                </p:calendar>
 
-                                        <h:outputText value="Descripción de la Obra:" >
-                                        </h:outputText>
-                                        <p:inputTextarea autoResize="false" cols="30"
-                                                         counter="counter"
-                                                         counterTemplate="{0} Caracteres Restantes."
-                                                         maxlength="150" rows="5"
-                                                         value="#{creatorWorkBean.work.description}" >
-                                        </p:inputTextarea>
-                                    </h:panelGrid>
+                                                <h:outputText value="Descripción:" >
+                                                </h:outputText>
+                                                <p:inputTextarea autoResize="false" cols="30"
+                                                                 counter="counter"
+                                                                 counterTemplate="{0} Caracteres Restantes."
+                                                                 maxlength="150" rows="5"
+                                                                 value="#{creatorWorkBean.work.description}" >
+                                                </p:inputTextarea>
+                                            </h:panelGrid>
 
-                                    <h:outputText id="counter" >
-                                    </h:outputText>
+                                            <h:outputText id="counter" >
+                                            </h:outputText>
+                                        </p:tab>
+                                        <p:tab title="Datos De La Dependencia" >
+                                            <h:panelGrid  cellpadding="10" columns="2" >
+                                                <h:outputLabel for="dependenciesNameList" 
+                                                               style="font-weight:bold"
+                                                               value="Nombre de la Dependencia:" >
+                                                </h:outputLabel>
+                                                <p:selectOneMenu id="dependenciesNameList"
+                                                                 label="Nombres de Dependencias"
+                                                                 required="true"
+                                                                 value="#{creatorWorkBean.dependecyName}" >
+                                                    <f:selectItems
+                                                        value="#{creatorWorkBean.dependenciesNames}" >
+                                                    </f:selectItems>
+                                                </p:selectOneMenu>
+                                            </h:panelGrid>
+                                        </p:tab>
+                                    </p:accordionPanel>
                                 </center>
                             </p:tab>
 
@@ -262,7 +288,7 @@
 
                                     </h:panelGrid>
                                     <p:button id="save" icon="ui-icon-disk" 
-                                             outcome="index" value="Guardar" >
+                                              outcome="index" value="Guardar" >
                                     </p:button>
                                 </center>
                             </p:tab>                            
