@@ -25,21 +25,21 @@
     <managed-bean>
         <managed-bean-name>loginUserBean</managed-bean-name>
         <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.member.login.LoginUserBean
+            co.edu.udea.juridicapp.web.bean.user.login.LoginUserBean
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>registrationUserBean</managed-bean-name>
         <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.member.data.registration.RegistrationUserBean
+            co.edu.udea.juridicapp.web.bean.user.registration.RegistrationUserBean
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>updateUserBean</managed-bean-name>
         <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.member.data.update.UpdateUserBean
+            co.edu.udea.juridicapp.web.bean.user.update.UpdateUserBean
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
@@ -61,6 +61,41 @@
         <managed-bean-name>creatorWorkBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.work.create.CreatorWorkBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>dependencyBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.dependency.DependencyBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>profileBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.profile.ProfileBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>roleBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.role.RoleBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>supportBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.support.SupportBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>typeBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.type.TypeBean
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>

@@ -1,7 +1,10 @@
-package co.edu.udea.juridicapp.web.bean.member.data.registration;
+package co.edu.udea.juridicapp.web.bean.user.registration;
 
+import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
 import co.edu.udea.juridicapp.persistence.dao.IPersonDAO;
+import co.edu.udea.juridicapp.persistence.dao.IProfileDAO;
 import co.edu.udea.juridicapp.persistence.entity.Person;
+import co.edu.udea.juridicapp.persistence.entity.PersonPK;
 import co.edu.udea.juridicapp.persistence.entity.User;
 import co.edu.udea.juridicapp.persistence.entity.enums.DocumentTypeUserEnum;
 import java.io.Serializable;
@@ -19,11 +22,17 @@ public final class RegistrationUserBean implements Serializable {
 
     private static final long serialVersionUID = 3757147504987197440L;
     @Autowired()
+    private IDependencyDAO dependencyDAO;
+    @Autowired()
     private IPersonDAO personDAO;
+    @Autowired()
+    private IProfileDAO profileDAO;
     private Person person;
     private User user;
+    private String dependencyName;
     private String documentType;
     private String idNumber;
+    private String profileName;
     private List<String> documentsType;
 
     public RegistrationUserBean() {
@@ -31,6 +40,24 @@ public final class RegistrationUserBean implements Serializable {
 
         this.setPerson(new Person());
         this.setUser(new User());
+    }
+
+    public String getProfileName() {
+
+        return (this.profileName);
+    }
+
+    public void setProfileName(String profileName) {
+        this.profileName = profileName;
+    }
+
+    public String getDependencyName() {
+
+        return (this.dependencyName);
+    }
+
+    public void setDependencyName(String dependencyName) {
+        this.dependencyName = dependencyName;
     }
 
     public List<String> getDocumentsType() {
@@ -74,20 +101,22 @@ public final class RegistrationUserBean implements Serializable {
         this.person = person;
     }
 
-    public void doSubscribtion(ActionEvent actionEvent) {
-        if ((this.documentType != null) && (this.idNumber != null)
+    public void doRegistration(ActionEvent actionEvent) {
+        if ((this.getDocumentType() != null) && (this.getIdNumber() != null)
                 && (this.user.getUserName() != null)
-                && (this.user.getPassword() != null)) {
-//            this.user.setPersonPK(new PersonPK(this.documentType,
-//                    this.idNumber.trim()));
-//            this.user.setDependency(new Dependency("DRAI Facultad De Ingeniería"));
-//            this.user.setRole(new Profile("Secretaria"));
-//
-//            this.person.setPersonPK(new PersonPK(this.documentType,
-//                    this.idNumber.trim()));
-//            this.person.setUser(this.user);
-//
-//            this.personDAO.savePerson(this.person);
+                && (this.user.getPassword() != null)
+                && (this.getDependencyName() != null)
+                && (this.getProfileName() != null)) {
+            this.user.setPersonPK(new PersonPK(this.documentType,
+                    this.idNumber.trim()));
+            this.user.setDependency(this.dependencyDAO.findDependency(this.getDependencyName()));
+            this.user.setRole(this.profileDAO.findProfile(this.getProfileName()));
+
+            this.person.setPersonPK(new PersonPK(this.documentType,
+                    this.idNumber.trim()));
+            this.person.setUser(this.user);
+
+            this.personDAO.savePerson(this.person);
         }
     }
 

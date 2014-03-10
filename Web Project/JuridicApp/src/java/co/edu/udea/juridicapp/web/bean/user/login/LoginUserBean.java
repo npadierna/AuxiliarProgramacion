@@ -1,4 +1,4 @@
-package co.edu.udea.juridicapp.web.bean.member.login;
+package co.edu.udea.juridicapp.web.bean.user.login;
 
 import co.edu.udea.juridicapp.persistence.dao.IUserDAO;
 import co.edu.udea.juridicapp.persistence.entity.User;

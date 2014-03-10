@@ -25,33 +25,33 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit collapsible="false" closable="false"
-                              position="west" resizable="false" size="250" >
+                              position="west" resizable="false" size="280" >
                     <p:panelMenu>
                         <p:submenu label="Usuarios" >
-                            <p:menuitem value="Crear" >
+                            <p:menuitem value="Nuevo" >
                             </p:menuitem>
                             <p:menuitem value="Actualizar" ></p:menuitem>
                             <p:menuitem value="Borrar" ></p:menuitem>
                         </p:submenu>
                         <p:submenu label="Dependencias" >
-                            <p:menuitem update="mainAdminPanel" value="Crear" >
+                            <p:menuitem update="mainAdminPanel" value="Nueva" >
                             </p:menuitem>
                             <p:menuitem update="mainAdminPanel"
                                         value="Actualizar" >
                             </p:menuitem>
                         </p:submenu>
-                        <p:submenu label="Roles" >
-                            <p:menuitem update="mainAdminPanel" value="Crear" >
+                        <p:submenu label="Vínculos Universitarios" >
+                            <p:menuitem update="mainAdminPanel" value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
-                        <p:submenu label="Soporte" >
+                        <p:submenu label="Soportes Para Obras" >
                             <p:menuitem url="http://www.primefaces.org"
-                                        value="Crear" >
+                                        value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Tipos De Obras" >
                             <p:menuitem url="http://www.primefaces.org"
-                                        value="Crear" >
+                                        value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
                     </p:panelMenu>
@@ -60,7 +60,9 @@
                 <p:layoutUnit position="center" >
                     <center>
                         <p:panel id="mainAdminPanel" >
-                            <iframe src="#{creatorEntityBean.mock}" ></iframe>
+                            <iframe align="center" height="500px"
+                                    src="#{creatorEntityBean.mock}"
+                                    width="1100px" ></iframe>
                         </p:panel>
                     </center>
                 </p:layoutUnit>

@@ -14,7 +14,7 @@ public class CreatorEntityBean implements Serializable {
     //private static final long serialVersionUID = 1L;
     @Autowired()
     private IDependencyDAO dependencyDAO;
-    private String mock = "http://localhost:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/registration/registermember.xhtml";
+    private String mock = "http://192.168.0.199:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/user/registration/registeruser.xhtml";
 
     public CreatorEntityBean() {
         super();

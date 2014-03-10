@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" >
+
+    <h:head>
+        <f:facet name="registerMember" >
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+            <title>Crear Rol</title>
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <h:form id="roleCreator" >
+            <center>
+                <p:panel header="Crear Vínculo Universitario"
+                         id="roleCreatorPanel" style="font-weight:bold" >
+                    <h:panelGrid cellpadding="5" columns="3" >
+                        <h:outputLabel for="roleName"
+                                       style="font-weight:bold" 
+                                       value="Nombre del Vínculo:" >
+                        </h:outputLabel>
+                        <p:inputText id="roleName"
+                                     label="Nombre del Vínculo"
+                                     maxlength="35" required="true" size="45"
+                                     value="#{roleBean.role.profile}" >
+                        </p:inputText>
+                        <p:watermark for="roleName" value="Obligatorio" >
+                        </p:watermark>
+
+                        <h:outputLabel for="roleDescription"
+                                       style="font-weight:bold" 
+                                       value="Descripción:" >
+                        </h:outputLabel>
+                        <p:inputTextarea cols="45" id="roleDescription"
+                                         maxlength="75" required="false"
+                                         value="#{roleBean.role.description}" >
+                        </p:inputTextarea>
+                        <p:watermark for="roleDescription"
+                                     value="Descripción breve." >
+                        </p:watermark>
+                    </h:panelGrid>
+                </p:panel>
+            </center>
+        </h:form>
+    </h:body>
+</html>

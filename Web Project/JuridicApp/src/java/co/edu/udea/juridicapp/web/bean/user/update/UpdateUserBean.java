@@ -1,4 +1,4 @@
-package co.edu.udea.juridicapp.web.bean.member.data.update;
+package co.edu.udea.juridicapp.web.bean.user.update;
 
 import co.edu.udea.juridicapp.persistence.dao.IPersonDAO;
 import co.edu.udea.juridicapp.persistence.dao.IUserDAO;

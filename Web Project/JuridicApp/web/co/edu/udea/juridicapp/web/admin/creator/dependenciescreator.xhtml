@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" >
+
+    <h:head>
+        <f:facet name="dependencyCreator" >
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+            <title>Crear Dependencia</title>
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <h:form id="dependencyCreator" >
+            <center>
+                <p:panel header="Crear Dependencia" id="dependecyCreatorPanel"
+                         style="font-weight:bold" >
+                    <h:panelGrid cellpadding="5" columns="3" >
+                        <h:outputLabel for="dnda"
+                                       style="font-weight:bold" 
+                                       value="DNDA:" >
+                        </h:outputLabel>
+                        <p:inputText id="dnda"
+                                     label="DNDA"
+                                     maxlength="30" required="true" size="45"
+                                     value="" >
+                        </p:inputText>
+                        <p:watermark for="dnda" value="Número de DNDA" >
+                        </p:watermark>
+
+                        <h:outputLabel for="dependencyName"
+                                       style="font-weight:bold" 
+                                       value="Tipo Documento:" >
+                        </h:outputLabel>
+                        <p:inputText id="dependencyName"
+                                     label="Nombre de Dependencia"
+                                     maxlength="35" required="true" size="45"
+                                     value="" >
+                        </p:inputText>
+                        <p:watermark for="dependencyName" value="Obligatorio" >
+                        </p:watermark>
+
+                        <h:outputLabel for="dependencyDescription"
+                                       style="font-weight:bold" 
+                                       value="Descripción:" >
+                        </h:outputLabel>
+                        <p:inputTextarea id="dependencyDescription"
+                                         maxlength="75" required="false"
+                                         cols="45" >
+                        </p:inputTextarea>
+                        <p:watermark for="dependencyDescription"
+                                     value="Descripción breve." >
+                        </p:watermark>
+                    </h:panelGrid>
+                </p:panel>               
+            </center>
+        </h:form>
+    </h:body>
+</html>

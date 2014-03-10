@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" >
+
+    <h:head>
+        <f:facet name="registerMember" >
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+            <title>Crear Soporte Para Obra</title>
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <h:form id="supportCreator" >
+            <center>
+                <p:panel header="Crear Soporte Para Obra" id="supportCreatorPanel"
+                         style="font-weight:bold" >
+                    <h:panelGrid cellpadding="5" columns="3" >
+                        <h:outputLabel for="supportType"
+                                       style="font-weight:bold" 
+                                       value="Tipo de Soporte:" >
+                        </h:outputLabel>
+                        <p:inputText id="supportType"
+                                     label="Tipo de Soporte"
+                                     maxlength="25" required="true" size="35"
+                                     value="#{supportBean.support.type}" >
+                        </p:inputText>
+                        <p:watermark for="supportType" value="Obligatorio" >
+                        </p:watermark>
+
+                        <h:outputLabel for="supportDescription"
+                                       style="font-weight:bold" 
+                                       value="Descripción:" >
+                        </h:outputLabel>
+                        <p:inputTextarea cols="45" id="supportDescription"
+                                         maxlength="75" required="false"
+                                         value="#{supportBean.support.description}" >
+                        </p:inputTextarea>
+                        <p:watermark for="supportDescription"
+                                     value="Descripción breve." >
+                        </p:watermark>
+                    </h:panelGrid>
+                </p:panel>
+            </center>
+        </h:form>
+    </h:body>
+</html>
