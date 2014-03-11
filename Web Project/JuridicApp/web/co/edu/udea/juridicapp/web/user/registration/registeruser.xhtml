@@ -48,6 +48,8 @@
                         <p:inputText id="personIdNumber" label="Número Documento"
                                      maxlength="20" required="true" size="45"
                                      value="#{registrationUserBean.idNumber}" >
+                            <f:validateRegex pattern="[0-9]+" >
+                            </f:validateRegex>
                         </p:inputText>
                         <p:watermark for="personIdNumber" value="Obligatorio" >
                         </p:watermark>
@@ -58,6 +60,8 @@
                         <p:inputText id="personFirstNames" label="Nombres" 
                                      maxlength="35" required="true" size="45" 
                                      value="#{registrationUserBean.person.firstNames}" >
+                            <f:validateRegex pattern="^[a-zA-Z]+"  >
+                            </f:validateRegex>                        
                         </p:inputText>
                         <p:watermark for="personFirstNames" value="Obligatorio" >
                         </p:watermark>
@@ -68,6 +72,8 @@
                         <p:inputText id="personLastNames" label="Apellidos"
                                      maxlength="35" required="true" size="45"
                                      value="#{registrationUserBean.person.lastNames}" >
+                             <f:validateRegex pattern="^[a-zA-Z]+"  >
+                            </f:validateRegex>    
                         </p:inputText>
                         <p:watermark for="personLastNames" value="Obligatorio" >
                         </p:watermark>
@@ -113,6 +119,9 @@
                                      label="Correo Electrónico" maxlength="35"
                                      required="true" size="45" 
                                      value="#{registrationUserBean.person.email}" >
+                            <f:validateRegex
+                                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" >
+                            </f:validateRegex>
                         </p:inputText>
                         <p:watermark for="personEmail" value="Obligatorio" >
                         </p:watermark>
