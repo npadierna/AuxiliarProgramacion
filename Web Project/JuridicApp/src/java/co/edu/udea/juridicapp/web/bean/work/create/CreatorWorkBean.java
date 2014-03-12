@@ -22,8 +22,8 @@ public final class CreatorWorkBean implements Serializable {
     @Autowired()
     private IDependencyDAO dependencyDAO;
     private List<String> dependenciesNames;
-    private Work work;
     private String dependecyName;
+    private Work work;
 
     public CreatorWorkBean() {
         super();

@@ -57,9 +57,11 @@
                 <h:form id="mainForm" >
                     <p:growl id="growl" showDetail="true" ></p:growl>
                     <center>
-                        <p:dataTable draggableColumns="true" id="mainTable"
-                                     paginator="true"
-                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        <p:dataTable draggableColumns="true"
+                                     emptyMessage="No se han encontrado ningún tipo de Obras."
+                                     id="mainTable"
+                                     paginator="true" 
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowKey="#{authorWork.key}"
                                      rows="10" rowsPerPageTemplate="10,15,30"
                                      selection="#{workListBean.selectedAuthorWork}"
@@ -72,7 +74,8 @@
                                 Listado De Obras
                             </f:facet>
 
-                            <p:column filterBy="issue" filterMatchMode="exact"
+                            <p:column filterBy="#{authorWork.workType.work.title}"
+                                      filterMatchMode="contains"
                                       style="font-size:15px;" >
                                 <f:facet id="issue" name="header" >
                                     <h:outputText value="Nombre De La Obra" >
@@ -95,7 +98,10 @@
                                 </h:outputText>
                             </p:column>
 
-                            <p:column sortBy="#{authorWork.authorWorkPK.workTypeName}"
+                            <p:column filterBy="#{authorWork.authorWorkPK.workTypeName}"
+                                      filterMatchMode="exact"
+                                      filterOptions="#{typeBean.typessSelectItems}"
+                                sortBy="#{authorWork.authorWorkPK.workTypeName}"
                                       style="font-size:15px;" >
                                 <f:facet id="type" name="header">  
                                     <h:outputText value="Tipo" >
@@ -106,7 +112,9 @@
                                 </h:outputText>
                             </p:column>
 
-                            <p:column sortBy="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}"
+                            <p:column filterBy="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}"
+                                      filterMatchMode="contains"
+                                      sortBy="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}"
                                       style="font-size:15px;" >
                                 <f:facet id="author" name="header" >
                                     <h:outputText value="Autor" >
@@ -149,7 +157,11 @@
                                 </h:outputText>
                             </p:column>
 
-                            <p:column style="font-size:15px;" >
+                            <p:column filterBy="#{authorWork.supportType.type}"
+                                      filterMatchMode="exact"
+                                      filterOptions="#{supportBean.supportsSelectItems}"
+                                      sortBy="#{authorWork.supportType.type}"
+                                      style="font-size:15px;" >
                                 <f:facet id="support" name="header" >
                                     <h:outputText value="Soporte" >
                                     </h:outputText>  

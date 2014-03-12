@@ -25,10 +25,10 @@ public final class LoginUserBean implements Serializable {
     private static final String LOGGED_IN_KEY = "loggedIn";
     @Autowired()
     private IUserDAO userDAO;
+    private boolean loggedIn;
     private String userName;
     private String password;
     private User loggedUser;
-    private boolean loggedIn;
 
     public LoginUserBean() {
         super();

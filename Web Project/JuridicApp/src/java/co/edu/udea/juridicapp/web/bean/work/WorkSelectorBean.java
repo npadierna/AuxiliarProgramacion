@@ -28,10 +28,10 @@ public class WorkSelectorBean {
     private IAuthorWorkDAO authorWorkDAO;
     @Autowired()
     private ICommentDAO commentDAO;
+    private boolean onSelected;
     private AuthorWork selectedAuthorWork;
     private List<AuthorWork> authorsWorks;
     private List<Comment> workComments;
-    private boolean onSelected;
 
     public WorkSelectorBean() {
         super();

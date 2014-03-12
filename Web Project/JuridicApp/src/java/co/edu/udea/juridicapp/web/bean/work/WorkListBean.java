@@ -1,17 +1,11 @@
 package co.edu.udea.juridicapp.web.bean.work;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorWorkDAO;
-import co.edu.udea.juridicapp.persistence.entity.AuthorPK;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +22,7 @@ public final class WorkListBean implements Serializable {
     @Autowired()
     private IAuthorWorkDAO authorWorkDAO;
     private List<AuthorWork> authorWorks;
+    private List<AuthorWork> authorsWorksFiltered;
     private AuthorWork selectedAuthorWork;
 
     public WorkListBean() {
@@ -41,6 +36,15 @@ public final class WorkListBean implements Serializable {
 
     public void setAuthorWorks(List<AuthorWork> authorWorks) {
         this.authorWorks = authorWorks;
+    }
+
+    public List<AuthorWork> getAuthorsWorksFiltered() {
+
+        return (this.authorsWorksFiltered);
+    }
+
+    public void setAuthorsWorksFiltered(List<AuthorWork> authorsWorksFiltered) {
+        this.authorsWorksFiltered = authorsWorksFiltered;
     }
 
     public AuthorWork getSelectedAuthorWork() {

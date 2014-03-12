@@ -25,10 +25,10 @@ public final class UpdateUserBean implements Serializable {
     private IPersonDAO personDAO;
     @Autowired()
     private IUserDAO userDAO;
-    private User loggedUser;
     private String lastPassword;
     private String newPassword;
     private String userName;
+    private User loggedUser;
 
     public UpdateUserBean() {
         super();

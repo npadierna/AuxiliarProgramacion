@@ -27,28 +27,25 @@ public final class RegistrationUserBean implements Serializable {
     private IPersonDAO personDAO;
     @Autowired()
     private IProfileDAO profileDAO;
+    private List<String> documentsType;
     private Person person;
-    private User user;
     private String dependencyName;
     private String documentType;
     private String idNumber;
     private String profileName;
-    private List<String> documentsType;
+    private User user;
 
     public RegistrationUserBean() {
         super();
-
-        this.setPerson(new Person());
-        this.setUser(new User());
     }
 
-    public String getProfileName() {
+    public Person getPerson() {
 
-        return (this.profileName);
+        return (this.person);
     }
 
-    public void setProfileName(String profileName) {
-        this.profileName = profileName;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public String getDependencyName() {
@@ -83,6 +80,15 @@ public final class RegistrationUserBean implements Serializable {
         this.idNumber = idNumber;
     }
 
+    public String getProfileName() {
+
+        return (this.profileName);
+    }
+
+    public void setProfileName(String profileName) {
+        this.profileName = profileName;
+    }
+
     public User getUser() {
 
         return (this.user);
@@ -90,15 +96,6 @@ public final class RegistrationUserBean implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Person getPerson() {
-
-        return (this.person);
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     public void doRegistration(ActionEvent actionEvent) {
@@ -123,6 +120,9 @@ public final class RegistrationUserBean implements Serializable {
     @PostConstruct()
     private void createFields() {
         FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+
+        this.setPerson(new Person());
+        this.setUser(new User());
 
         this.documentsType = DocumentTypeUserEnum.obtainDocumentsTypeList();
     }

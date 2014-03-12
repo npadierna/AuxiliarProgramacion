@@ -19,12 +19,21 @@ public class AuthorFinderTesterBean implements Serializable {
     private static final long serialVersionUID = 1L;
     @Autowired()
     private IAuthorDAO authorDAO;
+    private List<Author> authorFound;
     private String documentType;
     private String idNumber;
-    private List<Author> authorFound;
 
     public AuthorFinderTesterBean() {
         super();
+    }
+
+    public List<Author> getAuthorFound() {
+
+        return (this.authorFound);
+    }
+
+    public void setAuthorFound(List<Author> authorFound) {
+        this.authorFound = authorFound;
     }
 
     public String getDocumentType() {
@@ -43,15 +52,6 @@ public class AuthorFinderTesterBean implements Serializable {
 
     public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
-    }
-
-    public List<Author> getAuthorFound() {
-
-        return (this.authorFound);
-    }
-
-    public void setAuthorFound(List<Author> authorFound) {
-        this.authorFound = authorFound;
     }
 
     public void findAuthor(ActionEvent actionEvent) {
