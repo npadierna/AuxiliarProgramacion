@@ -13,7 +13,8 @@
         </script>
         <f:facet name="login" >
             <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" />
+                  http-equiv="Content-Type" >
+            </meta>
             <title>Iniciar Sesión</title>
         </f:facet>
     </h:head>
@@ -53,6 +54,7 @@
                     </h:panelGrid>
 
                     <p:spacer width="30px" ></p:spacer>
+
                     <p:commandButton action="#{updateUserBean.receiveLoggedUser(loginUserBean.loggedUser)}"
                                      actionListener="#{loginUserBean.logIn}"
                                      id="loginButton"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN"
     "http://glassfish.org/dtds/glassfish-resources_1_5.dtd" >
+
 <resources>
     <jdbc-connection-pool allow-non-component-callers="false"
                           associate-with-thread="false"
@@ -28,15 +29,30 @@
                           steady-pool-size="8"
                           validate-atmost-once-period-in-seconds="0"
                           wrap-jdbc-objects="false" >
-        <property name="serverName" value="localhost" />
-        <property name="portNumber" value="" />
-        <property name="databaseName" value="JuridicApp" />
-        <property name="User" value="root" />
-        <property name="Password" value="coldlomejor" />
-        <property name="URL" value="jdbc:mysql://localhost:3306/JuridicApp" />
-        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="serverName"
+                  value="localhost" >
+        </property>
+        <property name="portNumber"
+                  value="" >
+        </property>
+        <property name="databaseName"
+                  value="JuridicApp" >
+        </property>
+        <property name="User"
+                  value="root" >
+        </property>
+        <property name="Password"
+                  value="230491" >
+        </property>
+        <property name="URL"
+                  value="jdbc:mysql://localhost:3306/JuridicApp" >
+        </property>
+        <property name="driverClass"
+                  value="com.mysql.jdbc.Driver" >
+        </property>
     </jdbc-connection-pool>
 
     <jdbc-resource enabled="true" jndi-name="jndi/juridicapp" object-type="user"
-                   pool-name="mysql_JuridicApp_rootPool" />
+                   pool-name="mysql_JuridicApp_rootPool" >
+    </jdbc-resource>
 </resources>

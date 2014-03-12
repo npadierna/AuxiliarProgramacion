@@ -9,7 +9,9 @@
 
     <h:head>
         <f:facet name="registerMember" >
-            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+            <meta content='text/html; charset=UTF-8'
+                  http-equiv="Content-Type" >
+            </meta>
             <title>Crear Rol</title>
         </f:facet>
     </h:head>
@@ -20,6 +22,9 @@
                 <p:panel header="Crear Vínculo Universitario"
                          id="roleCreatorPanel" style="font-weight:bold" >
                     <h:panelGrid cellpadding="5" columns="3" >
+                        <p:growl id="growlLogin" life="3000" showDetail="true" >
+                        </p:growl>
+
                         <h:outputLabel for="roleName"
                                        style="font-weight:bold" 
                                        value="Nombre del Vínculo:" >
@@ -36,14 +41,21 @@
                                        style="font-weight:bold" 
                                        value="Descripción:" >
                         </h:outputLabel>
-                        <p:inputTextarea cols="45" id="roleDescription"
-                                         maxlength="75" required="false"
+                        <p:inputTextarea autoResize="false" cols="45"
+                                         id="roleDescription" maxlength="75"
+                                         required="false"
                                          value="#{roleBean.role.description}" >
                         </p:inputTextarea>
                         <p:watermark for="roleDescription"
                                      value="Descripción breve." >
                         </p:watermark>
                     </h:panelGrid>
+
+                    <p:commandButton actionListener="#{roleBean.save}"
+                                     id="saveRoleButton"
+                                     update="growlLogin"
+                                     value="Guardar" >
+                    </p:commandButton>
                 </p:panel>
             </center>
         </h:form>

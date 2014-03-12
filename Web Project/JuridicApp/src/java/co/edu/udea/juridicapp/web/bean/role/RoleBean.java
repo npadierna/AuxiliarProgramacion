@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public class RoleBean implements Serializable {
 
-    //private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 4651738957089294336L;
     @Autowired()
     private IRoleDAO roleDAO;
     private Role role;
@@ -44,6 +44,9 @@ public class RoleBean implements Serializable {
         } else {
             // Errrrrrrrrrrrrrrrroooooooooooooorrrrrrrrr. El nombre no puede ser nulo.
         }
+
+        this.getRole().setDescription("");
+        this.getRole().setProfile("");
     }
 
     @PostConstruct()

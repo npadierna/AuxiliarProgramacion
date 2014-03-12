@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public class SupportBean implements Serializable {
 
-    //private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2392665482524712960L;
     @Autowired()
     private ISupportDAO supportDAO;
     private Support support;
@@ -44,6 +44,9 @@ public class SupportBean implements Serializable {
         } else {
             // Error, el tipo no puede ser nulo.
         }
+
+        this.getSupport().setDescription("");
+        this.getSupport().setType("");
     }
 
     @PostConstruct()

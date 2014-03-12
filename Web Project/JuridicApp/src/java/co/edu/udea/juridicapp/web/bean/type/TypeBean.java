@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public class TypeBean implements Serializable {
 
-    //private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1080319077051732992L;
     @Autowired()
     private ITypeDAO typeDAO;
     private Type type;
@@ -44,6 +44,9 @@ public class TypeBean implements Serializable {
         } else {
             // Error, el nombre no puede ser nul.
         }
+
+        this.getType().setDescription("");
+        this.getType().setName("");
     }
 
     @PostConstruct()

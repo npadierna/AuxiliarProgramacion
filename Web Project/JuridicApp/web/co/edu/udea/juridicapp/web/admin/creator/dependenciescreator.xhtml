@@ -9,7 +9,9 @@
 
     <h:head>
         <f:facet name="dependencyCreator" >
-            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+            <meta content='text/html; charset=UTF-8'
+                  http-equiv="Content-Type" >
+            </meta>
             <title>Crear Dependencia</title>
         </f:facet>
     </h:head>
@@ -19,6 +21,9 @@
             <center>
                 <p:panel header="Crear Dependencia" id="dependecyCreatorPanel"
                          style="font-weight:bold" >
+                    <p:growl id="growlLogin" life="3000" showDetail="true" >
+                    </p:growl>
+
                     <h:panelGrid cellpadding="5" columns="3" >
                         <h:outputLabel for="dnda"
                                        style="font-weight:bold" 
@@ -34,12 +39,12 @@
 
                         <h:outputLabel for="dependencyName"
                                        style="font-weight:bold" 
-                                       value="Tipo Documento:" >
+                                       value="Nombre de la Dependencia:" >
                         </h:outputLabel>
                         <p:inputText id="dependencyName"
                                      label="Nombre de Dependencia"
                                      maxlength="35" required="true" size="45"
-                                     value="" >
+                                     value="#{dependencyBean.dependency.name}" >
                         </p:inputText>
                         <p:watermark for="dependencyName" value="Obligatorio" >
                         </p:watermark>
@@ -48,14 +53,22 @@
                                        style="font-weight:bold" 
                                        value="Descripción:" >
                         </h:outputLabel>
-                        <p:inputTextarea id="dependencyDescription"
+                        <p:inputTextarea cols="45" id="dependencyDescription"
                                          maxlength="75" required="false"
-                                         cols="45" >
+                                         value="#{dependencyBean.dependency.description}" >
                         </p:inputTextarea>
                         <p:watermark for="dependencyDescription"
                                      value="Descripción breve." >
                         </p:watermark>
                     </h:panelGrid>
+
+<!--                    <p:commandButton action=""
+                                     actionListener=""
+                                     id="loginButton"
+                                     oncomplete="handleLoginRequest(xhr, status, args)"
+                                     update="growlLogin"
+                                     value="Guardar" >
+                    </p:commandButton>-->
                 </p:panel>               
             </center>
         </h:form>

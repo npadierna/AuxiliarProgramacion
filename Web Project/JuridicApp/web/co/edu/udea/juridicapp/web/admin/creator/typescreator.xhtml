@@ -9,7 +9,9 @@
 
     <h:head>
         <f:facet name="registerMember" >
-            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+            <meta content='text/html; charset=UTF-8'
+                  http-equiv="Content-Type" >
+            </meta>
             <title>Crear Soporte Para Obra</title>
         </f:facet>
     </h:head>
@@ -20,6 +22,9 @@
                 <p:panel header="Crear Tipo De Obra" id="supportCreatorPanel"
                          style="font-weight:bold" >
                     <h:panelGrid cellpadding="5" columns="3" >
+                        <p:growl id="growlLogin" life="3000" showDetail="true" >
+                        </p:growl>
+
                         <h:outputLabel for="workType"
                                        style="font-weight:bold" 
                                        value="Tipo de Obra:" >
@@ -44,6 +49,12 @@
                                      value="Descripción breve." >
                         </p:watermark>
                     </h:panelGrid>
+
+                    <p:commandButton actionListener="#{typeBean.save}"
+                                     id="saveRoleButton"
+                                     update="growlLogin"
+                                     value="Guardar" >
+                    </p:commandButton>
                 </p:panel>
             </center>
         </h:form>

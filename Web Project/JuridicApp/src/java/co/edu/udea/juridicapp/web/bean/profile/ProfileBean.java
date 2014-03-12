@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public class ProfileBean implements Serializable {
 
-//    private static final long serialVersionUID = 3757147504987197440L;
+    private static final long serialVersionUID = 8232630815530828800L;
     @Autowired()
     private IProfileDAO profileDAO;
     private List<String> profilesNames;
