@@ -6,7 +6,7 @@
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"  
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
 
     <h:head>
         <script type="text/javascript"
@@ -21,22 +21,21 @@
     </h:head>
 
     <h:body>
-
         <p:layout fullPage="true" >
-
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
                           position="south" resizable="false" 
                           size="50" >
             </p:layoutUnit>  
 
-            <p:layoutUnit closable="false" collapsible="true" effect="drop" 
+            <p:layoutUnit closable="false" collapsible="false" effect="drop" 
                           header="" position="north" resizable="false" 
                           size="130" >
-                
                 <center>
                     <p:panel id="memberManagementPanel" >
                         <center>
-                            <ui:include src="../../user/update/logoutinfouser.xhtml" />
+                            <ui:include
+                                src="../../user/update/logoutinfouser.xhtml" >
+                            </ui:include>
                             <!--p:commandLink
                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/login/login.xhtml';" >
                                 <h:outputText value="Iniciar Sesión" >
@@ -56,7 +55,7 @@
 
             <p:layoutUnit position="center" >
                 <h:form id="mainForm" >
-                    <p:growl id="growl" showDetail="true"/>  
+                    <p:growl id="growl" showDetail="true" ></p:growl>
                     <center>
                         <p:dataTable draggableColumns="true" id="mainTable"
                                      paginator="true"
@@ -75,7 +74,7 @@
 
                             <p:column filterBy="issue" filterMatchMode="exact"
                                       style="font-size:15px;" >
-                                <f:facet id="issue" name="header">  
+                                <f:facet id="issue" name="header" >
                                     <h:outputText value="Nombre De La Obra" >
                                     </h:outputText>  
                                 </f:facet>
@@ -87,7 +86,9 @@
                             <p:column sortBy="#{authorWork.delivering}"
                                       style="font-size:15px;" >
                                 <f:facet id="year" name="header" >
-                                    <h:outputText value="Fecha De Entrega" ></h:outputText>  
+                                    <h:outputText
+                                        value="Fecha De Entrega" >
+                                    </h:outputText>  
                                 </f:facet>  
                                 <h:outputText style="font-size:13px;"
                                               value="#{authorWork.delivering}" >

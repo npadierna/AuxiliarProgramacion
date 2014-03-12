@@ -10,22 +10,28 @@
     xmlns:p="http://primefaces.org/ui" >
 
     <h:form id="logoutAndUpdateInfoForm" >
-        <script type="text/javascript" src="../../../util/javascript/logOutRequestFunction.js" />
+        <script type="text/javascript"
+                src="../../../util/javascript/logOutRequestFunction.js" >
+        </script>
 
         <p align="right" >
-            <p:spacer height="5px" width="20px" />
+            <p:spacer height="5px" width="20px" ></p:spacer>
 
-            <p:commandLink onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/update/updateinfomember.xhtml';" >
+            <p:commandLink
+                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/update/updateinfomember.xhtml';" >
                 <h:outputText style="font-size: 17px;" 
-                              value="#{updateUserBean.loggedUser.userName}">
+                              value="#{updateUserBean.loggedUser.userName}" >
                 </h:outputText>
             </p:commandLink>
 
-            <p:spacer height="5px" width="20px" />
+            <p:spacer height="5px" width="20px" ></p:spacer>
 
-            <p:commandLink onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
-                           oncomplete="handleLogoutRequest(xhr, status, args)" >
-                <h:outputText value="Cerrar Sesión" style="font-size: 17px;" />
+            <p:commandLink
+                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
+                oncomplete="handleLogoutRequest(xhr, status, args)" >
+                <h:outputText value="Cerrar Sesión"
+                              style="font-size: 17px;" >
+                </h:outputText>
             </p:commandLink>
         </p>
     </h:form>

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" >
+
+    <h:head>
+        <f:facet name="registerMember" >
+            <meta content='text/html; charset=UTF-8'
+                  http-equiv="Content-Type" >
+            </meta>
+            <title>Crear Soporte Para Obra</title>
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <h:form id="supportCreator" >
+            <center>
+                <p:panel header="Añadir Autores" id="supportCreatorPanel"
+                         style="font-weight:bold" >
+
+                    <h:panelGrid cellpadding="7" columns="3" >
+                        <h:outputLabel for="authorDocumentType"
+                                       style="font-weight:bold"
+                                       value="Tipo de Documento:" >
+                        </h:outputLabel>
+                        <p:selectOneMenu id="authorDocumentType"
+                                         label="Tipo Documento" required="true" 
+                                         value="#{authorFinderTesterBean.documentType}" >
+                            <f:selectItems value="#{registrationUserBean.documentsType}" >
+                            </f:selectItems>
+                        </p:selectOneMenu>
+                        <p:watermark for="authorDocumentType"
+                                     value="Tipo de Documento" >
+                        </p:watermark>
+
+                        <h:outputLabel for="authorIdNumber"
+                                       style="font-weight:bold"
+                                       value="Número de Documento:" >
+                        </h:outputLabel>
+                        <p:inputText id="authorIdNumber"
+                                     label="Número de Documento" maxlength="20"
+                                     required="true" size="45"
+                                     value="#{authorFinderTesterBean.idNumber}" >
+                            <f:validateRegex pattern="[0-9]+" >
+                            </f:validateRegex>
+                        </p:inputText>
+                        <p:watermark for="authorIdNumber" value="Obligatorio" >
+                        </p:watermark>
+                    </h:panelGrid>
+
+                    <p:commandButton actionListener="#{authorFinderTesterBean.findAuthor}"
+                                     id="findAuthorsButton"
+                                     update="supportCreatorPanel"
+                                     value="Buscar Author" >
+                    </p:commandButton>
+
+                    <p:dataTable id="authorFoundTable"
+                                 value="#{authorFinderTesterBean.authorFound}"
+                                 var="author" >
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Apellidos" >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{author.person.lastNames}" >
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Nombres" >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{author.person.firstNames}" >
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Número Celular" >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{author.mobileNumber}" >
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Teléfono Fijo" >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{author.phoneNumber}" >
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Correo Electrónico" >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{author.person.email}" >
+                            </h:outputText>
+                        </p:column>
+                        
+                        
+                    </p:dataTable>
+                </p:panel>
+            </center>
+        </h:form>
+    </h:body>
+</html>

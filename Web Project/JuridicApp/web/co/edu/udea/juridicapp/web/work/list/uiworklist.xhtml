@@ -10,7 +10,8 @@
     xmlns:p="http://primefaces.org/ui" >
 
     <h:form id="mainForm" >
-        <p:growl id="growl" showDetail="true"/>  
+        <p:growl id="growl" showDetail="true" ></p:growl>
+
         <center>
             <p:dataTable draggableColumns="true" id="mainTable"
                          paginator="true"
@@ -29,9 +30,9 @@
 
                 <p:column filterBy="issue" filterMatchMode="exact"
                           style="font-size:15px;" >
-                    <f:facet id="issue" name="header">  
+                    <f:facet id="issue" name="header" >
                         <h:outputText value="Nombre De La Obra" >
-                        </h:outputText>  
+                        </h:outputText>
                     </f:facet>
                     <h:outputText style="font-size:13px;"
                                   value="#{authorWork.workType.work.title}" >

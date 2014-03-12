@@ -31,10 +31,10 @@
                     <h:panelGrid cellpadding="5" columns="3" >
                         <h:outputLabel for="personDocumentType"
                                        style="font-weight:bold"
-                                       value="Tipo Documento:" >
+                                       value="Tipo de Documento:" >
                         </h:outputLabel>
                         <p:selectOneMenu id="personDocumentType"
-                                         label="Tipo Documento" required="true" 
+                                         label="Tipo de Documento" required="true" 
                                          value="#{registrationUserBean.documentType}">
                             <f:selectItems value="#{registrationUserBean.documentsType}" >
                             </f:selectItems>
@@ -45,10 +45,11 @@
 
                         <h:outputLabel for="personIdNumber"
                                        style="font-weight:bold"
-                                       value="Número Documento:" >
+                                       value="Número de Documento:" >
                         </h:outputLabel>
-                        <p:inputText id="personIdNumber" label="Número Documento"
-                                     maxlength="20" required="true" size="45"
+                        <p:inputText id="personIdNumber"
+                                     label="Número de Documento" maxlength="20"
+                                     required="true" size="45"
                                      value="#{registrationUserBean.idNumber}" >
                             <f:validateRegex pattern="[0-9]+" >
                             </f:validateRegex>
