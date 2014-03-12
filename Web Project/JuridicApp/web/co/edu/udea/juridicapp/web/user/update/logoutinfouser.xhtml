@@ -14,25 +14,22 @@
                 src="../../../util/javascript/logOutRequestFunction.js" >
         </script>
 
-        <p align="right" >
-            <p:spacer height="5px" width="20px" ></p:spacer>
+        <p align="center" >
 
-            <p:commandLink
-                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/update/updateinfomember.xhtml';" >
-                <h:outputText style="font-size: 17px;" 
-                              value="#{updateUserBean.loggedUser.userName}" >
-                </h:outputText>
-            </p:commandLink>
+
+            <p:commandButton style="font-family:arial;color:black;font-size:15px;"
+                             value="Actualizar Datos"
+                             onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/user/update/updateinfouser.xhtml';" >
+            </p:commandButton>
 
             <p:spacer height="5px" width="20px" ></p:spacer>
 
-            <p:commandLink
-                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
-                oncomplete="handleLogoutRequest(xhr, status, args)" >
-                <h:outputText value="Cerrar Sesión"
-                              style="font-size: 17px;" >
-                </h:outputText>
-            </p:commandLink>
+            <p:commandButton actionListener="#{loginUserBean.logOut}"
+                             style="font-family:arial;color:black;font-size:15px;"
+                             value="Cerrar Sesión"
+                             onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
+                             oncomplete="handleLogoutRequest(xhr, status, args)" >
+            </p:commandButton>
         </p>
     </h:form>
 </ui:composition>

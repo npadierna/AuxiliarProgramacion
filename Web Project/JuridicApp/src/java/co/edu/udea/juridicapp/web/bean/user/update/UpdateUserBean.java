@@ -4,6 +4,7 @@ import co.edu.udea.juridicapp.persistence.dao.IPersonDAO;
 import co.edu.udea.juridicapp.persistence.dao.IUserDAO;
 import co.edu.udea.juridicapp.persistence.entity.User;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -29,6 +30,7 @@ public final class UpdateUserBean implements Serializable {
     private String newPassword;
     private String userName;
     private User loggedUser;
+    private boolean changed;
 
     public UpdateUserBean() {
         super();
@@ -115,6 +117,7 @@ public final class UpdateUserBean implements Serializable {
     public void updateData(ActionEvent actionEvent) {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage message;
+        changed = false;
 
         User m = this.updateUser(this.loggedUser, this.userName);
         if (m != null) {
@@ -122,6 +125,7 @@ public final class UpdateUserBean implements Serializable {
             message = new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Actualización Exitosa",
                     "Sus datos de la cuenta han sido actualizados.");
+            changed = true;
         } else {
             this.userName = this.loggedUser.getUserName();
             message = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -130,7 +134,7 @@ public final class UpdateUserBean implements Serializable {
         }
 
         FacesContext.getCurrentInstance().addMessage(null, message);
-        context.addCallbackParam(UpdateUserBean.PASSWORD_CHANGED_KEY, true);
+        context.addCallbackParam(UpdateUserBean.PASSWORD_CHANGED_KEY, changed);
     }
 
     public void receiveLoggedUser(User loggedUser) {
@@ -141,7 +145,20 @@ public final class UpdateUserBean implements Serializable {
     }
 
     private User updateUser(User loggedUser, String userName) {
-        throw new UnsupportedOperationException("Not yet implemented");
+         if (!userName.equals(loggedUser.getUserName())) {
+            List<User> foundUsersByUser = this.userDAO.executeNamedQueryForUsers(
+                    "User.findByUserName", "userName", userName);
+
+            if (foundUsersByUser.isEmpty()) {
+                loggedUser.setUserName(userName);
+            } else {
+
+                return (null);
+            }
+        }
+        this.userDAO.updateUser(loggedUser);
+        this.personDAO.updatePerson(loggedUser.getPerson());
+        return (loggedUser);
     }
 
     private User unsubscribeUser(User loggedUser) {

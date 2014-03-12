@@ -9,13 +9,14 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:head>
+        <title>JuridicApp</title>
         <script type="text/javascript"
                 src="../util/javascript/onSelectedAuthorWorkFunction.js" >
         </script>
         <f:facet name="workList" >
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" />
-            <title>JuridicApp - Obras</title>
+
         </f:facet>
     </h:head>
 
@@ -24,14 +25,16 @@
         <p:layout fullPage="true" >
 
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
-                          position="south" resizable="false" 
+                          header="" position="south" 
+                          resizable="false"  
                           size="30" >
             </p:layoutUnit>  
 
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
-                          header="" position="north" resizable="false" 
-                          size="130" >
-                
+                          header="#{updateUserBean.loggedUser.userName}" 
+                          position="north" resizable="false" 
+                          size="150" >
+
                 <center>
                     <p:panel id="memberManagementPanel" >
                         <center>
@@ -42,7 +45,7 @@
             </p:layoutUnit>  
 
             <p:layoutUnit position="center" >
-                  
+
                 <center>
                     <p:panel id="mainPanel" >
                         <center>
