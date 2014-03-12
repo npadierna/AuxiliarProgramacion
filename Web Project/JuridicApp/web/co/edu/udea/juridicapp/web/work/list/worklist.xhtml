@@ -4,9 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core" >
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:head>
         <script type="text/javascript"
@@ -21,37 +21,41 @@
     </h:head>
 
     <h:body>
-        <h:form id="mainForm" >
-            <p:layout fullPage="true" >
-                <p:layoutUnit collapsible="false" closable="false"
-                              position="south" resizable="false" size="50" >
-                </p:layoutUnit> 
 
-                <p:layoutUnit collapsible="true" closable="false" effect="drop" 
-                              header="Usuario" position="north" resizable="false" 
-                              size="130" > 
-                    <center>
-                        <p:panel id="memberManagementPanel" >
-                            <center>
-                                <p:commandLink
-                                    onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/login/login.xhtml';" >
-                                    <h:outputText value="Iniciar Sesión" >
-                                    </h:outputText>
-                                </p:commandLink>
-                                <p:spacer height="5" width="25" >
-                                </p:spacer>
+        <p:layout fullPage="true" >
 
-                                <p:commandButton id="registerButton"
-                                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/registration/registermember.xhtml';" 
-                                                 value="Cerrar Sesión">
-                                </p:commandButton>
-                            </center>
-                        </p:panel>
-                    </center>
-                </p:layoutUnit>  
+            <p:layoutUnit closable="false" collapsible="true" effect="drop" 
+                          position="south" resizable="false" 
+                          size="50" >
+            </p:layoutUnit>  
 
-                <p:layoutUnit position="center" >
+            <p:layoutUnit closable="false" collapsible="true" effect="drop" 
+                          header="" position="north" resizable="false" 
+                          size="130" >
+                
+                <center>
+                    <p:panel id="memberManagementPanel" >
+                        <center>
+                            <ui:include src="../../user/update/logoutinfouser.xhtml" />
+                            <!--p:commandLink
+                                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/login/login.xhtml';" >
+                                <h:outputText value="Iniciar Sesión" >
+                                </h:outputText>
+                            </p:commandLink>
+                            <p:spacer height="5" width="25" >
+                            </p:spacer>
 
+                            <p:commandButton id="registerButton"
+                                             onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/member/data/registration/registermember.xhtml';" 
+                                             value="Cerrar Sesión">
+                            </p:commandButton-->
+                        </center>
+                    </p:panel>
+                </center>
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="center" >
+                <h:form id="mainForm" >
                     <p:growl id="growl" showDetail="true"/>  
                     <center>
                         <p:dataTable draggableColumns="true" id="mainTable"
@@ -229,9 +233,9 @@
                             <h:outputText value="Foo" ></h:outputText>
                         </h:panelGrid>
                     </p:dialog>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
 
-                </p:layoutUnit>
-            </p:layout>
-        </h:form>
     </h:body>
 </html>

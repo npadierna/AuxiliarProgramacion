@@ -4,11 +4,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core" 
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:head>
+         <script type="text/javascript"
+                src="../../../util/javascript/onSelectedAuthorWorkFunction.js" >
+        </script>
         <f:facet name="creatorEntities" >
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
@@ -18,15 +21,22 @@
     </h:head>
 
     <h:body>
-        <h:form id="mainForm" >
-            <p:layout fullPage="true" >
-                <p:layoutUnit collapsible="true" closable="true" effect="drop" 
-                              header="Administrador" position="north"
-                              resizable="false" size="130" >
-                </p:layoutUnit>
+        <p:layout fullPage="true" >
+            <p:layoutUnit collapsible="true" closable="true" effect="drop" 
+                          header="Administrador" position="north"
+                          resizable="false" size="130" >
+                <center>
+                    <p:panel>
+                        <center>
+                            <ui:include src="../../user/update/logoutinfouser.xhtml" />
+                        </center>
+                    </p:panel>
+                </center>
+            </p:layoutUnit>
 
-                <p:layoutUnit collapsible="false" closable="false"
-                              position="west" resizable="false" size="280" >
+            <p:layoutUnit collapsible="false" closable="false"
+                          position="west" resizable="false" size="280" >
+                <h:form>
                     <p:panelMenu>
                         <p:submenu label="Usuarios" >
                             <p:menuitem value="Nuevo" >
@@ -35,14 +45,14 @@
                             <p:menuitem value="Borrar" ></p:menuitem>
                         </p:submenu>
                         <p:submenu label="Dependencias" >
-                            <p:menuitem update="mainAdminPanel" value="Nueva" >
+                            <p:menuitem  value="Nueva" >
                             </p:menuitem>
-                            <p:menuitem update="mainAdminPanel"
+                            <p:menuitem 
                                         value="Actualizar" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Vínculos Universitarios" >
-                            <p:menuitem update="mainAdminPanel" value="Nuevo" >
+                            <p:menuitem value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Soportes Para Obras" >
@@ -56,18 +66,14 @@
                             </p:menuitem>
                         </p:submenu>
                     </p:panelMenu>
-                </p:layoutUnit>
+                </h:form>
+            </p:layoutUnit>
 
-                <p:layoutUnit position="center" >
-                    <center>
-                        <p:panel id="mainAdminPanel" >
-                            <iframe align="center" height="500px"
-                                    src="#{creatorEntityBean.mock}"
-                                    width="1100px" ></iframe>
-                        </p:panel>
-                    </center>
-                </p:layoutUnit>
-            </p:layout>
-        </h:form>
+            <p:layoutUnit position="center" >
+                <center>
+                            <ui:include src="../../work/list/uiworklist.xhtml" />
+                </center>
+            </p:layoutUnit>
+        </p:layout>
     </h:body>
 </html>
