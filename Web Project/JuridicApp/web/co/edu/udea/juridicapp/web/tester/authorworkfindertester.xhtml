@@ -115,7 +115,7 @@
                             <p:selectOneMenu id="authorWorkSupport"
                                              label="Soporte de la Obra"
                                              required="true"
-                                             value="#{authorWork.supportType}" >
+                                             value="#{authorWork.supportType.type}" >
                                 <f:selectItems value="#{supportBean.supportsNames}" >
                                 </f:selectItems>
                             </p:selectOneMenu>
@@ -123,13 +123,13 @@
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="Vínculo Con Universidad" >
+                                <h:outputText value="Vínculo Con La Universidad" >
                                 </h:outputText>
                             </f:facet>
                             <p:selectOneMenu id="authorWorkRole"
                                              label="Vínculo con Universidad"
                                              required="true"
-                                             value="#{authorWork.role}" >
+                                             value="#{authorWork.role.profile}" >
                                 <f:selectItems value="#{roleBean.rolesNames}" >
                                 </f:selectItems>
                             </p:selectOneMenu>
@@ -165,6 +165,12 @@
                         </p:rowExpansion>
                     </p:dataTable>
                 </p:panel>
+
+                <p:commandButton id="createAuthorsWorksButton"
+                                 actionListener="#{authorFinderTesterBean.saveAuthorsWorks}"
+                                 update="authorsWorksAdderForm"
+                                 value="Guardar Obras" >
+                </p:commandButton>
             </center>
         </h:form>
     </h:body>

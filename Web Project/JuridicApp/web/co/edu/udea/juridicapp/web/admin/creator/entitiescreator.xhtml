@@ -9,7 +9,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:head>
-         <script type="text/javascript"
+        <script type="text/javascript"
                 src="../../../util/javascript/onSelectedAuthorWorkFunction.js" >
         </script>
         <f:facet name="creatorEntities" >
@@ -19,61 +19,91 @@
             <title>Creador - Admin</title>
         </f:facet>
     </h:head>
-
+k
     <h:body>
-        <p:layout fullPage="true" >
-            <p:layoutUnit collapsible="true" closable="true" effect="drop" 
-                          header="Administrador" position="north"
-                          resizable="false" size="130" >
-                <center>
-                    <p:panel>
-                        <center>
-                            <ui:include src="../../user/update/logoutinfouser.xhtml" />
-                        </center>
-                    </p:panel>
-                </center>
-            </p:layoutUnit>
+        <h:form id="mainAdminForm" >
+            <p:layout fullPage="true" >
+                <p:layoutUnit collapsible="true" closable="true" effect="drop" 
+                              header="Administrador" position="north"
+                              resizable="false" size="155" >
+                    <center>
+                        <p:panel>
+                            <center>
+                                <ui:include
+                                    src="../../user/update/logoutinfouser.xhtml" >
+                                </ui:include>
+                            </center>
+                        </p:panel>
+                    </center>
+                </p:layoutUnit>
 
-            <p:layoutUnit collapsible="false" closable="false"
-                          position="west" resizable="false" size="280" >
-                <h:form>
+                <p:layoutUnit collapsible="false" closable="false"
+                              position="west" resizable="false" size="280" >
                     <p:panelMenu>
                         <p:submenu label="Usuarios" >
-                            <p:menuitem value="Nuevo" >
+                            <p:menuitem
+                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+                                id="newUserMenuItem" update="mainLayoutUnit"
+                                value="Nuevo" >
                             </p:menuitem>
-                            <p:menuitem value="Actualizar" ></p:menuitem>
-                            <p:menuitem value="Borrar" ></p:menuitem>
+                            <p:menuitem
+                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+                                id="updateUserMenuItem" update="mainLayoutUnit"
+                                value="Actualizar" >
+                            </p:menuitem>
+                            <p:menuitem
+                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+                                id="deleteUserMenuItem" update="mainLayoutUnit"
+                                value="Borrar" >
+                            </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Dependencias" >
-                            <p:menuitem  value="Nueva" >
+                            <p:menuitem
+                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+                                id="newDependencyMenuItem" update="mainLayoutUnit"
+                                value="Nueva" >
                             </p:menuitem>
                             <p:menuitem 
-                                        value="Actualizar" >
+                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+                                id="updateDependencyMenuItem" update="mainLayoutUnit"
+                                value="Actualizar" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Vínculos Universitarios" >
-                            <p:menuitem value="Nuevo" >
+                            <p:menuitem
+                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+                                id="newRoleMenuItem" update="mainLayoutUnit"
+                                value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Soportes Para Obras" >
-                            <p:menuitem url="http://www.primefaces.org"
-                                        value="Nuevo" >
+                            <p:menuitem
+                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+                                id="newSupportMenuItem" update="mainLayoutUnit"
+                                value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Tipos De Obras" >
-                            <p:menuitem url="http://www.primefaces.org"
-                                        value="Nuevo" >
+                            <p:menuitem
+                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+                                id="newTypeMenuItem" update="mainLayoutUnit"
+                                value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
                     </p:panelMenu>
-                </h:form>
-            </p:layoutUnit>
+                </p:layoutUnit>
 
-            <p:layoutUnit position="center" >
-                <center>
-                            <ui:include src="../../work/list/uiworklist.xhtml" />
-                </center>
-            </p:layoutUnit>
-        </p:layout>
+                <p:layoutUnit id="mainLayoutUnit" position="center" >
+                    <center>
+                        <!--                    <ui:include src="../../work/list/uiworklist.xhtml" >
+                                            </ui:include>-->
+                        <iframe frameborder="0" height="600px" id="mainIFrame"
+                                src="#{adminCreatorEntityBean.directionIFrame}"
+                                scrolling="auto" width="1100px" >
+                        </iframe>
+                    </center>
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
     </h:body>
 </html>

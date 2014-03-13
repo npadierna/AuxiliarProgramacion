@@ -1,9 +1,14 @@
 package co.edu.udea.juridicapp.web.bean.tester;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorDAO;
+import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
+import co.edu.udea.juridicapp.persistence.dao.IWorkDAO;
 import co.edu.udea.juridicapp.persistence.entity.Author;
 import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
 import co.edu.udea.juridicapp.persistence.entity.PersonPK;
+import co.edu.udea.juridicapp.persistence.entity.Role;
+import co.edu.udea.juridicapp.persistence.entity.Support;
+import co.edu.udea.juridicapp.persistence.entity.Work;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +22,14 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public class AuthorFinderTesterBean implements Serializable {
 
-    private static final String WORK_NAME_MOCK = "Obra #1 - Mock";
+    private static final Work WORK_MOCK = new Work("Mock Work #1");
     private static final long serialVersionUID = 1L;
     @Autowired()
     private IAuthorDAO authorDAO;
-    private AuthorWork authorWorkForDeleting;
+    @Autowired()
+    private IDependencyDAO dependencyDAO;
+    @Autowired()
+    private IWorkDAO workDAO;
     private List<AuthorWork> authorsWorks;
     private List<Author> foundAuthors;
     private String documentType;
@@ -29,15 +37,6 @@ public class AuthorFinderTesterBean implements Serializable {
 
     public AuthorFinderTesterBean() {
         super();
-    }
-
-    public AuthorWork getAuthorWorkForDeleting() {
-
-        return (this.authorWorkForDeleting);
-    }
-
-    public void setAuthorWorkForDeleting(AuthorWork authorWorkForDeleting) {
-        this.authorWorkForDeleting = authorWorkForDeleting;
     }
 
     public List<AuthorWork> getAuthorsWorks() {
@@ -81,6 +80,8 @@ public class AuthorFinderTesterBean implements Serializable {
                 author.getPersonPK().getDocumentType(),
                 author.getPersonPK().getIdNumber(), null);
         authorWork.setAuthor(author);
+        authorWork.setRole(new Role());
+        authorWork.setSupportType(new Support());
 
         this.getAuthorsWorks().add(authorWork);
         this.getFoundAuthors().remove(author);
@@ -102,14 +103,17 @@ public class AuthorFinderTesterBean implements Serializable {
         }
     }
 
-    public void removeAuthorWork() {
-        if (this.getAuthorWorkForDeleting() != null) {
-            this.getAuthorsWorks().remove(this.getAuthorWorkForDeleting());
-        }
-    }
-
     public void removeAuthorWork(AuthorWork author) {
         this.getAuthorsWorks().remove(author);
+    }
+
+    public void saveAuthorsWorks(ActionEvent actionEvent) {
+        WORK_MOCK.setDependency(this.dependencyDAO.findDependency("DRAI Facultad De Ingeniería"));
+        Long idWork = this.workDAO.saveWork(WORK_MOCK);
+
+        for (AuthorWork authorWork : this.getAuthorsWorks()) {
+            authorWork.getAuthorWorkPK().setWorkTypeId(idWork);
+        }
     }
 
     @PostConstruct()

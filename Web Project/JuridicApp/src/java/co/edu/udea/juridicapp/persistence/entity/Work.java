@@ -63,6 +63,10 @@ public class Work implements IEntityContext, Serializable {
         this.id = id;
     }
 
+    public Work(String title) {
+        this.title = title;
+    }
+
     public Work(Long id, String title) {
         this.id = id;
         this.title = title;

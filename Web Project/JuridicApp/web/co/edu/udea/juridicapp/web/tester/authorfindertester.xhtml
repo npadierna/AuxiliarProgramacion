@@ -24,10 +24,10 @@
                     <h:panelGrid cellpadding="7" columns="3" >
                         <h:outputLabel for="authorDocumentType"
                                        style="font-weight:bold"
-                                       value="Tipo de Documento:" >
+                                       value="Tipo De Documento:" >
                         </h:outputLabel>
                         <p:selectOneMenu id="authorDocumentType"
-                                         label="Tipo Documento" required="true" 
+                                         label="Tipo Documento" required="true"
                                          value="#{authorFinderTesterBean.documentType}" >
                             <f:selectItems value="#{registrationUserBean.documentsType}" >
                             </f:selectItems>
@@ -38,14 +38,12 @@
 
                         <h:outputLabel for="authorIdNumber"
                                        style="font-weight:bold"
-                                       value="Número de Documento:" >
+                                       value="Número De Documento:" >
                         </h:outputLabel>
                         <p:inputText id="authorIdNumber"
                                      label="Número de Documento" maxlength="20"
-                                     required="true" size="45"
+                                     size="45"
                                      value="#{authorFinderTesterBean.idNumber}" >
-                            <f:validateRegex pattern="[0-9]+" >
-                            </f:validateRegex>
                         </p:inputText>
                         <p:watermark for="authorIdNumber" value="Obligatorio" >
                         </p:watermark>
@@ -70,7 +68,8 @@
                                     <h:outputText value="Apellidos" >
                                     </h:outputText>
                                 </f:facet>
-                                <h:outputText value="#{foundAuthor.person.lastNames}" >
+                                <h:outputText
+                                    value="#{foundAuthor.person.lastNames}" >
                                 </h:outputText>
                             </p:column>
 
@@ -79,7 +78,8 @@
                                     <h:outputText value="Nombres" >
                                     </h:outputText>
                                 </f:facet>
-                                <h:outputText value="#{foundAuthor.person.firstNames}" >
+                                <h:outputText
+                                    value="#{foundAuthor.person.firstNames}" >
                                 </h:outputText>
                             </p:column>
 
@@ -88,7 +88,8 @@
                                     <h:outputText value="Número Celular" >
                                     </h:outputText>
                                 </f:facet>
-                                <h:outputText value="#{foundAuthor.mobileNumber}" >
+                                <h:outputText
+                                    value="#{foundAuthor.mobileNumber}" >
                                 </h:outputText>
                             </p:column>
 
@@ -97,7 +98,8 @@
                                     <h:outputText value="Teléfono Fijo" >
                                     </h:outputText>
                                 </f:facet>
-                                <h:outputText value="#{foundAuthor.phoneNumber}" >
+                                <h:outputText
+                                    value="#{foundAuthor.phoneNumber}" >
                                 </h:outputText>
                             </p:column>
 
@@ -106,7 +108,8 @@
                                     <h:outputText value="Correo Electrónico" >
                                     </h:outputText>
                                 </f:facet>
-                                <h:outputText value="#{foundAuthor.person.email}" >
+                                <h:outputText
+                                    value="#{foundAuthor.person.email}" >
                                 </h:outputText>
                             </p:column>
 
@@ -122,38 +125,24 @@
                         </p:dataTable>
                     </p:panel>
                 </p:panel>
+            </center>
 
-                <p:spacer height="25px" ></p:spacer>
+            <p:spacer height="25px" ></p:spacer>
 
-                <p:panel header="Autores Añadidos" id="addedAuthorsPanel" >
-                    <p:contextMenu for="addedAuthorsTable" >  
-                        <p:menuitem actionListener="#{authorFinderTesterBean.removeAuthorWork()}"
-                                    icon="ui-icon-close"
-                                    update="addedAuthorsPanel" value="Borrar" >
-                        </p:menuitem>
-                    </p:contextMenu>
-
+            <center>
+                <p:panel header="Autores Añadidos" id="addedAuthorsWorksPanel" >
                     <p:dataTable emptyMessage="No se han añadido Autores."
-                                 id="addedAuthorsTable" rowKey="#{authorWork.key}"
-                                 selection="#{authorFinderTesterBean.authorWorkForDeleting}"
-                                 selectionMode="single" style="font-size:15px"
+                                 id="addedAuthorsWorksTable" style="font-size:15px"
                                  value="#{authorFinderTesterBean.authorsWorks}"
                                  var="authorWork" >
-
-                        <!--                        <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="+" >
-                                                        </h:outputText>
-                                                    </f:facet>
-                                                    <p:rowToggler ></p:rowToggler>
-                                                </p:column>-->
 
                         <p:column>
                             <f:facet name="header" >
                                 <h:outputText value="Tipo De Documento" >
                                 </h:outputText>
                             </f:facet>
-                            <h:outputText value="#{authorWork.authorWorkPK.documentType}" >
+                            <h:outputText
+                                value="#{authorWork.authorWorkPK.documentType}" >
                             </h:outputText>
                         </p:column>
 
@@ -162,7 +151,8 @@
                                 <h:outputText value="Número De Documento" >
                                 </h:outputText>
                             </f:facet>
-                            <h:outputText value="#{authorWork.authorWorkPK.idNumber}" >
+                            <h:outputText
+                                value="#{authorWork.authorWorkPK.idNumber}" >
                             </h:outputText>
                         </p:column>
 
@@ -171,7 +161,8 @@
                                 <h:outputText value="Nombre Completo" >
                                 </h:outputText>
                             </f:facet>
-                            <h:outputText value="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}" >
+                            <h:outputText
+                                value="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}" >
                             </h:outputText>
                         </p:column>
 
@@ -180,7 +171,8 @@
                                 <h:outputText value="Número Celular" >
                                 </h:outputText>
                             </f:facet>
-                            <h:outputText value="#{authorWork.author.mobileNumber}" >
+                            <h:outputText
+                                value="#{authorWork.author.mobileNumber}" >
                             </h:outputText>
                         </p:column>
 
@@ -189,7 +181,8 @@
                                 <h:outputText value="Teléfono Fijo" >
                                 </h:outputText>
                             </f:facet>
-                            <h:outputText value="#{authorWork.author.phoneNumber}" >
+                            <h:outputText
+                                value="#{authorWork.author.phoneNumber}" >
                             </h:outputText>
                         </p:column>
 
@@ -198,15 +191,16 @@
                                 <h:outputText value="Correo Electrónico" >
                                 </h:outputText>
                             </f:facet>
-                            <h:outputText value="#{authorWork.author.person.email}" >
+                            <h:outputText
+                                value="#{authorWork.author.person.email}" >
                             </h:outputText>
                         </p:column>
 
                         <p:column>
                             <center>
-                                <p:commandButton action="#{authorFinderTesterBean.removeAuthorWork()}"
-                                                 id="addAuthorButton"
-                                                 update="addedAuthorsTable"
+                                <p:commandButton id="deleteAuthorWorkButton"
+                                                 action="#{authorFinderTesterBean.removeAuthorWork(authorWork)}"
+                                                 update="addedAuthorsWorksTable"
                                                  value="Eliminar" >
                                 </p:commandButton>
                             </center>
