@@ -20,6 +20,7 @@ public class SupportBean implements Serializable {
     @Autowired()
     private ISupportDAO supportDAO;
     private List<SelectItem> supportsSelectItems;
+    private List<String> supportsNames;
     private Support support;
 
     public SupportBean() {
@@ -33,6 +34,15 @@ public class SupportBean implements Serializable {
 
     public void setSupportsSelectItems(List<SelectItem> supportsSelectItems) {
         this.supportsSelectItems = supportsSelectItems;
+    }
+
+    public List<String> getSupportsNames() {
+
+        return (this.supportsNames);
+    }
+
+    public void setSupportsNames(List<String> supportsNames) {
+        this.supportsNames = supportsNames;
     }
 
     public Support getSupport() {
@@ -65,6 +75,7 @@ public class SupportBean implements Serializable {
     @PostConstruct()
     private void createFields() {
         this.setSupport(new Support());
+        this.setSupportsNames(new ArrayList<String>());
         this.setSupportsSelectItems(new ArrayList<SelectItem>());
 
         List<Support> supportsFoud = this.supportDAO.findAllSupports();
@@ -72,6 +83,8 @@ public class SupportBean implements Serializable {
         for (Support s : supportsFoud) {
             this.getSupportsSelectItems().add(new SelectItem(s.getType(),
                     s.getType()));
+
+            this.getSupportsNames().add(s.getType());
         }
     }
 }

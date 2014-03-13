@@ -3,6 +3,8 @@ package co.edu.udea.juridicapp.web.bean.role;
 import co.edu.udea.juridicapp.persistence.dao.IRoleDAO;
 import co.edu.udea.juridicapp.persistence.entity.Role;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
@@ -16,10 +18,20 @@ public class RoleBean implements Serializable {
     private static final long serialVersionUID = 4651738957089294336L;
     @Autowired()
     private IRoleDAO roleDAO;
+    private List<String> rolesNames;
     private Role role;
 
     public RoleBean() {
         super();
+    }
+
+    public List<String> getRolesNames() {
+
+        return (this.rolesNames);
+    }
+
+    public void setRolesNames(List<String> rolesNames) {
+        this.rolesNames = rolesNames;
     }
 
     public Role getRole() {
@@ -52,5 +64,11 @@ public class RoleBean implements Serializable {
     @PostConstruct()
     private void createFields() {
         this.setRole(new Role());
+        this.setRolesNames(new ArrayList<String>());
+
+        List<Role> rolesFound = this.roleDAO.findAllRoles();
+        for (Role r : rolesFound) {
+            this.getRolesNames().add(r.getProfile());
+        }
     }
 }

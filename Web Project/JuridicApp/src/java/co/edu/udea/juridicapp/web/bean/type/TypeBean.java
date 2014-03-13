@@ -19,20 +19,30 @@ public class TypeBean implements Serializable {
     private static final long serialVersionUID = 1080319077051732992L;
     @Autowired()
     private ITypeDAO typeDAO;
-    private List<SelectItem> typessSelectItems;
+    private List<SelectItem> typesSelectItems;
+    private List<String> typesNames;
     private Type type;
 
     public TypeBean() {
         super();
     }
 
-    public List<SelectItem> getTypessSelectItems() {
+    public List<SelectItem> getTypesSelectItems() {
 
-        return (this.typessSelectItems);
+        return (this.typesSelectItems);
     }
 
-    public void setTypessSelectItems(List<SelectItem> typessSelectItems) {
-        this.typessSelectItems = typessSelectItems;
+    public void setTypesSelectItems(List<SelectItem> typesSelectItems) {
+        this.typesSelectItems = typesSelectItems;
+    }
+
+    public List<String> getTypesNames() {
+
+        return (this.typesNames);
+    }
+
+    public void setTypesNames(List<String> typesNames) {
+        this.typesNames = typesNames;
     }
 
     public Type getType() {
@@ -65,13 +75,16 @@ public class TypeBean implements Serializable {
     @PostConstruct()
     private void createFields() {
         this.setType(new Type());
-        this.setTypessSelectItems(new ArrayList<SelectItem>());
+        this.setTypesNames(new ArrayList<String>());
+        this.setTypesSelectItems(new ArrayList<SelectItem>());
 
         List<Type> supportsFoud = this.typeDAO.findAllTypes();
-        this.getTypessSelectItems().add(new SelectItem("", "Seleccione"));
+        this.getTypesSelectItems().add(new SelectItem("", "Seleccione"));
         for (Type t : supportsFoud) {
-            this.getTypessSelectItems().add(new SelectItem(t.getName(),
+            this.getTypesSelectItems().add(new SelectItem(t.getName(),
                     t.getName()));
+
+            this.getTypesNames().add(t.getName());
         }
     }
 }
