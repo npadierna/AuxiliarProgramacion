@@ -8,57 +8,44 @@
       xmlns:f="http://java.sun.com/jsf/core" >
 
     <h:head>
+        <title>Actualizar Datos</title>
         <script type="text/javascript"
-                src="../../../../util/javascript/passwordChanged.js" >
+                src="../../../util/javascript/passwordChanged.js" >
         </script>
         <script type="text/javascript"
-                src="../../../../util/javascript/deleteMemberFunction.js" >
+                src="../../../util/javascript/updateUserFunction.js" >
         </script>
         <f:facet name="first" >
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
             </meta>
-            <title>Actualizar Datos</title>
+
         </f:facet>
     </h:head>
 
     <h:body>
         <p:layout fullPage="true"> 
             <p:layoutUnit closable="false" collapsible="false" position="south" 
-                          resizable="false" size="50" >   
+                          resizable="false" size="30" >   
             </p:layoutUnit> 
 
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
-                          header="NOMBRE USUARIO" position="east" resizable="false" 
-                          size="200" > 
-                <center>
-                    <p:panel id="memberManagementPanel" >
-                        <center>
-                            <p:commandButton id="registerButton" value="Cerrar Sesión"
-                                             onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';" >
-                            </p:commandButton>
-                        </center>
-                    </p:panel>
-                </center>
+                          header="#{updateUserBean.loggedUser.userName}" 
+                          position="north" resizable="false" 
+                          size="150" > 
+                <p align="center" >
+                    <p:commandButton style="font-family:arial;color:black;font-size:15px;"
+                                     value="Cerrar Sesión"
+                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
+                                     oncomplete="handleLogoutRequest(xhr, status, args)" >
+                    </p:commandButton>
+                </p>
             </p:layoutUnit>  
 
             <p:layoutUnit position="center">  
 
-                <h:form id="mainForm" >
+                <p:panel id="mainPanel" >
                     <center>
-
-                        <h:form id="workForm" >
-                            <h:panelGrid columns="2">
-                                <p:commandButton id="createButton" 
-                                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/work/creatework.xhtml';"
-                                                 value="Crear Nueva Obra">
-                                </p:commandButton>
-                                <p:commandButton id="editButton" 
-                                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
-                                                 value="Editar una Obra">
-                                </p:commandButton>
-                            </h:panelGrid>
-                        </h:form>
                         <h:form id="formChangePassword" >
                             <p:growl id="growlChangePassword" life="3000" showDetail="true" />
 
@@ -72,7 +59,8 @@
                                     <p:password disabled="false" id="lastPassword" 
                                                 label="Contraseña Antigua"
                                                 required="true"
-                                                requiredMessage="Por favor ingrese su anterior contraseña." >
+                                                requiredMessage="Por favor ingrese su anterior contraseña." 
+                                                value="#{updateUserBean.lastPassword}">
                                     </p:password>
 
                                     <h:outputLabel for="newPassword" value ="Contraseña nueva: *" >
@@ -81,7 +69,8 @@
                                                 feedback="true" label="Nueva Contraseña"
                                                 match="confirmNewPassword"
                                                 required="true" 
-                                                requiredMessage="Por favor ingrese la nueva contraseña." >
+                                                requiredMessage="Por favor ingrese la nueva contraseña." 
+                                                value="#{updateUserBean.newPassword}">
                                     </p:password>
 
                                     <h:outputLabel for="confirmNewPassword"
@@ -90,7 +79,8 @@
                                     <p:password  disabled="false" id="confirmNewPassword" 
                                                  feedback="true" label="Confirmación Contraseña"
                                                  required="true"  
-                                                 requiredMessage="Confirme la nueva contraseña." >
+                                                 requiredMessage="Confirme la nueva contraseña." 
+                                                 value="#{updateUserBean.newPassword}">
                                     </p:password>
                                 </h:panelGrid>
 
@@ -99,7 +89,8 @@
                                 <p:watermark for="confirmNewPassword" value="Obligatorio" />
 
                                 <center>
-                                    <p:commandButton id="changePasswordButton" 
+                                    <p:commandButton actionListener="#{updateUserBean.changePassword}"
+                                                     id="changePasswordButton" 
                                                      oncomplete="handlePasswordChangedRequest(xhr, status, args)" 
                                                      value="Cambiar Contraseña" 
                                                      update ="growlChangePassword">
@@ -133,7 +124,10 @@
                                     <h:inputText id="fullName" 
                                                  disabled="false" label="Nombre Completo." 
                                                  required="true"   
-                                                 requiredMessage="Por favor ingrese su nombre completo." >
+                                                 requiredMessage="Por favor ingrese su nombre completo." 
+                                                 value="#{updateUserBean.loggedUser.person.firstNames}">
+                                        <f:validateRegex pattern="^[ a-zA-Z]+"  >
+                                        </f:validateRegex>  
                                     </h:inputText>
 
                                     <h:outputLabel value ="Apellidos: *" >
@@ -141,7 +135,10 @@
                                     <h:inputText id="lastNames" 
                                                  disabled="false" label="Apellido(s)." 
                                                  required="true"           
-                                                 requiredMessage="Por favor ingrese su(s) apellido(s)." >
+                                                 requiredMessage="Por favor ingrese su(s) apellido(s)." 
+                                                 value="#{updateUserBean.loggedUser.person.lastNames}">
+                                        <f:validateRegex pattern="^[ a-zA-Z]+"  >
+                                        </f:validateRegex>  
                                     </h:inputText>
 
                                     <h:outputText value="E-mail: *" >
@@ -149,7 +146,11 @@
                                     <h:inputText id="email" 
                                                  disabled="false" label="E-mail"
                                                  required="true"
-                                                 requiredMessage="Por favor ingrese su E-mail." >
+                                                 requiredMessage="Por favor ingrese su E-mail." 
+                                                 value="#{updateUserBean.loggedUser.person.email}">
+                                        <f:validateRegex
+                                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" >
+                                        </f:validateRegex>
                                     </h:inputText>
                                 </h:panelGrid>
 
@@ -157,48 +158,17 @@
                                 <p:watermark for="lastNames" value="Obligatorio" />
 
                                 <center>
-                                    <p:commandButton id="updateMemberButton"   
-                                                     oncomplete="handlePasswordChangedRequest(xhr, status, args)" 
-                                                     update ="growlUpdateData" 
+                                    <p:commandButton actionListener="#{updateUserBean.updateData}"
+                                                     id="updateMemberButton"   
+                                                     oncomplete="handleUpdateRequest(xhr, status, args)" 
+                                                     update =":formUpdateData:growlUpdateData" 
                                                      value="Actualizar Datos" >
                                     </p:commandButton>
                                 </center>
                             </p:fieldset>
                         </h:form>
-
-                        <p:spacer height="20" />
-
-                        <h:form id="formUnsubscribe" >
-                            <p:growl id="growlUnsubscribe" showDetail="true" life="30000" />
-
-                            <p:fieldset legend="Dar de Baja" toggleable="true"
-                                        toggleSpeed="500" collapsed="true" >
-                                <h:outputLabel for="lastPassword" value ="Si desea darse de 
-                                               baja, ingrese su contraseña y presione el botón 
-                                               Dar de Baja." >
-                                </h:outputLabel>
-                                <br/><br/>
-
-                                <center>
-                                    <h:panelGrid id="deleteMemberPanelGrid" columns="3"
-                                                 cellpadding="10" >
-                                        <p:outputLabel value="Contraseña: *" >
-                                        </p:outputLabel>
-                                        <p:password id="confirmPasswordForDelete"
-                                                    disabled="false" required="true"
-                                                    label="Contraseña"
-                                                    requiredMessage="Por favor ingrese su contraseña." >
-                                        </p:password>
-                                        <p:commandButton id="unsubscribe" value="Dar de Baja"
-                                                         update="growlUnsubscribe"
-                                                         oncomplete="handleDeleteRequest(xhr, status, args)">
-                                        </p:commandButton>
-                                    </h:panelGrid>
-                                </center>
-                            </p:fieldset>
-                        </h:form>
                     </center>
-                </h:form>
+                </p:panel>
             </p:layoutUnit>
         </p:layout>
     </h:body>
