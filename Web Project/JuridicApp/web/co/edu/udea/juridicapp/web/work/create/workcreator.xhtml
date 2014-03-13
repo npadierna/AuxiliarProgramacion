@@ -13,6 +13,9 @@
             <script type="text/javascript"
                     src="../../../util/javascript/logOutRequestFunction.js" >
             </script>
+            <script type="text/javascript"
+                    src="../../../util/javascript/workCreatedFunction.js" >
+            </script>
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
             </meta>
@@ -24,13 +27,13 @@
         <p:layout fullPage="true" >
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
                           header="#{updateUserBean.userName}" position="north" resizable="false" 
-                          size="120" >
+                          size="130" >
                 <h:form id="logoutAndUpdateInfoForm" >
                     <p align="center" >
                     <p:spacer height="5px" width="15px" ></p:spacer>
 
                     <p:commandButton onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/user/update/updateinfouser.xhtml';"
-                                     style="font-family:arial;color:black;font-size:15px;"
+                                     style="font-size:15px;"
                                      value="Actualizar Datos" >
                     </p:commandButton>
 
@@ -39,7 +42,7 @@
                     <p:commandButton actionListener="#{loginUserBean.logOut}"
                                      onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
                                      oncomplete="handleLogoutRequest(xhr, status, args)"
-                                     style="font-family:arial;color:black;font-size:15px;"
+                                     style="font-size:15px;"
                                      value="Cerrar Sesión" >
                     </p:commandButton>
                     </p>
@@ -450,12 +453,6 @@
                                                 </p:rowExpansion>
                                             </p:dataTable>
                                         </p:panel>
-
-                                        <p:commandButton id="createAuthorsWorksButton"
-                                                         actionListener="#{authorFinderTesterBean.saveAuthorsWorks}"
-                                                         update="authorsWorksAdderForm"
-                                                         value="Guardar Obras" >
-                                        </p:commandButton>
                                     </center>
                                 </h:form>
                             </p:tab>
@@ -573,7 +570,10 @@
 
                                     </h:panelGrid>
                                     <p:commandButton id="save" icon="ui-icon-disk" 
-                                                     value="Guardar" >
+                                                     value="Guardar" 
+                                                     actionListener="#{authorFinderTesterBean.saveAuthorsWorks}"
+                                                     oncomplete="handleWorkCreatedRequest(xhr, status, args)">
+                                         
                                     </p:commandButton>
                                 </center>
                             </p:tab>                            
