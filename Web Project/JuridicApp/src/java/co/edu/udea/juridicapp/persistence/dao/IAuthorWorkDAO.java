@@ -19,9 +19,11 @@ public interface IAuthorWorkDAO {
 
     public List<AuthorWork> findAuthorsWorksByWorkId(Long workId);
 
-    public AuthorWorkPK saveAuthorWork(AuthorWork author);
+    public AuthorWorkPK saveAuthorWorkUsingNativeQuery(AuthorWork authorWork);
 
-    public AuthorWork updateAuthorWork(AuthorWork author);
+    public AuthorWorkPK saveAuthorWork(AuthorWork authorWork);
+
+    public AuthorWork updateAuthorWork(AuthorWork authorWork);
 
     public long countAuthorsWorks();
 

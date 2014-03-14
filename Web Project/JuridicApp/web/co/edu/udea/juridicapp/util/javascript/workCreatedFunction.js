@@ -3,5 +3,3 @@ function handleWorkCreatedRequest(xhr, status, args) {
         location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/main.xhtml';
   // }
 }
-
-

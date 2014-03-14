@@ -13,9 +13,11 @@
         <p:growl id="growl" showDetail="true" ></p:growl>
 
         <center>
-            <p:dataTable draggableColumns="true" id="mainTable"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            <p:dataTable draggableColumns="true"
+                         emptyMessage="No se han encontrado ningún tipo de Obras."
+                         id="mainTable"
+                         paginator="true" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowKey="#{authorWork.key}"
                          rows="10" rowsPerPageTemplate="10,15,30"
                          selection="#{workListBean.selectedAuthorWork}"
@@ -28,11 +30,12 @@
                     Listado De Obras
                 </f:facet>
 
-                <p:column filterBy="issue" filterMatchMode="exact"
+                <p:column filterBy="#{authorWork.workType.work.title}"
+                          filterMatchMode="contains"
                           style="font-size:15px;" >
                     <f:facet id="issue" name="header" >
                         <h:outputText value="Nombre De La Obra" >
-                        </h:outputText>
+                        </h:outputText>  
                     </f:facet>
                     <h:outputText style="font-size:13px;"
                                   value="#{authorWork.workType.work.title}" >
@@ -42,14 +45,21 @@
                 <p:column sortBy="#{authorWork.delivering}"
                           style="font-size:15px;" >
                     <f:facet id="year" name="header" >
-                        <h:outputText value="Fecha De Entrega" ></h:outputText>  
-                    </f:facet>  
-                    <h:outputText style="font-size:13px;"
-                                  value="#{authorWork.delivering}" >
-                    </h:outputText>
+                        <h:outputText
+                            value="Fecha De Entrega" >
+                        </h:outputText>  
+                    </f:facet>
+                    <center>
+                        <h:outputText style="font-size:13px;"
+                                      value="#{authorWork.delivering}" >
+                        </h:outputText>
+                    </center>
                 </p:column>
 
-                <p:column sortBy="#{authorWork.authorWorkPK.workTypeName}"
+                <p:column filterBy="#{authorWork.authorWorkPK.workTypeName}"
+                          filterMatchMode="exact"
+                          filterOptions="#{typeBean.typesSelectItems}"
+                          sortBy="#{authorWork.authorWorkPK.workTypeName}"
                           style="font-size:15px;" >
                     <f:facet id="type" name="header">  
                         <h:outputText value="Tipo" >
@@ -60,7 +70,9 @@
                     </h:outputText>
                 </p:column>
 
-                <p:column sortBy="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}"
+                <p:column filterBy="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}"
+                          filterMatchMode="contains"
+                          sortBy="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}"
                           style="font-size:15px;" >
                     <f:facet id="author" name="header" >
                         <h:outputText value="Autor" >
@@ -77,9 +89,11 @@
                         <h:outputText value="N° Contrato" >
                         </h:outputText> 
                     </f:facet>
-                    <h:outputText style="font-size:13px;"
-                                  value="#{authorWork.contract1.id}" >
-                    </h:outputText>
+                    <center>
+                        <h:outputText style="font-size:13px;"
+                                      value="#{authorWork.contract1.id}" >
+                        </h:outputText>
+                    </center>
                 </p:column>
 
                 <p:column style="font-size:15px;" >
@@ -87,9 +101,11 @@
                         <h:outputText value="ISBN" >
                         </h:outputText>
                     </f:facet>
-                    <h:outputText style="font-size:13px;"
-                                  value="#{authorWork.isbn}" >
-                    </h:outputText>
+                    <center>
+                        <h:outputText style="font-size:13px;"
+                                      value="#{authorWork.isbn}" >
+                        </h:outputText>
+                    </center>
                 </p:column>
 
                 <p:column sortBy="#{authorWork.dnda.number}"
@@ -98,30 +114,38 @@
                         <h:outputText value="DNDA" >
                         </h:outputText>  
                     </f:facet>
-                    <h:outputText style="font-size:13px;"
-                                  value="#{authorWork.dnda.number}" >
-                    </h:outputText>
+                    <center>
+                        <h:outputText style="font-size:13px;"
+                                      value="#{authorWork.dnda.number}" >
+                        </h:outputText>
+                    </center>
                 </p:column>
 
-                <p:column style="font-size:15px;" >
+                <p:column filterBy="#{authorWork.supportType.type}"
+                          filterMatchMode="exact"
+                          filterOptions="#{supportBean.supportsSelectItems}"
+                          sortBy="#{authorWork.supportType.type}"
+                          style="font-size:15px;" >
                     <f:facet id="support" name="header" >
                         <h:outputText value="Soporte" >
                         </h:outputText>  
                     </f:facet>
-                    <h:outputText style="font-size:13px;"
-                                  value="#{authorWork.supportType.type}" >
-                    </h:outputText>
+                    <center>
+                        <h:outputText style="font-size:13px;"
+                                      value="#{authorWork.supportType.type}" >
+                        </h:outputText>
+                    </center>
                 </p:column>
 
-                <!--p:column style="font-size: 15px;" >
-                    <f:facet id="archivos" name="header" >
-                        <h:outputText value="Archivos" >
-                        </h:outputText>
-                    </f:facet>
-                    <h:outputText style="font-size:13px;"
-                                  value="Archivos" >
-                    </h:outputText>
-                </p:column-->
+                <!--                <p:column style="font-size: 15px;" >
+                                    <f:facet id="archivos" name="header" >
+                                        <h:outputText value="Archivos" >
+                                        </h:outputText>
+                                    </f:facet>
+                                    <h:outputText style="font-size:13px;"
+                                                  value="Archivos" >
+                                    </h:outputText>
+                                </p:column>-->
 
                 <f:facet  id="button" name="footer" >
                     <p:commandButton action="#{workSelectorBean.onSelectedAuthorWork(workListBean.selectedAuthorWork)}" 

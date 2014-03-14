@@ -75,10 +75,12 @@ public final class LoginUserBean implements Serializable {
             if (this.loggedUser == null) {
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
                         "Datos Inválidos",
-                        "Por favor verifique sus datos para iniciar sesión.");
+                        "Por favor verifique sus datos para Iniciar Sesión.");
             } else {
                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido",
-                        userName);
+                        this.getLoggedUser().getPerson().getFirstNames()
+                        .concat(" ").concat(this.getLoggedUser().getPerson()
+                        .getLastNames()));
                 this.loggedIn = true;
             }
         }

@@ -8,7 +8,6 @@
       xmlns:p="http://primefaces.org/ui" >
 
     <h:head>
-        <title>Crear Nueva Obra</title>
         <f:facet name="workCreator" >
             <script type="text/javascript"
                     src="../../../util/javascript/logOutRequestFunction.js" >
@@ -19,15 +18,15 @@
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
             </meta>
-
+            <title>Crear Nueva Obra</title>
         </f:facet>
     </h:head>
 
     <h:body>
         <p:layout fullPage="true" >
-            <p:layoutUnit closable="false" collapsible="true" effect="drop" 
-                          header="#{updateUserBean.userName}" position="north" resizable="false" 
-                          size="130" >
+            <p:layoutUnit closable="false" collapsible="true" effect="drop"
+                          header="#{updateUserBean.loggedUser.person.firstNames} #{updateUserBean.loggedUser.person.lastNames}"
+                          position="north" resizable="false" size="130" >
                 <h:form id="logoutAndUpdateInfoForm" >
                     <p align="center" >
                     <p:spacer height="5px" width="15px" ></p:spacer>
@@ -50,7 +49,6 @@
             </p:layoutUnit>  
 
             <p:layoutUnit position="center" >
-
                 <h:form id="mainForm" >
                     <p:panel header="Crear Nueva Obra" >
                         <p:wizard backLabel="Atrás" id="viewWizard"
@@ -61,30 +59,38 @@
                                     <p:accordionPanel activeIndex="0,1"
                                                       multiple="true" >
                                         <p:tab title="Datos De La Obra" >
-                                            <h:panelGrid  cellpadding="10" columns="2" >
-                                                <h:outputText value="Nombre de la Obra:" >
+                                            <h:panelGrid  cellpadding="10"
+                                                          columns="3" >
+                                                <h:outputText
+                                                    value="Nombre De La Obra:" >
                                                 </h:outputText>
-                                                <p:inputText label="Nombre de la Obra" required="true"
+                                                <p:inputText id="workNameInputText"
+                                                             label="Nombre de la Obra"
+                                                             maxlength="55"
+                                                             required="true" 
+                                                             size="45"
                                                              value="#{creatorWorkBean.work.title}" >
-                                                    <f:validateRegex pattern="^[ a-zA-Z0-9]+"  >
+                                                    <f:validateRegex pattern="^[ a-zA-Z0-9]+" >
                                                     </f:validateRegex>  
                                                 </p:inputText>
-
-                                                <h:outputText
-                                                    value="Fecha de Entrega:" >
-                                                </h:outputText>
-                                                <p:calendar effect="explode" >
-                                                </p:calendar>
+                                                <p:watermark for="workNameInputText"
+                                                             value="Nombre" >
+                                                </p:watermark>
 
                                                 <h:outputText value="Descripción:" >
                                                 </h:outputText>
-                                                <p:inputTextarea autoResize="false" cols="30"
+                                                <p:inputTextarea autoResize="false"
+                                                                 cols="35"
                                                                  counter="counter"
                                                                  counterTemplate="{0} Caracteres Restantes."
-                                                                 maxlength="150" rows="5"
+                                                                 id="descriptionInputTextArea"
+                                                                 maxlength="150" rows="4"
                                                                  value="#{creatorWorkBean.work.description}" >
                                                 </p:inputTextarea>
                                             </h:panelGrid>
+                                            <p:watermark for="descriptionInputTextArea"
+                                                         value="Descripción breve de la Obra." >
+                                            </p:watermark>
 
                                             <h:outputText id="counter" >
                                             </h:outputText>
@@ -93,12 +99,12 @@
                                             <h:panelGrid  cellpadding="10" columns="2" >
                                                 <h:outputLabel for="dependenciesNameList" 
                                                                style="font-weight:bold"
-                                                               value="Nombre de la Dependencia:" >
+                                                               value="Nombre De La Dependencia:" >
                                                 </h:outputLabel>
                                                 <p:selectOneMenu id="dependenciesNameList"
                                                                  label="Nombres de Dependencias"
                                                                  required="true"
-                                                                 value="#{creatorWorkBean.dependecyName}" >
+                                                                 value="#{creatorWorkBean.work.dependency.name}" >
                                                     <f:selectItems
                                                         value="#{creatorWorkBean.dependenciesNames}" >
                                                     </f:selectItems>
@@ -110,18 +116,19 @@
                             </p:tab>
 
                             <p:tab id="authors" title="Author(es)">
-                                <h:form id="authorsAdderForm" >
+                                <p:panel id="authorsAdderPanel" >
                                     <center>
-                                        <p:panel header="Añadir Autores" id="authorsFinderPanel" >
-
-                                            <h:panelGrid cellpadding="7" columns="3" >
+                                        <p:panel header="Añadir Autores"
+                                                 id="authorsFinderPanel" >
+                                            <h:panelGrid cellpadding="7"
+                                                         columns="3" >
                                                 <h:outputLabel for="authorDocumentType"
                                                                style="font-weight:bold"
                                                                value="Tipo De Documento:" >
                                                 </h:outputLabel>
                                                 <p:selectOneMenu id="authorDocumentType"
                                                                  label="Tipo Documento" required="true"
-                                                                 value="#{authorFinderTesterBean.documentType}" >
+                                                                 value="#{creatorWorkBean.documentType}" >
                                                     <f:selectItems value="#{registrationUserBean.documentsType}" >
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
@@ -134,26 +141,28 @@
                                                                value="Número De Documento:" >
                                                 </h:outputLabel>
                                                 <p:inputText id="authorIdNumber"
-                                                             label="Número de Documento" maxlength="20"
+                                                             label="Número de Documento"
+                                                             maxlength="20"
                                                              size="45"
-                                                             value="#{authorFinderTesterBean.idNumber}" >
+                                                             value="#{creatorWorkBean.idNumber}" >
                                                 </p:inputText>
                                                 <p:watermark for="authorIdNumber" value="Obligatorio" >
                                                 </p:watermark>
                                             </h:panelGrid>
 
-                                            <p:commandButton actionListener="#{authorFinderTesterBean.findAuthor}"
+                                            <p:commandButton actionListener="#{creatorWorkBean.findAuthor}"
                                                              id="findAuthorsButton"
                                                              update="authorsFinderPanel"
                                                              value="Buscar Author" >
                                             </p:commandButton>
 
                                             <p:panel id="resultsSearchingPanel" >
-                                                <p:spacer height="20px" ></p:spacer>
+                                                <p:spacer height="20px" >
+                                                </p:spacer>
 
                                                 <p:dataTable emptyMessage="No se han encontrado Autores."
                                                              id="authorFoundTable"
-                                                             value="#{authorFinderTesterBean.foundAuthors}"
+                                                             value="#{creatorWorkBean.foundAuthors}"
                                                              var="foundAuthor" >
 
                                                     <p:column>
@@ -198,7 +207,8 @@
 
                                                     <p:column>
                                                         <f:facet name="header" >
-                                                            <h:outputText value="Correo Electrónico" >
+                                                            <h:outputText
+                                                                value="Correo Electrónico" >
                                                             </h:outputText>
                                                         </f:facet>
                                                         <h:outputText
@@ -208,9 +218,9 @@
 
                                                     <p:column>
                                                         <center>
-                                                            <p:commandButton action="#{authorFinderTesterBean.addAuthor(foundAuthor)}"
+                                                            <p:commandButton action="#{creatorWorkBean.addAuthor(foundAuthor)}"
                                                                              id="addAuthorButton"
-                                                                             update=":authorsAdderForm"
+                                                                             update=":mainForm:authorsAdderPanel"
                                                                              value="Añadir" >
                                                             </p:commandButton>
                                                         </center>
@@ -225,10 +235,10 @@
                                     <center>
                                         <p:panel header="Autores Añadidos" id="addedAuthorsWorksPanel" >
                                             <p:dataTable emptyMessage="No se han añadido Autores."
-                                                         id="addedAuthorsWorksTable" style="font-size:15px"
-                                                         value="#{authorFinderTesterBean.authorsWorks}"
+                                                         id="addedAuthorsWorksTable"
+                                                         style="font-size:15px"
+                                                         value="#{creatorWorkBean.authorsWorks}"
                                                          var="authorWork" >
-
                                                 <p:column>
                                                     <f:facet name="header" >
                                                         <h:outputText value="Tipo De Documento" >
@@ -292,7 +302,7 @@
                                                 <p:column>
                                                     <center>
                                                         <p:commandButton id="deleteAuthorWorkButton"
-                                                                         action="#{authorFinderTesterBean.removeAuthorWork(authorWork)}"
+                                                                         action="#{creatorWorkBean.removeAuthorWork(authorWork)}"
                                                                          update="addedAuthorsWorksTable"
                                                                          value="Eliminar" >
                                                         </p:commandButton>
@@ -301,177 +311,226 @@
                                             </p:dataTable>
                                         </p:panel>
                                     </center>
-                                </h:form>
+                                </p:panel>
                             </p:tab>
 
                             <p:tab id="authorWork" title="Añadir Obras A Autores">
-                                <h:form id="authorsWorksAdderForm" >
-                                    <center>
-                                        <p:panel header="Añadir Obras A Autores"
-                                                 id="authorsWorksAdderPanel" >
+                                <center>
+                                    <p:panel header="Añadir Obras A Autores"
+                                             id="authorsWorksAdderPanel" >
 
-                                            <p:dataTable emptyMessage="No se han añadido Autores."
-                                                         id="addedAuthorsWorksTable"
-                                                         style="font-size:13px"
-                                                         value="#{authorFinderTesterBean.authorsWorks}"
-                                                         var="authorWork" >
+                                        <p:dataTable emptyMessage="No se han añadido Autores."
+                                                     id="addedAuthorsWorksFinalTable"
+                                                     style="font-size:13px"
+                                                     value="#{creatorWorkBean.authorsWorks}"
+                                                     var="authorWork" >
 
-                                                <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="+" >
-                                                        </h:outputText>
-                                                    </f:facet>
-                                                    <p:rowToggler></p:rowToggler>
-                                                </p:column>
-
-                                                <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="Tipo De Documento" >
-                                                        </h:outputText>
-                                                    </f:facet>
-                                                    <h:outputText value="#{authorWork.authorWorkPK.documentType}" >
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="+" >
                                                     </h:outputText>
-                                                </p:column>
+                                                </f:facet>
+                                                <p:rowToggler></p:rowToggler>
+                                            </p:column>
 
-                                                <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="Número De Documento" >
-                                                        </h:outputText>
-                                                    </f:facet>
-                                                    <h:outputText value="#{authorWork.authorWorkPK.idNumber}" >
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Tipo De Documento" >
                                                     </h:outputText>
-                                                </p:column>
+                                                </f:facet>
+                                                <h:outputText value="#{authorWork.authorWorkPK.documentType}" >
+                                                </h:outputText>
+                                            </p:column>
 
-                                                <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="Nombre Completo" >
-                                                        </h:outputText>
-                                                    </f:facet>
-                                                    <h:outputText value="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}" >
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Número De Documento" >
                                                     </h:outputText>
-                                                </p:column>
+                                                </f:facet>
+                                                <h:outputText value="#{authorWork.authorWorkPK.idNumber}" >
+                                                </h:outputText>
+                                            </p:column>
 
-                                                <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="N° Contrato" >
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Nombre Completo" >
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <h:outputText value="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}" >
+                                                </h:outputText>
+                                            </p:column>
+
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="N° Contrato" >
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <p:inputText maxlength="30" required="true" size="20"
+                                                             value="#{authorWork.authorWorkPK.contract}" >
+                                                </p:inputText>
+                                            </p:column>
+
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Fecha De Inicio" >
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <p:calendar effect="explode" size="5"
+                                                            value="#{authorWork.starting}" >
+                                                </p:calendar>
+                                            </p:column>
+
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Fecha De Entrega" >
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <p:calendar effect="explode" size="5"
+                                                            value="#{authorWork.delivering}" >
+                                                </p:calendar>
+                                            </p:column>
+
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Tipo De Obra" >
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <p:selectOneMenu id="authorWorkType"
+                                                                 label="Tipo de la Obra"
+                                                                 required="true"
+                                                                 value="#{authorWork.authorWorkPK.workTypeName}" >
+                                                    <f:selectItems value="#{typeBean.typesNames}" >
+                                                    </f:selectItems>
+                                                </p:selectOneMenu>
+                                            </p:column>
+
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Soporte De La Obra" >
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <p:selectOneMenu id="authorWorkSupport"
+                                                                 label="Soporte de la Obra"
+                                                                 required="true"
+                                                                 value="#{authorWork.supportType.type}" >
+                                                    <f:selectItems value="#{supportBean.supportsNames}" >
+                                                    </f:selectItems>
+                                                </p:selectOneMenu>
+                                            </p:column>
+
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Vínculo Con La Universidad" >
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <p:selectOneMenu id="authorWorkRole"
+                                                                 label="Vínculo con Universidad"
+                                                                 required="true"
+                                                                 value="#{authorWork.role.profile}" >
+                                                    <f:selectItems value="#{roleBean.rolesNames}" >
+                                                    </f:selectItems>
+                                                </p:selectOneMenu>
+                                            </p:column>
+
+                                            <p:rowExpansion >
+                                                <center>
+                                                    <p:spacer height="10px" ></p:spacer>
+                                                    <h:panelGrid cellpadding="7" columns="6"
+                                                                 style="font-size:15px" >
+                                                        <h:outputText value="ISBN:" >
                                                         </h:outputText>
-                                                    </f:facet>
-                                                    <p:inputText maxlength="30" required="true" size="20"
-                                                                 value="#{authorWork.authorWorkPK.contract}" >
-                                                    </p:inputText>
-                                                </p:column>
+                                                        <p:inputText id="authorWorkISBN" maxlength="35"
+                                                                     required="false" size="35"
+                                                                     value="#{authorWork.isbn}" >
+                                                        </p:inputText>
+                                                        <p:watermark for="authorWorkISBN"
+                                                                     value="Opcional" >
+                                                        </p:watermark>
 
-                                                <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="Fecha De Inicio" >
+                                                        <h:outputText value="DNDA:" >
                                                         </h:outputText>
-                                                    </f:facet>
-                                                    <p:calendar effect="explode" size="5"
-                                                                value="#{authorWork.starting}" >
-                                                    </p:calendar>
-                                                </p:column>
-
-                                                <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="Fecha De Entrega" >
-                                                        </h:outputText>
-                                                    </f:facet>
-                                                    <p:calendar effect="explode" size="5"
-                                                                value="#{authorWork.delivering}" >
-                                                    </p:calendar>
-                                                </p:column>
-
-                                                <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="Tipo De Obra" >
-                                                        </h:outputText>
-                                                    </f:facet>
-                                                    <p:selectOneMenu id="authorWorkType"
-                                                                     label="Tipo de la Obra"
-                                                                     required="true"
-                                                                     value="#{authorWork.authorWorkPK.workTypeName}" >
-                                                        <f:selectItems value="#{typeBean.typesNames}" >
-                                                        </f:selectItems>
-                                                    </p:selectOneMenu>
-                                                </p:column>
-
-                                                <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="Soporte De La Obra" >
-                                                        </h:outputText>
-                                                    </f:facet>
-                                                    <p:selectOneMenu id="authorWorkSupport"
-                                                                     label="Soporte de la Obra"
-                                                                     required="true"
-                                                                     value="#{authorWork.supportType.type}" >
-                                                        <f:selectItems value="#{supportBean.supportsNames}" >
-                                                        </f:selectItems>
-                                                    </p:selectOneMenu>
-                                                </p:column>
-
-                                                <p:column>
-                                                    <f:facet name="header" >
-                                                        <h:outputText value="Vínculo Con La Universidad" >
-                                                        </h:outputText>
-                                                    </f:facet>
-                                                    <p:selectOneMenu id="authorWorkRole"
-                                                                     label="Vínculo con Universidad"
-                                                                     required="true"
-                                                                     value="#{authorWork.role.profile}" >
-                                                        <f:selectItems value="#{roleBean.rolesNames}" >
-                                                        </f:selectItems>
-                                                    </p:selectOneMenu>
-                                                </p:column>
-
-                                                <p:rowExpansion >
-                                                    <center>
-                                                        <p:spacer height="10px" ></p:spacer>
-                                                        <h:panelGrid cellpadding="7" columns="6"
-                                                                     style="font-size:15px" >
-                                                            <h:outputText value="ISBN:" >
-                                                            </h:outputText>
-                                                            <p:inputText id="authorWorkISBN" maxlength="35"
-                                                                         required="false" size="35"
-                                                                         value="#{authorWork.isbn}" >
-                                                            </p:inputText>
-                                                            <p:watermark for="authorWorkISBN"
-                                                                         value="Opcional" >
-                                                            </p:watermark>
-
-                                                            <h:outputText value="DNDA:" >
-                                                            </h:outputText>
-                                                            <p:inputText id="authorWorkDNDA" maxlength="30"
-                                                                         required="false" size="30"
-                                                                         value="#{authorWork.dnda}" >
-                                                            </p:inputText>
-                                                            <p:watermark for="authorWorkDNDA"
-                                                                         value="Opcional" >
-                                                            </p:watermark>
-                                                        </h:panelGrid>
-                                                        <p:spacer height="10px" ></p:spacer>
-                                                    </center>
-                                                </p:rowExpansion>
-                                            </p:dataTable>
-                                        </p:panel>
-                                    </center>
-                                </h:form>
+                                                        <p:inputText id="authorWorkDNDA" maxlength="30"
+                                                                     required="false" size="30"
+                                                                     value="#{authorWork.dnda}" >
+                                                        </p:inputText>
+                                                        <p:watermark for="authorWorkDNDA"
+                                                                     value="Opcional" >
+                                                        </p:watermark>
+                                                    </h:panelGrid>
+                                                    <p:spacer height="10px" ></p:spacer>
+                                                </center>
+                                            </p:rowExpansion>
+                                        </p:dataTable>
+                                    </p:panel>
+                                </center>
                             </p:tab>
 
 
                             <p:tab id="coments" title="Observaciones" >
-                                <center>
-                                    <h:panelGrid cellpadding="10" columns="2" >
-                                        <h:outputText value="Observaciones o comentarios:" >
+                                <p:panel header="Añadir Comentarios"
+                                         id="adderCommentsPanel" >
+                                    <center>
+                                        <h:panelGrid cellpadding="10" columns="2"
+                                                     id="commentTyperPanelGrid" >
+                                            <h:outputText value="Observaciones o comentarios:" >
+                                            </h:outputText>
+                                            <p:inputTextarea autoResize="false" cols="30"
+                                                             counter="counterComents"
+                                                             counterTemplate="{0} Caracteres Restantes."
+                                                             maxlength="150" rows="5"
+                                                             value="#{creatorWorkBean.commentText}" >
+                                            </p:inputTextarea>
+                                        </h:panelGrid>
+                                        <h:outputText id="counterComents" >
                                         </h:outputText>
-                                        <p:inputTextarea autoResize="false" cols="30"
-                                                         counter="counterComents"
-                                                         counterTemplate="{0} Caracteres Restantes."
-                                                         maxlength="150" rows="5" >
-                                        </p:inputTextarea>
-                                    </h:panelGrid>
-                                    <h:outputText id="counterComents">
-                                    </h:outputText>
-                                </center>
+                                    </center>
+                                    <center>
+                                        <p:commandButton actionListener="#{creatorWorkBean.addComment}"
+                                                         id="addCommentButton"
+                                                         update=":mainForm:adderCommentsPanel"
+                                                         value="Añadir Comentario" >
+                                        </p:commandButton>
+                                    </center>
+
+                                    <p:panel id="addCommentsPanel" >
+                                        <p:spacer height="20px" ></p:spacer>
+
+                                        <p:dataTable emptyMessage="No se han añadido Comentarios."
+                                                     id="addCommentsTable"
+                                                     value="#{creatorWorkBean.comments}"
+                                                     var="comment" >
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Texto De Comentario" >
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <h:outputText
+                                                    value="#{comment.text}" >
+                                                </h:outputText>
+                                            </p:column>
+
+                                            <p:column>
+                                                <f:facet name="header" >
+                                                    <h:outputText value="Fecha / Hora" >
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <h:outputText
+                                                    value="#{comment.dateTime}" >
+                                                </h:outputText>
+                                            </p:column>
+
+                                            <p:column>
+                                                <center>
+                                                    <p:commandButton action="#{creatorWorkBean.removeComment(comment)}"
+                                                                     id="removeCommentButton"
+                                                                     update="addCommentsTable"
+                                                                     value="Eliminar" >
+                                                    </p:commandButton>
+                                                </center>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </p:panel>
+                                </p:panel>
                             </p:tab>
 
                             <!--p:tab id="file" title="Archivos" >
@@ -491,7 +550,7 @@
                                 </center>
                             </p:tab-->
 
-                            <p:tab id="confirmation" title="Confimación"  >
+                            <p:tab id="confirmation" title="Confirmación" >
                                 <center>
                                     <h:panelGrid columns="4" cellpadding="10" >
                                         <h:outputText
@@ -571,9 +630,9 @@
                                     </h:panelGrid>
                                     <p:commandButton id="save" icon="ui-icon-disk" 
                                                      value="Guardar" 
-                                                     actionListener="#{authorFinderTesterBean.saveAuthorsWorks}"
+                                                     actionListener="#{creatorWorkBean.saveAuthorsWorks}"
                                                      oncomplete="handleWorkCreatedRequest(xhr, status, args)">
-                                         
+
                                     </p:commandButton>
                                 </center>
                             </p:tab>                            
