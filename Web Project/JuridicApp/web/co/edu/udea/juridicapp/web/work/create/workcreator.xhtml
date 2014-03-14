@@ -8,6 +8,7 @@
       xmlns:p="http://primefaces.org/ui" >
 
     <h:head>
+        <title>Crear Nueva Obra</title>
         <f:facet name="workCreator" >
             <script type="text/javascript"
                     src="../../../util/javascript/logOutRequestFunction.js" >
@@ -18,12 +19,19 @@
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
             </meta>
-            <title>Crear Nueva Obra</title>
+
         </f:facet>
     </h:head>
 
     <h:body>
         <p:layout fullPage="true" >
+            <p:layoutUnit closable="false" collapsible="false" position="south"
+                          resizable="false" size="60" >
+                <p:commandButton id="home"
+                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/work/list/worklist.xhtml';" 
+                                 value="Volver al Listado de Obras"  style="font-size:15px;" >
+                </p:commandButton>
+            </p:layoutUnit>
             <p:layoutUnit closable="false" collapsible="true" effect="drop"
                           header="#{updateUserBean.loggedUser.person.firstNames} #{updateUserBean.loggedUser.person.lastNames}"
                           position="north" resizable="false" size="130" >
@@ -48,17 +56,18 @@
                 </h:form>
             </p:layoutUnit>  
 
-            <p:layoutUnit position="center" >
+            <p:layoutUnit position="center"  >
+                <p:growl id="growlChangePassword" life="3000" showDetail="true" />
                 <h:form id="mainForm" >
                     <p:panel header="Crear Nueva Obra" >
                         <p:wizard backLabel="Atrás" id="viewWizard"
-                                  nextLabel="Siguiente" >
+                                  nextLabel="Siguiente"  >
 
                             <p:tab id="work" title="Obra" >
                                 <center>
                                     <p:accordionPanel activeIndex="0,1"
-                                                      multiple="true" >
-                                        <p:tab title="Datos De La Obra" >
+                                                      multiple="true"  >
+                                        <p:tab title="Datos De La Obra"  >
                                             <h:panelGrid  cellpadding="10"
                                                           columns="3" >
                                                 <h:outputText
@@ -552,87 +561,119 @@
 
                             <p:tab id="confirmation" title="Confirmación" >
                                 <center>
-                                    <h:panelGrid columns="4" cellpadding="10" >
-                                        <h:outputText
-                                            value="Registro DNDA Obra:" >
-                                        </h:outputText>
-                                        <h:outputText value="NOMBRE">
-                                        </h:outputText>
+                                    <p:dataTable draggableColumns="true"
+                                                 id="mainTable"
+                                                 style="width:98%; font-size:13px;"
+                                                 value="#{creatorWorkBean.authorsWorks}"
+                                                 var="authorWork" > 
 
-                                        <h:outputText value="Nombre de la Obra:" >
-                                        </h:outputText>
-                                        <h:outputText value="NOMBRE DE LA OBRA">
-                                        </h:outputText>
+                                        <f:facet name="header" >
+                                            Obras Creadas
+                                        </f:facet>
 
-                                        <h:outputText
-                                            value="Fecha de Entrega:" >
-                                        </h:outputText>
-                                        <h:outputText value="FECHA">
-                                        </h:outputText>
+                                        <p:column 
+                                            style="font-size:15px;" >
+                                            <f:facet id="issue" name="header" >
+                                                <h:outputText value="Nombre De La Obra" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{creatorWorkBean.work.title}" >
+                                            </h:outputText>
+                                        </p:column>
 
-                                        <h:outputText value="Nombres del autor:" >
-                                        </h:outputText>
-                                        <h:outputText value="NOMBRE DEL AUTOR">
-                                        </h:outputText>
+                                        <p:column 
+                                            style="font-size:15px;" >
+                                            <f:facet id="year" name="header" >
+                                                <h:outputText
+                                                    value="Fecha De Entrega" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <center>
+                                                <h:outputText style="font-size:13px;"
+                                                              value="#{authorWork.delivering}" >
+                                                </h:outputText>
+                                            </center>
+                                        </p:column>
 
-                                        <h:outputText value="Apellidos del autor:" >
-                                        </h:outputText>
-                                        <h:outputText value="APELLIDS DEL AUTOR">
-                                        </h:outputText>
+                                        <p:column 
+                                            style="font-size:15px;" >
+                                            <f:facet id="type" name="header">  
+                                                <h:outputText value="Tipo" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{authorWork.authorWorkPK.workTypeName}" >
+                                            </h:outputText>
+                                        </p:column>
 
-                                        <h:outputText
-                                            value="Vínculo con la Universidad:" >
-                                        </h:outputText>
-                                        <h:outputText value="VÍNCULO CON LA UNIVERSIDAD">
-                                        </h:outputText>
+                                        <p:column 
+                                            style="font-size:15px;" >
+                                            <f:facet id="author" name="header" >
+                                                <h:outputText value="Autor" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText style="font-size:13px;"
+                                                          value="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}" >
+                                            </h:outputText>
+                                        </p:column>
 
-                                        <h:outputText
-                                            value="Número del Contrato:" >
-                                        </h:outputText>
-                                        <h:outputText value="NÚMERO DE CONTRATO">
-                                        </h:outputText>
+                                        <p:column 
+                                            style="font-size:15px;" >
+                                            <f:facet id="contract" name="header" > 
+                                                <h:outputText value="N° Contrato" >
+                                                </h:outputText> 
+                                            </f:facet>
+                                            <center>
+                                                <h:outputText style="font-size:13px;"
+                                                              value="#{authorWork.authorWorkPK.contract}" >
+                                                </h:outputText>
+                                            </center>
+                                        </p:column>
 
-                                        <h:outputText
-                                            value="Tipo de la obra:" >
-                                        </h:outputText>
-                                        <h:outputText value="TIPO DE OBRA">
-                                        </h:outputText>
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="isbn" name="header" > 
+                                                <h:outputText value="ISBN" >
+                                                </h:outputText>
+                                            </f:facet>
+                                            <center>
+                                                <h:outputText style="font-size:13px;"
+                                                              value="#{authorWork.isbn}" >
+                                                </h:outputText>
+                                            </center>
+                                        </p:column>
 
-                                        <h:outputText
-                                            value="Forma de adquisición:" >
-                                        </h:outputText>
-                                        <h:outputText value="FORMA DE ADQUISICIÓN">
-                                        </h:outputText>
+                                        <p:column 
+                                            style="font-size:15px;" >
+                                            <f:facet id="dnda" name="header" >
+                                                <h:outputText value="DNDA" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <center>
+                                                <h:outputText style="font-size:13px;"
+                                                              value="#{authorWork.dnda.number}" >
+                                                </h:outputText>
+                                            </center>
+                                        </p:column>
 
-                                        <h:outputText value="Soporte:" >
-                                        </h:outputText>
-                                        <h:outputText value="SOPORTE">
-                                        </h:outputText>
-
-                                        <h:outputText
-                                            value="Registro ISBN:" >
-                                        </h:outputText>
-                                        <h:outputText value="ISBN">
-                                        </h:outputText>
-
-                                        <h:outputText
-                                            value="Registro DNDA:" >
-                                        </h:outputText>
-                                        <h:outputText value="DNDA">
-                                        </h:outputText>
-
-                                        <h:outputText
-                                            value="Dependencia Acádemica Encargada:" >
-                                        </h:outputText>
-                                        <h:outputText value="DEPENDENCIA">
-                                        </h:outputText>
-
-                                    </h:panelGrid>
+                                        <p:column 
+                                            style="font-size:15px;" >
+                                            <f:facet id="support" name="header" >
+                                                <h:outputText value="Soporte" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <center>
+                                                <h:outputText style="font-size:13px;"
+                                                              value="#{authorWork.supportType.type}" >
+                                                </h:outputText>
+                                            </center>
+                                        </p:column>
+                                        <f:facet  id="obras" name="footer" ></f:facet>
+                                    </p:dataTable>
                                     <p:commandButton id="save" icon="ui-icon-disk" 
                                                      value="Guardar" 
-                                                     actionListener="#{creatorWorkBean.saveAuthorsWorks}"
+                                                     
                                                      oncomplete="handleWorkCreatedRequest(xhr, status, args)">
-
                                     </p:commandButton>
                                 </center>
                             </p:tab>                            

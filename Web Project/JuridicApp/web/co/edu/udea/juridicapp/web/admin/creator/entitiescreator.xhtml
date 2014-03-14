@@ -9,6 +9,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:head>
+        <title>Creador - Admin</title>
         <script type="text/javascript"
                 src="../../../util/javascript/onSelectedAuthorWorkFunction.js" >
         </script>
@@ -16,13 +17,20 @@
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
             </meta>
-            <title>Creador - Admin</title>
+
         </f:facet>
     </h:head>
 
     <h:body>
         <h:form id="mainAdminForm" >
             <p:layout fullPage="true" >
+                <p:layoutUnit closable="false" collapsible="false" position="south"
+                              resizable="false" size="60" >
+                    <p:commandButton id="home"
+                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/work/list/worklist.xhtml';" 
+                                     value="Volver al Listado de Obras"  style="font-size:15px;" >
+                    </p:commandButton>
+                </p:layoutUnit>
                 <p:layoutUnit collapsible="true" closable="true" effect="drop" 
                               header="Administrador" position="north"
                               resizable="false" size="155" >
@@ -42,52 +50,52 @@
                     <p:panelMenu>
                         <p:submenu label="Usuarios" >
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
-                                id="newUserMenuItem" update="mainLayoutUnit"
+                                actionListener="#{adminCreatorEntityBean.changeDirection}"
+                                id="newUserMenuItem" update="mainPanel"
                                 value="Nuevo" >
                             </p:menuitem>
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+
                                 id="updateUserMenuItem" update="mainLayoutUnit"
                                 value="Actualizar" >
                             </p:menuitem>
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+
                                 id="deleteUserMenuItem" update="mainLayoutUnit"
                                 value="Borrar" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Dependencias" >
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
-                                id="newDependencyMenuItem" update="mainLayoutUnit"
+                                actionListener="#{adminCreatorEntityBean.changeDirection}"
+                                id="newDependencyMenuItem" update="mainPanel"
                                 value="Nueva" >
                             </p:menuitem>
                             <p:menuitem 
-                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
+
                                 id="updateDependencyMenuItem" update="mainLayoutUnit"
                                 value="Actualizar" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Vínculos Universitarios" >
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
-                                id="newRoleMenuItem" update="mainLayoutUnit"
+                                actionListener="#{adminCreatorEntityBean.changeDirection}"
+                                id="newRoleMenuItem" update="mainPanel"
                                 value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Soportes Para Obras" >
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
-                                id="newSupportMenuItem" update="mainLayoutUnit"
+                                actionListener="#{adminCreatorEntityBean.changeDirection}"
+                                id="newSupportMenuItem" update="mainPanel"
                                 value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Tipos De Obras" >
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeIFrameDirection}"
-                                id="newTypeMenuItem" update="mainLayoutUnit"
-                                value="Nuevo" >
+                                actionListener="#{adminCreatorEntityBean.changeDirection}"
+                                id="newTypeMenuItem" update="mainPanel" 
+                                value="Nuevo">
                             </p:menuitem>
                         </p:submenu>
                     </p:panelMenu>
@@ -95,12 +103,12 @@
 
                 <p:layoutUnit id="mainLayoutUnit" position="center" >
                     <center>
-                        <!--                    <ui:include src="../../work/list/uiworklist.xhtml" >
-                                            </ui:include>-->
-                        <iframe frameborder="0" height="600px" id="mainIFrame"
-                                src="#{adminCreatorEntityBean.directionIFrame}"
-                                scrolling="auto" width="1100px" >
-                        </iframe>
+                        <p:panel id="mainPanel" >
+                            <center>
+                                <ui:include src="#{adminCreatorEntityBean.direction}" >
+                                </ui:include>
+                            </center>
+                        </p:panel>
                     </center>
                 </p:layoutUnit>
             </p:layout>

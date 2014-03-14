@@ -199,7 +199,7 @@ public final class CreatorWorkBean implements Serializable {
             authorWork.setWorkType(workType);
 
 //            this.authorWorkDAO.saveAuthorWork(authorWork);
-            this.authorWorkDAO.saveAuthorWorkUsingNativeQuery(authorWork);
+       //     this.authorWorkDAO.saveAuthorWorkUsingNativeQuery(authorWork);
         }
     }
 

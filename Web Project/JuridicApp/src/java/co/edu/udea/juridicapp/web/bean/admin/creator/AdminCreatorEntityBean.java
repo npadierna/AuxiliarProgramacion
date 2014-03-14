@@ -12,55 +12,55 @@ import org.springframework.stereotype.Component;
 public class AdminCreatorEntityBean implements Serializable {
 
     //private static final long serialVersionUID = 1L;
-    private String directionIFrame;
+    private String direction;
 
     public AdminCreatorEntityBean() {
         super();
     }
 
-    public String getDirectionIFrame() {
+    public String getDirection() {
 
-        return (this.directionIFrame);
+        return (this.direction);
     }
 
-    public void setDirectionIFrame(String directionIFrame) {
-        this.directionIFrame = directionIFrame;
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 
-    public void changeIFrameDirection(ActionEvent actionEvent) {
+    public void changeDirection(ActionEvent actionEvent) {
         UIMenuItem menuItem = (UIMenuItem) actionEvent.getSource();
 
         switch (menuItem.getId()) {
             case ("newUserMenuItem"):
-                this.setDirectionIFrame("http://192.168.0.197:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/user/registration/registeruser.xhtml");
+                this.setDirection("../../user/registration/registeruser.xhtml");
                 break;
 
             case ("updateUserMenuItem"):
-                this.setDirectionIFrame("http://192.168.0.197:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/user/update/updateinfouser.xhtml");
+                this.setDirection("../../user/update/updateinfouser.xhtml");
                 break;
 
             case ("deleteUserMenuItem"):
-                this.setDirectionIFrame("http://192.168.0.197:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/user/delete/deleteuser.xhtml");
+                this.setDirection("../../user/delete/deleteuser.xhtml");
                 break;
 
             case ("newDependencyMenuItem"):
-                this.setDirectionIFrame("http://192.168.0.197:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/dependenciescreator.xhtml");
+                this.setDirection("dependenciescreator.xhtml");
                 break;
 
             case ("updateDependencyMenuItem"):
-//                this.setDirectionIFrame("http://192.168.0.197:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/creator.xhtml");
+//                this.setDirection("http://192.168.0.197:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/creator.xhtml");
                 break;
 
             case ("newRoleMenuItem"):
-                this.setDirectionIFrame("http://192.168.0.197:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/rolescreator.xhtml");
+                this.setDirection("rolescreator.xhtml");
                 break;
 
             case ("newSupportMenuItem"):
-                this.setDirectionIFrame("http://192.168.0.197:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/supportscreator.xhtml");
+                this.setDirection("supportscreator.xhtml");
                 break;
 
             case ("newTypeMenuItem"):
-                this.setDirectionIFrame("http://192.168.0.197:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/typescreator.xhtml");
+                this.setDirection("typescreator.xhtml");
                 break;
         }
     }

@@ -25,9 +25,13 @@
 
     <h:body>
         <p:layout fullPage="true"> 
-            <p:layoutUnit closable="false" collapsible="false" position="south" 
-                          resizable="false" size="30" >   
-            </p:layoutUnit> 
+            <p:layoutUnit closable="false" collapsible="false" position="south"
+                          resizable="false" size="60" >
+                <p:commandButton id="home"
+                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/work/list/worklist.xhtml';" 
+                                 value="Volver al Listado de Obras" >
+                </p:commandButton>
+            </p:layoutUnit>
 
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
                           header="#{updateUserBean.loggedUser.userName}" 
