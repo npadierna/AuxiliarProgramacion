@@ -15,6 +15,11 @@
             org.springframework.web.jsf.el.SpringBeanFacesELResolver
         </el-resolver>
     </application>
+    
+    <lifecycle>
+        <phase-listener>co.edu.udea.juridicapp.security.authorization.AuthorizationListener</phase-listener>
+    </lifecycle>
+    
     <managed-bean>
         <managed-bean-name>adminCreatorEntityBean</managed-bean-name>
         <managed-bean-class>

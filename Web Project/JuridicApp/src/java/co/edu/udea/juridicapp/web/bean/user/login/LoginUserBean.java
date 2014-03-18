@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 public final class LoginUserBean implements Serializable {
 
     private static final long serialVersionUID = 3591280342111745024L;
-    private static final String LOGGED_IN_KEY = "loggedIn";
+  //  private static final String LOGGED_IN_KEY = "loggedIn";
     @Autowired()
     private IUserDAO userDAO;
     private boolean loggedIn;
@@ -63,6 +63,10 @@ public final class LoginUserBean implements Serializable {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+    
+    public boolean isLogged( ){
+        return loggedIn;
+    }
 
     public void logIn(ActionEvent actionEvent) {
         RequestContext context = RequestContext.getCurrentInstance();
@@ -72,12 +76,13 @@ public final class LoginUserBean implements Serializable {
         if ((this.password != null) && (this.userName != null)) {
             this.loggedUser = this.userDAO.findUserByLogin(
                     this.userName, this.password);
-            if (this.loggedUser == null) {
+            if (this.loggedUser == null){
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
                         "Datos Inválidos",
                         "Por favor verifique sus datos para Iniciar Sesión.");
-            } else {
-                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido",
+            }else{
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", this.userName);
+                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@",
                         this.getLoggedUser().getPerson().getFirstNames()
                         .concat(" ").concat(this.getLoggedUser().getPerson()
                         .getLastNames()));
@@ -88,7 +93,7 @@ public final class LoginUserBean implements Serializable {
         this.setPassword("");
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        context.addCallbackParam(LoginUserBean.LOGGED_IN_KEY, loggedIn);
+        context.addCallbackParam("loggedIn", loggedIn);
     }
 
     public void logOut(ActionEvent actionEvent) {
