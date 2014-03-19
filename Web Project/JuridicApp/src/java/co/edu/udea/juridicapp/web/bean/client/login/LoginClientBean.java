@@ -67,6 +67,14 @@ public final class LoginClientBean implements Serializable {
     public boolean isLogged() {
         return loggedIn;
     }
+    
+    public boolean isAdmin(Client client){
+        if(client.getTitle().getTitle().equals("Administrador")){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public void logIn(ActionEvent actionEvent) {
         RequestContext context = RequestContext.getCurrentInstance();
