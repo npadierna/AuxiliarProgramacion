@@ -26,8 +26,8 @@ public class AuthorizationListener implements PhaseListener {
                     .getNavigationHandler();
             navigationHandler.handleNavigation(facesContext, null,
                     "/co/edu/udea/juridicapp/web/index.xhtml");
+            }
         }
-    }
 
     @Override()
     public void beforePhase(PhaseEvent event) {
