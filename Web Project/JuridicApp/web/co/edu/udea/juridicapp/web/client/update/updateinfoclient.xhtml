@@ -109,41 +109,44 @@
                                 <h:panelGrid columns="2" cellpadding="5" >
                                     <h:outputLabel value ="Tipo de Documento: " >
                                     </h:outputLabel>
-                                    <h:inputText id="documentType"
-                                                 disabled="true" >
-                                    </h:inputText>
+                                    <p:inputText id="documentType"
+                                                  readonly="true" 
+                                                  value="#{loginClientBean.loggedClient.people.peoplePK.documentType}">
+                                    </p:inputText>
 
                                     <h:outputLabel value ="Número de Documento: " >
                                     </h:outputLabel>
-                                    <h:inputText id="idNumber" 
-                                                 disabled="true" >
-                                    </h:inputText>
+                                    <p:inputText  
+                                        id="idNumber"  
+                                                 readonly="true" 
+                                                 value="#{loginClientBean.loggedClient.people.peoplePK.idNumber}">
+                                    </p:inputText>
 
                                     <h:outputLabel value ="Nombre(s): *" >
                                     </h:outputLabel>
-                                    <h:inputText id="fullName" 
+                                    <p:inputText id="fullName" 
                                                  disabled="false" label="Nombre Completo." 
                                                  required="true"   
                                                  requiredMessage="Por favor ingrese su nombre completo." 
                                                  value="#{updateClientBean.loggedClient.people.firstNames}">
                                         <f:validateRegex pattern="^[ a-zA-Z]+"  >
                                         </f:validateRegex>  
-                                    </h:inputText>
+                                    </p:inputText>
 
                                     <h:outputLabel value ="Apellidos: *" >
                                     </h:outputLabel>
-                                    <h:inputText id="lastNames" 
+                                    <p:inputText id="lastNames" 
                                                  disabled="false" label="Apellido(s)." 
                                                  required="true"           
                                                  requiredMessage="Por favor ingrese su(s) apellido(s)." 
                                                  value="#{updateClientBean.loggedClient.people.lastNames}">
                                         <f:validateRegex pattern="^[ a-zA-Z]+"  >
                                         </f:validateRegex>  
-                                    </h:inputText>
+                                    </p:inputText>
 
                                     <h:outputText value="E-mail: *" >
                                     </h:outputText>
-                                    <h:inputText id="email" 
+                                    <p:inputText id="email" 
                                                  disabled="false" label="E-mail"
                                                  required="true"
                                                  requiredMessage="Por favor ingrese su E-mail." 
@@ -151,7 +154,7 @@
                                         <f:validateRegex
                                             pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" >
                                         </f:validateRegex>
-                                    </h:inputText>
+                                    </p:inputText>
                                 </h:panelGrid>
 
                                 <p:watermark for="fullName" value="Obligatorio" />
