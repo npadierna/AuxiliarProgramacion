@@ -2,13 +2,13 @@ package co.edu.udea.juridicapp.web.bean.tester;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorDAO;
 import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
-import co.edu.udea.juridicapp.persistence.dao.IWorkDAO;
+import co.edu.udea.juridicapp.persistence.dao.IOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.entity.Author;
-import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
-import co.edu.udea.juridicapp.persistence.entity.PersonPK;
-import co.edu.udea.juridicapp.persistence.entity.Role;
+import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
+import co.edu.udea.juridicapp.persistence.entity.PeoplePK;
+import co.edu.udea.juridicapp.persistence.entity.Title;
 import co.edu.udea.juridicapp.persistence.entity.Support;
-import co.edu.udea.juridicapp.persistence.entity.Work;
+import co.edu.udea.juridicapp.persistence.entity.Oeuvre;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +22,15 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public class AuthorFinderTesterBean implements Serializable {
 
-    private static final Work WORK_MOCK = new Work("Mock Work #1");
+    private static final Oeuvre OEUVRE_MOCK = new Oeuvre("Mock Oeuvre #1");
     private static final long serialVersionUID = 1L;
     @Autowired()
     private IAuthorDAO authorDAO;
     @Autowired()
     private IDependencyDAO dependencyDAO;
     @Autowired()
-    private IWorkDAO workDAO;
-    private List<AuthorWork> authorsWorks;
+    private IOeuvreDAO oeuvreDAO;
+    private List<AuthorOeuvre> authorsOeuvres;
     private List<Author> foundAuthors;
     private String documentType;
     private String idNumber;
@@ -39,13 +39,13 @@ public class AuthorFinderTesterBean implements Serializable {
         super();
     }
 
-    public List<AuthorWork> getAuthorsWorks() {
+    public List<AuthorOeuvre> getAuthorsOeuvres() {
 
-        return (this.authorsWorks);
+        return (this.authorsOeuvres);
     }
 
-    public void setAuthorsWorks(List<AuthorWork> authorsWorks) {
-        this.authorsWorks = authorsWorks;
+    public void setAuthorsOeuvres(List<AuthorOeuvre> authorsOeuvres) {
+        this.authorsOeuvres = authorsOeuvres;
     }
 
     public List<Author> getFoundAuthors() {
@@ -76,14 +76,14 @@ public class AuthorFinderTesterBean implements Serializable {
     }
 
     public void addAuthor(Author author) {
-        AuthorWork authorWork = new AuthorWork(-1L, null,
-                author.getPersonPK().getDocumentType(),
-                author.getPersonPK().getIdNumber(), null);
-        authorWork.setAuthor(author);
-        authorWork.setRole(new Role());
-        authorWork.setSupportType(new Support());
+        AuthorOeuvre authorOeuvre = new AuthorOeuvre(-1L, null,
+                author.getPeoplePK().getDocumentType(),
+                author.getPeoplePK().getIdNumber(), null);
+        authorOeuvre.setAuthor(author);
+        authorOeuvre.setTitle(new Title());
+        authorOeuvre.setSupportType(new Support());
 
-        this.getAuthorsWorks().add(authorWork);
+        this.getAuthorsOeuvres().add(authorOeuvre);
         this.getFoundAuthors().remove(author);
 
         this.setIdNumber("");
@@ -94,7 +94,7 @@ public class AuthorFinderTesterBean implements Serializable {
             this.getFoundAuthors().clear();
 
             Author a = this.authorDAO.findAuthor(
-                    new PersonPK(this.getDocumentType(), this.getIdNumber()));
+                    new PeoplePK(this.getDocumentType(), this.getIdNumber()));
             if (a != null) {
                 this.getFoundAuthors().add(a);
             } else {
@@ -103,22 +103,23 @@ public class AuthorFinderTesterBean implements Serializable {
         }
     }
 
-    public void removeAuthorWork(AuthorWork author) {
-        this.getAuthorsWorks().remove(author);
+    public void removeAuthorOeuvre(AuthorOeuvre author) {
+        this.getAuthorsOeuvres().remove(author);
     }
 
-    public void saveAuthorsWorks(ActionEvent actionEvent) {
-        WORK_MOCK.setDependency(this.dependencyDAO.findDependency("DRAI Facultad De Ingeniería"));
-        Long idWork = this.workDAO.saveWork(WORK_MOCK);
+    public void saveAuthorsOeuvres(ActionEvent actionEvent) {
+        OEUVRE_MOCK.setDependency(this.dependencyDAO.findDependency(
+                "DRAI Facultad De Ingeniería"));
+        Long idOeuvre = this.oeuvreDAO.saveOeuvre(OEUVRE_MOCK);
 
-        for (AuthorWork authorWork : this.getAuthorsWorks()) {
-            authorWork.getAuthorWorkPK().setWorkTypeId(idWork);
+        for (AuthorOeuvre authorOeuvre : this.getAuthorsOeuvres()) {
+            authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);
         }
     }
 
     @PostConstruct()
     private void createFields() {
-        this.setAuthorsWorks(new ArrayList<AuthorWork>());
+        this.setAuthorsOeuvres(new ArrayList<AuthorOeuvre>());
         this.setFoundAuthors(new ArrayList<Author>());
     }
 }

@@ -11,7 +11,7 @@
     <h:head>
         <title>Creador - Admin</title>
         <script type="text/javascript"
-                src="../../../util/javascript/onSelectedAuthorWorkFunction.js" >
+                src="../../../util/javascript/onSelectedAuthorOeuvreRequest.js" >
         </script>
         <f:facet name="creatorEntities" >
             <meta content='text/html; charset=UTF-8'
@@ -27,7 +27,7 @@
                 <p:layoutUnit closable="false" collapsible="false" position="south"
                               resizable="false" size="60" >
                     <p:commandButton id="home"
-                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/work/list/worklist.xhtml';" 
+                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';" 
                                      value="Volver al Listado de Obras"  style="font-size:15px;" >
                     </p:commandButton>
                 </p:layoutUnit>
@@ -38,7 +38,7 @@
                         <p:panel>
                             <center>
                                 <ui:include
-                                    src="../../user/update/logoutinfouser.xhtml" >
+                                    src="../../client/update/logoutinfoclient.xhtml" >
                                 </ui:include>
                             </center>
                         </p:panel>
@@ -51,17 +51,17 @@
                         <p:submenu label="Usuarios" >
                             <p:menuitem
                                 actionListener="#{adminCreatorEntityBean.changeDirection}"
-                                id="newUserMenuItem" update="mainPanel"
+                                id="newClientMenuItem" update="mainPanel"
                                 value="Nuevo" >
                             </p:menuitem>
                             <p:menuitem
 
-                                id="updateUserMenuItem" update="mainLayoutUnit"
+                                id="updateClientMenuItem" update="mainLayoutUnit"
                                 value="Actualizar" >
                             </p:menuitem>
                             <p:menuitem
 
-                                id="deleteUserMenuItem" update="mainLayoutUnit"
+                                id="deleteClientMenuItem" update="mainLayoutUnit"
                                 value="Borrar" >
                             </p:menuitem>
                         </p:submenu>
@@ -80,7 +80,7 @@
                         <p:submenu label="Vínculos Universitarios" >
                             <p:menuitem
                                 actionListener="#{adminCreatorEntityBean.changeDirection}"
-                                id="newRoleMenuItem" update="mainPanel"
+                                id="newTitleMenuItem" update="mainPanel"
                                 value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>

@@ -34,11 +34,11 @@ public class Type implements IEntityContext, Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
-    @Size(max = 75)
+    @Size(max = 150)
     @Column(name = "description")
     private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "type")
-    private List<WorkType> workTypeList;
+    private List<OeuvreType> oeuvreTypeList;
 
     public Type() {
         super();
@@ -67,13 +67,13 @@ public class Type implements IEntityContext, Serializable {
     }
 
     @XmlTransient()
-    public List<WorkType> getWorkTypeList() {
+    public List<OeuvreType> getOeuvreTypeList() {
 
-        return (this.workTypeList);
+        return (this.oeuvreTypeList);
     }
 
-    public void setWorkTypeList(List<WorkType> workTypeList) {
-        this.workTypeList = workTypeList;
+    public void setOeuvreTypeList(List<OeuvreType> oeuvreTypeList) {
+        this.oeuvreTypeList = oeuvreTypeList;
     }
 
     @Override()
@@ -90,7 +90,7 @@ public class Type implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (name != null ? name.hashCode() : 0);
+        hash += (this.getName() != null ? this.getName().hashCode() : 0);
 
         return (hash);
     }
@@ -103,8 +103,9 @@ public class Type implements IEntityContext, Serializable {
         }
 
         Type other = (Type) object;
-        if (((this.name == null) && (other.name != null)) || ((this.name != null)
-                && !(this.name.equals(other.name)))) {
+        if (((this.getName() == null) && (other.getName() != null))
+                || ((this.getName() != null)
+                && !(this.getName().equals(other.getName())))) {
 
             return (false);
         }

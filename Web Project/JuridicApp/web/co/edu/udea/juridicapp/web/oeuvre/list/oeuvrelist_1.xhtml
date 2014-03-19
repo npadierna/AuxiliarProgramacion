@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+
+    <h:head>
+         <title>JuridicApp - Obras</title>
+        <script type="text/javascript"
+                src="../../../util/javascript/onSelectedAuthorOeuvreRequest.js" >
+        </script>
+        <f:facet name="oeuvreList" >
+            <meta content='text/html; charset=UTF-8'
+                  http-equiv="Content-Type" >
+            </meta>
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <p:layout fullPage="true" >
+            <p:layoutUnit closable="false" collapsible="true" effect="drop" 
+                          position="south" resizable="false" 
+                          size="50" >
+            </p:layoutUnit>  
+
+            <p:layoutUnit closable="false" collapsible="false" effect="drop" 
+                          header="" position="north" resizable="false" 
+                          size="130" >
+                <center>
+                    <p:panel id="memberManagementPanel" >
+                        <center>
+                            <ui:include
+                                src="../../client/update/logoutinfoclient.xhtml" >
+                            </ui:include>
+                        </center>
+                    </p:panel>
+                </center>
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="center" >
+                <h:form id="mainForm" >
+                    <p:growl id="growl" showDetail="true" ></p:growl>
+                    <center>
+                        <p:dataTable draggableColumns="true"
+                                     emptyMessage="No se han encontrado ningún tipo de Obras."
+                                     id="mainTable"
+                                     paginator="true" 
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowKey="#{authorOeuvre.key}"
+                                     rows="10" rowsPerPageTemplate="10,15,30"
+                                     selection="#{oeuvreListBean.selectedAuthorOeuvre}"
+                                     selectionMode="single"
+                                     style="width:98%; font-size:13px;"
+                                     value="#{oeuvreListBean.authorOeuvres}"
+                                     var="authorOeuvre" > 
+
+                            <f:facet name="header" >
+                                Listado De Obras
+                            </f:facet>
+
+                            <p:column filterBy="#{authorOeuvre.oeuvreType.oeuvre.title}"
+                                      filterMatchMode="contains"
+                                      style="font-size:15px;" >
+                                <f:facet id="issue" name="header" >
+                                    <h:outputText value="Nombre De La Obra" >
+                                    </h:outputText>  
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorOeuvre.oeuvreType.oeuvre.title}" >
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column sortBy="#{authorOeuvre.delivering}"
+                                      style="font-size:15px;" >
+                                <f:facet id="year" name="header" >
+                                    <h:outputText
+                                        value="Fecha De Entrega" >
+                                    </h:outputText>  
+                                </f:facet>  
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorOeuvre.delivering}" >
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column filterBy="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}"
+                                      filterMatchMode="exact"
+                                      filterOptions="#{typeBean.typesSelectItems}"
+                                sortBy="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}"
+                                      style="font-size:15px;" >
+                                <f:facet id="type" name="header">  
+                                    <h:outputText value="Tipo" >
+                                    </h:outputText>  
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column filterBy="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}"
+                                      filterMatchMode="contains"
+                                      sortBy="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}"
+                                      style="font-size:15px;" >
+                                <f:facet id="author" name="header" >
+                                    <h:outputText value="Autor" >
+                                    </h:outputText>  
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column sortBy="#{authorOeuvre.contract1.id}"
+                                      style="font-size:15px;" >
+                                <f:facet id="contract" name="header" > 
+                                    <h:outputText value="N° Contrato" >
+                                    </h:outputText> 
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorOeuvre.contract1.id}" >
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column style="font-size:15px;" >
+                                <f:facet id="isbn" name="header" > 
+                                    <h:outputText value="ISBN" >
+                                    </h:outputText>
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorOeuvre.isbn}" >
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column sortBy="#{authorOeuvre.dnda.number}"
+                                      style="font-size:15px;" >
+                                <f:facet id="dnda" name="header" >
+                                    <h:outputText value="DNDA" >
+                                    </h:outputText>  
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorOeuvre.dnda.number}" >
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column filterBy="#{authorOeuvre.supportType.type}"
+                                      filterMatchMode="exact"
+                                      filterOptions="#{supportBean.supportsSelectItems}"
+                                      sortBy="#{authorOeuvre.supportType.type}"
+                                      style="font-size:15px;" >
+                                <f:facet id="support" name="header" >
+                                    <h:outputText value="Soporte" >
+                                    </h:outputText>  
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="#{authorOeuvre.supportType.type}" >
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column style="font-size: 15px;" >
+                                <f:facet id="archivos" name="header" >
+                                    <h:outputText value="Archivos" >
+                                    </h:outputText>
+                                </f:facet>
+                                <h:outputText style="font-size:13px;"
+                                              value="Archivos" >
+                                </h:outputText>
+                            </p:column>
+
+                            <f:facet  id="button" name="footer" >
+                                <p:commandButton action="#{oeuvreSelectorBean.onSelectedAuthorOeuvre}" 
+                                                 icon="ui-icon-search"
+                                                 id="viewButton" 
+                                                 oncomplete="onSelectedAuthorOeuvreRequest(xhr, status, args)"
+                                                 update=":mainForm:growl"
+                                                 value="Ver" >
+                                </p:commandButton>
+                            </f:facet>
+
+                            <f:facet id="obras" name="footer" ></f:facet>
+                        </p:dataTable>
+                    </center>
+
+                    <h:panelGrid columns="2" >
+                        <p:panel header="Exportar todas las obras" >
+                            <h:commandLink>
+                                <p:graphicImage
+                                    value="/faces/co/edu/udea/juridicapp/util/images/download_excel.jpg" >
+                                </p:graphicImage>  
+                                <p:dataExporter fileName="obras"
+                                                target="mainTable" type="xls" >
+                                </p:dataExporter>
+                            </h:commandLink>
+
+                            <h:commandLink>  
+                                <p:graphicImage
+                                    value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.jpg" >
+                                </p:graphicImage>  
+                                <p:dataExporter fileName="obras" target="mainTable" 
+                                                type="pdf" >
+                                </p:dataExporter>
+                            </h:commandLink>
+                        </p:panel>
+
+                        <p:panel header="Exportar esta vista" >
+                            <h:commandLink>
+                                <p:graphicImage
+                                    value="/faces/co/edu/udea/juridicapp/util/images/download_excel.jpg" > 
+                                </p:graphicImage>
+                                <p:dataExporter fileName="obras" pageOnly="true"
+                                                type="xls" target="mainTable" >
+                                </p:dataExporter>
+                            </h:commandLink>
+
+                            <h:commandLink>  
+                                <p:graphicImage
+                                    value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.jpg" > 
+                                </p:graphicImage>
+                                <p:dataExporter fileName="obras" pageOnly="true" 
+                                                type="pdf" target="mainTable" >
+                                </p:dataExporter>
+                            </h:commandLink>
+                        </p:panel>
+                    </h:panelGrid>
+
+                    <p:dialog header="Listado de Autores" hideEffect="explode"
+                              id="dialog" resizable="false" showEffect="fade"
+                              widgetVar="authorsListDialogue" >
+
+                        <h:panelGrid cellpadding="4" columns="2" id="display" >
+                            <h:outputText value="Nombre:" ></h:outputText>
+                            <h:outputText value="Foo" ></h:outputText>
+                        </h:panelGrid>
+                    </p:dialog>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+
+    </h:body>
+</html>

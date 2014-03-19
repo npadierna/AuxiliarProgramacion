@@ -12,7 +12,7 @@ public interface IFirstRunConfiguration {
 
     public void createDefaultProfiles();
 
-    public void createDefaultRoles();
+    public void createDefaultTitles();
 
     public void createDefaultSupports();
 

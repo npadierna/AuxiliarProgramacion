@@ -34,11 +34,11 @@ public class Support implements IEntityContext, Serializable {
     @Size(min = 1, max = 25)
     @Column(name = "type")
     private String type;
-    @Size(max = 75)
+    @Size(max = 150)
     @Column(name = "description")
     private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "supportType")
-    private List<AuthorWork> authorWorkList;
+    private List<AuthorOeuvre> authorOeuvreList;
 
     public Support() {
         super();
@@ -67,13 +67,13 @@ public class Support implements IEntityContext, Serializable {
     }
 
     @XmlTransient()
-    public List<AuthorWork> getAuthorWorkList() {
+    public List<AuthorOeuvre> getAuthorOeuvreList() {
 
-        return (this.authorWorkList);
+        return (this.authorOeuvreList);
     }
 
-    public void setAuthorWorkList(List<AuthorWork> authorWorkList) {
-        this.authorWorkList = authorWorkList;
+    public void setAuthorOeuvreList(List<AuthorOeuvre> authorOeuvreList) {
+        this.authorOeuvreList = authorOeuvreList;
     }
 
     @Override()
@@ -90,7 +90,7 @@ public class Support implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (type != null ? type.hashCode() : 0);
+        hash += (this.getType() != null ? this.getType().hashCode() : 0);
 
         return (hash);
     }
@@ -103,8 +103,9 @@ public class Support implements IEntityContext, Serializable {
         }
 
         Support other = (Support) object;
-        if (((this.type == null) && (other.type != null))
-                || ((this.type != null) && !(this.type.equals(other.type)))) {
+        if (((this.getType() == null) && (other.getType() != null))
+                || ((this.getType() != null)
+                && !(this.getType().equals(other.getType())))) {
 
             return (false);
         }

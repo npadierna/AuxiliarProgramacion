@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" >
+
+    <h:head>
+        <script type="text/javascript"
+                src="../../../util/javascript/registryRequestFunction.js" >
+        </script>
+        <f:facet name="registerMember" >
+            <meta content='text/html; charset=UTF-8'
+                  http-equiv="Content-Type" >
+            </meta>
+            <title>Crear Usuario</title>
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <h:form id="registrerForm" >
+            <center>
+                <p:panel header="Registro De Usuario" id="registrerPanel" 
+                         style="font-weight:bold" >
+
+                    <p:growl id="growlRegistrer" showDetail="false" life="3000" >
+                    </p:growl>
+
+                    <h:panelGrid cellpadding="5" columns="3" >
+                        <h:outputLabel for="peopleDocumentType"
+                                       style="font-weight:bold"
+                                       value="Tipo de Documento:" >
+                        </h:outputLabel>
+                        <p:selectOneMenu id="peopleDocumentType"
+                                         label="Tipo de Documento" required="true" 
+                                         value="#{registrationClientBean.documentType}">
+                            <f:selectItems value="#{registrationClientBean.documentsType}" >
+                            </f:selectItems>
+                        </p:selectOneMenu>
+                        <p:watermark for="peopleDocumentType"
+                                     value="Tipo de Documento" >
+                        </p:watermark>
+
+                        <h:outputLabel for="peopleIdNumber"
+                                       style="font-weight:bold"
+                                       value="Número de Documento:" >
+                        </h:outputLabel>
+                        <p:inputText id="peopleIdNumber"
+                                     label="Número de Documento" maxlength="20"
+                                     required="true" size="45"
+                                     value="#{registrationClientBean.idNumber}" >
+                            <f:validateRegex pattern="[0-9]+" >
+                            </f:validateRegex>
+                        </p:inputText>
+                        <p:watermark for="peopleIdNumber" value="Obligatorio" >
+                        </p:watermark>
+
+                        <h:outputLabel for="peopleFirstNames" 
+                                       style="font-weight:bold" value="Nombres:" >
+                        </h:outputLabel>
+                        <p:inputText id="peopleFirstNames" label="Nombres" 
+                                     maxlength="35" required="true" size="45" 
+                                     value="#{registrationClientBean.people.firstNames}" >
+                            <f:validateRegex pattern="^[a-zA-Z]+"  >
+                            </f:validateRegex>                        
+                        </p:inputText>
+                        <p:watermark for="peopleFirstNames" value="Obligatorio" >
+                        </p:watermark>
+
+                        <h:outputLabel for="peopleLastNames" value="Apellidos:"
+                                       style="font-weight:bold" >
+                        </h:outputLabel>
+                        <p:inputText id="peopleLastNames" label="Apellidos"
+                                     maxlength="35" required="true" size="45"
+                                     value="#{registrationClientBean.people.lastNames}" >
+                             <f:validateRegex pattern="^[a-zA-Z]+"  >
+                            </f:validateRegex>    
+                        </p:inputText>
+                        <p:watermark for="peopleLastNames" value="Obligatorio" >
+                        </p:watermark>
+
+                        <h:outputLabel for="userName"  style="font-weight:bold" 
+                                       value="Nombre de Usuario:">
+                        </h:outputLabel>
+                        <p:inputText id="userName" label="Nombre de Usuario"
+                                     maxlength="25" required="true" size="45"
+                                     value="#{registrationClientBean.client.userName}" >
+                        </p:inputText>
+                        <p:watermark for="userName" value="Obligatorio" >
+                        </p:watermark>
+
+                        <h:outputLabel for="userPassword" value="Contraseña:"
+                                       style="font-weight:bold" >
+                        </h:outputLabel>
+                        <p:password id="userPassword" feedback="true"
+                                    label="Contraseña" match="userPassword2"
+                                    maxlength="25" required="true" size="45" 
+                                    value="#{registrationClientBean.client.password}" >
+                        </p:password>
+                        <p:watermark for="userPassword" value="Obligatorio" >
+                        </p:watermark>
+
+                        <h:outputLabel for="userPassword2"
+                                       style="font-weight:bold"
+                                       value="Confirmar Contraseña:" >
+                        </h:outputLabel>
+                        <p:password id="userPassword2"
+                                    feedback="true" label="Confirmar Contraseña"
+                                    maxlength="25" required="true" size="45"
+                                    value="#{registrationClientBean.client.password}" >
+                        </p:password>
+                        <p:watermark for="userPassword2" value="Obligatorio" >
+                        </p:watermark>
+
+
+                        <h:outputLabel for="peopleEmail" value="E-Mail:"
+                                       style="font-weight:bold" >
+                        </h:outputLabel>
+                        <p:inputText id="peopleEmail"
+                                     label="Correo Electrónico" maxlength="35"
+                                     required="true" size="45" 
+                                     value="#{registrationClientBean.people.email}" >
+                            <f:validateRegex
+                                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" >
+                            </f:validateRegex>
+                        </p:inputText>
+                        <p:watermark for="peopleEmail" value="Obligatorio" >
+                        </p:watermark>
+
+                        <h:outputLabel for="dependencyName"
+                                       style="font-weight:bold"
+                                       value="Dependencia:" >
+                        </h:outputLabel>
+                        <p:selectOneMenu id="dependencyName"
+                                         label="Nombre de la Dependencia"
+                                         required="true"
+                                         value="#{registrationClientBean.dependencyName}">
+                            <f:selectItems value="#{dependencyBean.dependenciesNames}" >
+                            </f:selectItems>
+                        </p:selectOneMenu>
+                        <p:watermark for="dependencyName"
+                                     value="Nombre de la Dependencia" >
+                        </p:watermark>
+
+                        <h:outputLabel for="profileName"
+                                       style="font-weight:bold"
+                                       value="Dependencia:" >
+                        </h:outputLabel>
+                        <p:selectOneMenu id="profileName"
+                                         label="Perfil:"
+                                         required="true" 
+                                         value="#{registrationClientBean.profileName}">
+                            <f:selectItems value="#{profileBean.profilesNames}" >
+                            </f:selectItems>
+                        </p:selectOneMenu>
+                        <p:watermark for="profileName"
+                                     value="Nombre del Perfil" >
+                        </p:watermark>
+
+                        <p:commandButton id="registerButton" value="Registrarse"
+                                         update="registrerPanel"
+                                         actionListener="#{registrationClientBean.doRegistration}" >
+                        </p:commandButton>
+                        <p:commandButton id="clearButton" update="registrerPanel"
+                                         type="reset" process="@this" ajax="true"
+                                         value="Limpiar" >
+
+                            <p:resetInput target="userName" ></p:resetInput>
+                            <p:resetInput target="password" ></p:resetInput>
+                        </p:commandButton>
+                    </h:panelGrid>
+                </p:panel>
+            </center>
+        </h:form>
+    </h:body>
+</html>

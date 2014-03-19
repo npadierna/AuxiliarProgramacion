@@ -8,25 +8,24 @@
       xmlns:f="http://java.sun.com/jsf/core" >
 
     <h:head>
-        <f:facet name="authorsWorksCreator" >
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
+        <f:facet name="authorsOeuvresCreator" >
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" >
             </meta>
             <title>Crear Obras Por Autor</title>
         </f:facet>
     </h:head>
 
     <h:body>
-        <h:form id="authorsWorksAdderForm" >
+        <h:form id="authorsOeuvresAdderForm" >
             <center>
                 <p:panel header="Añadir Obras A Autores"
-                         id="authorsWorksAdderPanel" >
+                         id="authorsOeuvresAdderPanel" >
 
                     <p:dataTable emptyMessage="No se han añadido Autores."
-                                 id="addedAuthorsWorksTable"
+                                 id="addedAuthorsOeuvresTable"
                                  style="font-size:13px"
-                                 value="#{authorFinderTesterBean.authorsWorks}"
-                                 var="authorWork" >
+                                 value="#{authorFinderTesterBean.authorsOeuvres}"
+                                 var="authorOeuvre" >
 
                         <p:column>
                             <f:facet name="header" >
@@ -41,7 +40,7 @@
                                 <h:outputText value="Tipo De Documento" >
                                 </h:outputText>
                             </f:facet>
-                            <h:outputText value="#{authorWork.authorWorkPK.documentType}" >
+                            <h:outputText value="#{authorOeuvre.authorOeuvrePK.documentType}" >
                             </h:outputText>
                         </p:column>
 
@@ -50,7 +49,7 @@
                                 <h:outputText value="Número De Documento" >
                                 </h:outputText>
                             </f:facet>
-                            <h:outputText value="#{authorWork.authorWorkPK.idNumber}" >
+                            <h:outputText value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
                             </h:outputText>
                         </p:column>
 
@@ -59,7 +58,7 @@
                                 <h:outputText value="Nombre Completo" >
                                 </h:outputText>
                             </f:facet>
-                            <h:outputText value="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}" >
+                            <h:outputText value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
                             </h:outputText>
                         </p:column>
 
@@ -69,7 +68,7 @@
                                 </h:outputText>
                             </f:facet>
                             <p:inputText maxlength="30" required="true" size="20"
-                                         value="#{authorWork.authorWorkPK.contract}" >
+                                         value="#{authorOeuvre.authorOeuvrePK.contract}" >
                             </p:inputText>
                         </p:column>
 
@@ -79,7 +78,7 @@
                                 </h:outputText>
                             </f:facet>
                             <p:calendar effect="explode" size="5"
-                                        value="#{authorWork.starting}" >
+                                        value="#{authorOeuvre.starting}" >
                             </p:calendar>
                         </p:column>
 
@@ -89,7 +88,7 @@
                                 </h:outputText>
                             </f:facet>
                             <p:calendar effect="explode" size="5"
-                                        value="#{authorWork.delivering}" >
+                                        value="#{authorOeuvre.delivering}" >
                             </p:calendar>
                         </p:column>
 
@@ -98,10 +97,10 @@
                                 <h:outputText value="Tipo De Obra" >
                                 </h:outputText>
                             </f:facet>
-                            <p:selectOneMenu id="authorWorkType"
+                            <p:selectOneMenu id="authorOeuvreType"
                                              label="Tipo de la Obra"
                                              required="true"
-                                             value="#{authorWork.authorWorkPK.workTypeName}" >
+                                             value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
                                 <f:selectItems value="#{typeBean.typesNames}" >
                                 </f:selectItems>
                             </p:selectOneMenu>
@@ -112,10 +111,10 @@
                                 <h:outputText value="Soporte De La Obra" >
                                 </h:outputText>
                             </f:facet>
-                            <p:selectOneMenu id="authorWorkSupport"
+                            <p:selectOneMenu id="authorOeuvreSupport"
                                              label="Soporte de la Obra"
                                              required="true"
-                                             value="#{authorWork.supportType.type}" >
+                                             value="#{authorOeuvre.supportType.type}" >
                                 <f:selectItems value="#{supportBean.supportsNames}" >
                                 </f:selectItems>
                             </p:selectOneMenu>
@@ -126,11 +125,11 @@
                                 <h:outputText value="Vínculo Con La Universidad" >
                                 </h:outputText>
                             </f:facet>
-                            <p:selectOneMenu id="authorWorkRole"
+                            <p:selectOneMenu id="authorOeuvreTitle"
                                              label="Vínculo con Universidad"
                                              required="true"
-                                             value="#{authorWork.role.profile}" >
-                                <f:selectItems value="#{roleBean.rolesNames}" >
+                                             value="#{authorOeuvre.title.profile}" >
+                                <f:selectItems value="#{titleBean.titlesNames}" >
                                 </f:selectItems>
                             </p:selectOneMenu>
                         </p:column>
@@ -142,21 +141,21 @@
                                              style="font-size:15px" >
                                     <h:outputText value="ISBN:" >
                                     </h:outputText>
-                                    <p:inputText id="authorWorkISBN" maxlength="35"
+                                    <p:inputText id="authorOeuvreISBN" maxlength="35"
                                                  required="false" size="35"
-                                                 value="#{authorWork.isbn}" >
+                                                 value="#{authorOeuvre.isbn}" >
                                     </p:inputText>
-                                    <p:watermark for="authorWorkISBN"
+                                    <p:watermark for="authorOeuvreISBN"
                                                  value="Opcional" >
                                     </p:watermark>
 
                                     <h:outputText value="DNDA:" >
                                     </h:outputText>
-                                    <p:inputText id="authorWorkDNDA" maxlength="30"
+                                    <p:inputText id="authorOeuvreDNDA" maxlength="30"
                                                  required="false" size="30"
-                                                 value="#{authorWork.dnda}" >
+                                                 value="#{authorOeuvre.dnda}" >
                                     </p:inputText>
-                                    <p:watermark for="authorWorkDNDA"
+                                    <p:watermark for="authorOeuvreDNDA"
                                                  value="Opcional" >
                                     </p:watermark>
                                 </h:panelGrid>
@@ -166,9 +165,9 @@
                     </p:dataTable>
                 </p:panel>
 
-                <p:commandButton id="createAuthorsWorksButton"
-                                 actionListener="#{authorFinderTesterBean.saveAuthorsWorks}"
-                                 update="authorsWorksAdderForm"
+                <p:commandButton id="createAuthorsOeuvresButton"
+                                 actionListener="#{authorFinderTesterBean.saveAuthorsOeuvres}"
+                                 update="authorsOeuvresAdderForm"
                                  value="Guardar Obras" >
                 </p:commandButton>
             </center>

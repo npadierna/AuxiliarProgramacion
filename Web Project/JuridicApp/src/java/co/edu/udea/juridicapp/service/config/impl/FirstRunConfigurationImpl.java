@@ -2,22 +2,22 @@ package co.edu.udea.juridicapp.service.config.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IAcquisitionDAO;
 import co.edu.udea.juridicapp.persistence.dao.IAuthorDAO;
-import co.edu.udea.juridicapp.persistence.dao.IAuthorWorkDAO;
+import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
 import co.edu.udea.juridicapp.persistence.dao.IProfileDAO;
-import co.edu.udea.juridicapp.persistence.dao.IRoleDAO;
+import co.edu.udea.juridicapp.persistence.dao.ITitleDAO;
 import co.edu.udea.juridicapp.persistence.dao.ISupportDAO;
 import co.edu.udea.juridicapp.persistence.dao.ITypeDAO;
-import co.edu.udea.juridicapp.persistence.dao.IUserDAO;
+import co.edu.udea.juridicapp.persistence.dao.IClientDAO;
 import co.edu.udea.juridicapp.persistence.entity.Acquisition;
 import co.edu.udea.juridicapp.persistence.entity.Author;
-import co.edu.udea.juridicapp.persistence.entity.AuthorWork;
+import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
 import co.edu.udea.juridicapp.persistence.entity.Dependency;
 import co.edu.udea.juridicapp.persistence.entity.Profile;
-import co.edu.udea.juridicapp.persistence.entity.Role;
+import co.edu.udea.juridicapp.persistence.entity.Title;
 import co.edu.udea.juridicapp.persistence.entity.Support;
 import co.edu.udea.juridicapp.persistence.entity.Type;
-import co.edu.udea.juridicapp.persistence.entity.User;
+import co.edu.udea.juridicapp.persistence.entity.Client;
 import co.edu.udea.juridicapp.service.config.IFirstRunConfiguration;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,19 +29,19 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     @Autowired()
     private IAuthorDAO authorDAO;
     @Autowired()
-    private IAuthorWorkDAO authorWorkDAO;
+    private IAuthorOeuvreDAO authorOeuvreDAO;
     @Autowired()
     private IDependencyDAO dependencyDAO;
     @Autowired()
     private IProfileDAO profileDAO;
     @Autowired()
-    private IRoleDAO roleDAO;
+    private ITitleDAO titleDAO;
     @Autowired()
     private ISupportDAO supportDAO;
     @Autowired()
     private ITypeDAO typeDAO;
     @Autowired()
-    private IUserDAO userDAO;
+    private IClientDAO clientDAO;
 
     @Override()
     public void createDefaultData() {
@@ -52,7 +52,7 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         this.createDefaultTypes();
         this.createDefaultDependencies();
         this.createDefaultProfiles();
-        this.createDefaultRoles();
+        this.createDefaultTitles();
 
 //        this.tester();
     }
@@ -113,51 +113,65 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     }
 
     @Override()
-    public void createDefaultRoles() {
-        System.out.println(" + Creating the default \"ROLE\" data.");
+    public void createDefaultTitles() {
+        System.out.println(" + Creating the default \"TITLE\" data.");
 
-        if (this.roleDAO.countRoles() == 0) {
-            Role role = new Role("Profesor Vinculado");
-            this.roleDAO.saveRole(role);
+        if (this.titleDAO.countTitles() == 0) {
+            Title title = new Title("Profesor Vinculado");
+            title.setDescription("Profesor Vinculado.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Profesor Ocasional");
-            this.roleDAO.saveRole(role);
+            title = new Title("Profesor Ocasional");
+            title.setDescription("Profesor Ocasional.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Profesor Visitante");
-            this.roleDAO.saveRole(role);
+            title = new Title("Profesor Visitante");
+            title.setDescription("Profesor Visitante.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Profesor Ad Honórem");
-            this.roleDAO.saveRole(role);
+            title = new Title("Profesor Ad Honórem");
+            title.setDescription("Profesor Ad Honórem.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Profesor De Cátedra");
-            this.roleDAO.saveRole(role);
+            title = new Title("Profesor De Cátedra");
+            title.setDescription("Profesor De Cátedra.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Estudiante De Pregrado");
-            this.roleDAO.saveRole(role);
+            title = new Title("Estudiante De Pregrado");
+            title.setDescription("Estudiante De Pregrado.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Estudiante De Postgrado");
-            this.roleDAO.saveRole(role);
+            title = new Title("Estudiante De Postgrado");
+            title.setDescription("Estudiante De Postgrado.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Empleado De Carrera");
-            this.roleDAO.saveRole(role);
+            title = new Title("Empleado De Carrera");
+            title.setDescription("Empleado De Carrera.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Empleado De Libre Nombramiento");
-            this.roleDAO.saveRole(role);
+            title = new Title("Empleado De Libre Nombramiento");
+            title.setDescription("Empleado De Libre Nombramiento.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Empleado Provisional");
-            this.roleDAO.saveRole(role);
+            title = new Title("Empleado Provisional");
+            title.setDescription("Empleado Provisional.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Empleado Ocasional");
-            this.roleDAO.saveRole(role);
+            title = new Title("Empleado Ocasional");
+            title.setDescription("Empleado Ocasional.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Contratista");
-            this.roleDAO.saveRole(role);
+            title = new Title("Contratista");
+            title.setDescription("Contratista.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("Externo");
-            this.roleDAO.saveRole(role);
+            title = new Title("Externo");
+            title.setDescription("Externo.");
+            this.titleDAO.saveTitle(title);
 
-            role = new Role("No Aplica");
-            this.roleDAO.saveRole(role);
+            title = new Title("No Aplica");
+            title.setDescription("No Aplica.");
+            this.titleDAO.saveTitle(title);
         }
     }
 
@@ -167,9 +181,11 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
 
         if (this.supportDAO.countSupports() == 0) {
             Support support = new Support("Físico");
+            support.setDescription("Físico.");
             this.supportDAO.saveSupport(support);
 
             support = new Support("Digital");
+            support.setDescription("Digital.");
             this.supportDAO.saveSupport(support);
         }
     }
@@ -180,46 +196,56 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
 
         if (this.typeDAO.countTypes() == 0) {
             Type type = new Type("Escrito");
+            type.setDescription("Escrito.");
             this.typeDAO.saveType(type);
 
             type = new Type("Programa De Ordenador (Software)");
+            type.setDescription("Programa De Ordenador (Software).");
             this.typeDAO.saveType(type);
 
             type = new Type("Audiovisual, Multimedia");
+            type.setDescription("Audiovisual, Multimedia.");
             this.typeDAO.saveType(type);
 
             type = new Type("Exposición (Conferencia)");
+            type.setDescription("Exposición (Conferencia).");
             this.typeDAO.saveType(type);
 
             type = new Type("Composición Musical");
+            type.setDescription("Composición Musical.");
             this.typeDAO.saveType(type);
 
             type = new Type("Obra De Bellas Artes");
+            type.setDescription("Obra De Bellas Artes.");
             this.typeDAO.saveType(type);
 
             type = new Type("Obra Fotográfica");
+            type.setDescription("Obra Fotográfica.");
             this.typeDAO.saveType(type);
 
             type = new Type("Ilustración (Mapa)");
+            type.setDescription("Ilustración (Mapa).");
             this.typeDAO.saveType(type);
 
             type = new Type("Obra Derivada");
+            type.setDescription("Obra Derivada.");
             this.typeDAO.saveType(type);
 
             type = new Type("Otro");
+            type.setDescription("Otro.");
             this.typeDAO.saveType(type);
         }
     }
 
     private void tester() {
-        User user = this.userDAO.findUserByLogin("neiber.padierna", "neiber123");
+        Client client = this.clientDAO.findClientByLogin("neiber.padierna", "neiber123");
 
-        Author author = new Author(user.getPersonPK().getDocumentType(),
-                user.getPersonPK().getIdNumber());
+        Author author = new Author(client.getPeoplePK().getDocumentType(),
+                client.getPeoplePK().getIdNumber());
 //        this.authorDAO.saveAuthor(author);
 
-        List<AuthorWork> authorWorks = this.authorWorkDAO.findAuthorsWorksByAuthor(author);
+        List<AuthorOeuvre> authorOeuvres = this.authorOeuvreDAO.findAuthorsOeuvresByAuthor(author);
 
-        List<AuthorWork> allWorks = this.authorWorkDAO.findAllAuthorsWorks();
+        List<AuthorOeuvre> allOeuvres = this.authorOeuvreDAO.findAllAuthorsOeuvres();
     }
 }

@@ -19,8 +19,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity()
 @NamedQueries({
     @NamedQuery(name = "Profile.findAll", query = "SELECT p FROM Profile p"),
-    @NamedQuery(name = "Profile.findByRole",
-            query = "SELECT p FROM Profile p WHERE p.role = :role"),
+    @NamedQuery(name = "Profile.findByTitle",
+            query = "SELECT p FROM Profile p WHERE p.title = :title"),
     @NamedQuery(name = "Profile.findByDescription",
             query = "SELECT p FROM Profile p WHERE p.description = :description")})
 @Table(name = "PROFILE")
@@ -32,29 +32,29 @@ public class Profile implements IEntityContext, Serializable {
     @Basic(optional = false)
     @NotNull()
     @Size(min = 1, max = 25)
-    @Column(name = "role")
-    private String role;
-    @Size(max = 50)
+    @Column(name = "title")
+    private String title;
+    @Size(max = 150)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
-    private List<User> userList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "title")
+    private List<Client> clientList;
 
     public Profile() {
         super();
     }
 
-    public Profile(String role) {
-        this.role = role;
+    public Profile(String title) {
+        this.title = title;
     }
 
-    public String getRole() {
+    public String getTitle() {
 
-        return (this.role);
+        return (this.title);
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -67,30 +67,30 @@ public class Profile implements IEntityContext, Serializable {
     }
 
     @XmlTransient()
-    public List<User> getUserList() {
+    public List<Client> getClientList() {
 
-        return (this.userList);
+        return (this.clientList);
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
     }
 
     @Override()
     public Object getKey() {
 
-        return (this.getRole());
+        return (this.getTitle());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setRole((String) key);
+        this.setTitle((String) key);
     }
 
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (role != null ? role.hashCode() : 0);
+        hash += (this.getTitle() != null ? this.getTitle().hashCode() : 0);
 
         return (hash);
     }
@@ -103,8 +103,9 @@ public class Profile implements IEntityContext, Serializable {
         }
 
         Profile other = (Profile) object;
-        if (((this.role == null) && (other.role != null))
-                || ((this.role != null) && !(this.role.equals(other.role)))) {
+        if (((this.getTitle() == null) && (other.getTitle() != null))
+                || ((this.getTitle() != null)
+                && !(this.getTitle().equals(other.getTitle())))) {
 
             return (false);
         }
@@ -115,7 +116,7 @@ public class Profile implements IEntityContext, Serializable {
     @Override()
     public String toString() {
 
-        return ("co.edu.udea.juridicapp.persistence.entity.Profile[ role="
-                + this.getRole() + " ]");
+        return ("co.edu.udea.juridicapp.persistence.entity.Profile[ title="
+                + this.getTitle() + " ]");
     }
 }

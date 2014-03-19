@@ -17,42 +17,42 @@
     </h:head>
 
     <h:body>
-        <h:form id="roleCreator" >
+        <h:form id="titleCreator" >
             <center>
                 <p:panel header="Crear Vínculo Universitario"
-                         id="roleCreatorPanel" style="font-weight:bold" >
+                         id="titleCreatorPanel" style="font-weight:bold" >
                     <h:panelGrid cellpadding="5" columns="3" >
                         <p:growl id="growlLogin" life="3000" showDetail="true" >
                         </p:growl>
 
-                        <h:outputLabel for="roleName"
+                        <h:outputLabel for="titleName"
                                        style="font-weight:bold" 
                                        value="Nombre del Vínculo:" >
                         </h:outputLabel>
-                        <p:inputText id="roleName"
+                        <p:inputText id="titleName"
                                      label="Nombre del Vínculo"
                                      maxlength="35" required="true" size="45"
-                                     value="#{roleBean.role.profile}" >
+                                     value="#{titleBean.title.profile}" >
                         </p:inputText>
-                        <p:watermark for="roleName" value="Obligatorio" >
+                        <p:watermark for="titleName" value="Obligatorio" >
                         </p:watermark>
 
-                        <h:outputLabel for="roleDescription"
+                        <h:outputLabel for="titleDescription"
                                        style="font-weight:bold" 
                                        value="Descripción:" >
                         </h:outputLabel>
                         <p:inputTextarea autoResize="false" cols="45"
-                                         id="roleDescription" maxlength="75"
+                                         id="titleDescription" maxlength="75"
                                          required="false"
-                                         value="#{roleBean.role.description}" >
+                                         value="#{titleBean.title.description}" >
                         </p:inputTextarea>
-                        <p:watermark for="roleDescription"
+                        <p:watermark for="titleDescription"
                                      value="Descripción breve." >
                         </p:watermark>
                     </h:panelGrid>
 
-                    <p:commandButton actionListener="#{roleBean.save}"
-                                     id="saveRoleButton"
+                    <p:commandButton actionListener="#{titleBean.save}"
+                                     id="saveTitleButton"
                                      update="growlLogin"
                                      value="Guardar" >
                     </p:commandButton>

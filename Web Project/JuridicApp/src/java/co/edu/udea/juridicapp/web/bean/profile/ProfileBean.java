@@ -38,7 +38,7 @@ public class ProfileBean implements Serializable {
 
         List<Profile> profilesFound = this.profileDAO.findAllProfiles();
         for (Profile profile : profilesFound) {
-            this.getProfilesNames().add(profile.getRole());
+            this.getProfilesNames().add(profile.getTitle());
         }
     }
 }

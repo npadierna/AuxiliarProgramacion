@@ -2,7 +2,7 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorDAO;
 import co.edu.udea.juridicapp.persistence.entity.Author;
-import co.edu.udea.juridicapp.persistence.entity.PersonPK;
+import co.edu.udea.juridicapp.persistence.entity.PeoplePK;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -39,16 +39,16 @@ public class AuthorDAO extends AbstractEntityDAO implements IAuthorDAO {
     }
 
     @Override()
-    public Author findAuthor(PersonPK key) {
+    public Author findAuthor(PeoplePK key) {
 
         return ((Author) super.find(Author.class, key));
     }
 
     @Override()
     @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
-    public PersonPK saveAuthor(Author author) {
+    public PeoplePK saveAuthor(Author author) {
 
-        return ((PersonPK) super.save(author));
+        return ((PeoplePK) super.save(author));
     }
 
     @Override()

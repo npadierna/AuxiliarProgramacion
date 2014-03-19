@@ -12,12 +12,16 @@
           class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorDAO" >
     </bean>
 
-    <bean name="authorWorkAcquisitionDAO"
-          class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorWorkAcquisitionDAO" >
+    <bean name="authorOeuvreAcquisitionDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorOeuvreAcquisitionFileDAO" >
     </bean>
 
-    <bean name="authorWordDAO"
-          class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorWorkDAO" >
+    <bean name="authorOeuvreDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorOeuvreDAO" >
+    </bean>
+
+    <bean name="clientDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.ClientDAO" >
     </bean>
 
     <bean name="commentDAO"
@@ -36,39 +40,31 @@
           class="co.edu.udea.juridicapp.persistence.dao.impl.DndaDAO" >
     </bean>
 
-    <bean name="fileDAO"
-          class="co.edu.udea.juridicapp.persistence.dao.impl.FileDAO" >
+    <bean name="oeuvreDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.OeuvreDAO" >
     </bean>
 
-    <bean name="personDAO"
-          class="co.edu.udea.juridicapp.persistence.dao.impl.PersonDAO" >
+    <bean name="oeuvreTypeDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.OeuvreTypeDAO" >
+    </bean>
+
+    <bean name="peopleDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.PeopleDAO" >
     </bean>
 
     <bean name="profileDAO"
           class="co.edu.udea.juridicapp.persistence.dao.impl.ProfileDAO" >
     </bean>
 
-    <bean name="roleDAO"
-          class="co.edu.udea.juridicapp.persistence.dao.impl.RoleDAO" >
-    </bean>
-
     <bean name="supportDAO"
           class="co.edu.udea.juridicapp.persistence.dao.impl.SupportDAO" >
     </bean>
 
+    <bean name="titleDAO"
+          class="co.edu.udea.juridicapp.persistence.dao.impl.TitleDAO" >
+    </bean>
+
     <bean name="typeDAO"
           class="co.edu.udea.juridicapp.persistence.dao.impl.TypeDAO" >
-    </bean>
-
-    <bean name="userDAO"
-          class="co.edu.udea.juridicapp.persistence.dao.impl.UserDAO" >
-    </bean>
-
-    <bean name="workDAO"
-          class="co.edu.udea.juridicapp.persistence.dao.impl.WorkDAO" >
-    </bean>
-
-    <bean name="workTypeDAO"
-          class="co.edu.udea.juridicapp.persistence.dao.impl.WorkTypeDAO" >
     </bean>
 </beans>

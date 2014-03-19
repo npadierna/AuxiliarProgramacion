@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public class AdminCreatorEntityBean implements Serializable {
 
-    //private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1938227488649633792L;
     private String direction;
 
     public AdminCreatorEntityBean() {
@@ -31,16 +31,16 @@ public class AdminCreatorEntityBean implements Serializable {
         UIMenuItem menuItem = (UIMenuItem) actionEvent.getSource();
 
         switch (menuItem.getId()) {
-            case ("newUserMenuItem"):
-                this.setDirection("../../user/registration/registeruser.xhtml");
+            case ("newClientMenuItem"):
+                this.setDirection("../../client/registration/registerclient.xhtml");
                 break;
 
-            case ("updateUserMenuItem"):
-                this.setDirection("../../user/update/updateinfouser.xhtml");
+            case ("updateClientMenuItem"):
+                this.setDirection("../../client/update/updateinfoclient.xhtml");
                 break;
 
-            case ("deleteUserMenuItem"):
-                this.setDirection("../../user/delete/deleteuser.xhtml");
+            case ("deleteClientMenuItem"):
+                this.setDirection("../../client/delete/deleteclient.xhtml");
                 break;
 
             case ("newDependencyMenuItem"):
@@ -51,8 +51,8 @@ public class AdminCreatorEntityBean implements Serializable {
 //                this.setDirection("http://192.168.0.197:8080/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/creator.xhtml");
                 break;
 
-            case ("newRoleMenuItem"):
-                this.setDirection("rolescreator.xhtml");
+            case ("newTitleMenuItem"):
+                this.setDirection("titlescreator.xhtml");
                 break;
 
             case ("newSupportMenuItem"):

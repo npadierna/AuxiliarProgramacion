@@ -12,7 +12,7 @@ public interface ICommentDAO {
 
     public List<Comment> findCommentsByAttributes(Object... attributes);
     
-    public List<Comment> findCommnetsByWorkId(Long workId);
+    public List<Comment> findCommnetsByOeuvreId(Long oeuvreId);
 
     public Comment findComment(CommentPK key);
 

@@ -146,9 +146,11 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
     @Override()
     @SuppressWarnings({"rawtypes", "unchecked"})
     public long count(Class clazz) {
-        CriteriaQuery criteriaQuery = this.getEntityManager().getCriteriaBuilder().createQuery();
+        CriteriaQuery criteriaQuery = this.getEntityManager()
+                .getCriteriaBuilder().createQuery();
         Root<IEntityContext> root = criteriaQuery.from(clazz);
-        criteriaQuery.select(this.getEntityManager().getCriteriaBuilder().count(root));
+        criteriaQuery.select(this.getEntityManager().getCriteriaBuilder()
+                .count(root));
         Query query = this.getEntityManager().createQuery(criteriaQuery);
 
         return (((Long) query.getSingleResult()).longValue());

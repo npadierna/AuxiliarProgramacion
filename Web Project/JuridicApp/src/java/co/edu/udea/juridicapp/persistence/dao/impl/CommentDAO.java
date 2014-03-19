@@ -39,10 +39,10 @@ public class CommentDAO extends AbstractEntityDAO implements ICommentDAO {
     }
 
     @Override()
-    public List<Comment> findCommnetsByWorkId(Long workId) {
+    public List<Comment> findCommnetsByOeuvreId(Long oeuvreId) {
 
-        return (this.executeNamedQueryForComments("Comment.findByWorkId",
-                "workId", workId));
+        return (this.executeNamedQueryForComments("Comment.findByOeuvreId",
+                "oeuvreId", oeuvreId));
     }
 
     @Override()

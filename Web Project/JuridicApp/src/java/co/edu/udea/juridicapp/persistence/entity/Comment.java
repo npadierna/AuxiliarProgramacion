@@ -22,8 +22,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
     @NamedQuery(name = "Comment.findById",
             query = "SELECT c FROM Comment c WHERE c.commentPK.id = :id"),
-    @NamedQuery(name = "Comment.findByWorkId",
-            query = "SELECT c FROM Comment c WHERE c.commentPK.workId = :workId"),
+    @NamedQuery(name = "Comment.findByOeuvreId",
+            query = "SELECT c FROM Comment c WHERE c.commentPK.oeuvreId = :oeuvreId"),
     @NamedQuery(name = "Comment.findByText",
             query = "SELECT c FROM Comment c WHERE c.text = :text"),
     @NamedQuery(name = "Comment.findByDateTime",
@@ -45,10 +45,10 @@ public class Comment implements IEntityContext, Serializable {
     @Column(name = "date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
-    @JoinColumn(name = "work_id", referencedColumnName = "id",
+    @JoinColumn(name = "oeuvre_id", referencedColumnName = "id",
             insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Work work;
+    private Oeuvre oeuvre;
 
     public Comment() {
         super();
@@ -64,8 +64,8 @@ public class Comment implements IEntityContext, Serializable {
         this.dateTime = dateTime;
     }
 
-    public Comment(long id, long workId) {
-        this.commentPK = new CommentPK(id, workId);
+    public Comment(long id, long oeuvreId) {
+        this.commentPK = new CommentPK(id, oeuvreId);
     }
 
     public CommentPK getCommentPK() {
@@ -95,13 +95,13 @@ public class Comment implements IEntityContext, Serializable {
         this.dateTime = dateTime;
     }
 
-    public Work getWork() {
+    public Oeuvre getOeuvre() {
 
-        return (this.work);
+        return (this.oeuvre);
     }
 
-    public void setWork(Work work) {
-        this.work = work;
+    public void setOeuvre(Oeuvre oeuvre) {
+        this.oeuvre = oeuvre;
     }
 
     @Override()
@@ -118,7 +118,8 @@ public class Comment implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (commentPK != null ? commentPK.hashCode() : 0);
+        hash += (this.getCommentPK() != null ? this.getCommentPK().hashCode()
+                : 0);
 
         return (hash);
     }
@@ -131,9 +132,9 @@ public class Comment implements IEntityContext, Serializable {
         }
 
         Comment other = (Comment) object;
-        if (((this.commentPK == null) && (other.commentPK != null))
-                || ((this.commentPK != null)
-                && !(this.commentPK.equals(other.commentPK)))) {
+        if (((this.getCommentPK() == null) && (other.getCommentPK() != null))
+                || ((this.getCommentPK() != null)
+                && !(this.getCommentPK().equals(other.getCommentPK())))) {
 
             return (false);
         }

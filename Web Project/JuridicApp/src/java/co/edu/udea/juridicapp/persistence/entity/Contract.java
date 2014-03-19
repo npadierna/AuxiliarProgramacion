@@ -20,7 +20,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Contract.findAll", query = "SELECT c FROM Contract c"),
     @NamedQuery(name = "Contract.findById",
-            query = "SELECT c FROM Contract c WHERE c.id = :id")})
+            query = "SELECT c FROM Contract c WHERE c.id = :id"),
+    @NamedQuery(name = "Contract.findByRoute",
+            query = "SELECT c FROM Contract c WHERE c.route = :route")})
 @Table(name = "CONTRACT")
 @XmlRootElement()
 public class Contract implements IEntityContext, Serializable {
@@ -32,8 +34,11 @@ public class Contract implements IEntityContext, Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "id")
     private String id;
+    @Size(max = 200)
+    @Column(name = "route")
+    private String route;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "contract1")
-    private List<AuthorWork> authorWorkList;
+    private List<AuthorOeuvre> authorOeuvreList;
 
     public Contract() {
         super();
@@ -52,14 +57,23 @@ public class Contract implements IEntityContext, Serializable {
         this.id = id;
     }
 
-    @XmlTransient()
-    public List<AuthorWork> getAuthorWorkList() {
+    public String getRoute() {
 
-        return (this.authorWorkList);
+        return (this.route);
     }
 
-    public void setAuthorWorkList(List<AuthorWork> authorWorkList) {
-        this.authorWorkList = authorWorkList;
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    @XmlTransient()
+    public List<AuthorOeuvre> getAuthorOeuvreList() {
+
+        return (this.authorOeuvreList);
+    }
+
+    public void setAuthorOeuvreList(List<AuthorOeuvre> authorOeuvreList) {
+        this.authorOeuvreList = authorOeuvreList;
     }
 
     @Override()
@@ -76,7 +90,7 @@ public class Contract implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (this.getId() != null ? this.getId().hashCode() : 0);
 
         return (hash);
     }
@@ -89,8 +103,9 @@ public class Contract implements IEntityContext, Serializable {
         }
 
         Contract other = (Contract) object;
-        if (((this.id == null) && (other.id != null)) || ((this.id != null)
-                && !(this.id.equals(other.id)))) {
+        if (((this.getId() == null) && (other.getId() != null))
+                || (this.getId() != null)
+                && !(this.getId().equals(other.getId()))) {
 
             return (false);
         }

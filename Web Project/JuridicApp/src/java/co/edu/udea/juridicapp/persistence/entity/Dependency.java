@@ -20,8 +20,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @Entity()
 @NamedQueries({
-    @NamedQuery(name = "Dependency.findAll",
-            query = "SELECT d FROM Dependency d"),
+    @NamedQuery(name = "Dependency.findAll", query = "SELECT d FROM Dependency d"),
     @NamedQuery(name = "Dependency.findByName",
             query = "SELECT d FROM Dependency d WHERE d.name = :name"),
     @NamedQuery(name = "Dependency.findByDescription",
@@ -41,12 +40,12 @@ public class Dependency implements IEntityContext, Serializable {
     @Column(name = "description")
     private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dependency")
-    private List<User> userList;
+    private List<Client> clientList;
     @JoinColumn(name = "dnda", referencedColumnName = "number")
     @ManyToOne()
     private Dnda dnda;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dependency")
-    private List<Work> workList;
+    private List<Oeuvre> oeuvreList;
 
     public Dependency() {
         super();
@@ -75,13 +74,13 @@ public class Dependency implements IEntityContext, Serializable {
     }
 
     @XmlTransient()
-    public List<User> getUserList() {
+    public List<Client> getClientList() {
 
-        return (this.userList);
+        return (this.clientList);
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
     }
 
     public Dnda getDnda() {
@@ -94,13 +93,13 @@ public class Dependency implements IEntityContext, Serializable {
     }
 
     @XmlTransient()
-    public List<Work> getWorkList() {
+    public List<Oeuvre> getOeuvreList() {
 
-        return (this.workList);
+        return (this.oeuvreList);
     }
 
-    public void setWorkList(List<Work> workList) {
-        this.workList = workList;
+    public void setOeuvreList(List<Oeuvre> oeuvreList) {
+        this.oeuvreList = oeuvreList;
     }
 
     @Override()
@@ -117,7 +116,7 @@ public class Dependency implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (name != null ? name.hashCode() : 0);
+        hash += (this.getName() != null ? this.getName().hashCode() : 0);
 
         return (hash);
     }
@@ -130,8 +129,9 @@ public class Dependency implements IEntityContext, Serializable {
         }
 
         Dependency other = (Dependency) object;
-        if (((this.name == null) && (other.name != null)) || ((this.name != null)
-                && !(this.name.equals(other.name)))) {
+        if (((this.getName() == null) && (other.getName() != null))
+                || ((this.getName() != null)
+                && !(this.getName().equals(other.getName())))) {
 
             return (false);
         }

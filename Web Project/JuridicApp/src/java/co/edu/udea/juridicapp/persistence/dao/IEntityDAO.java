@@ -1,7 +1,6 @@
 package co.edu.udea.juridicapp.persistence.dao;
 
 import co.edu.udea.juridicapp.persistence.entity.IEntityContext;
-import java.util.List;
 
 public interface IEntityDAO {
 

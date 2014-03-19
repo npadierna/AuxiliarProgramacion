@@ -12,44 +12,44 @@ public class CommentPK implements Serializable {
     private static final long serialVersionUID = 6482725099022643200L;
     @Basic(optional = false)
     @Column(name = "id")
-    private long id;
+    private Long id;
     @Basic(optional = false)
     @NotNull()
-    @Column(name = "work_id")
-    private long workId;
+    @Column(name = "oeuvre_id")
+    private Long oeuvreId;
 
     public CommentPK() {
         super();
     }
 
-    public CommentPK(long id, long workId) {
+    public CommentPK(Long id, Long oeuvreId) {
         this.id = id;
-        this.workId = workId;
+        this.oeuvreId = oeuvreId;
     }
 
-    public long getId() {
+    public Long getId() {
 
         return (this.id);
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getWorkId() {
+    public Long getOeuvreId() {
 
-        return (this.workId);
+        return (this.oeuvreId);
     }
 
-    public void setWorkId(long workId) {
-        this.workId = workId;
+    public void setOeuvreId(Long oeuvreId) {
+        this.oeuvreId = oeuvreId;
     }
 
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (int) id;
-        hash += (int) workId;
+        hash += (int) this.getId().longValue();
+        hash += (int) this.getOeuvreId().longValue();
 
         return (hash);
     }
@@ -62,12 +62,12 @@ public class CommentPK implements Serializable {
         }
 
         CommentPK other = (CommentPK) object;
-        if (this.id != other.id) {
+        if (this.getId() != other.getId()) {
 
             return (false);
         }
 
-        if (this.workId != other.workId) {
+        if (this.getOeuvreId() != other.getOeuvreId()) {
 
             return (false);
         }
@@ -79,6 +79,6 @@ public class CommentPK implements Serializable {
     public String toString() {
 
         return ("co.edu.udea.juridicapp.persistence.entity.CommentPK[ id="
-                + this.getId() + ", workId=" + this.getWorkId() + " ]");
+                + this.getId() + ", oeuvreId=" + this.getOeuvreId() + " ]");
     }
 }

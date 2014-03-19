@@ -25,33 +25,33 @@
                         <p:growl id="growlLogin" life="3000" showDetail="true" >
                         </p:growl>
 
-                        <h:outputLabel for="workType"
+                        <h:outputLabel for="oeuvreType"
                                        style="font-weight:bold" 
                                        value="Tipo de Obra:" >
                         </h:outputLabel>
-                        <p:inputText id="workType"
+                        <p:inputText id="oeuvreType"
                                      label="Tipo de Soporte"
                                      maxlength="45" required="true" size="50"
                                      value="#{typeBean.type.name}" >
                         </p:inputText>
-                        <p:watermark for="workType" value="Obligatorio" >
+                        <p:watermark for="oeuvreType" value="Obligatorio" >
                         </p:watermark>
 
                         <h:outputLabel for="supportDescription"
                                        style="font-weight:bold" 
                                        value="Descripción:" >
                         </h:outputLabel>
-                        <p:inputTextarea cols="45" id="workTypeDescription"
+                        <p:inputTextarea cols="45" id="oeuvreTypeDescription"
                                          maxlength="75" required="false"
                                          value="#{typeBean.type.description}" >
                         </p:inputTextarea>
-                        <p:watermark for="workTypeDescription"
+                        <p:watermark for="oeuvreTypeDescription"
                                      value="Descripción breve." >
                         </p:watermark>
                     </h:panelGrid>
 
                     <p:commandButton actionListener="#{typeBean.save}"
-                                     id="saveRoleButton"
+                                     id="saveTitleButton"
                                      update="growlLogin"
                                      value="Guardar" >
                     </p:commandButton>

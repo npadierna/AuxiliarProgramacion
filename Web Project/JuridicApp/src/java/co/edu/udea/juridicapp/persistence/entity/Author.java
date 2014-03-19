@@ -21,9 +21,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author a"),
     @NamedQuery(name = "Author.findByDocumentType",
-            query = "SELECT a FROM Author a WHERE a.personPK.documentType = :documentType"),
+            query = "SELECT a FROM Author a WHERE a.peoplePK.documentType = :documentType"),
     @NamedQuery(name = "Author.findByIdNumber",
-            query = "SELECT a FROM Author a WHERE a.personPK.idNumber = :idNumber"),
+            query = "SELECT a FROM Author a WHERE a.peoplePK.idNumber = :idNumber"),
     @NamedQuery(name = "Author.findByPhoneNumber",
             query = "SELECT a FROM Author a WHERE a.phoneNumber = :phoneNumber"),
     @NamedQuery(name = "Author.findByMobileNumber",
@@ -34,7 +34,7 @@ public class Author implements IEntityContext, Serializable {
 
     private static final long serialVersionUID = 7906012567735675008L;
     @EmbeddedId()
-    protected PersonPK personPK;
+    protected PeoplePK peoplePK;
     @Size(max = 10)
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -48,29 +48,29 @@ public class Author implements IEntityContext, Serializable {
         @JoinColumn(name = "id_number", referencedColumnName = "id_number",
                 insertable = false, updatable = false)})
     @OneToOne(optional = false)
-    private Person person;
+    private People people;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
-    private List<AuthorWork> authorWorkList;
+    private List<AuthorOeuvre> authorOeuvreList;
 
     public Author() {
         super();
     }
 
-    public Author(PersonPK personPK) {
-        this.personPK = personPK;
+    public Author(PeoplePK peoplePK) {
+        this.peoplePK = peoplePK;
     }
 
     public Author(String documentType, String idNumber) {
-        this.personPK = new PersonPK(documentType, idNumber);
+        this.peoplePK = new PeoplePK(documentType, idNumber);
     }
 
-    public PersonPK getPersonPK() {
+    public PeoplePK getPeoplePK() {
 
-        return (this.personPK);
+        return (this.peoplePK);
     }
 
-    public void setPersonPK(PersonPK personPK) {
-        this.personPK = personPK;
+    public void setPeoplePK(PeoplePK peoplePK) {
+        this.peoplePK = peoplePK;
     }
 
     public String getPhoneNumber() {
@@ -91,40 +91,41 @@ public class Author implements IEntityContext, Serializable {
         this.mobileNumber = mobileNumber;
     }
 
-    public Person getPerson() {
+    public People getPeople() {
 
-        return (this.person);
+        return (this.people);
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPeople(People people) {
+        this.people = people;
     }
 
     @XmlTransient()
-    public List<AuthorWork> getAuthorWorkList() {
+    public List<AuthorOeuvre> getAuthorOeuvreList() {
 
-        return (this.authorWorkList);
+        return (this.authorOeuvreList);
     }
 
-    public void setAuthorWorkList(List<AuthorWork> authorWorkList) {
-        this.authorWorkList = authorWorkList;
+    public void setAuthorOeuvreList(List<AuthorOeuvre> authorOeuvreList) {
+        this.authorOeuvreList = authorOeuvreList;
     }
 
     @Override()
     public Object getKey() {
 
-        return (this.getPersonPK());
+        return (this.getPeoplePK());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setPersonPK((PersonPK) key);
+        this.setPeoplePK((PeoplePK) key);
     }
 
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (personPK != null ? personPK.hashCode() : 0);
+
+        hash += (this.getPeoplePK() != null ? this.getPeoplePK().hashCode() : 0);
 
         return (hash);
     }
@@ -137,9 +138,9 @@ public class Author implements IEntityContext, Serializable {
         }
 
         Author other = (Author) object;
-        if (((this.personPK == null) && (other.personPK != null))
-                || ((this.personPK != null)
-                && !(this.personPK.equals(other.personPK)))) {
+        if (((this.getPeoplePK() == null) && (other.getPeoplePK() != null))
+                || ((this.getPeoplePK() != null)
+                && !(this.getPeoplePK().equals(other.getPeoplePK())))) {
 
             return (false);
         }
@@ -150,7 +151,7 @@ public class Author implements IEntityContext, Serializable {
     @Override()
     public String toString() {
 
-        return ("co.edu.udea.juridicapp.persistence.entity.Author[ authorPK="
-                + this.getPersonPK() + " ]");
+        return ("co.edu.udea.juridicapp.persistence.entity.Author[ peoplePK="
+                + this.getPeoplePK() + " ]");
     }
 }

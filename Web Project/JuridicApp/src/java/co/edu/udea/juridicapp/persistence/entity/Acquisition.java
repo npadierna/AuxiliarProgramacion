@@ -35,11 +35,11 @@ public class Acquisition implements IEntityContext, Serializable {
     @Size(min = 1, max = 35)
     @Column(name = "type")
     private String type;
-    @Size(max = 75)
+    @Size(max = 150)
     @Column(name = "description")
     private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "acquisition1")
-    private List<AuthorWorkAcquisition> authorWorkAcquisitionList;
+    private List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFileList;
 
     public Acquisition() {
         super();
@@ -68,14 +68,14 @@ public class Acquisition implements IEntityContext, Serializable {
     }
 
     @XmlTransient()
-    public List<AuthorWorkAcquisition> getAuthorWorkAcquisitionList() {
+    public List<AuthorOeuvreAcquisitionFile> getAuthorOeuvreAcquisitionFileList() {
 
-        return (this.authorWorkAcquisitionList);
+        return (this.authorOeuvreAcquisitionFileList);
     }
 
-    public void setAuthorWorkAcquisitionList(
-            List<AuthorWorkAcquisition> authorWorkAcquisitionList) {
-        this.authorWorkAcquisitionList = authorWorkAcquisitionList;
+    public void setAuthorOeuvreAcquisitionFileList(
+            List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFileList) {
+        this.authorOeuvreAcquisitionFileList = authorOeuvreAcquisitionFileList;
     }
 
     @Override()
@@ -92,7 +92,8 @@ public class Acquisition implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (type != null ? type.hashCode() : 0);
+
+        hash += (this.getType() != null ? this.getType().hashCode() : 0);
 
         return (hash);
     }
@@ -105,8 +106,9 @@ public class Acquisition implements IEntityContext, Serializable {
         }
 
         Acquisition other = (Acquisition) object;
-        if (((this.type == null) && (other.type != null)) || ((this.type != null)
-                && !(this.type.equals(other.type)))) {
+        if (((this.getType() == null) && (other.getType() != null))
+                || ((this.getType() != null)
+                && !(this.getType().equals(other.getType())))) {
 
             return (false);
         }

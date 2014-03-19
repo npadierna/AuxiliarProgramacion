@@ -32,7 +32,7 @@ public class Dnda implements IEntityContext, Serializable {
     @Column(name = "number")
     private String number;
     @OneToMany(mappedBy = "dnda")
-    private List<AuthorWork> authorWorkList;
+    private List<AuthorOeuvre> authorOeuvreList;
     @OneToMany(mappedBy = "dnda")
     private List<Dependency> dependencyList;
 
@@ -54,13 +54,13 @@ public class Dnda implements IEntityContext, Serializable {
     }
 
     @XmlTransient()
-    public List<AuthorWork> getAuthorWorkList() {
+    public List<AuthorOeuvre> getAuthorOeuvreList() {
 
-        return (this.authorWorkList);
+        return (this.authorOeuvreList);
     }
 
-    public void setAuthorWorkList(List<AuthorWork> authorWorkList) {
-        this.authorWorkList = authorWorkList;
+    public void setAuthorOeuvreList(List<AuthorOeuvre> authorOeuvreList) {
+        this.authorOeuvreList = authorOeuvreList;
     }
 
     @XmlTransient()
@@ -87,7 +87,7 @@ public class Dnda implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (number != null ? number.hashCode() : 0);
+        hash += (this.getNumber() != null ? this.getNumber().hashCode() : 0);
 
         return (hash);
     }
@@ -100,9 +100,9 @@ public class Dnda implements IEntityContext, Serializable {
         }
 
         Dnda other = (Dnda) object;
-        if (((this.number == null) && (other.number != null))
-                || ((this.number != null)
-                && !(this.number.equals(other.number)))) {
+        if (((this.getNumber() == null) && (other.getNumber() != null))
+                || ((this.getNumber() != null)
+                && !(this.getNumber().equals(other.getNumber())))) {
 
             return (false);
         }

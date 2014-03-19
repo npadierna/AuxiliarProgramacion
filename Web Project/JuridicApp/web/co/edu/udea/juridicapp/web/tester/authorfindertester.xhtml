@@ -29,7 +29,7 @@
                         <p:selectOneMenu id="authorDocumentType"
                                          label="Tipo Documento" required="true"
                                          value="#{authorFinderTesterBean.documentType}" >
-                            <f:selectItems value="#{registrationUserBean.documentsType}" >
+                            <f:selectItems value="#{registrationClientBean.documentsType}" >
                             </f:selectItems>
                         </p:selectOneMenu>
                         <p:watermark for="authorDocumentType"
@@ -69,7 +69,7 @@
                                     </h:outputText>
                                 </f:facet>
                                 <h:outputText
-                                    value="#{foundAuthor.person.lastNames}" >
+                                    value="#{foundAuthor.people.lastNames}" >
                                 </h:outputText>
                             </p:column>
 
@@ -79,7 +79,7 @@
                                     </h:outputText>
                                 </f:facet>
                                 <h:outputText
-                                    value="#{foundAuthor.person.firstNames}" >
+                                    value="#{foundAuthor.people.firstNames}" >
                                 </h:outputText>
                             </p:column>
 
@@ -109,7 +109,7 @@
                                     </h:outputText>
                                 </f:facet>
                                 <h:outputText
-                                    value="#{foundAuthor.person.email}" >
+                                    value="#{foundAuthor.people.email}" >
                                 </h:outputText>
                             </p:column>
 
@@ -130,11 +130,11 @@
             <p:spacer height="25px" ></p:spacer>
 
             <center>
-                <p:panel header="Autores Añadidos" id="addedAuthorsWorksPanel" >
+                <p:panel header="Autores Añadidos" id="addedAuthorsOeuvresPanel" >
                     <p:dataTable emptyMessage="No se han añadido Autores."
-                                 id="addedAuthorsWorksTable" style="font-size:15px"
-                                 value="#{authorFinderTesterBean.authorsWorks}"
-                                 var="authorWork" >
+                                 id="addedAuthorsOeuvresTable" style="font-size:15px"
+                                 value="#{authorFinderTesterBean.authorsOeuvres}"
+                                 var="authorOeuvre" >
 
                         <p:column>
                             <f:facet name="header" >
@@ -142,7 +142,7 @@
                                 </h:outputText>
                             </f:facet>
                             <h:outputText
-                                value="#{authorWork.authorWorkPK.documentType}" >
+                                value="#{authorOeuvre.authorOeuvrePK.documentType}" >
                             </h:outputText>
                         </p:column>
 
@@ -152,7 +152,7 @@
                                 </h:outputText>
                             </f:facet>
                             <h:outputText
-                                value="#{authorWork.authorWorkPK.idNumber}" >
+                                value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
                             </h:outputText>
                         </p:column>
 
@@ -162,7 +162,7 @@
                                 </h:outputText>
                             </f:facet>
                             <h:outputText
-                                value="#{authorWork.author.person.lastNames} #{authorWork.author.person.firstNames}" >
+                                value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
                             </h:outputText>
                         </p:column>
 
@@ -172,7 +172,7 @@
                                 </h:outputText>
                             </f:facet>
                             <h:outputText
-                                value="#{authorWork.author.mobileNumber}" >
+                                value="#{authorOeuvre.author.mobileNumber}" >
                             </h:outputText>
                         </p:column>
 
@@ -182,7 +182,7 @@
                                 </h:outputText>
                             </f:facet>
                             <h:outputText
-                                value="#{authorWork.author.phoneNumber}" >
+                                value="#{authorOeuvre.author.phoneNumber}" >
                             </h:outputText>
                         </p:column>
 
@@ -192,15 +192,15 @@
                                 </h:outputText>
                             </f:facet>
                             <h:outputText
-                                value="#{authorWork.author.person.email}" >
+                                value="#{authorOeuvre.author.people.email}" >
                             </h:outputText>
                         </p:column>
 
                         <p:column>
                             <center>
-                                <p:commandButton id="deleteAuthorWorkButton"
-                                                 action="#{authorFinderTesterBean.removeAuthorWork(authorWork)}"
-                                                 update="addedAuthorsWorksTable"
+                                <p:commandButton id="deleteAuthorOeuvreButton"
+                                                 action="#{authorFinderTesterBean.removeAuthorOeuvre(authorOeuvre)}"
+                                                 update="addedAuthorsOeuvresTable"
                                                  value="Eliminar" >
                                 </p:commandButton>
                             </center>
