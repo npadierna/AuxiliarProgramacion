@@ -12,9 +12,14 @@ import javax.faces.model.SelectItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Component()
 @SessionScoped()
-public class TypeBean implements Serializable {
+public final class TypeBean implements Serializable {
 
     private static final long serialVersionUID = 1080319077051732992L;
     @Autowired()
@@ -25,9 +30,14 @@ public class TypeBean implements Serializable {
 
     public TypeBean() {
         super();
+
+        this.setType(new Type());
     }
 
     public List<SelectItem> getTypesSelectItems() {
+        if (this.typeDAO.countTypes() != (this.typesSelectItems.size() + 1)) {
+            this.createFields();
+        }
 
         return (this.typesSelectItems);
     }
@@ -37,6 +47,9 @@ public class TypeBean implements Serializable {
     }
 
     public List<String> getTypesNames() {
+        if (this.typeDAO.countTypes() != this.typesNames.size()) {
+            this.createFields();
+        }
 
         return (this.typesNames);
     }
@@ -74,17 +87,16 @@ public class TypeBean implements Serializable {
 
     @PostConstruct()
     private void createFields() {
-        this.setType(new Type());
         this.setTypesNames(new ArrayList<String>());
         this.setTypesSelectItems(new ArrayList<SelectItem>());
 
         List<Type> supportsFoud = this.typeDAO.findAllTypes();
-        this.getTypesSelectItems().add(new SelectItem("", "Seleccione"));
+        this.typesSelectItems.add(new SelectItem("", "Seleccione"));
         for (Type t : supportsFoud) {
-            this.getTypesSelectItems().add(new SelectItem(t.getName(),
+            this.typesSelectItems.add(new SelectItem(t.getName(),
                     t.getName()));
 
-            this.getTypesNames().add(t.getName());
+            this.typesNames.add(t.getName());
         }
     }
 }

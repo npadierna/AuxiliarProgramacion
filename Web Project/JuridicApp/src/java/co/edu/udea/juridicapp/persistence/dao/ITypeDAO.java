@@ -3,6 +3,11 @@ package co.edu.udea.juridicapp.persistence.dao;
 import co.edu.udea.juridicapp.persistence.entity.Type;
 import java.util.List;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public interface ITypeDAO {
 
     public Type deleteType(Type type);

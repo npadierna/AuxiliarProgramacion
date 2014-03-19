@@ -4,6 +4,11 @@ import co.edu.udea.juridicapp.persistence.entity.OeuvreType;
 import co.edu.udea.juridicapp.persistence.entity.OeuvreTypePK;
 import java.util.List;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public interface IOeuvreTypeDAO {
 
     public OeuvreType deleteOeuvreType(OeuvreType oeuvreType);

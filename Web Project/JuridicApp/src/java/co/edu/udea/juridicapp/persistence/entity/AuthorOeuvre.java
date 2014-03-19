@@ -22,6 +22,11 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Entity()
 @NamedQueries({
     @NamedQuery(name = "AuthorOeuvre.findAll",
@@ -39,7 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "AuthorOeuvre.findByIsbn",
             query = "SELECT a FROM AuthorOeuvre a WHERE a.isbn = :isbn"),
     @NamedQuery(name = "AuthorOeuvre.findByStarting",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.starting = :starting"),
+            query = "SELECT a FROM AuthorOeuvre a WHERE a.beginning = :beginning"),
     @NamedQuery(name = "AuthorOeuvre.findByDelivering",
             query = "SELECT a FROM AuthorOeuvre a WHERE a.delivering = :delivering")})
 @Table(name = "AUTHOR_OEUVRE")
@@ -54,9 +59,9 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     private String isbn;
     @Basic(optional = false)
     @NotNull()
-    @Column(name = "starting")
+    @Column(name = "beginning")
     @Temporal(TemporalType.DATE)
-    private Date starting;
+    private Date beginning;
     @Basic(optional = false)
     @NotNull()
     @Column(name = "delivering")
@@ -102,10 +107,10 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
         this.authorOeuvrePK = authorOeuvrePK;
     }
 
-    public AuthorOeuvre(AuthorOeuvrePK authorOeuvrePK, Date starting,
+    public AuthorOeuvre(AuthorOeuvrePK authorOeuvrePK, Date beginning,
             Date delivering) {
         this.authorOeuvrePK = authorOeuvrePK;
-        this.starting = starting;
+        this.beginning = beginning;
         this.delivering = delivering;
     }
 
@@ -133,13 +138,13 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
         this.isbn = isbn;
     }
 
-    public Date getStarting() {
+    public Date getBeginning() {
 
-        return (this.starting);
+        return (this.beginning);
     }
 
-    public void setStarting(Date starting) {
-        this.starting = starting;
+    public void setBeginning(Date beginning) {
+        this.beginning = beginning;
     }
 
     public Date getDelivering() {

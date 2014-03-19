@@ -3,7 +3,6 @@ package co.edu.udea.juridicapp.web.bean.oeuvre.create;
 import co.edu.udea.juridicapp.persistence.dao.IAuthorDAO;
 import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.dao.ICommentDAO;
-import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
 import co.edu.udea.juridicapp.persistence.dao.IOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.dao.IOeuvreTypeDAO;
 import co.edu.udea.juridicapp.persistence.entity.Author;
@@ -27,6 +26,11 @@ import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Component()
 @SessionScoped()
 public final class CreatorOeuvreBean implements Serializable {
@@ -39,12 +43,9 @@ public final class CreatorOeuvreBean implements Serializable {
     @Autowired()
     private ICommentDAO commentDAO;
     @Autowired()
-    private IDependencyDAO dependencyDAO;
-    @Autowired()
     private IOeuvreDAO oeuvreDAO;
     @Autowired()
     private IOeuvreTypeDAO oeuvreTypeDAO;
-    private List<String> dependenciesNames;
     private List<AuthorOeuvre> authorsOeuvres;
     private List<Author> foundAuthors;
     private List<Comment> comments;
@@ -55,15 +56,6 @@ public final class CreatorOeuvreBean implements Serializable {
 
     public CreatorOeuvreBean() {
         super();
-    }
-
-    public List<String> getDependenciesNames() {
-
-        return (this.dependenciesNames);
-    }
-
-    public void setDependenciesNames(List<String> dependenciesNames) {
-        this.dependenciesNames = dependenciesNames;
     }
 
     public List<AuthorOeuvre> getAuthorsOeuvres() {
@@ -199,7 +191,6 @@ public final class CreatorOeuvreBean implements Serializable {
             authorOeuvre.setOeuvreType(oeuvreType);
 
             this.authorOeuvreDAO.saveAuthorOeuvre(authorOeuvre);
-       //     this.authorOeuvreDAO.saveAuthorOeuvreUsingNativeQuery(authorOeuvre);
         }
     }
 
@@ -207,17 +198,8 @@ public final class CreatorOeuvreBean implements Serializable {
     private void createFields() {
         this.setAuthorsOeuvres(new ArrayList<AuthorOeuvre>());
         this.setComments(new ArrayList<Comment>());
-        this.setDependenciesNames(new ArrayList<String>());
         this.setFoundAuthors(new ArrayList<Author>());
         this.setOeuvre(new Oeuvre());
         this.getOeuvre().setDependency(new Dependency());
-
-        List<Dependency> dependenciesFound = this.dependencyDAO
-                .findAllDependencies();
-        if ((dependenciesFound != null) && !(dependenciesFound.isEmpty())) {
-            for (Dependency dependency : dependenciesFound) {
-                this.getDependenciesNames().add(dependency.getName());
-            }
-        }
     }
 }

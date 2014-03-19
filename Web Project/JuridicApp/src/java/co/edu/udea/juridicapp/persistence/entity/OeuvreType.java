@@ -14,6 +14,11 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Entity()
 @NamedQueries({
     @NamedQuery(name = "OeuvreType.findAll", query = "SELECT o FROM OeuvreType o"),

@@ -5,6 +5,11 @@ import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvrePK;
 import java.util.List;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public interface IAuthorOeuvreDAO {
 
     public AuthorOeuvre deleteAuthorOeuvre(AuthorOeuvre author);

@@ -30,6 +30,10 @@ public final class OeuvreListBean implements Serializable {
     }
 
     public List<AuthorOeuvre> getAuthorOeuvres() {
+        if (this.authorOeuvreDAO.countAuthorsOeuvres()
+                != this.authorOeuvres.size()) {
+            this.createFields();
+        }
 
         return (this.authorOeuvres);
     }

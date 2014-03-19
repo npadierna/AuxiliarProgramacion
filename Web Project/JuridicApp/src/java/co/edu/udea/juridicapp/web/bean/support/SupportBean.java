@@ -12,9 +12,14 @@ import javax.faces.model.SelectItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Component()
 @SessionScoped()
-public class SupportBean implements Serializable {
+public final class SupportBean implements Serializable {
 
     private static final long serialVersionUID = 2392665482524712960L;
     @Autowired()
@@ -25,9 +30,15 @@ public class SupportBean implements Serializable {
 
     public SupportBean() {
         super();
+
+        this.setSupport(new Support());
     }
 
     public List<SelectItem> getSupportsSelectItems() {
+        if (this.supportDAO.countSupports() != (this.supportsSelectItems.size()
+                + 1)) {
+            this.createFields();
+        }
 
         return (this.supportsSelectItems);
     }
@@ -37,6 +48,9 @@ public class SupportBean implements Serializable {
     }
 
     public List<String> getSupportsNames() {
+        if (this.supportDAO.countSupports() != this.supportsNames.size()) {
+            this.createFields();
+        }
 
         return (this.supportsNames);
     }
@@ -74,17 +88,16 @@ public class SupportBean implements Serializable {
 
     @PostConstruct()
     private void createFields() {
-        this.setSupport(new Support());
         this.setSupportsNames(new ArrayList<String>());
         this.setSupportsSelectItems(new ArrayList<SelectItem>());
 
         List<Support> supportsFoud = this.supportDAO.findAllSupports();
-        this.getSupportsSelectItems().add(new SelectItem("", "Seleccione"));
+        this.supportsSelectItems.add(new SelectItem("", "Seleccione"));
         for (Support s : supportsFoud) {
-            this.getSupportsSelectItems().add(new SelectItem(s.getType(),
+            this.supportsSelectItems.add(new SelectItem(s.getType(),
                     s.getType()));
 
-            this.getSupportsNames().add(s.getType());
+            this.supportsNames.add(s.getType());
         }
     }
 }

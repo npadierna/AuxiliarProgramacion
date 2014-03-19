@@ -7,9 +7,14 @@ import javax.faces.event.ActionEvent;
 import org.primefaces.component.menuitem.UIMenuItem;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Component()
 @SessionScoped()
-public class AdminCreatorEntityBean implements Serializable {
+public final class AdminCreatorEntityBean implements Serializable {
 
     private static final long serialVersionUID = 1938227488649633792L;
     private String direction;

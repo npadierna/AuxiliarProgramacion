@@ -111,7 +111,7 @@
                                                                  required="true"
                                                                  value="#{creatorOeuvreBean.oeuvre.dependency.name}" >
                                                     <f:selectItems
-                                                        value="#{creatorOeuvreBean.dependenciesNames}" >
+                                                        value="#{dependencyBean.dependenciesNames}" >
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
                                             </h:panelGrid>
@@ -381,7 +381,7 @@
                                                     </h:outputText>
                                                 </f:facet>
                                                 <p:calendar effect="explode" size="5"
-                                                            value="#{authorOeuvre.starting}" >
+                                                            value="#{authorOeuvre.beginning}" >
                                                 </p:calendar>
                                             </p:column>
 

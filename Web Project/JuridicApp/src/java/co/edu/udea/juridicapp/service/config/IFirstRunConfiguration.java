@@ -1,5 +1,10 @@
 package co.edu.udea.juridicapp.service.config;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public interface IFirstRunConfiguration {
 
     public void createDefaultAcquisitions();

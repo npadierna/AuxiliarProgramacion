@@ -22,6 +22,11 @@ import co.edu.udea.juridicapp.service.config.IFirstRunConfiguration;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
 
     @Autowired()

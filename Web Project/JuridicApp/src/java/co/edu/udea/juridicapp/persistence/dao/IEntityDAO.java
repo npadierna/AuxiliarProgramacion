@@ -2,6 +2,11 @@ package co.edu.udea.juridicapp.persistence.dao;
 
 import co.edu.udea.juridicapp.persistence.entity.IEntityContext;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public interface IEntityDAO {
 
     public IEntityContext delete(IEntityContext entity);

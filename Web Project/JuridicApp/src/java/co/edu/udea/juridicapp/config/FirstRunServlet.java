@@ -7,6 +7,11 @@ import javax.servlet.ServletContextListener;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public class FirstRunServlet implements ServletContextListener {
 
     @Override()
@@ -14,9 +19,11 @@ public class FirstRunServlet implements ServletContextListener {
         System.out.println(" + Creating the context servlet application...");
 
         ApplicationContext appContext =
-                WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());
+                WebApplicationContextUtils.getWebApplicationContext(
+                sce.getServletContext());
         IFirstRunConfiguration initialConfig =
-                (FirstRunConfigurationImpl) appContext.getBean("firstRunConfiguration");
+                (FirstRunConfigurationImpl) appContext
+                .getBean("firstRunConfiguration");
         initialConfig.createDefaultData();
     }
 

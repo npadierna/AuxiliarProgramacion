@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
  */
 @Component()
 @SessionScoped()
-public class OeuvreSelectorBean {
+public final class OeuvreSelectorBean {
 
     private static final long serialVersionUID = 3054628927294284800L;
     @Autowired()

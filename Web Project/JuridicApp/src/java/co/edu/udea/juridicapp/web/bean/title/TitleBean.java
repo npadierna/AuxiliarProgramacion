@@ -11,9 +11,14 @@ import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Component()
 @SessionScoped()
-public class TitleBean implements Serializable {
+public final class TitleBean implements Serializable {
 
     private static final long serialVersionUID = 4651738957089294336L;
     @Autowired()
@@ -23,9 +28,14 @@ public class TitleBean implements Serializable {
 
     public TitleBean() {
         super();
+
+        this.setTitle(new Title());
     }
 
     public List<String> getTitlesNames() {
+        if (this.titleDAO.countTitles() != this.titlesNames.size()) {
+            this.createFields();
+        }
 
         return (this.titlesNames);
     }
@@ -63,12 +73,11 @@ public class TitleBean implements Serializable {
 
     @PostConstruct()
     private void createFields() {
-        this.setTitle(new Title());
         this.setTitlesNames(new ArrayList<String>());
 
         List<Title> titlesFound = this.titleDAO.findAllTitles();
         for (Title r : titlesFound) {
-            this.getTitlesNames().add(r.getProfile());
+            this.titlesNames.add(r.getProfile());
         }
     }
 }

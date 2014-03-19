@@ -15,6 +15,11 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Entity()
 @NamedQueries({
     @NamedQuery(name = "Dnda.findAll", query = "SELECT d FROM Dnda d"),

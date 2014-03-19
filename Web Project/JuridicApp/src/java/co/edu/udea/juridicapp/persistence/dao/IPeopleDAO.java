@@ -4,6 +4,11 @@ import co.edu.udea.juridicapp.persistence.entity.People;
 import co.edu.udea.juridicapp.persistence.entity.PeoplePK;
 import java.util.List;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public interface IPeopleDAO {
 
     public People deletePeople(People people);

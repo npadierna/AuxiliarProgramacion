@@ -7,6 +7,11 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 import javax.servlet.http.HttpSession;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public class AuthorizationListener implements PhaseListener {
 
     private static final long serialVersionUID = 7755249919051165696L;

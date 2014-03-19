@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Repository()
 @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
 public class DependencyDAO extends AbstractEntityDAO implements IDependencyDAO {

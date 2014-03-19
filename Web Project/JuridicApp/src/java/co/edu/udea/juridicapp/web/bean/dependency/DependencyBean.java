@@ -11,9 +11,14 @@ import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Component()
 @SessionScoped()
-public class DependencyBean implements Serializable {
+public final class DependencyBean implements Serializable {
 
     private static final long serialVersionUID = 1082073306114548736L;
     @Autowired()
@@ -23,6 +28,8 @@ public class DependencyBean implements Serializable {
 
     public DependencyBean() {
         super();
+
+        this.setDependency(new Dependency());
     }
 
     public Dependency getDependency() {
@@ -35,6 +42,10 @@ public class DependencyBean implements Serializable {
     }
 
     public List<String> getDependenciesNames() {
+        if (this.dependencyDAO.countDependencies()
+                != this.dependenciesNames.size()) {
+            this.createFields();
+        }
 
         return (this.dependenciesNames);
     }
@@ -63,13 +74,12 @@ public class DependencyBean implements Serializable {
 
     @PostConstruct()
     private void createFields() {
-        this.setDependency(new Dependency());
         this.setDependenciesNames(new ArrayList<String>());
 
         List<Dependency> dependenciesFound =
                 this.dependencyDAO.findAllDependencies();
         for (Dependency d : dependenciesFound) {
-            this.getDependenciesNames().add(d.getName());
+            this.dependenciesNames.add(d.getName());
         }
     }
 }

@@ -10,9 +10,14 @@ import javax.faces.bean.SessionScoped;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 @Component()
 @SessionScoped()
-public class ProfileBean implements Serializable {
+public final class ProfileBean implements Serializable {
 
     private static final long serialVersionUID = 8232630815530828800L;
     @Autowired()
@@ -24,6 +29,9 @@ public class ProfileBean implements Serializable {
     }
 
     public List<String> getProfilesNames() {
+        if (this.profileDAO.countProfiles() != this.profilesNames.size()) {
+            this.createFields();
+        }
 
         return (this.profilesNames);
     }
@@ -38,7 +46,7 @@ public class ProfileBean implements Serializable {
 
         List<Profile> profilesFound = this.profileDAO.findAllProfiles();
         for (Profile profile : profilesFound) {
-            this.getProfilesNames().add(profile.getTitle());
+            this.profilesNames.add(profile.getTitle());
         }
     }
 }

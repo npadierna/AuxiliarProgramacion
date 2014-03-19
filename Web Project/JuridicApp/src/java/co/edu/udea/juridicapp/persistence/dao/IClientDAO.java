@@ -4,6 +4,11 @@ import co.edu.udea.juridicapp.persistence.entity.PeoplePK;
 import co.edu.udea.juridicapp.persistence.entity.Client;
 import java.util.List;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public interface IClientDAO {
 
     public Client deleteClient(Client client);

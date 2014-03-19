@@ -14,6 +14,11 @@ import javax.persistence.TransactionRequiredException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public abstract class AbstractEntityDAO implements IEntityDAO {
 
     @PersistenceContext(unitName = "JuridicAppPU")

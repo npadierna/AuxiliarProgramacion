@@ -3,6 +3,11 @@ package co.edu.udea.juridicapp.persistence.dao;
 import co.edu.udea.juridicapp.persistence.entity.Dnda;
 import java.util.List;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public interface IDndaDAO {
 
     public Dnda deleteDnda(Dnda dnda);

@@ -4,6 +4,11 @@ import co.edu.udea.juridicapp.persistence.entity.Comment;
 import co.edu.udea.juridicapp.persistence.entity.CommentPK;
 import java.util.List;
 
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
 public interface ICommentDAO {
 
     public Comment deleteComment(Comment comment);
