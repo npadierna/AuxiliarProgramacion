@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public final class LoginUserBean implements Serializable {
 
-    private static final long serialVersionUID = 3591280342111745024L;
+    private final long serialVersionUID = 3591280342111745024L;
   //  private static final String LOGGED_IN_KEY = "loggedIn";
     @Autowired()
     private IUserDAO userDAO;

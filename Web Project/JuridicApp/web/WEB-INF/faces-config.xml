@@ -25,62 +25,62 @@
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.admin.creator.AdminCreatorEntityBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+        <managed-bean-scope>scope</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>loginUserBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.user.login.LoginUserBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>registrationUserBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.user.registration.RegistrationUserBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>updateUserBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.user.update.UpdateUserBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>workListBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.work.WorkListBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>workSelectorBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.work.WorkSelectorBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>creatorWorkBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.work.create.CreatorWorkBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>dependencyBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.dependency.DependencyBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>profileBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.profile.ProfileBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>roleBean</managed-bean-name>

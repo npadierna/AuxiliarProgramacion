@@ -18,10 +18,10 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public final class UpdateUserBean implements Serializable {
 
-    private static final long serialVersionUID = 9213270134444907520L;
-    private static final String DELETE_MEMBER_KEY = "deleted";
-    private static final String LOGGED_MEMBER_KEY = "loggedMember";
-    private static final String PASSWORD_CHANGED_KEY = "changed";
+    private final long serialVersionUID = 9213270134444907520L;
+    private final String DELETE_MEMBER_KEY = "deleted";
+    private final String LOGGED_MEMBER_KEY = "loggedMember";
+    private final String PASSWORD_CHANGED_KEY = "changed";
     @Autowired()
     private IPersonDAO personDAO;
     @Autowired()
@@ -134,7 +134,7 @@ public final class UpdateUserBean implements Serializable {
         }
 
         FacesContext.getCurrentInstance().addMessage(null, message);
-        context.addCallbackParam(UpdateUserBean.PASSWORD_CHANGED_KEY, changed);
+        context.addCallbackParam(PASSWORD_CHANGED_KEY, changed);
     }
 
     public void receiveLoggedUser(User loggedUser) {

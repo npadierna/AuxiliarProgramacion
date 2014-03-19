@@ -12,25 +12,33 @@ public class AuthorizationListener implements PhaseListener {
     @Override
     public void afterPhase(PhaseEvent event) {
         FacesContext facesContext = event.getFacesContext();
-        String currentPage = facesContext.getViewRoot().getViewId( );
-        boolean isLoginPage = (currentPage.lastIndexOf( "login.xhtml") > -1)? true : false;
-        HttpSession sesion = (HttpSession) facesContext.getExternalContext( ).getSession(true);
-        Object usuario = sesion.getAttribute("usuario");
-       
-        if((isLoginPage == false) && (usuario == null)){
+        String currentPage = facesContext.getViewRoot().getViewId();
+
+        boolean isLoginPage = (currentPage.lastIndexOf("login.xhtml") > -1) ? true : false;
+        HttpSession sesion = (HttpSession) facesContext.getExternalContext().getSession(true);
+
+        if (sesion == null) {
             NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
-            navigationHandler.handleNavigation(facesContext, null, "/co/edu/udea/juridicapp/web/index.xhtml");
+                navigationHandler.handleNavigation(facesContext, null, "/co/edu/udea/juridicapp/web/index.xhtml");
+        } else {
+
+            Object usuario = sesion.getAttribute("usuario");
+
+            if ((isLoginPage == false) && (usuario == null || usuario == "")) {
+                NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
+                navigationHandler.handleNavigation(facesContext, null, "/co/edu/udea/juridicapp/web/index.xhtml");
+            }
         }
     }
 
     @Override
     public void beforePhase(PhaseEvent event) {
-        
+
     }
 
     @Override
     public PhaseId getPhaseId() {
-       return PhaseId.RESTORE_VIEW;
+        return PhaseId.RESTORE_VIEW;
     }
-    
+
 }
