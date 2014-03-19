@@ -32,56 +32,56 @@
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.client.login.LoginClientBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>registrationClientBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.client.registration.RegistrationClientBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>updateClientBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.client.update.UpdateClientBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>oeuvreListBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.oeuvre.OeuvreListBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>oeuvreSelectorBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.oeuvre.OeuvreSelectorBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>creatorOeuvreBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.oeuvre.create.CreatorOeuvreBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>dependencyBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.dependency.DependencyBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>profileBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.profile.ProfileBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>scope</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>titleBean</managed-bean-name>
