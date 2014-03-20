@@ -2,74 +2,64 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core" >
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui" >
 
-    <h:head>
-        <title>Crear Soporte Para Obra</title>
-        <script type="text/javascript"
-                src="../../../util/javascript/JsFunctions.js" >
-        </script>
-        <f:facet name="registerMember" >
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
-            </meta>
-        </f:facet>
-    </h:head>
-
-    <h:body>
-        <h:form id="supportCreator" >
+    <h:form>
+        <p:panel header="Crear Tipo De Obra" id="supportCreatorPanel"
+                 style="font-weight:bold" >
             <center>
-                <p:panel header="Crear Tipo De Obra" id="supportCreatorPanel"
-                         style="font-weight:bold" >
-                    <h:panelGrid cellpadding="5" columns="3" >
-                        <p:growl id="growlLogin" life="3000" showDetail="true" >
-                        </p:growl>
 
-                        <h:outputLabel for="oeuvreType"
-                                       style="font-weight:bold" 
-                                       value="Tipo de Obra:" >
-                        </h:outputLabel>
-                        <p:inputText id="oeuvreType"
-                                     label="Tipo de Soporte"
-                                     maxlength="45" required="true" size="50"
-                                     value="#{typeBean.type.name}" >
-                        </p:inputText>
-                        <p:watermark for="oeuvreType" value="Obligatorio" >
-                        </p:watermark>
+                <h:panelGrid cellpadding="5" columns="3" >
+                    <p:growl id="growlLogin" life="3000" showDetail="true" >
+                    </p:growl>
 
-                        <h:outputLabel for="supportDescription"
-                                       style="font-weight:bold" 
-                                       value="Descripción:" >
-                        </h:outputLabel>
-                        <p:inputTextarea cols="45" id="oeuvreTypeDescription"
-                                         maxlength="75" required="false"
-                                         value="#{typeBean.type.description}" >
-                        </p:inputTextarea>
-                        <p:watermark for="oeuvreTypeDescription"
-                                     value="Descripción breve." >
-                        </p:watermark>
+                    <h:outputLabel for="oeuvreType"
+                                   style="font-weight:bold" 
+                                   value="Tipo de Obra:" >
+                    </h:outputLabel>
+                    <p:inputText id="oeuvreType"
+                                 label="Tipo de Soporte"
+                                 maxlength="45"  required="true"
+                                 value="#{typeBean.type.name}" >
+                    </p:inputText>
+                    <p:watermark for="oeuvreType" value="Obligatorio" >
+                    </p:watermark>
 
-                        <p:commandButton actionListener="#{typeBean.save}"
-                                         id="saveTitleButton"
-                                         update="growlLogin"
-                                         value="Guardar" >
-                        </p:commandButton>
+                    <h:outputLabel for="supportDescription"
+                                   style="font-weight:bold" 
+                                   value="Descripción:" >
+                    </h:outputLabel>
+                    <p:inputTextarea cols="45" id="oeuvreTypeDescription"
+                                     maxlength="75" 
+                                     value="#{typeBean.type.description}" >
+                    </p:inputTextarea>
+                    <p:watermark for="oeuvreTypeDescription"
+                                 value="Descripción breve." >
+                    </p:watermark>
 
-                        <p:commandButton id="clearButton"
-                                         update="supportCreatorPanel"
-                                         type="reset" process="@this" ajax="true"
-                                         value="Limpiar" >
 
-                            <p:resetInput target="oeuvreType" ></p:resetInput>
-                            <p:resetInput target="oeuvreTypeDescription" >
-                            </p:resetInput>
-                        </p:commandButton>
-                    </h:panelGrid>
-                </p:panel>
+                </h:panelGrid>
+                <p:commandButton actionListener="#{typeBean.save}"
+                                 id="saveTitleButton"
+                                 update="growlLogin"
+                                 value="Guardar" >
+                </p:commandButton>
+
+                <p:commandButton id="clearButton"
+                                 update="supportCreatorPanel"
+                                 type="reset" process="@this" ajax="true"
+                                 value="Limpiar" >
+
+                    <p:resetInput target="oeuvreType" ></p:resetInput>
+                    <p:resetInput target="oeuvreTypeDescription" >
+                    </p:resetInput>
+                </p:commandButton>
             </center>
-        </h:form>
-    </h:body>
-</html>
+        </p:panel>
+    </h:form>
+</ui:composition>

@@ -2,74 +2,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core" >
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui" >
 
-    <h:head>
-        <title>Crear Rol</title>
-        <script type="text/javascript"
-                src="../../../util/javascript/JsFunctions.js" >
-        </script>
-        <f:facet name="registerMember" >
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
-            </meta>
+    <h:form>
+        <p:panel header="Crear Vínculo Universitario"
+                 id="titleCreatorPanel" style="font-weight:bold" >
 
-        </f:facet>
-    </h:head>
+            <h:panelGrid cellpadding="5" columns="3" >
+                <p:growl id="growlLogin" life="3000" showDetail="true" >
+                </p:growl>
 
-    <h:body>
-        <h:form id="titleCreator" >
-            <center>
-                <p:panel header="Crear Vínculo Universitario"
-                         id="titleCreatorPanel" style="font-weight:bold" >
-                    <h:panelGrid cellpadding="5" columns="3" >
-                        <p:growl id="growlLogin" life="3000" showDetail="true" >
-                        </p:growl>
+                <h:outputLabel for="titleName"
+                               style="font-weight:bold" 
+                               value="Nombre del Vínculo:" >
+                </h:outputLabel>
+                <p:inputText id="titleName"
+                             label="Nombre del Vínculo"
+                             maxlength="35" required="true" size="45"
+                             value="#{titleBean.title.profile}" >
+                </p:inputText>
+                <p:watermark for="titleName" value="Obligatorio" >
+                </p:watermark>
 
-                        <h:outputLabel for="titleName"
-                                       style="font-weight:bold" 
-                                       value="Nombre del Vínculo:" >
-                        </h:outputLabel>
-                        <p:inputText id="titleName"
-                                     label="Nombre del Vínculo"
-                                     maxlength="35" required="true" size="45"
-                                     value="#{titleBean.title.profile}" >
-                        </p:inputText>
-                        <p:watermark for="titleName" value="Obligatorio" >
-                        </p:watermark>
+                <h:outputLabel for="titleDescription"
+                               style="font-weight:bold" 
+                               value="Descripción:" >
+                </h:outputLabel>
+                <p:inputTextarea autoResize="false" cols="45"
+                                 id="titleDescription" maxlength="75"
+                                 required="false"
+                                 value="#{titleBean.title.description}" >
+                </p:inputTextarea>
+                <p:watermark for="titleDescription"
+                             value="Descripción breve." >
+                </p:watermark>
 
-                        <h:outputLabel for="titleDescription"
-                                       style="font-weight:bold" 
-                                       value="Descripción:" >
-                        </h:outputLabel>
-                        <p:inputTextarea autoResize="false" cols="45"
-                                         id="titleDescription" maxlength="75"
-                                         required="false"
-                                         value="#{titleBean.title.description}" >
-                        </p:inputTextarea>
-                        <p:watermark for="titleDescription"
-                                     value="Descripción breve." >
-                        </p:watermark>
+            </h:panelGrid>
 
-                        <p:commandButton actionListener="#{titleBean.save}"
-                                         id="saveTitleButton"
-                                         update="growlLogin"
-                                         value="Guardar" >
-                        </p:commandButton>
+            <p:commandButton actionListener="#{titleBean.save}"
+                             id="saveTitleButton"
+                             update="growlLogin"
+                             value="Guardar" >
+            </p:commandButton>
 
-                        <p:commandButton id="clearButton" update="titleCreatorPanel"
-                                         type="reset" process="@this" ajax="true"
-                                         value="Limpiar" >
+            <p:commandButton id="clearButton" update="titleCreatorPanel"
+                             type="reset" process="@this" ajax="true"
+                             value="Limpiar" >
 
-                            <p:resetInput target="titleName" ></p:resetInput>
-                            <p:resetInput target="titleDescription" ></p:resetInput>
-                        </p:commandButton>
-                    </h:panelGrid>
-                </p:panel>
-            </center>
-        </h:form>
-    </h:body>
-</html>
+                <p:resetInput target="titleName" ></p:resetInput>
+                <p:resetInput target="titleDescription" ></p:resetInput>
+            </p:commandButton>
+        </p:panel>
+    </h:form>
+</ui:composition>

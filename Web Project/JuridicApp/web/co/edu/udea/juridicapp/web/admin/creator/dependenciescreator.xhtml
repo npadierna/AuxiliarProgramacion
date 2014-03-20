@@ -28,10 +28,11 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui" >
 
-    <h:form id="dependencyCreator" >
-        <center>
-            <p:panel header="Crear Dependencia" id="dependecyCreatorPanel"
-                     style="font-weight:bold" >
+    <h:form >
+        <p:panel header="Crear Dependencia" id="dependecyCreatorPanel"
+                 style="font-weight:bold" >
+            <center>
+
                 <p:growl id="growlLogin" life="3000" showDetail="true" >
                 </p:growl>
 
@@ -72,25 +73,26 @@
                                  value="Descripción breve." >
                     </p:watermark>
 
-                    <p:commandButton id="registerButton" value="Guardar"
-                                     update="dependecyCreatorPanel"
-                                     actionListener="#{dependencyBean.save}" >
-                    </p:commandButton>
-
-                    <p:commandButton id="clearButton"
-                                     update="dependecyCreatorPanel"
-                                     type="reset" process="@this" ajax="true"
-                                     value="Limpiar" >
-
-                        <p:resetInput target="dnda" ></p:resetInput>
-                        <p:resetInput target="dependencyName" >
-                        </p:resetInput>
-                        <p:resetInput target="dependencyDescription" >
-                        </p:resetInput>
-                    </p:commandButton>
                 </h:panelGrid>
-            </p:panel>               
-        </center>
+
+                <p:commandButton id="registerButton" value="Guardar"
+                                 update="dependecyCreatorPanel"
+                                 actionListener="#{dependencyBean.save}" >
+                </p:commandButton>
+
+                <p:commandButton id="clearButton"
+                                 update="dependecyCreatorPanel"
+                                 type="reset" process="@this" ajax="true"
+                                 value="Limpiar" >
+
+                    <p:resetInput target="dnda" ></p:resetInput>
+                    <p:resetInput target="dependencyName" >
+                    </p:resetInput>
+                    <p:resetInput target="dependencyDescription" >
+                    </p:resetInput>
+                </p:commandButton>
+            </center>
+        </p:panel>   
     </h:form>
 </ui:composition>
 <!--</h:body>
