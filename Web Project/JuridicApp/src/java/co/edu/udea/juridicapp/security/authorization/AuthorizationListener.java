@@ -26,13 +26,18 @@ public class AuthorizationListener implements PhaseListener {
                 .getSession(true);
         Object usuario = sesion.getAttribute("usuario");
 
+        if (currentPage.endsWith(".js")) {
+
+            return;
+        }
+
         if ((isLoginPage == false) && (usuario == null)) {
             NavigationHandler navigationHandler = facesContext.getApplication()
                     .getNavigationHandler();
             navigationHandler.handleNavigation(facesContext, null,
                     "/co/edu/udea/juridicapp/web/index.xhtml");
-            }
         }
+    }
 
     @Override()
     public void beforePhase(PhaseEvent event) {

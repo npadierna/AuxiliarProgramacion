@@ -2,6 +2,7 @@ package co.edu.udea.juridicapp.web.bean.dependency;
 
 import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
 import co.edu.udea.juridicapp.persistence.entity.Dependency;
+import co.edu.udea.juridicapp.persistence.entity.Dnda;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public final class DependencyBean implements Serializable {
         super();
 
         this.setDependency(new Dependency());
+        this.getDependency().setDnda(new Dnda());
     }
 
     public Dependency getDependency() {

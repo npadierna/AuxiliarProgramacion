@@ -29,70 +29,70 @@
     xmlns:p="http://primefaces.org/ui" >
 
     <h:form >
-        <p:panel header="Crear Dependencia" id="dependecyCreatorPanel"
-                 style="font-weight:bold" >
-            <center>
+    <p:panel header="Crear Dependencia" id="dependecyCreatorPanel"
+             style="font-weight:bold" >
+        <center>
 
-                <p:growl id="growlLogin" life="3000" showDetail="true" >
-                </p:growl>
+            <p:growl id="growlLogin" life="3000" showDetail="true" >
+            </p:growl>
 
-                <h:panelGrid cellpadding="5" columns="3" >
-                    <h:outputLabel for="dnda"
-                                   style="font-weight:bold" 
-                                   value="DNDA:" >
-                    </h:outputLabel>
-                    <p:inputText id="dnda"
-                                 label="DNDA"
+            <h:panelGrid cellpadding="5" columns="3" >
+                <h:outputLabel for="dnda"
+                               style="font-weight:bold" 
+                               value="DNDA:" >
+                </h:outputLabel>
+                <p:inputText id="dnda"
+                             label="DNDA"
                                  maxlength="30" required="true" size="45"
-                                 value="" >
-                    </p:inputText>
-                    <p:watermark for="dnda" value="Número de DNDA" >
-                    </p:watermark>
+                                 value="#{dependencyBean.dependency.dnda.number}" >
+                </p:inputText>
+                <p:watermark for="dnda" value="Número de DNDA" >
+                </p:watermark>
 
-                    <h:outputLabel for="dependencyName"
-                                   style="font-weight:bold" 
-                                   value="Nombre de la Dependencia:" >
-                    </h:outputLabel>
-                    <p:inputText id="dependencyName"
+                <h:outputLabel for="dependencyName"
+                               style="font-weight:bold" 
+                               value="Nombre de la Dependencia:" >
+                </h:outputLabel>
+                <p:inputText id="dependencyName" 
                                  label="Nombre de Dependencia"
                                  maxlength="35" required="true" size="45"
                                  value="#{dependencyBean.dependency.name}" >
-                    </p:inputText>
-                    <p:watermark for="dependencyName" value="Obligatorio" >
-                    </p:watermark>
+                </p:inputText>
+                <p:watermark for="dependencyName" value="Obligatorio" >
+                </p:watermark>
 
-                    <h:outputLabel for="dependencyDescription"
-                                   style="font-weight:bold" 
-                                   value="Descripción:" >
-                    </h:outputLabel>
-                    <p:inputTextarea cols="45" id="dependencyDescription"
+                <h:outputLabel for="dependencyDescription"
+                               style="font-weight:bold" 
+                               value="Descripción:" >
+                </h:outputLabel>
+                <p:inputTextarea cols="45" id="dependencyDescription"
                                      maxlength="75" required="false"
-                                     value="#{dependencyBean.dependency.description}" >
-                    </p:inputTextarea>
-                    <p:watermark for="dependencyDescription"
-                                 value="Descripción breve." >
-                    </p:watermark>
+                                 value="#{dependencyBean.dependency.description}" >
+                </p:inputTextarea>
+                <p:watermark for="dependencyDescription"
+                             value="Descripción breve." >
+                </p:watermark>
 
-                </h:panelGrid>
+            </h:panelGrid>
 
-                <p:commandButton id="registerButton" value="Guardar"
+            <p:commandButton id="registerButton" value="Guardar"
                                  update="dependecyCreatorPanel"
-                                 actionListener="#{dependencyBean.save}" >
-                </p:commandButton>
+                             actionListener="#{dependencyBean.save}" >
+            </p:commandButton>
 
-                <p:commandButton id="clearButton"
-                                 update="dependecyCreatorPanel"
+            <p:commandButton id="clearButton"
+                             update="dependecyCreatorPanel"
                                  type="reset" process="@this" ajax="true"
-                                 value="Limpiar" >
+                             value="Limpiar" >
 
                     <p:resetInput target="dnda" ></p:resetInput>
                     <p:resetInput target="dependencyName" >
                     </p:resetInput>
                     <p:resetInput target="dependencyDescription" >
                     </p:resetInput>
-                </p:commandButton>
-            </center>
-        </p:panel>   
+            </p:commandButton>
+        </center>
+    </p:panel>   
     </h:form>
 </ui:composition>
 <!--</h:body>

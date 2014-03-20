@@ -23,13 +23,13 @@
                                value="Tipo de Documento:" >
                 </h:outputLabel>
                 <p:selectOneMenu id="peopleDocumentType"
-                                 label="Tipo de Documento" required="true" 
+                                 label="Tipo De Documento"
                                  value="#{registrationClientBean.documentType}">
                     <f:selectItems value="#{registrationClientBean.documentsType}" >
                     </f:selectItems>
                 </p:selectOneMenu>
                 <p:watermark for="peopleDocumentType"
-                             value="Tipo de Documento" >
+                             value="Tipo De Documento" >
                 </p:watermark>
 
                 <h:outputLabel for="peopleIdNumber"
@@ -37,11 +37,10 @@
                                value="Número de Documento:" >
                 </h:outputLabel>
                 <p:inputText id="peopleIdNumber"
-                             label="Número de Documento" maxlength="20"
-                             required="true" size="45"
-                             value="#{registrationClientBean.idNumber}" >
-                    <f:validateRegex pattern="[0-9]+" >
-                    </f:validateRegex>
+                             label="Número de Documento" 
+                             size="45" value="#{registrationClientBean.idNumber}" >
+<!--                    <f:validateRegex pattern="[0-9]+" >
+                    </f:validateRegex>-->
                 </p:inputText>
                 <p:watermark for="peopleIdNumber" value="Obligatorio" >
                 </p:watermark>
@@ -49,11 +48,10 @@
                 <h:outputLabel for="peopleFirstNames" 
                                style="font-weight:bold" value="Nombres:" >
                 </h:outputLabel>
-                <p:inputText id="peopleFirstNames" label="Nombres" 
-                             maxlength="35" required="true" size="45" 
+                <p:inputText id="peopleFirstNames" label="Nombres" size="45" 
                              value="#{registrationClientBean.people.firstNames}" >
-                    <f:validateRegex pattern="^[a-zA-Z]+"  >
-                    </f:validateRegex>                        
+<!--                    <f:validateRegex pattern="^[a-zA-Z]+"  >
+                    </f:validateRegex>                        -->
                 </p:inputText>
                 <p:watermark for="peopleFirstNames" value="Obligatorio" >
                 </p:watermark>
@@ -62,10 +60,10 @@
                                style="font-weight:bold" >
                 </h:outputLabel>
                 <p:inputText id="peopleLastNames" label="Apellidos"
-                             maxlength="35" required="true" size="45"
+                             size="45"
                              value="#{registrationClientBean.people.lastNames}" >
-                    <f:validateRegex pattern="^[a-zA-Z]+"  >
-                    </f:validateRegex>    
+<!--                    <f:validateRegex pattern="^[a-zA-Z]+"  >
+                    </f:validateRegex>    -->
                 </p:inputText>
                 <p:watermark for="peopleLastNames" value="Obligatorio" >
                 </p:watermark>
@@ -74,7 +72,7 @@
                                value="Nombre de Usuario:">
                 </h:outputLabel>
                 <p:inputText id="userName" label="Nombre de Usuario"
-                             maxlength="25" required="true" size="45"
+                             size="45"
                              value="#{registrationClientBean.client.userName}" >
                 </p:inputText>
                 <p:watermark for="userName" value="Obligatorio" >
@@ -85,7 +83,7 @@
                 </h:outputLabel>
                 <p:password id="userPassword" feedback="true"
                             label="Contraseña" match="userPassword2"
-                            maxlength="25" required="true" size="45" 
+                            size="45" 
                             value="#{registrationClientBean.client.password}" >
                 </p:password>
                 <p:watermark for="userPassword" value="Obligatorio" >
@@ -97,7 +95,7 @@
                 </h:outputLabel>
                 <p:password id="userPassword2"
                             feedback="true" label="Confirmar Contraseña"
-                            maxlength="25" required="true" size="45"
+                            size="45"
                             value="#{registrationClientBean.client.password}" >
                 </p:password>
                 <p:watermark for="userPassword2" value="Obligatorio" >
@@ -108,12 +106,11 @@
                                style="font-weight:bold" >
                 </h:outputLabel>
                 <p:inputText id="peopleEmail"
-                             label="Correo Electrónico" maxlength="35"
-                             required="true" size="45" 
+                             label="Correo Electrónico" size="45" 
                              value="#{registrationClientBean.people.email}" >
-                    <f:validateRegex
+<!--                    <f:validateRegex
                         pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" >
-                    </f:validateRegex>
+                    </f:validateRegex>-->
                 </p:inputText>
                 <p:watermark for="peopleEmail" value="Obligatorio" >
                 </p:watermark>
@@ -124,7 +121,6 @@
                 </h:outputLabel>
                 <p:selectOneMenu id="dependencyName"
                                  label="Nombre de la Dependencia"
-                                 required="true"
                                  value="#{registrationClientBean.dependencyName}">
                     <f:selectItems value="#{dependencyBean.dependenciesNames}" >
                     </f:selectItems>
@@ -139,7 +135,6 @@
                 </h:outputLabel>
                 <p:selectOneMenu id="profileName"
                                  label="Perfil"
-                                 required="true" 
                                  value="#{registrationClientBean.profileName}">
                     <f:selectItems value="#{profileBean.profilesNames}" >
                     </f:selectItems>
