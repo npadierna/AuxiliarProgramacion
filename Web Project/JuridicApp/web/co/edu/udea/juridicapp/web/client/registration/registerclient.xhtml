@@ -146,10 +146,10 @@
 
                         <h:outputLabel for="profileName"
                                        style="font-weight:bold"
-                                       value="Dependencia:" >
+                                       value="Perfil:" >
                         </h:outputLabel>
                         <p:selectOneMenu id="profileName"
-                                         label="Perfil:"
+                                         label="Perfil"
                                          required="true" 
                                          value="#{registrationClientBean.profileName}">
                             <f:selectItems value="#{profileBean.profilesNames}" >
@@ -159,10 +159,11 @@
                                      value="Nombre del Perfil" >
                         </p:watermark>
 
-                        <p:commandButton id="registerButton" value="Registrarse"
+                        <p:commandButton id="registerButton" value="Registrar"
                                          update="registrerPanel"
                                          actionListener="#{registrationClientBean.doRegistration}" >
                         </p:commandButton>
+
                         <p:commandButton id="clearButton" update="registrerPanel"
                                          type="reset" process="@this" ajax="true"
                                          value="Limpiar" >

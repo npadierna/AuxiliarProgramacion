@@ -16,7 +16,7 @@
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
             </meta>
-            
+
         </f:facet>
     </h:head>
 
@@ -52,13 +52,23 @@
                         <p:watermark for="supportDescription"
                                      value="Descripción breve." >
                         </p:watermark>
-                    </h:panelGrid>
 
-                    <p:commandButton actionListener="#{supportBean.save}"
-                                     id="saveTitleButton"
-                                     update="growlLogin"
-                                     value="Guardar" >
-                    </p:commandButton>
+                        <p:commandButton actionListener="#{supportBean.save}"
+                                         id="saveTitleButton"
+                                         update="growlLogin"
+                                         value="Guardar" >
+                        </p:commandButton>
+
+                        <p:commandButton id="clearButton"
+                                         update="supportCreatorPanel"
+                                         type="reset" process="@this" ajax="true"
+                                         value="Limpiar" >
+
+                            <p:resetInput target="supportType" ></p:resetInput>
+                            <p:resetInput target="supportDescription" >
+                            </p:resetInput>
+                        </p:commandButton>
+                    </h:panelGrid>
                 </p:panel>
             </center>
         </h:form>

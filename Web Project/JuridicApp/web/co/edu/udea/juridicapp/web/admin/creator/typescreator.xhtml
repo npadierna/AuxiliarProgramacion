@@ -16,7 +16,6 @@
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
             </meta>
-            
         </f:facet>
     </h:head>
 
@@ -52,13 +51,23 @@
                         <p:watermark for="oeuvreTypeDescription"
                                      value="Descripción breve." >
                         </p:watermark>
-                    </h:panelGrid>
 
-                    <p:commandButton actionListener="#{typeBean.save}"
-                                     id="saveTitleButton"
-                                     update="growlLogin"
-                                     value="Guardar" >
-                    </p:commandButton>
+                        <p:commandButton actionListener="#{typeBean.save}"
+                                         id="saveTitleButton"
+                                         update="growlLogin"
+                                         value="Guardar" >
+                        </p:commandButton>
+
+                        <p:commandButton id="clearButton"
+                                         update="supportCreatorPanel"
+                                         type="reset" process="@this" ajax="true"
+                                         value="Limpiar" >
+
+                            <p:resetInput target="oeuvreType" ></p:resetInput>
+                            <p:resetInput target="oeuvreTypeDescription" >
+                            </p:resetInput>
+                        </p:commandButton>
+                    </h:panelGrid>
                 </p:panel>
             </center>
         </h:form>

@@ -8,7 +8,7 @@
       xmlns:f="http://java.sun.com/jsf/core" >
 
     <h:head>
-          <title>Crear Rol</title>
+        <title>Crear Rol</title>
         <script type="text/javascript"
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
@@ -16,7 +16,7 @@
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
             </meta>
-          
+
         </f:facet>
     </h:head>
 
@@ -53,13 +53,21 @@
                         <p:watermark for="titleDescription"
                                      value="Descripción breve." >
                         </p:watermark>
-                    </h:panelGrid>
 
-                    <p:commandButton actionListener="#{titleBean.save}"
-                                     id="saveTitleButton"
-                                     update="growlLogin"
-                                     value="Guardar" >
-                    </p:commandButton>
+                        <p:commandButton actionListener="#{titleBean.save}"
+                                         id="saveTitleButton"
+                                         update="growlLogin"
+                                         value="Guardar" >
+                        </p:commandButton>
+
+                        <p:commandButton id="clearButton" update="titleCreatorPanel"
+                                         type="reset" process="@this" ajax="true"
+                                         value="Limpiar" >
+
+                            <p:resetInput target="titleName" ></p:resetInput>
+                            <p:resetInput target="titleDescription" ></p:resetInput>
+                        </p:commandButton>
+                    </h:panelGrid>
                 </p:panel>
             </center>
         </h:form>
