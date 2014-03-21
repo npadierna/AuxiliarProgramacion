@@ -10,6 +10,7 @@ import co.edu.udea.juridicapp.persistence.entity.enums.DocumentTypeClientEnum;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -104,6 +105,7 @@ public final class RegistrationClientBean implements Serializable {
     }
 
     public void doRegistration(ActionEvent actionEvent) {
+         FacesMessage msg = null;
         if ((this.getDocumentType() != null) && (this.getIdNumber() != null)
                 && (this.client.getUserName() != null)
                 && (this.client.getPassword() != null)
@@ -119,9 +121,24 @@ public final class RegistrationClientBean implements Serializable {
             this.people.setPeoplePK(new PeoplePK(this.documentType,
                     this.idNumber.trim()));
             this.people.setClient(this.client);
-
-            this.peopleDAO.savePeople(this.people);
+            
+            People p = this.peopleDAO.findPeople( new PeoplePK(this.documentType, this.idNumber));
+            
+            if( p == null){
+                this.peopleDAO.savePeople(this.people);
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
+                        this.people.getFirstNames( ));
+            }else{
+                msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Este usuario ya existe");
+            }
+        }else{
+             msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Hay Campos obligatorios que están vacios");
         }
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     @PostConstruct()

@@ -7,7 +7,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -57,6 +59,7 @@ public final class DependencyBean implements Serializable {
     }
 
     public void save(ActionEvent actionEvent) {
+        FacesMessage msg = null;
         if (this.getDependency().getName() != null) {
             this.getDependency().setName(this.getDependency().getName().trim());
 
@@ -66,12 +69,22 @@ public final class DependencyBean implements Serializable {
                     this.getDependency().getName());
             if (d == null) {
                 this.dependencyDAO.saveDependency(this.getDependency());
+                  msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
+                        this.getDependency().getName( ));
             } else {
-                // Error, ya existe una dependencia asociada.
+                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Ya Existe una Dependencia " + this.getDependency().getName());
             }
         } else {
-            // Error, el nombre de la Dependencia es la PK.
+            msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Hay Campos obligatorios que están vacios");
         }
+        this.getDependency().setName("");
+        this.getDependency().setDescription("");
+        
+         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     @PostConstruct()

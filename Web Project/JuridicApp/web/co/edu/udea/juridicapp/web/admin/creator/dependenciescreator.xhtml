@@ -2,10 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
-<!--<html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core" >
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:head>
         <title>Crear Dependencia</title>
@@ -20,80 +21,107 @@
         </f:facet>
     </h:head>
 
-    <h:body>-->
-<ui:composition
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui" >
+    <h:body>
+        <p:layout fullPage="true" >
+            <p:layoutUnit closable="false" collapsible="false" position="south"
+                          resizable="false" size="60" >
+                <p:commandButton id="home"
+                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
+                                 value="Volver a la Administración" >
+                </p:commandButton>
+            </p:layoutUnit>
 
-    <h:form >
-    <p:panel header="Crear Dependencia" id="dependecyCreatorPanel"
-             style="font-weight:bold" >
-        <center>
+            <p:layoutUnit closable="false" collapsible="true" effect="drop"
+                          header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
+                          position="north" resizable="false" size="120" >
+                <center>
+                    <p:panel id="memberManagementPanel" >
+                        <center>
+                            <ui:include
+                                src="../../client/update/logoutinfoclient.xhtml" >
+                            </ui:include>
+                        </center>
+                    </p:panel>
+                </center>
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="center" >
+                <h:form>
+                    <center>
+                        <p:panel header="Crear Dependencia" id="dependecyCreatorPanel"
+                                 style="font-weight:bold" >
+                            <p:growl id="growlCreator" life="3000" showDetail="true">
+                            </p:growl>
+                            <center>
 
             <p:growl id="growlLogin" life="3000" showDetail="true" >
             </p:growl>
 
-            <h:panelGrid cellpadding="5" columns="3" >
-                <h:outputLabel for="dnda"
-                               style="font-weight:bold" 
-                               value="DNDA:" >
-                </h:outputLabel>
-                <p:inputText id="dnda"
-                             label="DNDA"
-                                 maxlength="30" required="true" size="45"
-                                 value="#{dependencyBean.dependency.dnda.number}" >
-                </p:inputText>
-                <p:watermark for="dnda" value="Número de DNDA" >
-                </p:watermark>
+                                <h:panelGrid cellpadding="5" columns="3" >
+                                    <h:outputLabel for="dnda"
+                                                   style="font-weight:bold" 
+                                                   value="DNDA:" >
+                                    </h:outputLabel>
+                                    <p:inputText id="dnda"
+                                                 label="DNDA"
+                                                 maxlength="30" required="true" 
+                                                 requiredMessage="Por favor ingrese el DNDA."  
+                                                 size="45"
+                                                 value="#{dependencyBean.dependency.dnda.number}" >
+                                    </p:inputText>
+                                    <p:watermark for="dnda" value="Número de DNDA" >
+                                    </p:watermark>
 
-                <h:outputLabel for="dependencyName"
-                               style="font-weight:bold" 
-                               value="Nombre de la Dependencia:" >
-                </h:outputLabel>
-                <p:inputText id="dependencyName" 
-                                 label="Nombre de Dependencia"
-                                 maxlength="35" required="true" size="45"
-                                 value="#{dependencyBean.dependency.name}" >
-                </p:inputText>
-                <p:watermark for="dependencyName" value="Obligatorio" >
-                </p:watermark>
+                                    <h:outputLabel for="dependencyName"
+                                                   style="font-weight:bold" 
+                                                   value="Nombre de la Dependencia:" >
+                                    </h:outputLabel>
+                                    <p:inputText id="dependencyName" 
+                                                 label="Nombre de Dependencia"
+                                                 maxlength="35" required="true" 
+                                                 requiredMessage="Por favor ingrese el nombre."
+                                                 size="45"
+                                                 value="#{dependencyBean.dependency.name}" >
+                                    </p:inputText>
+                                    <p:watermark for="dependencyName" value="Obligatorio" >
+                                    </p:watermark>
 
-                <h:outputLabel for="dependencyDescription"
-                               style="font-weight:bold" 
-                               value="Descripción:" >
-                </h:outputLabel>
-                <p:inputTextarea cols="45" id="dependencyDescription"
-                                     maxlength="75" required="false"
-                                 value="#{dependencyBean.dependency.description}" >
-                </p:inputTextarea>
-                <p:watermark for="dependencyDescription"
-                             value="Descripción breve." >
-                </p:watermark>
+                                    <h:outputLabel for="dependencyDescription"
+                                                   style="font-weight:bold" 
+                                                   value="Descripción:" >
+                                    </h:outputLabel>
+                                    <p:inputTextarea cols="45" id="dependencyDescription"
+                                                     maxlength="75" required="false"
+                                                     value="#{dependencyBean.dependency.description}" >
+                                    </p:inputTextarea>
+                                    <p:watermark for="dependencyDescription"
+                                                 value="Descripción breve." >
+                                    </p:watermark>
+                                </h:panelGrid>
 
-            </h:panelGrid>
+                                 <p:spacer width="30px" ></p:spacer>
 
-            <p:commandButton id="registerButton" value="Guardar"
-                                 update="dependecyCreatorPanel"
-                             actionListener="#{dependencyBean.save}" >
-            </p:commandButton>
+                                <p:commandButton id="registerButton" value="Guardar"
+                                                 update="growlCreator"
+                                                 actionListener="#{dependencyBean.save}" >
+                                </p:commandButton>
 
-            <p:commandButton id="clearButton"
-                             update="dependecyCreatorPanel"
-                                 type="reset" process="@this" ajax="true"
-                             value="Limpiar" >
+                                <p:commandButton id="clearButton"
+                                                 update="growlCreator"
+                                                 type="reset" process="@this" ajax="true"
+                                                 value="Limpiar" >
 
-                    <p:resetInput target="dnda" ></p:resetInput>
-                    <p:resetInput target="dependencyName" >
-                    </p:resetInput>
-                    <p:resetInput target="dependencyDescription" >
-                    </p:resetInput>
-            </p:commandButton>
-        </center>
-    </p:panel>   
-    </h:form>
-</ui:composition>
-<!--</h:body>
-</html>-->
+                                    <p:resetInput target="dnda" ></p:resetInput>
+                                    <p:resetInput target="dependencyName" >
+                                    </p:resetInput>
+                                    <p:resetInput target="dependencyDescription" >
+                                    </p:resetInput>
+                                </p:commandButton>
+                            </center>
+                        </p:panel>   
+                    </center>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

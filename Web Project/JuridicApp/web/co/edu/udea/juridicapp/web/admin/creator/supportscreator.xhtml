@@ -2,64 +2,106 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
-<ui:composition
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:form>
-        <p:panel header="Crear Soporte Para Obra" id="supportCreatorPanel"
-                 style="font-weight:bold" >
-            <center>
+    <h:head>
+        <title>Crear Dependencia</title>
+        <script type="text/javascript"
+                src="../../../util/javascript/JsFunctions.js" >
+        </script>
+        <f:facet name="dependencyCreator" >
+            <meta content='text/html; charset=UTF-8'
+                  http-equiv="Content-Type" >
+            </meta>
 
-                <h:panelGrid cellpadding="5" columns="3" >
-                    <p:growl id="growlLogin" life="3000" showDetail="true" >
-                    </p:growl>
+        </f:facet>
+    </h:head>
 
-                    <h:outputLabel for="supportType"
-                                   style="font-weight:bold" 
-                                   value="Tipo de Soporte:" >
-                    </h:outputLabel>
-                    <p:inputText id="supportType"
-                                 label="Tipo de Soporte"
-                                 maxlength="25" required="true" size="35"
-                                 value="#{supportBean.support.type}" >
-                    </p:inputText>
-                    <p:watermark for="supportType" value="Obligatorio" >
-                    </p:watermark>
-
-                    <h:outputLabel for="supportDescription"
-                                   style="font-weight:bold" 
-                                   value="Descripción:" >
-                    </h:outputLabel>
-                    <p:inputTextarea cols="45" id="supportDescription"
-                                     maxlength="75" required="false"
-                                     value="#{supportBean.support.description}" >
-                    </p:inputTextarea>
-                    <p:watermark for="supportDescription"
-                                 value="Descripción breve." >
-                    </p:watermark>
-
-
-                </h:panelGrid>
-                <p:commandButton actionListener="#{supportBean.save}"
-                                 id="saveTitleButton"
-                                 update="growlLogin"
-                                 value="Guardar" >
+    <h:body>
+        <p:layout fullPage="true" >
+            <p:layoutUnit closable="false" collapsible="false" position="south"
+                          resizable="false" size="60" >
+                <p:commandButton id="home"
+                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
+                                 value="Volver a la Administración" >
                 </p:commandButton>
+            </p:layoutUnit>
 
-                <p:commandButton id="clearButton"
-                                 update="supportCreatorPanel"
-                                 type="reset" process="@this" ajax="true"
-                                 value="Limpiar" >
+            <p:layoutUnit closable="false" collapsible="true" effect="drop"
+                          header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
+                          position="north" resizable="false" size="120" >
+                <center>
+                    <p:panel id="memberManagementPanel" >
+                        <center>
+                            <ui:include
+                                src="../../client/update/logoutinfoclient.xhtml" >
+                            </ui:include>
+                        </center>
+                    </p:panel>
+                </center>
+            </p:layoutUnit>  
 
-                    <p:resetInput target="supportType" ></p:resetInput>
-                    <p:resetInput target="supportDescription" >
-                    </p:resetInput>
-                </p:commandButton>
-            </center>
-        </p:panel>
-    </h:form>
-</ui:composition>
+            <p:layoutUnit position="center" >
+                <h:form>
+                    <p:panel header="Crear Soporte Para Obra" id="supportCreatorPanel"
+                             style="font-weight:bold" >
+                        <center>
+
+                            <h:panelGrid cellpadding="5" columns="3" >
+                                <p:growl id="growlLogin" life="3000" showDetail="true" >
+                                </p:growl>
+
+                                <h:outputLabel for="supportType"
+                                               style="font-weight:bold" 
+                                               value="Tipo de Soporte:" >
+                                </h:outputLabel>
+                                <p:inputText id="supportType"
+                                             label="Tipo de Soporte"
+                                             maxlength="25" required="true"  
+                                             requiredMessage="Por favor ingrese el tipo de soporte." 
+                                             size="35"
+                                             value="#{supportBean.support.type}" >
+                                </p:inputText>
+                                <p:watermark for="supportType" value="Obligatorio" >
+                                </p:watermark>
+
+                                <h:outputLabel for="supportDescription"
+                                               style="font-weight:bold" 
+                                               value="Descripción:" >
+                                </h:outputLabel>
+                                <p:inputTextarea cols="45" id="supportDescription"
+                                                 maxlength="75" required="false"
+                                                 value="#{supportBean.support.description}" >
+                                </p:inputTextarea>
+                                <p:watermark for="supportDescription"
+                                             value="Descripción breve." >
+                                </p:watermark>
+
+
+                            </h:panelGrid>
+                            <p:commandButton actionListener="#{supportBean.save}"
+                                             id="saveTitleButton"
+                                             update="growlLogin"
+                                             value="Guardar" >
+                            </p:commandButton>
+
+                            <p:commandButton id="clearButton"
+                                             update="supportCreatorPanel"
+                                             type="reset" process="@this" ajax="true"
+                                             value="Limpiar" >
+
+                                <p:resetInput target="supportType" ></p:resetInput>
+                                <p:resetInput target="supportDescription" >
+                                </p:resetInput>
+                            </p:commandButton>
+                        </center>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

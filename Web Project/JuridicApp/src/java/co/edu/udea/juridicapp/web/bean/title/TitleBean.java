@@ -6,7 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -54,21 +56,29 @@ public final class TitleBean implements Serializable {
     }
 
     public void save(ActionEvent actionEvent) {
+        FacesMessage msg = null;
         if (this.getTitle().getProfile() != null) {
             this.getTitle().setProfile(this.getTitle().getProfile().trim());
 
             Title r = this.titleDAO.findTitle(this.getTitle().getProfile());
             if (r == null) {
                 this.titleDAO.saveTitle(this.getTitle());
+                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
+                        this.getTitle().getProfile( ));
             } else {
-                // Errroooooooooooorrrrrrrrrrrrrr. Ya existe un title con ese nombre.
+               msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Ya existe un vínculo " + this.getTitle().getProfile( ));
             }
         } else {
-            // Errrrrrrrrrrrrrrrroooooooooooooorrrrrrrrr. El nombre no puede ser nulo.
+            msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Hay campos obligatorios que están vacios");
         }
 
         this.getTitle().setDescription("");
         this.getTitle().setProfile("");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     @PostConstruct()

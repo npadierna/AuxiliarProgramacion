@@ -32,7 +32,8 @@
                     </p:commandButton>
                 </p:layoutUnit>
                 <p:layoutUnit collapsible="true" closable="true" effect="drop" 
-                              header="Administrador" position="north"
+                              header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
+                              position="north"
                               resizable="false" size="155" >
                     <center>
                         <p:panel>
@@ -50,51 +51,51 @@
                     <p:panelMenu>
                         <p:submenu label="Usuarios" >
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeDirection}"
-                                id="newClientMenuItem" update="mainPanel"
+                                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/registration/registerclient.xhtml';" 
+                                id="newClientMenuItem"
                                 value="Nuevo" >
                             </p:menuitem>
                             <p:menuitem
-
-                                id="updateClientMenuItem" update="mainLayoutUnit"
+                                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/updateinfoclient.xhtml';" 
+                                id="updateClientMenuItem" 
                                 value="Actualizar" >
                             </p:menuitem>
                             <p:menuitem
-
-                                id="deleteClientMenuItem" update="mainLayoutUnit"
+                                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/delete/deleteclient.xhtml';" 
+                                id="deleteClientMenuItem" 
                                 value="Borrar" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Dependencias" >
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeDirection}"
-                                id="newDependencyMenuItem" update="mainPanel"
+                                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/dependenciescreator.xhtml';" 
+                                id="newDependencyMenuItem" 
                                 value="Nueva" >
                             </p:menuitem>
                             <p:menuitem 
-
-                                id="updateDependencyMenuItem" update="mainLayoutUnit"
+                                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/update/dependenciesupdate.xhtml';" 
+                                id="updateDependencyMenuItem" 
                                 value="Actualizar" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Vínculos Universitarios" >
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeDirection}"
-                                id="newTitleMenuItem" update="mainPanel"
+                                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/titlescreator.xhtml';" 
+                                id="newTitleMenuItem" 
                                 value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Soportes Para Obras" >
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeDirection}"
-                                id="newSupportMenuItem" update="mainPanel"
+                                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/supportscreator.xhtml';" 
+                                id="newSupportMenuItem" 
                                 value="Nuevo" >
                             </p:menuitem>
                         </p:submenu>
                         <p:submenu label="Tipos De Obras" >
                             <p:menuitem
-                                actionListener="#{adminCreatorEntityBean.changeDirection}"
-                                id="newTypeMenuItem" update="mainPanel" 
+                                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/typescreator.xhtml';" 
+                                id="newTypeMenuItem" 
                                 value="Nuevo">
                             </p:menuitem>
                         </p:submenu>
@@ -105,10 +106,9 @@
 
                     <center>
                         <p:panel id="mainPanel" >
-                                <center>
-                                    <ui:include src="#{adminCreatorEntityBean.direction}" >
-                                    </ui:include>
-                                </center> 
+                            <center>
+                               
+                            </center> 
                         </p:panel>
                     </center>
 

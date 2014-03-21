@@ -6,7 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,21 +71,29 @@ public final class SupportBean implements Serializable {
     }
 
     public void save(ActionEvent actionEvent) {
+         FacesMessage msg = null;
         if (this.getSupport().getType() != null) {
             this.getSupport().setType(this.getSupport().getType().trim());
 
             Support s = this.supportDAO.findSupport(this.getSupport().getType());
             if (s == null) {
                 this.supportDAO.saveSupport(this.getSupport());
+                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
+                        this.getSupport().getType( ));
             } else {
-                // Error ya existe alguno con esos datos.
+                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Ya existe un soporte " + this.getSupport().getType( ));
             }
         } else {
-            // Error, el tipo no puede ser nulo.
+            msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Hay campos obligatorios que están vacios");
         }
 
         this.getSupport().setDescription("");
         this.getSupport().setType("");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     @PostConstruct()

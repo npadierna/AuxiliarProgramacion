@@ -6,7 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,21 +70,29 @@ public final class TypeBean implements Serializable {
     }
 
     public void save(ActionEvent actionEvent) {
+         FacesMessage msg = null;
         if (this.getType().getName() != null) {
             this.getType().setName(this.getType().getName().trim());
 
             Type t = this.typeDAO.findType(this.getType().getName());
             if (t == null) {
                 this.typeDAO.saveType(this.getType());
+                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
+                        this.getType().getName( ));
             } else {
-                // Error, ya existe alguno en la BD.
+                msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Ya existe un tipo " + this.getType().getName());
             }
         } else {
-            // Error, el nombre no puede ser nul.
+              msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Hay campos obligatorios que están vacios");
         }
 
         this.getType().setDescription("");
         this.getType().setName("");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     @PostConstruct()
