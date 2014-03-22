@@ -116,14 +116,20 @@ public class Author implements IEntityContext, Serializable {
     }
 
     @Override()
-    public Object getKey() {
+    public PeoplePK getKey() {
 
         return (this.getPeoplePK());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setPeoplePK((PeoplePK) key);
+        if (key instanceof String) {
+            this.setPeoplePK((PeoplePK) key);
+        } else {
+            throw new IllegalArgumentException("The key is not valid. Required: "
+                    + PeoplePK.class.getSimpleName() + ", received: "
+                    + key.getClass().getSimpleName());
+        }
     }
 
     @Override()

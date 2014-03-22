@@ -90,9 +90,22 @@
                         </h:outputText> 
                     </f:facet>
                     <center>
-                        <h:outputText style="font-size:13px;"
-                                      value="#{authorOeuvre.contract1.id}" >
-                        </h:outputText>
+                        <p:commandLink >
+                            <h:outputText
+                                value="#{authorOeuvre.contract1.id}"
+                                style="font-size:13px;" >
+                            </h:outputText>
+                        </p:commandLink>
+
+                        <p:spacer width="10px" ></p:spacer>
+
+                        <h:outputLink 
+                                      target="_blank" value="contractvisor.xhtml" >
+                            <h:outputText
+                                value="#{authorOeuvre.contract1.id}"
+                                style="font-size:13px;" >
+                            </h:outputText>
+                        </h:outputLink>
                     </center>
                 </p:column>
 
@@ -147,7 +160,7 @@
                                     </h:outputText>
                                 </p:column>-->
 
-                <f:facet  id="button" name="footer" >
+                <f:facet id="button" name="footer" >
                     <p:commandButton action="#{oeuvreSelectorBean.onSelectedAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}" 
                                      icon="ui-icon-search"
                                      id="viewButton" 
@@ -157,7 +170,7 @@
                     </p:commandButton>
                 </f:facet>
 
-                <f:facet  id="obras" name="footer" ></f:facet>
+                <f:facet id="obras" name="footer" ></f:facet>
             </p:dataTable>
         </center>
 
@@ -203,14 +216,25 @@
             </p:panel>
         </h:panelGrid>
 
-        <p:dialog header="Listado de Autores" hideEffect="explode"
-                  id="dialog" resizable="false" showEffect="fade"
-                  widgetVar="authorsListDialogue" >
+        <p:dialog header="Contrato #{oeuvreListBean.selectedAuthorOeuvre.contract1.id}"
+                  hideEffect="explode" id="contractDialog" resizable="false"
+                  showEffect="fade" widgetVar="contractDialog" width="1200px"
+                  height="650px" >
 
             <h:panelGrid cellpadding="4" columns="2" id="display" >
-                <h:outputText value="Nombre:" ></h:outputText>
-                <h:outputText value="Foo" ></h:outputText>
+                <h:outputText value="Nombre de la Obra:" ></h:outputText>
+                <h:outputText
+                    value="#{oeuvreListBean.selectedAuthorOeuvre.oeuvreType.oeuvre.title}" >
+                </h:outputText>
             </h:panelGrid>
+
+            <p:media id="pdfVisorMedia" value="salida.pdf" width="1024px"
+                     height="650px">
+                Your browser can't display pdf,
+                <h:outputLink value="salida.pdf" target="_blanck">
+                    click
+                </h:outputLink> to download pdf instead.
+            </p:media>
         </p:dialog>
     </h:form>
 </ui:composition>

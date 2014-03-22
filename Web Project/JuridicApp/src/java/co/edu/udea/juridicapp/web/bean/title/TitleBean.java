@@ -56,7 +56,7 @@ public final class TitleBean implements Serializable {
     }
 
     public void save(ActionEvent actionEvent) {
-        FacesMessage msg = null;
+        FacesMessage msg;
         if (this.getTitle().getProfile() != null) {
             this.getTitle().setProfile(this.getTitle().getProfile().trim());
 
@@ -64,20 +64,22 @@ public final class TitleBean implements Serializable {
             if (r == null) {
                 this.titleDAO.saveTitle(this.getTitle());
                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
-                        this.getTitle().getProfile( ));
+                        "Se ha guardado exitosamente:"
+                        + this.getTitle().getProfile() + ".");
             } else {
-               msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Datos Inválidos",
-                        "Ya existe un vínculo " + this.getTitle().getProfile( ));
+                msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos", "Ya existe un Vínculo Universitario: "
+                        + this.getTitle().getProfile() + ".");
             }
+
+            this.getTitle().setDescription("");
+            this.getTitle().setProfile("");
         } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Datos Inválidos",
-                        "Hay campos obligatorios que están vacios");
+                    "Datos Inválidos",
+                    "Hay campos obligatorios que están vacíos.");
         }
 
-        this.getTitle().setDescription("");
-        this.getTitle().setProfile("");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 

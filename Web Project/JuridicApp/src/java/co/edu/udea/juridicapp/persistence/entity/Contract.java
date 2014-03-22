@@ -82,14 +82,20 @@ public class Contract implements IEntityContext, Serializable {
     }
 
     @Override()
-    public Object getKey() {
+    public String getKey() {
 
         return (this.getId());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setId((String) key);
+        if (key instanceof String) {
+            this.setId((String) key);
+        } else {
+            throw new IllegalArgumentException("The key is not valid. Required: "
+                    + String.class.getSimpleName() + ", received: "
+                    + key.getClass().getSimpleName());
+        }
     }
 
     @Override()

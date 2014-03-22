@@ -71,7 +71,7 @@ public final class SupportBean implements Serializable {
     }
 
     public void save(ActionEvent actionEvent) {
-         FacesMessage msg = null;
+        FacesMessage msg;
         if (this.getSupport().getType() != null) {
             this.getSupport().setType(this.getSupport().getType().trim());
 
@@ -79,20 +79,22 @@ public final class SupportBean implements Serializable {
             if (s == null) {
                 this.supportDAO.saveSupport(this.getSupport());
                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
-                        this.getSupport().getType( ));
+                        "Se ha guardado exitosamente: "
+                        + this.getSupport().getType() + ".");
             } else {
-                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Datos Inválidos",
-                        "Ya existe un soporte " + this.getSupport().getType( ));
+                msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos", "Ya existe un Soporte Para Obras: "
+                        + this.getSupport().getType() + ".");
             }
+
+            this.getSupport().setDescription("");
+            this.getSupport().setType("");
         } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Datos Inválidos",
-                        "Hay campos obligatorios que están vacios");
+                    "Datos Inválidos",
+                    "Hay campos obligatorios que están vacíos.");
         }
 
-        this.getSupport().setDescription("");
-        this.getSupport().setType("");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 

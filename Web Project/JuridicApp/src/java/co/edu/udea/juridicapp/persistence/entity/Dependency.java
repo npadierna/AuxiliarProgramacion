@@ -108,14 +108,20 @@ public class Dependency implements IEntityContext, Serializable {
     }
 
     @Override()
-    public Object getKey() {
+    public String getKey() {
 
         return (this.getName());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setName((String) key);
+        if (key instanceof String) {
+            this.setName((String) key);
+        } else {
+            throw new IllegalArgumentException("The key is not valid. Required: "
+                    + String.class.getSimpleName() + ", received: "
+                    + key.getClass().getSimpleName());
+        }
     }
 
     @Override()

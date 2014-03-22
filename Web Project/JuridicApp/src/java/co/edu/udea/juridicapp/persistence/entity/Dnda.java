@@ -79,14 +79,20 @@ public class Dnda implements IEntityContext, Serializable {
     }
 
     @Override()
-    public Object getKey() {
+    public String getKey() {
 
         return (this.getNumber());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setNumber((String) key);
+        if (key instanceof String) {
+            this.setNumber((String) key);
+        } else {
+            throw new IllegalArgumentException("The key is not valid. Required: "
+                    + String.class.getSimpleName() + ", received: "
+                    + key.getClass().getSimpleName());
+        }
     }
 
     @Override()

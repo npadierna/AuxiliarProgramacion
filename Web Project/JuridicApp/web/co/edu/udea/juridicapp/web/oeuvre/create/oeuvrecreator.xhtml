@@ -10,9 +10,9 @@
     <h:head>
         <title>Crear Nueva Obra</title>
         <f:facet name="oeuvreCreator" >
-        <script type="text/javascript"
-                src="../../../util/javascript/JsFunctions.js" >
-        </script>
+            <script type="text/javascript"
+                    src="../../../util/javascript/JsFunctions.js" >
+            </script>
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
             </meta>
@@ -66,7 +66,8 @@
                                         <p:tab title="Datos De La Obra"  >
                                             <h:panelGrid  cellpadding="10"
                                                           columns="3" >
-                                                <h:outputText
+                                                <h:outputText 
+                                                    style="font-weight:bold"
                                                     value="Nombre De La Obra:" >
                                                 </h:outputText>
                                                 <p:inputText id="oeuvreNameInputText"
@@ -82,7 +83,9 @@
                                                              value="Nombre" >
                                                 </p:watermark>
 
-                                                <h:outputText value="Descripción:" >
+                                                <h:outputText
+                                                    style="font-weight:bold"
+                                                    value="Descripción:" >
                                                 </h:outputText>
                                                 <p:inputTextarea autoResize="false"
                                                                  cols="35"
@@ -102,7 +105,7 @@
                                         </p:tab>
                                         <p:tab title="Datos De La Dependencia" >
                                             <h:panelGrid  cellpadding="10" columns="2" >
-                                                <h:outputLabel for="dependenciesNameList" 
+                                                <h:outputLabel for="dependenciesNameList"
                                                                style="font-weight:bold"
                                                                value="Nombre De La Dependencia:" >
                                                 </h:outputLabel>
@@ -238,7 +241,8 @@
                                     <p:spacer height="25px" ></p:spacer>
 
                                     <center>
-                                        <p:panel header="Autores Añadidos" id="addedAuthorsOeuvresPanel" >
+                                        <p:panel header="Autores Añadidos"
+                                                 id="addedAuthorsOeuvresPanel" >
                                             <p:dataTable emptyMessage="No se han añadido Autores."
                                                          id="addedAuthorsOeuvresTable"
                                                          style="font-size:15px"
@@ -340,37 +344,46 @@
 
                                             <p:column>
                                                 <f:facet name="header" >
-                                                    <h:outputText value="Tipo De Documento" >
+                                                    <h:outputText
+                                                        value="Tipo De Documento" >
                                                     </h:outputText>
                                                 </f:facet>
-                                                <h:outputText value="#{authorOeuvre.authorOeuvrePK.documentType}" >
+                                                <h:outputText
+                                                    value="#{authorOeuvre.authorOeuvrePK.documentType}" >
                                                 </h:outputText>
                                             </p:column>
 
                                             <p:column>
                                                 <f:facet name="header" >
-                                                    <h:outputText value="Número De Documento" >
+                                                    <h:outputText
+                                                        value="Número De Documento" >
                                                     </h:outputText>
                                                 </f:facet>
-                                                <h:outputText value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
+                                                <h:outputText
+                                                    value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
                                                 </h:outputText>
                                             </p:column>
 
                                             <p:column>
                                                 <f:facet name="header" >
-                                                    <h:outputText value="Nombre Completo" >
+                                                    <h:outputText
+                                                        value="Nombre Completo" >
                                                     </h:outputText>
                                                 </f:facet>
-                                                <h:outputText value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
+                                                <h:outputText
+                                                    value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
                                                 </h:outputText>
                                             </p:column>
 
                                             <p:column>
                                                 <f:facet name="header" >
-                                                    <h:outputText value="N° Contrato" >
+                                                    <h:outputText 
+                                                        value="N° Contrato" >
                                                     </h:outputText>
                                                 </f:facet>
-                                                <p:inputText maxlength="30" required="true" size="20"
+                                                <p:inputText maxlength="30"
+                                                             required="true"
+                                                             size="20"
                                                              value="#{authorOeuvre.authorOeuvrePK.contract}" >
                                                 </p:inputText>
                                             </p:column>
@@ -380,38 +393,44 @@
                                                     <h:outputText value="Fecha De Inicio" >
                                                     </h:outputText>
                                                 </f:facet>
-                                                <p:calendar effect="explode" size="5"
+                                                <p:calendar effect="explode"
+                                                            size="5"
                                                             value="#{authorOeuvre.beginning}" >
                                                 </p:calendar>
                                             </p:column>
 
                                             <p:column>
                                                 <f:facet name="header" >
-                                                    <h:outputText value="Fecha De Entrega" >
+                                                    <h:outputText 
+                                                        value="Fecha De Entrega" >
                                                     </h:outputText>
                                                 </f:facet>
-                                                <p:calendar effect="explode" size="5"
+                                                <p:calendar effect="explode" 
+                                                            size="5"
                                                             value="#{authorOeuvre.delivering}" >
                                                 </p:calendar>
                                             </p:column>
 
                                             <p:column>
                                                 <f:facet name="header" >
-                                                    <h:outputText value="Tipo De Obra" >
+                                                    <h:outputText 
+                                                        value="Tipo De Obra" >
                                                     </h:outputText>
                                                 </f:facet>
                                                 <p:selectOneMenu id="authorOeuvreType"
                                                                  label="Tipo de la Obra"
                                                                  required="true"
                                                                  value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
-                                                    <f:selectItems value="#{typeBean.typesNames}" >
+                                                    <f:selectItems
+                                                        value="#{typeBean.typesNames}" >
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
                                             </p:column>
 
                                             <p:column>
                                                 <f:facet name="header" >
-                                                    <h:outputText value="Soporte De La Obra" >
+                                                    <h:outputText 
+                                                        value="Soporte De La Obra" >
                                                     </h:outputText>
                                                 </f:facet>
                                                 <p:selectOneMenu id="authorOeuvreSupport"
@@ -425,14 +444,16 @@
 
                                             <p:column>
                                                 <f:facet name="header" >
-                                                    <h:outputText value="Vínculo Con La Universidad" >
+                                                    <h:outputText
+                                                        value="Vínculo Con La Universidad" >
                                                     </h:outputText>
                                                 </f:facet>
                                                 <p:selectOneMenu id="authorOeuvreTitle"
                                                                  label="Vínculo con Universidad"
                                                                  required="true"
                                                                  value="#{authorOeuvre.title.profile}" >
-                                                    <f:selectItems value="#{titleBean.titlesNames}" >
+                                                    <f:selectItems 
+                                                        value="#{titleBean.titlesNames}" >
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
                                             </p:column>
@@ -440,11 +461,13 @@
                                             <p:rowExpansion >
                                                 <center>
                                                     <p:spacer height="10px" ></p:spacer>
-                                                    <h:panelGrid cellpadding="7" columns="6"
+                                                    <h:panelGrid cellpadding="7"
+                                                                 columns="6"
                                                                  style="font-size:15px" >
                                                         <h:outputText value="ISBN:" >
                                                         </h:outputText>
-                                                        <p:inputText id="authorOeuvreISBN" maxlength="35"
+                                                        <p:inputText id="authorOeuvreISBN"
+                                                                     maxlength="35"
                                                                      required="false" size="35"
                                                                      value="#{authorOeuvre.isbn}" >
                                                         </p:inputText>
@@ -454,15 +477,17 @@
 
                                                         <h:outputText value="DNDA:" >
                                                         </h:outputText>
-                                                        <p:inputText id="authorOeuvreDNDA" maxlength="30"
+                                                        <p:inputText id="authorOeuvreDNDA"
+                                                                     maxlength="30"
                                                                      required="false" size="30"
-                                                                     value="#{authorOeuvre.dnda}" >
+                                                                     value="#{authorOeuvre.dnda.number}" >
                                                         </p:inputText>
                                                         <p:watermark for="authorOeuvreDNDA"
                                                                      value="Opcional" >
                                                         </p:watermark>
                                                     </h:panelGrid>
-                                                    <p:spacer height="10px" ></p:spacer>
+                                                    <p:spacer height="10px" >
+                                                    </p:spacer>
                                                 </center>
                                             </p:rowExpansion>
                                         </p:dataTable>

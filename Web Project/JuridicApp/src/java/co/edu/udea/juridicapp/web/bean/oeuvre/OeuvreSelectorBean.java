@@ -71,7 +71,8 @@ public final class OeuvreSelectorBean {
         if (selectedAuthorOeuvre != null) {
             this.selectedAuthorOeuvre = selectedAuthorOeuvre;
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cargando...",
-                    selectedAuthorOeuvre.getAuthorOeuvrePK().getOeuvreTypeName());
+                    selectedAuthorOeuvre.getAuthorOeuvrePK()
+                    .getOeuvreTypeName());
             this.onSelected = true;
 
             this.findAuthorsOeuvres();
@@ -96,11 +97,13 @@ public final class OeuvreSelectorBean {
 
     private void findAuthorsOeuvres() {
         this.setAuthorsOeuvres(this.authorOeuvreDAO.findAuthorsOeuvresByOeuvreId(
-                this.getSelectedAuthorOeuvre().getAuthorOeuvrePK().getOeuvreTypeId()));
+                this.getSelectedAuthorOeuvre().getAuthorOeuvrePK()
+                .getOeuvreTypeId()));
     }
 
     private void findOeuvreComments() {
         this.setOeuvreComments(this.commentDAO.findCommnetsByOeuvreId(
-                this.getSelectedAuthorOeuvre().getAuthorOeuvrePK().getOeuvreTypeId()));
+                this.getSelectedAuthorOeuvre().getAuthorOeuvrePK()
+                .getOeuvreTypeId()));
     }
 }

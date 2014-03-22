@@ -10,6 +10,7 @@ import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
 import co.edu.udea.juridicapp.persistence.entity.Comment;
 import co.edu.udea.juridicapp.persistence.entity.CommentPK;
 import co.edu.udea.juridicapp.persistence.entity.Dependency;
+import co.edu.udea.juridicapp.persistence.entity.Dnda;
 import co.edu.udea.juridicapp.persistence.entity.PeoplePK;
 import co.edu.udea.juridicapp.persistence.entity.Title;
 import co.edu.udea.juridicapp.persistence.entity.Support;
@@ -21,7 +22,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -126,6 +129,7 @@ public final class CreatorOeuvreBean implements Serializable {
                 author.getPeoplePK().getDocumentType(),
                 author.getPeoplePK().getIdNumber(), null);
         authorOeuvre.setAuthor(author);
+        authorOeuvre.setDnda(new Dnda());
         authorOeuvre.setTitle(new Title());
         authorOeuvre.setSupportType(new Support());
 
@@ -154,7 +158,13 @@ public final class CreatorOeuvreBean implements Serializable {
             if (a != null) {
                 this.getFoundAuthors().add(a);
             } else {
-                // Mostrar mensaje de error.
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                        "Autor No Existente",
+                        "No se ha encontrado algún Author con los datos:\n\n"
+                        + "Tipo De Documento: " + this.getDocumentType()
+                        + "\nNúmero De Documento: " + this.getIdNumber());
+
+                FacesContext.getCurrentInstance().addMessage(null, msg);
             }
         }
     }
@@ -168,6 +178,20 @@ public final class CreatorOeuvreBean implements Serializable {
     }
 
     public void saveAuthorsOeuvres(ActionEvent actionEvent) {
+        if (this.getAuthorsOeuvres().isEmpty()) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "No Obras Creadas",
+                    "No se ha creado ninguna Obra de ningún tipo asociada a algún Author.");
+
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+
+            return;
+        }
+
+        this.getOeuvre().setDescription(this.getOeuvre().getDescription().trim());
+        if (this.getOeuvre().getDescription().equals("")) {
+            this.getOeuvre().setDescription(null);
+        }
         Long idOeuvre = this.oeuvreDAO.saveOeuvre(this.getOeuvre());
 
         for (Comment c : this.getComments()) {
@@ -185,6 +209,15 @@ public final class CreatorOeuvreBean implements Serializable {
 
             if (this.oeuvreTypeDAO.findOeuvreType(oeuvreTypePK) == null) {
                 this.oeuvreTypeDAO.saveOeuvreType(oeuvreType);
+            }
+
+            // TODO: Buscar el DNDA y el número del contrato.
+            
+//            if (this.dnd)
+
+            authorOeuvre.setIsbn(authorOeuvre.getIsbn().trim());
+            if (authorOeuvre.getIsbn().equals("")) {
+                authorOeuvre.setIsbn(null);
             }
 
             authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);

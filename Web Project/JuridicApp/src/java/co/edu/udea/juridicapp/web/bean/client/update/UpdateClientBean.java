@@ -150,7 +150,7 @@ public final class UpdateClientBean implements Serializable {
     }
 
     private Client updateClient(Client loggedClient, String userName) {
-         if (!userName.equals(loggedClient.getUserName())) {
+        if (!userName.equals(loggedClient.getUserName())) {
             List<Client> foundClientsByClient = this.clientDAO
                     .executeNamedQueryForClients("Client.findByUserName",
                     "userName", userName);

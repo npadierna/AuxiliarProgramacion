@@ -4,22 +4,20 @@
 
 <ui:composition
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui" >
 
-            <p:commandButton onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/updateinfoclient.xhtml';"
-                             style="font-size:15px;"
-                             value="Actualizar Datos" >
-            </p:commandButton>
+    <p:commandButton onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/updateinfoclient.xhtml';"
+                     style="font-size:15px;"
+                     value="Actualizar Datos" >
+    </p:commandButton>
 
-            <p:spacer height="5px" width="15px" ></p:spacer>
+    <p:spacer height="5px" width="15px" ></p:spacer>
 
-            <p:commandButton actionListener="#{loginClientBean.logOut}"
-                             onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
-                             oncomplete="handleLogoutRequest(xhr, status, args)"
-                             style="font-size:15px;"
-                             value="Cerrar Sesión" >
-            </p:commandButton>
+    <p:commandButton actionListener="#{loginClientBean.logOut}"
+                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
+                     oncomplete="handleLogoutRequest(xhr, status, args)"
+                     style="font-size:15px;"
+                     value="Cerrar Sesión" >
+    </p:commandButton>
 </ui:composition>

@@ -110,14 +110,20 @@ public class Comment implements IEntityContext, Serializable {
     }
 
     @Override()
-    public Object getKey() {
+    public CommentPK getKey() {
 
         return (this.getCommentPK());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setCommentPK((CommentPK) key);
+        if (key instanceof String) {
+            this.setCommentPK((CommentPK) key);
+        } else {
+            throw new IllegalArgumentException("The key is not valid. Required: "
+                    + CommentPK.class.getSimpleName() + ", received: "
+                    + key.getClass().getSimpleName());
+        }
     }
 
     @Override()

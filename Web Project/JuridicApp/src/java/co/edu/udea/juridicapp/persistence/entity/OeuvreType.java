@@ -94,14 +94,20 @@ public class OeuvreType implements IEntityContext, Serializable {
     }
 
     @Override()
-    public Object getKey() {
+    public OeuvreTypePK getKey() {
 
         return (this.getOeuvreTypePK());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setOeuvreTypePK((OeuvreTypePK) key);
+        if (key instanceof String) {
+            this.setOeuvreTypePK((OeuvreTypePK) key);
+        } else {
+            throw new IllegalArgumentException("The key is not valid. Required: "
+                    + OeuvreTypePK.class.getSimpleName() + ", received: "
+                    + key.getClass().getSimpleName());
+        }
     }
 
     @Override()

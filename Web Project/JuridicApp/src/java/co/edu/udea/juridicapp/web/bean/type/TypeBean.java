@@ -70,28 +70,30 @@ public final class TypeBean implements Serializable {
     }
 
     public void save(ActionEvent actionEvent) {
-         FacesMessage msg = null;
+        FacesMessage msg;
         if (this.getType().getName() != null) {
             this.getType().setName(this.getType().getName().trim());
 
-            Type t = this.typeDAO.findType(this.getType().getName());
+            Type t = this.typeDAO.findType(this.getType().getKey());
             if (t == null) {
                 this.typeDAO.saveType(this.getType());
                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
-                        this.getType().getName( ));
+                        "Se ha guardado exitosamente: "
+                        + this.getType().getName() + ".");
             } else {
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Datos Inválidos",
-                        "Ya existe un tipo " + this.getType().getName());
+                        "Datos Inválidos", "Ya existe un Tipo De Obra: "
+                        + this.getType().getName() + ".");
             }
+
+            this.getType().setDescription("");
+            this.getType().setName("");
         } else {
-              msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Datos Inválidos",
-                        "Hay campos obligatorios que están vacios");
+            msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "Datos Inválidos",
+                    "Hay campos obligatorios que están vacíos.");
         }
 
-        this.getType().setDescription("");
-        this.getType().setName("");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 

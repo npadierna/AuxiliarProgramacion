@@ -26,9 +26,9 @@ public final class LoginClientBean implements Serializable {
     @Autowired()
     private IClientDAO clientDAO;
     private boolean loggedIn;
+    private Client loggedClient;
     private String userName;
     private String password;
-    private Client loggedClient;
 
     public LoginClientBean() {
         super();
@@ -67,13 +67,15 @@ public final class LoginClientBean implements Serializable {
     public boolean isLogged() {
         return loggedIn;
     }
-    
-    public boolean isAdmin(Client client){
-        if(client.getTitle().getTitle().equals("Administrador")){
-            return true;
-        }else{
-            return false;
+
+    public boolean isAdmin(Client client) {
+        if ((client == null) || (client.getTitle() == null)
+                || (client.getTitle().getTitle() == null)) {
+
+            return (false);
         }
+
+        return (client.getTitle().getTitle().equals("Administrador"));
     }
 
     public void logIn(ActionEvent actionEvent) {
@@ -105,7 +107,7 @@ public final class LoginClientBean implements Serializable {
         this.setPassword("");
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        context.addCallbackParam(LoginClientBean.LOGGED_IN_KEY, loggedIn);
+        context.addCallbackParam(LoginClientBean.LOGGED_IN_KEY, this.loggedIn);
     }
 
     public void logOut(ActionEvent actionEvent) {

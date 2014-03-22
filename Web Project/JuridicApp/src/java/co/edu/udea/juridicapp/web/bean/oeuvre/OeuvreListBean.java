@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -59,6 +60,10 @@ public final class OeuvreListBean implements Serializable {
 
     public void setSelectedAuthorOeuvre(AuthorOeuvre selectedAuthorOeuvre) {
         this.selectedAuthorOeuvre = selectedAuthorOeuvre;
+    }
+
+    public void showContract(AuthorOeuvre authorOeuvre) {
+        this.setSelectedAuthorOeuvre(authorOeuvre);
     }
 
     @PostConstruct()

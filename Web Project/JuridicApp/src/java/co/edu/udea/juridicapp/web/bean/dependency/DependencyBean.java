@@ -59,7 +59,7 @@ public final class DependencyBean implements Serializable {
     }
 
     public void save(ActionEvent actionEvent) {
-        FacesMessage msg = null;
+        FacesMessage msg;
         if (this.getDependency().getName() != null) {
             this.getDependency().setName(this.getDependency().getName().trim());
 
@@ -69,22 +69,24 @@ public final class DependencyBean implements Serializable {
                     this.getDependency().getName());
             if (d == null) {
                 this.dependencyDAO.saveDependency(this.getDependency());
-                  msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
-                        this.getDependency().getName( ));
+                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
+                        "Se ha guardado exitosamente: "
+                        + this.getDependency().getName() + ".");
             } else {
-                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Datos Inválidos",
-                        "Ya Existe una Dependencia " + this.getDependency().getName());
+                msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos", "Ya Existe una Dependencia: "
+                        + this.getDependency().getName() + ".");
             }
+
+            this.getDependency().setName("");
+            this.getDependency().setDescription("");
         } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Datos Inválidos",
-                        "Hay Campos obligatorios que están vacios");
+                    "Datos Inválidos",
+                    "Hay Campos obligatorios que están vacíos.");
         }
-        this.getDependency().setName("");
-        this.getDependency().setDescription("");
-        
-         FacesContext.getCurrentInstance().addMessage(null, msg);
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     @PostConstruct()

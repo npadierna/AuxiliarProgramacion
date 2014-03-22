@@ -82,14 +82,20 @@ public class Title implements IEntityContext, Serializable {
     }
 
     @Override()
-    public Object getKey() {
+    public String getKey() {
 
         return (this.getProfile());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setProfile((String) key);
+        if (key instanceof String) {
+            this.setProfile((String) key);
+        } else {
+            throw new IllegalArgumentException("The key is not valid. Required: "
+                    + String.class.getSimpleName() + ", received: "
+                    + key.getClass().getSimpleName());
+        }
     }
 
     @Override()

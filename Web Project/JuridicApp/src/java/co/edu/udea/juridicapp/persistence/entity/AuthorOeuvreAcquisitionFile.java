@@ -133,14 +133,21 @@ public class AuthorOeuvreAcquisitionFile implements IEntityContext, Serializable
     }
 
     @Override()
-    public Object getKey() {
+    public AuthorOeuvreAcquisitionFilePK getKey() {
 
         return (this.getAuthorOeuvreAcquisitionFilePK());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setAuthorOeuvreAcquisitionFilePK((AuthorOeuvreAcquisitionFilePK) key);
+        if (key instanceof String) {
+            this.setAuthorOeuvreAcquisitionFilePK(
+                    (AuthorOeuvreAcquisitionFilePK) key);
+        } else {
+            throw new IllegalArgumentException("The key is not valid. Required: "
+                    + AuthorOeuvreAcquisitionFilePK.class.getSimpleName()
+                    + ", received: " + key.getClass().getSimpleName());
+        }
     }
 
     @Override()

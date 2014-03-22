@@ -134,14 +134,20 @@ public class Oeuvre implements IEntityContext, Serializable {
     }
 
     @Override()
-    public Object getKey() {
+    public Long getKey() {
 
         return (this.getId());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setId((Long) key);
+        if (key instanceof String) {
+            this.setId((Long) key);
+        } else {
+            throw new IllegalArgumentException("The key is not valid. Required: "
+                    + Long.class.getSimpleName() + ", received: "
+                    + key.getClass().getSimpleName());
+        }
     }
 
     @Override()

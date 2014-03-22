@@ -24,17 +24,18 @@
     <h:body>
         <h:form id="mainAdminForm" >
             <p:layout fullPage="true" >
-                <p:layoutUnit closable="false" collapsible="false" position="south"
-                              resizable="false" size="60" >
+                <p:layoutUnit closable="false" collapsible="false"
+                              position="south" resizable="false" size="60" >
                     <p:commandButton id="home"
                                      onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';" 
-                                     value="Volver al Listado de Obras"  style="font-size:15px;" >
+                                     value="Volver al Listado de Obras" 
+                                     style="font-size:15px;" >
                     </p:commandButton>
                 </p:layoutUnit>
                 <p:layoutUnit collapsible="true" closable="true" effect="drop" 
                               header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
                               position="north"
-                              resizable="false" size="155" >
+                              resizable="false" size="120" >
                     <center>
                         <p:panel>
                             <center>
@@ -103,15 +104,12 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit id="mainLayoutUnit" position="center" >
-
                     <center>
                         <p:panel id="mainPanel" >
                             <center>
-                               
                             </center> 
                         </p:panel>
                     </center>
-
                 </p:layoutUnit>
             </p:layout>
         </h:form>

@@ -26,12 +26,8 @@ public class AuthorizationListener implements PhaseListener {
                 .getSession(true);
         Object usuario = sesion.getAttribute("usuario");
 
-        if (currentPage.endsWith(".js")) {
-
-            return;
-        }
-
-        if ((isLoginPage == false) && (usuario == null)) {
+        if ((isLoginPage == false) && (usuario == null)
+                && !(currentPage.endsWith(".js"))) {
             NavigationHandler navigationHandler = facesContext.getApplication()
                     .getNavigationHandler();
             navigationHandler.handleNavigation(facesContext, null,

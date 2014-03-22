@@ -9,7 +9,7 @@
 
     <h:head>
         <title>Actualizar Datos</title>
-       <script type="text/javascript"
+        <script type="text/javascript"
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
         <f:facet name="first" >
@@ -32,7 +32,7 @@
             <p:layoutUnit closable="false" collapsible="true" effect="drop" 
                           header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}"
                           position="north" resizable="false" 
-                          size="150" > 
+                          size="120" > 
                 <p align="center" >
                     <p:commandButton style="font-family:arial;color:black;font-size:15px;"
                                      value="Cerrar Sesión"
@@ -110,16 +110,16 @@
                                     <h:outputLabel value ="Tipo de Documento: " >
                                     </h:outputLabel>
                                     <p:inputText id="documentType"
-                                                  readonly="true" 
-                                                  value="#{loginClientBean.loggedClient.people.peoplePK.documentType}">
+                                                 readonly="true" 
+                                                 value="#{loginClientBean.loggedClient.people.peoplePK.documentType}">
                                     </p:inputText>
 
                                     <h:outputLabel value ="Número de Documento: " >
                                     </h:outputLabel>
                                     <p:inputText  
                                         id="idNumber"  
-                                                 readonly="true" 
-                                                 value="#{loginClientBean.loggedClient.people.peoplePK.idNumber}">
+                                        readonly="true" 
+                                        value="#{loginClientBean.loggedClient.people.peoplePK.idNumber}">
                                     </p:inputText>
 
                                     <h:outputLabel value ="Nombre(s): *" >

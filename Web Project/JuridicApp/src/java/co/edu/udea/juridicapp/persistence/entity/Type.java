@@ -82,14 +82,20 @@ public class Type implements IEntityContext, Serializable {
     }
 
     @Override()
-    public Object getKey() {
+    public String getKey() {
 
         return (this.getName());
     }
 
     @Override()
     public void setKey(Object key) {
-        this.setName((String) key);
+        if (key instanceof String) {
+            this.setName((String) key);
+        } else {
+            throw new IllegalArgumentException("The key is not valid. Required: "
+                    + String.class.getSimpleName() + ", received: "
+                    + key.getClass().getSimpleName());
+        }
     }
 
     @Override()
@@ -123,5 +129,9 @@ public class Type implements IEntityContext, Serializable {
 
         return ("co.edu.udea.juridicapp.persistence.entity.Type[ name="
                 + this.getName() + " ]");
+    }
+
+    private void IllegalArgumentException() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
