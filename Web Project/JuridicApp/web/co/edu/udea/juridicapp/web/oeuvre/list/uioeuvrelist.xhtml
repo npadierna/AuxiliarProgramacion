@@ -13,18 +13,19 @@
         <p:growl id="growl" showDetail="true" ></p:growl>
 
         <center>
-            <p:dataTable draggableColumns="true"
-                         emptyMessage="No se han encontrado ningún tipo de Obras."
-                         id="mainTable"
-                         paginator="true" 
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowKey="#{authorOeuvre.key}"
-                         rows="10" rowsPerPageTemplate="10,15,30"
-                         selection="#{oeuvreListBean.selectedAuthorOeuvre}"
-                         selectionMode="single"
-                         style="width:98%; font-size:13px;"
-                         value="#{oeuvreListBean.authorOeuvres}"
-                         var="authorOeuvre" > 
+            <p:dataTable
+                draggableColumns="true"
+                emptyMessage="No se han encontrado ningún tipo de Obras."
+                id="mainTable"
+                paginator="true" 
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowKey="#{authorOeuvre.key}"
+                rows="10" rowsPerPageTemplate="10,15,30"
+                selection="#{oeuvreListBean.selectedAuthorOeuvre}"
+                selectionMode="single"
+                style="width:98%; font-size:13px;"
+                value="#{oeuvreListBean.authorOeuvres}"
+                var="authorOeuvre" > 
 
                 <f:facet name="header" >
                     Listado De Obras
@@ -90,22 +91,10 @@
                         </h:outputText> 
                     </f:facet>
                     <center>
-                        <p:commandLink >
-                            <h:outputText
-                                value="#{authorOeuvre.contract1.id}"
-                                style="font-size:13px;" >
-                            </h:outputText>
-                        </p:commandLink>
-
-                        <p:spacer width="10px" ></p:spacer>
-
-                        <h:outputLink 
-                                      target="_blank" value="contractvisor.xhtml" >
-                            <h:outputText
-                                value="#{authorOeuvre.contract1.id}"
-                                style="font-size:13px;" >
-                            </h:outputText>
-                        </h:outputLink>
+                        <h:outputText
+                            value="#{authorOeuvre.contract1.id}"
+                            style="font-size:13px;" >
+                        </h:outputText>
                     </center>
                 </p:column>
 
@@ -128,49 +117,57 @@
                         </h:outputText>  
                     </f:facet>
                     <center>
-                        <h:outputText style="font-size:13px;"
-                                      value="#{authorOeuvre.dnda.number}" >
+                        <h:outputText
+                            style="font-size:13px;"
+                            value="#{authorOeuvre.dnda.number}" >
                         </h:outputText>
                     </center>
                 </p:column>
 
-                <p:column filterBy="#{authorOeuvre.supportType.type}"
-                          filterMatchMode="exact"
-                          filterOptions="#{supportBean.supportsSelectItems}"
-                          sortBy="#{authorOeuvre.supportType.type}"
-                          style="font-size:15px;" >
+                <p:column
+                    filterBy="#{authorOeuvre.supportType.type}"
+                    filterMatchMode="exact"
+                    filterOptions="#{supportBean.supportsSelectItems}"
+                    sortBy="#{authorOeuvre.supportType.type}"
+                    style="font-size:15px;" >
                     <f:facet id="support" name="header" >
                         <h:outputText value="Soporte" >
                         </h:outputText>  
                     </f:facet>
                     <center>
-                        <h:outputText style="font-size:13px;"
-                                      value="#{authorOeuvre.supportType.type}" >
+                        <h:outputText
+                            style="font-size:13px;"
+                            value="#{authorOeuvre.supportType.type}" >
                         </h:outputText>
                     </center>
                 </p:column>
 
-                <!--                <p:column style="font-size: 15px;" >
-                                    <f:facet id="archivos" name="header" >
-                                        <h:outputText value="Archivos" >
-                                        </h:outputText>
-                                    </f:facet>
-                                    <h:outputText style="font-size:13px;"
-                                                  value="Archivos" >
-                                    </h:outputText>
-                                </p:column>-->
-
                 <f:facet id="button" name="footer" >
-                    <p:commandButton action="#{oeuvreSelectorBean.onSelectedAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}" 
-                                     icon="ui-icon-search"
-                                     id="viewButton" 
-                                     oncomplete="onSelectedAuthorOeuvreRequest(xhr, status, args)"
-                                     update=":mainForm:growl"
-                                     value="Ver" >
+                    <p:commandButton
+                        action="#{oeuvreSelectorBean.onSelectedAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
+                        icon="ui-icon-search"
+                        id="viewDetailsButton"
+                        oncomplete="onSelectedAuthorOeuvreRequest(xhr, status, args)"
+                        update=":mainForm:growl"
+                        value="Ver más detalles" >
+                    </p:commandButton>
+
+                    <p:commandButton
+                        action="#{contractBean.onViewContractForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
+                        icon="ui-icon-newwin"
+                        id="viewContractButton"
+                        oncomplete="onSelectedContractRequest(xhr, status, args)"                                     
+                        value="Ver contrato" >
+                    </p:commandButton>
+
+                    <p:commandButton
+                        action="#{authorOeuvreFileBean.onViewProductsForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
+                        icon="ui-icon-document"
+                        id="viewProductsFilesButton"
+                        oncomplete="onShowProductsRequest(xhr, status, args)" 
+                        value="Ver producto" >
                     </p:commandButton>
                 </f:facet>
-
-                <f:facet id="obras" name="footer" ></f:facet>
             </p:dataTable>
         </center>
 
@@ -209,7 +206,7 @@
                     <p:graphicImage
                         value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.jpg" > 
                     </p:graphicImage>
-                    <p:dataExporter fileName="obras" pageOnly="true" 
+                    <p:dataExporter fileName="obras" pageOnly="true"
                                     type="pdf" target="mainTable" >
                     </p:dataExporter>
                 </h:commandLink>

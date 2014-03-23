@@ -23,31 +23,47 @@
 
     <h:body>
         <p:layout fullPage="true" >
-            <p:layoutUnit closable="false" collapsible="true" effect="drop"
-                          header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
-                          position="north" resizable="false" size="120" >
+            <p:layoutUnit
+                closable="false" collapsible="true" effect="drop"
+                header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
+                position="north" resizable="false" size="120" >
 
                 <center>
                     <p:panel id="memberManagementPanel" >
                         <center>
-                            <c:if test="${loginClientBean.loggedClient.title.title == 'Administrador'}">
-                                <p:commandButton onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';"
-                                                 style="font-size:15px;"
-                                                 value="Administración" >
+                            <c:if
+                                test="${loginClientBean.loggedClient.title.title == 'Administrador'}" >
+                                <p:commandButton
+                                    onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';"
+                                    style="font-size:15px;"
+                                    value="Administración" >
                                 </p:commandButton>
-                                <p:spacer height="5px" width="15px" ></p:spacer>
-                                <p:commandButton onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/create/oeuvrecreator.xhtml';"
-                                                 style="font-size:15px;"
-                                                 value="Crear Nueva Obra" >
+
+                                <p:spacer
+                                    height="5px" width="15px" >
+                                </p:spacer>
+
+                                <p:commandButton
+                                    onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/create/oeuvrecreator.xhtml';"
+                                    style="font-size:15px;"
+                                    value="Crear Nueva Obra" >
                                 </p:commandButton>
-                                <p:spacer height="5px" width="15px" ></p:spacer>
+
+                                <p:spacer 
+                                    height="5px" width="15px" >
+                                </p:spacer>
                             </c:if>
-                            <c:if test="${loginClientBean.loggedClient.title.title == 'Gestor De Contratos'}">
-                                <p:commandButton onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/create/oeuvrecreator.xhtml';"
-                                                 style="font-size:15px;"
-                                                 value="Crear Nueva Obra" >
+
+                            <c:if
+                                test="${loginClientBean.loggedClient.title.title == 'Gestor De Contratos'}">
+                                <p:commandButton
+                                    onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/create/oeuvrecreator.xhtml';"
+                                    style="font-size:15px;"
+                                    value="Crear Nueva Obra" >
                                 </p:commandButton>
-                                <p:spacer height="5px" width="15px" ></p:spacer>
+                                <p:spacer
+                                    height="5px" width="15px" >
+                                </p:spacer>
                             </c:if>
 
                             <ui:include
@@ -62,7 +78,8 @@
                 <center>
                     <p:panel id="mainPanel" >
                         <center>
-                            <ui:include src="uioeuvrelist.xhtml" >
+                            <ui:include
+                                src="uioeuvrelist.xhtml" >
                             </ui:include>
                         </center>
                     </p:panel>

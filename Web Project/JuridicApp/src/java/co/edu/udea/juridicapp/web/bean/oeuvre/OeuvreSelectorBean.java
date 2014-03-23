@@ -69,7 +69,7 @@ public final class OeuvreSelectorBean {
         FacesMessage msg;
 
         if (selectedAuthorOeuvre != null) {
-            this.selectedAuthorOeuvre = selectedAuthorOeuvre;
+            this.setSelectedAuthorOeuvre(selectedAuthorOeuvre);
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cargando...",
                     selectedAuthorOeuvre.getAuthorOeuvrePK()
                     .getOeuvreTypeName());
@@ -84,7 +84,7 @@ public final class OeuvreSelectorBean {
         }
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        context.addCallbackParam("onSelected", onSelected);
+        context.addCallbackParam("onSelected", this.onSelected);
     }
 
     @PostConstruct()

@@ -21,98 +21,118 @@
 
     <h:body>
         <p:layout fullPage="true" >
-            <p:layoutUnit closable="false" collapsible="false" position="south"
-                          resizable="false" size="60" >
-                <p:commandButton id="home"
-                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';" 
-                                 value="Volver al Listado de Obras"  style="font-size:15px;" >
+            <p:layoutUnit
+                closable="false" collapsible="false" position="south"
+                resizable="false" size="60" >
+                <p:commandButton
+                    id="home"
+                    onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';" 
+                    value="Volver al Listado de Obras" style="font-size:15px;" >
                 </p:commandButton>
             </p:layoutUnit>
-            <p:layoutUnit closable="false" collapsible="true" effect="drop"
-                          header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}"
-                          position="north" resizable="false" size="130" >
+
+            <p:layoutUnit
+                closable="false" collapsible="true" effect="drop"
+                header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}"
+                position="north" resizable="false" size="130" >
                 <h:form id="logoutAndUpdateInfoForm" >
                     <p align="center" >
+
                     <p:spacer height="5px" width="15px" ></p:spacer>
 
-                    <p:commandButton onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/updateinfoclient.xhtml';"
-                                     style="font-size:15px;"
-                                     value="Actualizar Datos" >
+                    <p:commandButton 
+                        onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/updateinfoclient.xhtml';"
+                        style="font-size:15px;"
+                        value="Actualizar Datos" >
                     </p:commandButton>
 
                     <p:spacer height="5px" width="15px" ></p:spacer>
 
-                    <p:commandButton actionListener="#{loginClientBean.logOut}"
-                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
-                                     oncomplete="handleLogoutRequest(xhr, status, args)"
-                                     style="font-size:15px;"
-                                     value="Cerrar Sesión" >
+                    <p:commandButton
+                        actionListener="#{loginClientBean.logOut}"
+                        onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
+                        oncomplete="handleLogoutRequest(xhr, status, args)"
+                        style="font-size:15px;"
+                        value="Cerrar Sesión" >
                     </p:commandButton>
                     </p>
                 </h:form>
             </p:layoutUnit>  
 
             <p:layoutUnit position="center"  >
-                <p:growl id="growlChangePassword" life="3000" showDetail="true" />
+                <p:growl
+                    id="growlChangePassword" life="3000" showDetail="true" >
+                </p:growl>
+
                 <h:form id="mainForm" >
                     <p:panel header="Crear Nueva Obra" >
-                        <p:wizard backLabel="Atrás" id="viewWizard"
-                                  nextLabel="Siguiente"  >
+                        <p:wizard
+                            backLabel="Atrás" id="viewWizard"
+                            nextLabel="Siguiente"  >
 
                             <p:tab id="oeuvre" title="Obra" >
                                 <center>
-                                    <p:accordionPanel activeIndex="0,1"
-                                                      multiple="true"  >
+                                    <p:accordionPanel
+                                        activeIndex="0,1" multiple="true" >
+
                                         <p:tab title="Datos De La Obra"  >
-                                            <h:panelGrid  cellpadding="10"
-                                                          columns="3" >
+                                            <h:panelGrid
+                                                cellpadding="10" columns="3" >
                                                 <h:outputText 
                                                     style="font-weight:bold"
                                                     value="Nombre De La Obra:" >
                                                 </h:outputText>
-                                                <p:inputText id="oeuvreNameInputText"
-                                                             label="Nombre de la Obra"
-                                                             maxlength="55"
-                                                             required="true" 
-                                                             size="45"
-                                                             value="#{creatorOeuvreBean.oeuvre.title}" >
+                                                <p:inputText
+                                                    id="oeuvreNameInputText"
+                                                    label="Nombre de la Obra"
+                                                    maxlength="55"
+                                                    required="true" 
+                                                    size="45"
+                                                    value="#{creatorOeuvreBean.oeuvre.title}" >
                                                     <f:validateRegex pattern="^[ a-zA-Z0-9]+" >
                                                     </f:validateRegex>  
                                                 </p:inputText>
-                                                <p:watermark for="oeuvreNameInputText"
-                                                             value="Nombre" >
+                                                <p:watermark
+                                                    for="oeuvreNameInputText"
+                                                    value="Nombre" >
                                                 </p:watermark>
 
                                                 <h:outputText
                                                     style="font-weight:bold"
                                                     value="Descripción:" >
                                                 </h:outputText>
-                                                <p:inputTextarea autoResize="false"
-                                                                 cols="35"
-                                                                 counter="counter"
-                                                                 counterTemplate="{0} Caracteres Restantes."
-                                                                 id="descriptionInputTextArea"
-                                                                 maxlength="250" rows="6"
-                                                                 value="#{creatorOeuvreBean.oeuvre.description}" >
+                                                <p:inputTextarea
+                                                    autoResize="false"
+                                                    cols="35"
+                                                    counter="counter"
+                                                    counterTemplate="{0} Caracteres Restantes."
+                                                    id="descriptionInputTextArea"
+                                                    maxlength="250" rows="6"
+                                                    value="#{creatorOeuvreBean.oeuvre.description}" >
                                                 </p:inputTextarea>
                                             </h:panelGrid>
-                                            <p:watermark for="descriptionInputTextArea"
-                                                         value="Descripción breve de la Obra." >
+                                            <p:watermark
+                                                for="descriptionInputTextArea"
+                                                value="Descripción breve de la Obra." >
                                             </p:watermark>
 
                                             <h:outputText id="counter" >
                                             </h:outputText>
                                         </p:tab>
+
                                         <p:tab title="Datos De La Dependencia" >
-                                            <h:panelGrid  cellpadding="10" columns="2" >
-                                                <h:outputLabel for="dependenciesNameList"
-                                                               style="font-weight:bold"
-                                                               value="Nombre De La Dependencia:" >
+                                            <h:panelGrid
+                                                cellpadding="10" columns="2" >
+                                                <h:outputLabel
+                                                    for="dependenciesNameList"
+                                                    style="font-weight:bold"
+                                                    value="Nombre De La Dependencia:" >
                                                 </h:outputLabel>
-                                                <p:selectOneMenu id="dependenciesNameList"
-                                                                 label="Nombres de Dependencias"
-                                                                 required="true"
-                                                                 value="#{creatorOeuvreBean.oeuvre.dependency.name}" >
+                                                <p:selectOneMenu
+                                                    id="dependenciesNameList"
+                                                    label="Nombres de Dependencias"
+                                                    required="true"
+                                                    value="#{creatorOeuvreBean.oeuvre.dependency.name}" >
                                                     <f:selectItems
                                                         value="#{dependencyBean.dependenciesNames}" >
                                                     </f:selectItems>
@@ -126,56 +146,68 @@
                             <p:tab id="authors" title="Author(es)">
                                 <p:panel id="authorsAdderPanel" >
                                     <center>
-                                        <p:panel header="Añadir Autores"
-                                                 id="authorsFinderPanel" >
-                                            <h:panelGrid cellpadding="7"
-                                                         columns="3" >
-                                                <h:outputLabel for="authorDocumentType"
-                                                               style="font-weight:bold"
-                                                               value="Tipo De Documento:" >
+                                        <p:panel
+                                            header="Añadir Autores"
+                                            id="authorsFinderPanel" >
+                                            <h:panelGrid
+                                                cellpadding="7" columns="3" >
+                                                <h:outputLabel
+                                                    for="authorDocumentType"
+                                                    style="font-weight:bold"
+                                                    value="Tipo De Documento:" >
                                                 </h:outputLabel>
-                                                <p:selectOneMenu id="authorDocumentType"
-                                                                 label="Tipo Documento" required="true"
-                                                                 value="#{creatorOeuvreBean.documentType}" >
-                                                    <f:selectItems value="#{registrationClientBean.documentsType}" >
+                                                <p:selectOneMenu
+                                                    id="authorDocumentType"
+                                                    label="Tipo Documento" required="true"
+                                                    value="#{creatorOeuvreBean.documentType}" >
+                                                    <f:selectItems
+                                                        value="#{registrationClientBean.documentsType}" >
                                                     </f:selectItems>
                                                 </p:selectOneMenu>
-                                                <p:watermark for="authorDocumentType"
-                                                             value="Tipo de Documento" >
+                                                <p:watermark
+                                                    for="authorDocumentType"
+                                                    value="Tipo de Documento" >
                                                 </p:watermark>
 
-                                                <h:outputLabel for="authorIdNumber"
-                                                               style="font-weight:bold"
-                                                               value="Número De Documento:" >
+                                                <h:outputLabel
+                                                    for="authorIdNumber"
+                                                    style="font-weight:bold"
+                                                    value="Número De Documento:" >
                                                 </h:outputLabel>
-                                                <p:inputText id="authorIdNumber"
-                                                             label="Número de Documento"
-                                                             maxlength="20"
-                                                             size="45"
-                                                             value="#{creatorOeuvreBean.idNumber}" >
+                                                <p:inputText 
+                                                    id="authorIdNumber"
+                                                    label="Número de Documento"
+                                                    maxlength="20"
+                                                    size="45"
+                                                    value="#{creatorOeuvreBean.idNumber}" >
                                                 </p:inputText>
-                                                <p:watermark for="authorIdNumber" value="Obligatorio" >
+                                                <p:watermark
+                                                    for="authorIdNumber" value="Obligatorio" >
                                                 </p:watermark>
                                             </h:panelGrid>
 
-                                            <p:commandButton actionListener="#{creatorOeuvreBean.findAuthor}"
-                                                             id="findAuthorsButton"
-                                                             update="authorsFinderPanel"
-                                                             value="Buscar Author" >
+                                            <p:commandButton
+                                                actionListener="#{creatorOeuvreBean.findAuthor}"
+                                                id="findAuthorsButton"
+                                                update="authorsFinderPanel"
+                                                value="Buscar Author" >
                                             </p:commandButton>
 
                                             <p:panel id="resultsSearchingPanel" >
-                                                <p:spacer height="20px" >
+                                                <p:spacer
+                                                    height="20px" >
                                                 </p:spacer>
 
-                                                <p:dataTable emptyMessage="No se han encontrado Autores."
-                                                             id="authorFoundTable"
-                                                             value="#{creatorOeuvreBean.foundAuthors}"
-                                                             var="foundAuthor" >
+                                                <p:dataTable
+                                                    emptyMessage="No se han encontrado Autores."
+                                                    id="authorFoundTable"
+                                                    value="#{creatorOeuvreBean.foundAuthors}"
+                                                    var="foundAuthor" >
 
                                                     <p:column>
                                                         <f:facet name="header" >
-                                                            <h:outputText value="Apellidos" >
+                                                            <h:outputText
+                                                                value="Apellidos" >
                                                             </h:outputText>
                                                         </f:facet>
                                                         <h:outputText
@@ -185,7 +217,8 @@
 
                                                     <p:column>
                                                         <f:facet name="header" >
-                                                            <h:outputText value="Nombres" >
+                                                            <h:outputText
+                                                                value="Nombres" >
                                                             </h:outputText>
                                                         </f:facet>
                                                         <h:outputText
@@ -195,7 +228,8 @@
 
                                                     <p:column>
                                                         <f:facet name="header" >
-                                                            <h:outputText value="Número Celular" >
+                                                            <h:outputText
+                                                                value="Número Celular" >
                                                             </h:outputText>
                                                         </f:facet>
                                                         <h:outputText
@@ -205,7 +239,8 @@
 
                                                     <p:column>
                                                         <f:facet name="header" >
-                                                            <h:outputText value="Teléfono Fijo" >
+                                                            <h:outputText
+                                                                value="Teléfono Fijo" >
                                                             </h:outputText>
                                                         </f:facet>
                                                         <h:outputText
@@ -226,10 +261,11 @@
 
                                                     <p:column>
                                                         <center>
-                                                            <p:commandButton action="#{creatorOeuvreBean.addAuthor(foundAuthor)}"
-                                                                             id="addAuthorButton"
-                                                                             update=":mainForm:authorsAdderPanel"
-                                                                             value="Añadir" >
+                                                            <p:commandButton
+                                                                action="#{creatorOeuvreBean.addAuthor(foundAuthor)}"
+                                                                id="addAuthorButton"
+                                                                update=":mainForm:authorsAdderPanel"
+                                                                value="Añadir" >
                                                             </p:commandButton>
                                                         </center>
                                                     </p:column>
@@ -243,14 +279,16 @@
                                     <center>
                                         <p:panel header="Autores Añadidos"
                                                  id="addedAuthorsOeuvresPanel" >
-                                            <p:dataTable emptyMessage="No se han añadido Autores."
-                                                         id="addedAuthorsOeuvresTable"
-                                                         style="font-size:15px"
-                                                         value="#{creatorOeuvreBean.authorsOeuvres}"
-                                                         var="authorOeuvre" >
+                                            <p:dataTable
+                                                emptyMessage="No se han añadido Autores."
+                                                id="addedAuthorsOeuvresTable"
+                                                style="font-size:15px"
+                                                value="#{creatorOeuvreBean.authorsOeuvres}"
+                                                var="authorOeuvre" >
                                                 <p:column>
                                                     <f:facet name="header" >
-                                                        <h:outputText value="Tipo De Documento" >
+                                                        <h:outputText
+                                                            value="Tipo De Documento" >
                                                         </h:outputText>
                                                     </f:facet>
                                                     <h:outputText
@@ -260,7 +298,8 @@
 
                                                 <p:column>
                                                     <f:facet name="header" >
-                                                        <h:outputText value="Número De Documento" >
+                                                        <h:outputText
+                                                            value="Número De Documento" >
                                                         </h:outputText>
                                                     </f:facet>
                                                     <h:outputText
@@ -270,7 +309,8 @@
 
                                                 <p:column>
                                                     <f:facet name="header" >
-                                                        <h:outputText value="Nombre Completo" >
+                                                        <h:outputText
+                                                            value="Nombre Completo" >
                                                         </h:outputText>
                                                     </f:facet>
                                                     <h:outputText
@@ -280,7 +320,8 @@
 
                                                 <p:column>
                                                     <f:facet name="header" >
-                                                        <h:outputText value="Número Celular" >
+                                                        <h:outputText
+                                                            value="Número Celular" >
                                                         </h:outputText>
                                                     </f:facet>
                                                     <h:outputText
@@ -290,7 +331,8 @@
 
                                                 <p:column>
                                                     <f:facet name="header" >
-                                                        <h:outputText value="Teléfono Fijo" >
+                                                        <h:outputText
+                                                            value="Teléfono Fijo" >
                                                         </h:outputText>
                                                     </f:facet>
                                                     <h:outputText
@@ -300,7 +342,8 @@
 
                                                 <p:column>
                                                     <f:facet name="header" >
-                                                        <h:outputText value="Correo Electrónico" >
+                                                        <h:outputText
+                                                            value="Correo Electrónico" >
                                                         </h:outputText>
                                                     </f:facet>
                                                     <h:outputText
@@ -310,10 +353,11 @@
 
                                                 <p:column>
                                                     <center>
-                                                        <p:commandButton id="deleteAuthorOeuvreButton"
-                                                                         action="#{creatorOeuvreBean.removeAuthorOeuvre(authorOeuvre)}"
-                                                                         update="addedAuthorsOeuvresTable"
-                                                                         value="Eliminar" >
+                                                        <p:commandButton 
+                                                            id="deleteAuthorOeuvreButton"
+                                                            action="#{creatorOeuvreBean.removeAuthorOeuvre(authorOeuvre)}"
+                                                            update="addedAuthorsOeuvresTable"
+                                                            value="Eliminar" >
                                                         </p:commandButton>
                                                     </center>
                                                 </p:column>
@@ -328,11 +372,12 @@
                                     <p:panel header="Añadir Obras A Autores"
                                              id="authorsOeuvresAdderPanel" >
 
-                                        <p:dataTable emptyMessage="No se han añadido Autores."
-                                                     id="addedAuthorsOeuvresFinalTable"
-                                                     style="font-size:13px"
-                                                     value="#{creatorOeuvreBean.authorsOeuvres}"
-                                                     var="authorOeuvre" >
+                                        <p:dataTable 
+                                            emptyMessage="No se han añadido Autores."
+                                            id="addedAuthorsOeuvresFinalTable"
+                                            style="font-size:13px"
+                                            value="#{creatorOeuvreBean.authorsOeuvres}"
+                                            var="authorOeuvre" >
 
                                             <p:column>
                                                 <f:facet name="header" >
