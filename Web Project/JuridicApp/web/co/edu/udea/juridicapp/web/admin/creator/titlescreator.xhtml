@@ -9,15 +9,15 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:head>
-        <title>Crear Dependencia</title>
+        <title>Crear Vínculo Universitario</title>
         <script type="text/javascript"
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
+
         <f:facet name="dependencyCreator" >
             <meta content='text/html; charset=UTF-8'
                   http-equiv="Content-Type" >
             </meta>
-
         </f:facet>
     </h:head>
 
@@ -25,15 +25,19 @@
         <p:layout fullPage="true" >
             <p:layoutUnit closable="false" collapsible="false" position="south"
                           resizable="false" size="60" >
-                <p:commandButton id="home"
-                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
-                                 value="Volver a la Administración" >
+
+                <p:commandButton
+                    id="home"
+                    onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
+                    style="font-size:15px;" value="Volver a la Administración" >
                 </p:commandButton>
             </p:layoutUnit>
 
-            <p:layoutUnit closable="false" collapsible="true" effect="drop"
-                          header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
-                          position="north" resizable="false" size="120" >
+            <p:layoutUnit
+                closable="false" collapsible="true" effect="drop"
+                header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
+                position="north" resizable="false" size="120" >
+
                 <center>
                     <p:panel id="memberManagementPanel" >
                         <center>
@@ -47,54 +51,66 @@
 
             <p:layoutUnit position="center" >
                 <h:form>
-                    <p:panel header="Crear Vínculo Universitario"
-                             id="titleCreatorPanel" style="font-weight:bold" >
+                    <p:panel
+                        header="Crear Vínculo Universitario"
+                        id="titleCreatorPanel" style="font-weight:bold" >
+
                         <center>
                             <h:panelGrid cellpadding="5" columns="3" >
-                                <p:growl id="growlLogin" life="3000" showDetail="true">
+                                <p:growl
+                                    id="growlLogin" life="3000"
+                                    showDetail="true" >
                                 </p:growl>
 
-                                <h:outputLabel for="titleName"
-                                               style="font-weight:bold" 
-                                               value="Nombre del Vínculo:" >
+                                <h:outputLabel
+                                    for="titleName" style="font-weight:bold" 
+                                    value="Nombre del Vínculo:" >
                                 </h:outputLabel>
-                                <p:inputText id="titleName"
-                                             label="Nombre del Vínculo"
-                                             maxlength="35" required="true"  
-                                             requiredMessage="Por favor ingrese el nombre del vínculo." 
-                                             size="45"
-                                             value="#{titleBean.title.profile}" >
+                                <p:inputText
+                                    id="titleName" label="Nombre del Vínculo"
+                                    maxlength="35" required="true"  
+                                    requiredMessage="Por favor ingrese el nombre del vínculo." 
+                                    size="45"
+                                    value="#{titleBean.title.profile}" >
                                 </p:inputText>
-                                <p:watermark for="titleName" value="Obligatorio" >
+                                <p:watermark
+                                    for="titleName" value="Obligatorio" >
                                 </p:watermark>
 
-                                <h:outputLabel for="titleDescription"
-                                               style="font-weight:bold" 
-                                               value="Descripción:" >
+                                <h:outputLabel
+                                    for="titleDescription"
+                                    style="font-weight:bold"
+                                    value="Descripción:" >
                                 </h:outputLabel>
-                                <p:inputTextarea autoResize="false" cols="45"
-                                                 id="titleDescription" maxlength="75"
-                                                 required="false"
-                                                 value="#{titleBean.title.description}" >
+                                <p:inputTextarea
+                                    autoResize="false" cols="45"
+                                    id="titleDescription" maxlength="75"
+                                    required="false"
+                                    value="#{titleBean.title.description}" >
                                 </p:inputTextarea>
-                                <p:watermark for="titleDescription"
-                                             value="Descripción breve." >
+                                <p:watermark
+                                    for="titleDescription"
+                                    value="Descripción breve." >
                                 </p:watermark>
-
                             </h:panelGrid>
 
-                            <p:commandButton actionListener="#{titleBean.save}"
-                                             id="saveTitleButton"
-                                             update="growlLogin"
-                                             value="Guardar" >
+                            <p:commandButton
+                                actionListener="#{titleBean.save}"
+                                id="saveTitleButton" icon="ui-icon-disk"
+                                update="growlLogin" value="Guardar" >
                             </p:commandButton>
 
-                            <p:commandButton id="clearButton" update="titleCreatorPanel"
-                                             type="reset" process="@this" ajax="true"
-                                             value="Limpiar" >
+                            <p:commandButton
+                                id="clearButton" icon="ui-icon-refresh"
+                                update="titleCreatorPanel" type="reset"
+                                process="@this" ajax="true" value="Limpiar" >
 
-                                <p:resetInput target="titleName" ></p:resetInput>
-                                <p:resetInput target="titleDescription" ></p:resetInput>
+                                <p:resetInput
+                                    target="titleName" >
+                                </p:resetInput>
+                                <p:resetInput
+                                    target="titleDescription" >
+                                </p:resetInput>
                             </p:commandButton>
                         </center>
                     </p:panel>

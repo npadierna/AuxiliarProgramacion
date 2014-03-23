@@ -32,8 +32,6 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     @Autowired()
     private IAcquisitionDAO acquisitionDAO;
     @Autowired()
-    private IAuthorDAO authorDAO;
-    @Autowired()
     private IAuthorOeuvreDAO authorOeuvreDAO;
     @Autowired()
     private IDependencyDAO dependencyDAO;
@@ -97,6 +95,7 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
 
         if (this.dependencyDAO.countDependencies() == 0) {
             Dependency dependency = new Dependency("DRAI Facultad De Ingeniería");
+            dependency.setDescription("Departamentos de Recursos y Apoyo Didáctico (D.R.A.I.) para la Facultad de Ingeniería.");
             this.dependencyDAO.saveDependency(dependency);
         }
     }
@@ -107,12 +106,15 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
 
         if (this.profileDAO.countProfiles() == 0) {
             Profile profile = new Profile("Administrador");
+            profile.setDescription("Administrador del Sistema.");
             this.profileDAO.saveProfile(profile);
 
             profile = new Profile("Gestor De Contratos");
+            profile.setDescription("Gestor de Contratos u Obras en el Sistema.");
             this.profileDAO.saveProfile(profile);
 
             profile = new Profile("Consultor");
+            profile.setDescription("Consultor de Obras en el Sistema.");
             this.profileDAO.saveProfile(profile);
         }
     }
@@ -186,11 +188,11 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
 
         if (this.supportDAO.countSupports() == 0) {
             Support support = new Support("Físico");
-            support.setDescription("Físico.");
+            support.setDescription("Soporte para Obras físicas.");
             this.supportDAO.saveSupport(support);
 
             support = new Support("Digital");
-            support.setDescription("Digital.");
+            support.setDescription("Soporte para Obras digitales.");
             this.supportDAO.saveSupport(support);
         }
     }
@@ -243,14 +245,16 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     }
 
     private void tester() {
-        Client client = this.clientDAO.findClientByLogin("neiber.padierna", "neiber123");
+        Client client = this.clientDAO.findClientByLogin("neiber.padierna",
+                "neiber123");
 
         Author author = new Author(client.getPeoplePK().getDocumentType(),
                 client.getPeoplePK().getIdNumber());
-//        this.authorDAO.saveAuthor(author);
 
-        List<AuthorOeuvre> authorOeuvres = this.authorOeuvreDAO.findAuthorsOeuvresByAuthor(author);
+        List<AuthorOeuvre> authorOeuvres = this.authorOeuvreDAO
+                .findAuthorsOeuvresByAuthor(author);
 
-        List<AuthorOeuvre> allOeuvres = this.authorOeuvreDAO.findAllAuthorsOeuvres();
+        List<AuthorOeuvre> allOeuvres = this.authorOeuvreDAO
+                .findAllAuthorsOeuvres();
     }
 }

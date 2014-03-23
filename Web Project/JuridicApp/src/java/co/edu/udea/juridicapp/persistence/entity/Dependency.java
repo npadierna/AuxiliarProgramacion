@@ -41,7 +41,7 @@ public class Dependency implements IEntityContext, Serializable {
     @Size(min = 1, max = 35)
     @Column(name = "name")
     private String name;
-    @Size(max = 75)
+    @Size(max = 150)
     @Column(name = "description")
     private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dependency")
