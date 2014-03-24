@@ -26,16 +26,18 @@
         <p:layout fullPage="true" >
             <p:layoutUnit closable="false" collapsible="false" position="south"
                           resizable="false" size="60" >
-                <p:commandButton id="home" icon="ui-icon-home"
-                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';" 
-                                 style="font-size:15px;" 
-                                 value="Volver al Listado de Obras" >
+                <p:commandButton
+                    id="home" icon="ui-icon-home"
+                    onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';" 
+                    style="font-size:15px;" 
+                    value="Volver al Listado de Obras" >
                 </p:commandButton>
             </p:layoutUnit>
 
-            <p:layoutUnit closable="false" collapsible="true" effect="drop"
-                          header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
-                          position="north" resizable="false" size="120" >
+            <p:layoutUnit
+                closable="false" collapsible="true" effect="drop"
+                header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
+                position="north" resizable="false" size="120" >
 
                 <center>
                     <p:panel id="memberManagementPanel" >
@@ -56,7 +58,8 @@
                                 <center>
                                     <p:fieldset legend="Datos De La Obra" >
                                         <h:panelGrid cellpadding="10" columns="2" >
-                                            <h:outputText value="Nombre de la Obra:" >
+                                            <h:outputText
+                                                value="Nombre de la Obra:" >
                                             </h:outputText>
                                             <h:outputText
                                                 value="#{oeuvreSelectorBean.selectedAuthorOeuvre.oeuvreType.oeuvre.title}" >
@@ -69,14 +72,19 @@
                                                 value="#{oeuvreSelectorBean.selectedAuthorOeuvre.delivering}" >
                                             </h:outputText>
 
-                                            <h:outputText value="Descripción de la Obra:" >
+                                            <h:outputText 
+                                                value="Descripción de la Obra:" >
                                             </h:outputText>
-                                            <p:inputTextarea disabled="true"
-                                                             value="#{oeuvreSelectorBean.selectedAuthorOeuvre.oeuvreType.oeuvre.description}" >
+                                            <p:inputTextarea
+                                                cols="35" disabled="true"
+                                                rows="4"
+                                                value="#{oeuvreSelectorBean.selectedAuthorOeuvre.oeuvreType.oeuvre.description}" >
                                             </p:inputTextarea> 
                                         </h:panelGrid>
                                     </p:fieldset>
+
                                     <p:spacer width="10px" ></p:spacer>
+
                                     <p:fieldset legend="Datos De La Dependencia" >
                                         <h:panelGrid columns="2" cellpadding="10" >
                                             <h:outputText
@@ -145,7 +153,7 @@
                                         </p:column>
 
                                         <p:column style="font-size:15px;" >
-                                            <f:facet id="fullName" name="header">  
+                                            <f:facet id="fullName" name="header" >
                                                 <h:outputText
                                                     value="Nombre Completo" >
                                                 </h:outputText>  
@@ -157,7 +165,7 @@
                                         </p:column>
 
                                         <p:column style="font-size:15px;" >
-                                            <f:facet id="fullName" name="header">  
+                                            <f:facet id="fullName" name="header" >
                                                 <h:outputText 
                                                     value="Vínculo Con La Universidad" >
                                                 </h:outputText>  
@@ -171,7 +179,7 @@
                                         </p:column>
 
                                         <p:column style="font-size:15px;" >
-                                            <f:facet id="fullName" name="header">  
+                                            <f:facet id="fullName" name="header" >
                                                 <h:outputText 
                                                     value="N° Contrato" >
                                                 </h:outputText>  
@@ -185,7 +193,7 @@
                                         </p:column>
 
                                         <p:column style="font-size:15px;" >
-                                            <f:facet id="fullName" name="header">  
+                                            <f:facet id="fullName" name="header" >
                                                 <h:outputText value="Tipo" >
                                                 </h:outputText>  
                                             </f:facet>
@@ -196,7 +204,7 @@
                                         </p:column>
 
                                         <p:column style="font-size:15px;" >
-                                            <f:facet id="fullName" name="header">  
+                                            <f:facet id="fullName" name="header" >
                                                 <h:outputText value="ISBN" >
                                                 </h:outputText>
                                             </f:facet>
@@ -209,7 +217,7 @@
                                         </p:column>
 
                                         <p:column style="font-size:15px;" >
-                                            <f:facet id="fullName" name="header">  
+                                            <f:facet id="fullName" name="header" >
                                                 <h:outputText value="Soporte" >
                                                 </h:outputText>  
                                             </f:facet>
@@ -231,10 +239,10 @@
                                             </p:commandButton>
 
                                             <p:commandButton
-                                                action="#{authorOeuvreFileBean.onViewProductsForAuthorOeuvre(oeuvreSelectorBean.selectedAuthorOeuvre)}"
+                                                action="#{authorOeuvreFileBean.onViewProductsListForAuthorOeuvre(oeuvreSelectorBean.selectedAuthorOeuvre)}"
                                                 icon="ui-icon-document"
                                                 id="viewProductsFilesButton"
-                                                oncomplete="onShowProductsRequest(xhr, status, args)"    
+                                                oncomplete="onShowAuthorOeuvreFileListRequest(xhr, status, args)"    
                                                 value="Ver producto" >
                                             </p:commandButton>
                                         </f:facet>

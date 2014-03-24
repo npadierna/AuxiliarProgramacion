@@ -161,10 +161,10 @@
                     </p:commandButton>
 
                     <p:commandButton
-                        action="#{authorOeuvreFileBean.onViewProductsForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
+                        action="#{authorOeuvreFileBean.onViewProductsListForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
                         icon="ui-icon-document"
                         id="viewProductsFilesButton"
-                        oncomplete="onShowProductsRequest(xhr, status, args)" 
+                        oncomplete="onShowAuthorOeuvreFileListRequest(xhr, status, args)" 
                         value="Ver producto" >
                     </p:commandButton>
                 </f:facet>

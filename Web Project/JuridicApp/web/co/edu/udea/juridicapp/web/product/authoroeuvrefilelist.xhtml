@@ -8,13 +8,16 @@
       xmlns:p="http://primefaces.org/ui" >
 
     <h:head>
-        <f:facet name="authorOeuvreFileVisor" >
+        <script type="text/javascript"
+                src="../../util/javascript/JsFunctions.js" >
+        </script>
+        <f:facet name="authorOeuvreFileList" >
         </f:facet>
-        <title>Archivo De Soporte</title>
+        <title>Listado De Archivos De Soporte</title>
     </h:head>
 
     <h:body>
-        <h:form id="mainFileForm" >
+        <h:form id="mainFileListForm" >
             <p:panel>
                 <center>
                     <h:outputText value="Nombre De La Obra: " ></h:outputText>
@@ -23,13 +26,14 @@
                     </h:outputText>
 
                     <p:dataTable
-                        emptyMessage="No se han encontrador Productos u Obras asociados."
+                        emptyMessage="No se han encontrado Productos u Obras asociados."
                         id="authorOeuvreFilesDataTable"
                         paginator="true"
                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rows="5"
-                        rowsPerPageTemplate="5,7,10"
-                        style="width:98%; font-size:13px;"
+                        rowKey="#{authorOeuvreFile.key}"
+                        rows="5" rowsPerPageTemplate="5,7,10"
+                        selection="#{authorOeuvreFileBean.authorOeuvreAcquisitionFileSelected}"
+                        selectionMode="single" style="width:98%; font-size:13px;"
                         value="#{authorOeuvreFileBean.authorOeuvreAcquisitionFiles}"
                         var="authorOeuvreFile" >
 
@@ -38,7 +42,7 @@
                         </f:facet>
 
                         <p:column style="font-size:15px;" >
-                            <f:facet id="contract" name="header">  
+                            <f:facet id="contract" name="header" >
                                 <h:outputText value="N° Contrato" >
                                 </h:outputText>  
                             </f:facet>
@@ -51,7 +55,7 @@
                         </p:column>
 
                         <p:column style="font-size:15px;" >
-                            <f:facet id="acquisition" name="header">  
+                            <f:facet id="acquisition" name="header" >
                                 <h:outputText value="Acquisición" >
                                 </h:outputText>  
                             </f:facet>
@@ -64,7 +68,7 @@
                         </p:column>
 
                         <p:column style="font-size:15px;" >
-                            <f:facet id="type" name="header">  
+                            <f:facet id="type" name="header" >
                                 <h:outputText value="Tipo" >
                                 </h:outputText>  
                             </f:facet>
@@ -77,7 +81,7 @@
                         </p:column>
 
                         <p:column style="font-size:15px;" >
-                            <f:facet id="route" name="header">  
+                            <f:facet id="route" name="header" >
                                 <h:outputText value="Ruta" >
                                 </h:outputText>  
                             </f:facet>
@@ -91,10 +95,10 @@
 
                         <f:facet id="button" name="footer" >
                             <p:commandButton
-                                action="#{contractBean.onViewContractForAuthorOeuvre(oeuvreSelectorBean.selectedAuthorOeuvre)}"
+                                action="#{authorOeuvreFileBean.onSelectedAuthorOeuvreAcquisitionFile(authorOeuvreFile)}"
                                 icon="ui-icon-folder-open"
                                 id="viewFileButton"
-                                oncomplete="onSelectedContractRequest(xhr, status, args)"                                     
+                                oncomplete="onShowProductsRequest(xhr, status, args)"                                     
                                 value="Ver archivo" >
                             </p:commandButton>
                         </f:facet>

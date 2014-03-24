@@ -25,6 +25,7 @@ public class AuthorOeuvreFileBean implements Serializable {
     @Autowired()
     private IAuthorOeuvreAcquisitionFileDAO authorOeuvreAcquisitionFileDAO;
     private AuthorOeuvre authorOeuvre;
+    private AuthorOeuvreAcquisitionFile authorOeuvreAcquisitionFileSelected;
     private List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFiles;
 
     public AuthorOeuvreFileBean() {
@@ -40,6 +41,16 @@ public class AuthorOeuvreFileBean implements Serializable {
         this.authorOeuvre = authorOeuvre;
     }
 
+    public AuthorOeuvreAcquisitionFile getAuthorOeuvreAcquisitionFileSelected() {
+
+        return (this.authorOeuvreAcquisitionFileSelected);
+    }
+
+    public void setAuthorOeuvreAcquisitionFileSelected(
+            AuthorOeuvreAcquisitionFile authorOeuvreAcquisitionFileSelected) {
+        this.authorOeuvreAcquisitionFileSelected = authorOeuvreAcquisitionFileSelected;
+    }
+
     public List<AuthorOeuvreAcquisitionFile> getAuthorOeuvreAcquisitionFiles() {
 
         return (this.authorOeuvreAcquisitionFiles);
@@ -50,7 +61,7 @@ public class AuthorOeuvreFileBean implements Serializable {
         this.authorOeuvreAcquisitionFiles = authorOeuvreAcquisitionFiles;
     }
 
-    public void onViewProductsForAuthorOeuvre(AuthorOeuvre authorOeuvre) {
+    public void onViewProductsListForAuthorOeuvre(AuthorOeuvre authorOeuvre) {
         this.setAuthorOeuvre(authorOeuvre);
 
         AuthorOeuvrePK authorOeuvrePK = this.getAuthorOeuvre()
@@ -62,6 +73,11 @@ public class AuthorOeuvreFileBean implements Serializable {
                 "authorOeuvreAcquisitionFilePK.documentType", authorOeuvrePK.getDocumentType(),
                 "authorOeuvreAcquisitionFilePK.idNumber", authorOeuvrePK.getIdNumber(),
                 "authorOeuvreAcquisitionFilePK.contract", authorOeuvrePK.getContract()));
+    }
+
+    public void onSelectedAuthorOeuvreAcquisitionFile(
+            AuthorOeuvreAcquisitionFile authorOeuvreAcquisitionFile) {
+        this.setAuthorOeuvreAcquisitionFileSelected(authorOeuvreAcquisitionFile);
     }
 
     @PostConstruct()

@@ -13,7 +13,8 @@
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
         <f:facet name="login" >
-            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" >
+            <meta
+                content='text/html; charset=UTF-8' http-equiv="Content-Type" >
             </meta>
         </f:facet>
     </h:head>
@@ -22,7 +23,8 @@
         <h:form>
             <center>
                 <p:panel id="loginPanel" style="width: 800px;" >
-                    <p:growl id="growlLogin" life="3000" showDetail="true" >
+                    <p:growl
+                        id="growlLogin" life="3000" showDetail="true" >
                     </p:growl>
 
                     <h1>Iniciar Sesión</h1>
@@ -30,22 +32,24 @@
                         <h:outputLabel for="userName"
                                        value="Nombre De Usuario: *" >
                         </h:outputLabel>
-                        <p:inputText id="userName" label="Nombre De Usuario." 
-                                     required="true"
-                                     requiredMessage="Por favor ingrese su nombre de usuario." 
-                                     validatorMessage="Nombre de usuario inválido." 
-                                     value="#{loginClientBean.userName}" >
+                        <p:inputText
+                            id="userName" label="Nombre De Usuario." 
+                            required="true"
+                            requiredMessage="Por favor ingrese su nombre de usuario." 
+                            validatorMessage="Nombre de usuario inválido." 
+                            value="#{loginClientBean.userName}" >
                         </p:inputText>
                         <p:watermark for="userName" value="Obligatorio" >
                         </p:watermark>
 
                         <h:outputLabel for="password" value="Contraseña: *" >
                         </h:outputLabel>
-                        <p:password id="password" label="Contraseña" 
-                                    requiredMessage="Por favor ingrese su contraseña."
-                                    rendered="true" 
-                                    validatorMessage="Contraseña inválida."
-                                    value="#{loginClientBean.password}" >
+                        <p:password
+                            id="password" label="Contraseña" 
+                            requiredMessage="Por favor ingrese su contraseña."
+                            rendered="true" 
+                            validatorMessage="Contraseña inválida."
+                            value="#{loginClientBean.password}" >
                         </p:password>
                         <p:watermark for="password"
                                      value="*********" >
@@ -54,12 +58,13 @@
 
                     <p:spacer width="30px" ></p:spacer>
 
-                    <p:commandButton action="#{updateClientBean.receiveLoggedClient(loginClientBean.loggedClient)}"
-                                     actionListener="#{loginClientBean.logIn}"
-                                     id="loginButton"
-                                     oncomplete="handleLoginRequest(xhr, status, args)"
-                                     update="growlLogin"
-                                     value="Iniciar Sesión" >
+                    <p:commandButton
+                        action="#{updateClientBean.receiveLoggedClient(loginClientBean.loggedClient)}"
+                        actionListener="#{loginClientBean.logIn}"
+                        icon="ui-icon-person" id="loginButton"
+                        oncomplete="handleLoginRequest(xhr, status, args)"
+                        update="growlLogin"
+                        value="Iniciar Sesión" >
                     </p:commandButton>
                 </p:panel>
             </center>

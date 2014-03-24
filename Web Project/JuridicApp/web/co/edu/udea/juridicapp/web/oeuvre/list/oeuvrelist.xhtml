@@ -34,6 +34,7 @@
                             <c:if
                                 test="${loginClientBean.loggedClient.title.title == 'Administrador'}" >
                                 <p:commandButton
+                                    icon="ui-icon-wrench"
                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';"
                                     style="font-size:15px;"
                                     value="Administración" >
@@ -44,6 +45,7 @@
                                 </p:spacer>
 
                                 <p:commandButton
+                                    icon="ui-icon-plusthick"
                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/create/oeuvrecreator.xhtml';"
                                     style="font-size:15px;"
                                     value="Crear Nueva Obra" >
@@ -55,7 +57,7 @@
                             </c:if>
 
                             <c:if
-                                test="${loginClientBean.loggedClient.title.title == 'Gestor De Contratos'}">
+                                test="${loginClientBean.loggedClient.title.title == 'Gestor De Contratos'}" >
                                 <p:commandButton
                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/create/oeuvrecreator.xhtml';"
                                     style="font-size:15px;"

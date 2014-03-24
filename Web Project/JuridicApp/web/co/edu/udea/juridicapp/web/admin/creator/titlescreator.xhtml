@@ -27,7 +27,7 @@
                           resizable="false" size="60" >
 
                 <p:commandButton
-                    id="home"
+                    icon="ui-icon-arrowthick-1-w" id="home"
                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
                     style="font-size:15px;" value="Volver a la Administración" >
                 </p:commandButton>
@@ -64,17 +64,18 @@
 
                                 <h:outputLabel
                                     for="titleName" style="font-weight:bold" 
-                                    value="Nombre del Vínculo:" >
+                                    value="Nombre Del Vínculo:" >
                                 </h:outputLabel>
                                 <p:inputText
                                     id="titleName" label="Nombre del Vínculo"
                                     maxlength="35" required="true"  
                                     requiredMessage="Por favor ingrese el nombre del vínculo." 
-                                    size="45"
+                                    size="60"
                                     value="#{titleBean.title.profile}" >
                                 </p:inputText>
                                 <p:watermark
-                                    for="titleName" value="Obligatorio" >
+                                    for="titleName"
+                                    value="Nombre del Vínculo Universitario" >
                                 </p:watermark>
 
                                 <h:outputLabel
@@ -84,13 +85,13 @@
                                 </h:outputLabel>
                                 <p:inputTextarea
                                     autoResize="false" cols="45"
-                                    id="titleDescription" maxlength="75"
-                                    required="false"
+                                    id="titleDescription" maxlength="150"
+                                    required="false" rows="3"
                                     value="#{titleBean.title.description}" >
                                 </p:inputTextarea>
                                 <p:watermark
                                     for="titleDescription"
-                                    value="Descripción breve." >
+                                    value="Descripción breve" >
                                 </p:watermark>
                             </h:panelGrid>
 

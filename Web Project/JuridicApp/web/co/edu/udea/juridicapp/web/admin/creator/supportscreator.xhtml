@@ -28,7 +28,7 @@
                 resizable="false" size="60" >
 
                 <p:commandButton
-                    id="home"
+                    icon="ui-icon-arrowthick-1-w" id="home"
                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
                     style="font-size:15px;" value="Volver a la Administración" >
                 </p:commandButton>
@@ -65,17 +65,17 @@
                                 <h:outputLabel
                                     for="supportType"
                                     style="font-weight:bold" 
-                                    value="Tipo de Soporte:" >
+                                    value="Tipo De Soporte:" >
                                 </h:outputLabel>
                                 <p:inputText
                                     id="supportType" label="Tipo de Soporte"
                                     maxlength="25" required="true"  
                                     requiredMessage="Por favor ingrese el tipo de soporte." 
-                                    size="35"
+                                    size="60"
                                     value="#{supportBean.support.type}" >
                                 </p:inputText>
                                 <p:watermark
-                                    for="supportType" value="Obligatorio" >
+                                    for="supportType" value="Nombre del Soporte" >
                                 </p:watermark>
 
                                 <h:outputLabel
@@ -85,12 +85,12 @@
                                 </h:outputLabel>
                                 <p:inputTextarea
                                     cols="45" id="supportDescription"
-                                    maxlength="75" required="false"
+                                    maxlength="150" required="false" rows="3"
                                     value="#{supportBean.support.description}" >
                                 </p:inputTextarea>
                                 <p:watermark
                                     for="supportDescription"
-                                    value="Descripción breve." >
+                                    value="Descripción breve" >
                                 </p:watermark>
                             </h:panelGrid>
 

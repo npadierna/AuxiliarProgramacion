@@ -7,17 +7,20 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui" >
 
-    <p:commandButton onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/updateinfoclient.xhtml';"
-                     style="font-size:15px;"
-                     value="Actualizar Datos" >
+    <p:commandButton
+        icon="ui-icon-arrowrefresh-1-s"
+        onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/updateinfoclient.xhtml';"
+        style="font-size:15px;"
+        value="Actualizar Datos" >
     </p:commandButton>
 
     <p:spacer height="5px" width="15px" ></p:spacer>
 
-    <p:commandButton actionListener="#{loginClientBean.logOut}"
-                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
-                     oncomplete="handleLogoutRequest(xhr, status, args)"
-                     style="font-size:15px;"
-                     value="Cerrar Sesión" >
+    <p:commandButton
+        actionListener="#{loginClientBean.logOut}" icon="ui-icon-circle-close"
+        onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
+        oncomplete="handleLogoutRequest(xhr, status, args)"
+        style="font-size:15px;"
+        value="Cerrar Sesión" >
     </p:commandButton>
 </ui:composition>

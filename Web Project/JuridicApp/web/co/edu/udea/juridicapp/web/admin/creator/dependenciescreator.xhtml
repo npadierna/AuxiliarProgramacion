@@ -28,7 +28,7 @@
                 resizable="false" size="60" >
 
                 <p:commandButton
-                    id="home"
+                    icon="ui-icon-arrowthick-1-w" id="home"
                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
                     style="font-size:15px;" value="Volver a la Administración" >
                 </p:commandButton>
@@ -77,7 +77,7 @@
                                         id="dnda" label="DNDA" maxlength="30"
                                         required="true" 
                                         requiredMessage="Por favor ingrese el DNDA."  
-                                        size="45"
+                                        size="60"
                                         value="#{dependencyBean.dependency.dnda.number}" >
                                     </p:inputText>
                                     <p:watermark
@@ -94,11 +94,12 @@
                                         label="Nombre de Dependencia"
                                         maxlength="35" required="true" 
                                         requiredMessage="Por favor ingrese el nombre."
-                                        size="45"
+                                        size="60"
                                         value="#{dependencyBean.dependency.name}" >
                                     </p:inputText>
                                     <p:watermark
-                                        for="dependencyName" value="Obligatorio" >
+                                        for="dependencyName"
+                                        value="Nombre o sigla." >
                                     </p:watermark>
 
                                     <h:outputLabel
@@ -108,7 +109,7 @@
                                     </h:outputLabel>
                                     <p:inputTextarea
                                         cols="45" id="dependencyDescription"
-                                        maxlength="75" required="false"
+                                        maxlength="150" required="false"
                                         value="#{dependencyBean.dependency.description}" >
                                     </p:inputTextarea>
                                     <p:watermark

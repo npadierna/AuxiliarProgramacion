@@ -23,21 +23,26 @@
         <p:layout fullPage="true"> 
             <p:layoutUnit closable="false" collapsible="false" position="south"
                           resizable="false" size="60" >
-                <p:commandButton id="home"
-                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';" 
-                                 value="Volver al Listado de Obras" >
+
+                <p:commandButton
+                    icon="ui-icon-home" id="home"
+                    onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';" 
+                    style="font-size:15px;" value="Volver al Listado de Obras" >
                 </p:commandButton>
             </p:layoutUnit>
 
-            <p:layoutUnit closable="false" collapsible="true" effect="drop" 
-                          header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}"
-                          position="north" resizable="false" 
-                          size="120" > 
+            <p:layoutUnit
+                closable="false" collapsible="true" effect="drop" 
+                header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}"
+                position="north" resizable="false" 
+                size="120" > 
                 <p align="center" >
-                    <p:commandButton style="font-family:arial;color:black;font-size:15px;"
-                                     value="Cerrar Sesión"
-                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
-                                     oncomplete="handleLogoutRequest(xhr, status, args)" >
+
+                    <p:commandButton
+                        icon="ui-icon-circle-close"
+                        onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
+                        oncomplete="handleLogoutRequest(xhr, status, args)"
+                        style="font-size:15px;" value="Cerrar Sesión" >
                     </p:commandButton>
                 </p>
             </p:layoutUnit>  
@@ -47,74 +52,104 @@
                 <p:panel id="mainPanel" >
                     <center>
                         <h:form id="formChangePassword" >
-                            <p:growl id="growlChangePassword" life="3000" showDetail="true" />
+                            <p:growl
+                                id="growlChangePassword" life="3000"
+                                showDetail="true" >
+                            </p:growl>
 
-                            <p:fieldset collapsed="true"  id="updatePasswordFieldSet" legend="Actualizar Contraseña"
-                                        toggleable="true" toggleSpeed="500" >
+                            <p:fieldset
+                                collapsed="true"  id="updatePasswordFieldSet"
+                                legend="Actualizar Contraseña" toggleable="true"
+                                toggleSpeed="500" >
 
-                                <h:panelGrid columns="2" cellpadding="5" id="newPasswordPanelGrid" >
+                                <h:panelGrid columns="2" cellpadding="5"
+                                             id="newPasswordPanelGrid" >
 
-                                    <h:outputLabel for="lastPassword" value ="Contraseña antigua: *" >
+                                    <h:outputLabel
+                                        for="lastPassword"
+                                        value ="Contraseña antigua: *" >
                                     </h:outputLabel>
-                                    <p:password disabled="false" id="lastPassword" 
-                                                label="Contraseña Antigua"
-                                                required="true"
-                                                requiredMessage="Por favor ingrese su anterior contraseña." 
-                                                value="#{updateClientBean.lastPassword}">
+                                    <p:password
+                                        disabled="false" id="lastPassword" 
+                                        label="Contraseña Antigua"
+                                        required="true"
+                                        requiredMessage="Por favor ingrese su anterior contraseña." 
+                                        value="#{updateClientBean.lastPassword}">
                                     </p:password>
 
-                                    <h:outputLabel for="newPassword" value ="Contraseña nueva: *" >
+                                    <h:outputLabel
+                                        for="newPassword"
+                                        value ="Contraseña nueva: *" >
                                     </h:outputLabel>
-                                    <p:password disabled="false" id="newPassword"  
-                                                feedback="true" label="Nueva Contraseña"
-                                                match="confirmNewPassword"
-                                                required="true" 
-                                                requiredMessage="Por favor ingrese la nueva contraseña." 
-                                                value="#{updateClientBean.newPassword}">
+                                    <p:password
+                                        disabled="false" id="newPassword"  
+                                        feedback="true" label="Nueva Contraseña"
+                                        match="confirmNewPassword"
+                                        required="true" 
+                                        requiredMessage="Por favor ingrese la nueva contraseña." 
+                                        value="#{updateClientBean.newPassword}">
                                     </p:password>
 
-                                    <h:outputLabel for="confirmNewPassword"
-                                                   value ="Confirme la contraseña: *" >
+                                    <h:outputLabel
+                                        for="confirmNewPassword"
+                                        value ="Confirme la contraseña: *" >
                                     </h:outputLabel>
-                                    <p:password  disabled="false" id="confirmNewPassword" 
-                                                 feedback="true" label="Confirmación Contraseña"
-                                                 required="true"  
-                                                 requiredMessage="Confirme la nueva contraseña." 
-                                                 value="#{updateClientBean.newPassword}">
+                                    <p:password
+                                        disabled="false" id="confirmNewPassword" 
+                                        feedback="true"
+                                        label="Confirmación Contraseña"
+                                        required="true"  
+                                        requiredMessage="Confirme la nueva contraseña." 
+                                        value="#{updateClientBean.newPassword}" >
                                     </p:password>
                                 </h:panelGrid>
 
-                                <p:watermark for="lastPassword" value="Obligatorio" />
-                                <p:watermark for="newPassword" value="Obligatorio" />
-                                <p:watermark for="confirmNewPassword" value="Obligatorio" />
+                                <p:watermark
+                                    for="lastPassword" value="Obligatorio" >
+                                </p:watermark>
+                                <p:watermark
+                                    for="newPassword" value="Obligatorio" >
+                                </p:watermark>
+                                <p:watermark
+                                    for="confirmNewPassword" value="Obligatorio"
+                                    ></p:watermark>
 
                                 <center>
-                                    <p:commandButton actionListener="#{updateClientBean.changePassword}"
-                                                     id="changePasswordButton" 
-                                                     oncomplete="handlePasswordChangedRequest(xhr, status, args)" 
-                                                     value="Cambiar Contraseña" 
-                                                     update ="growlChangePassword">
+                                    <p:commandButton
+                                        actionListener="#{updateClientBean.changePassword}"
+                                        id="changePasswordButton" 
+                                        oncomplete="handlePasswordChangedRequest(xhr, status, args)" 
+                                        value="Cambiar Contraseña" 
+                                        update ="growlChangePassword">
                                     </p:commandButton>
                                 </center>
                             </p:fieldset>
                         </h:form>
 
-                        <p:spacer height="20" />
+                        <p:spacer height="20" ></p:spacer>
 
                         <h:form id="formUpdateData" >
-                            <p:growl life="30000" id="growlUpdateData" showDetail="true" />
+                            <p:growl
+                                life="30000" id="growlUpdateData"
+                                showDetail="true" >
+                            </p:growl>
 
-                            <p:fieldset legend="Actualizar Datos Personales" toggleable="true"
-                                        toggleSpeed="500" >
+                            <p:fieldset
+                                legend="Actualizar Datos Personales"
+                                toggleable="true" toggleSpeed="500" >
+
                                 <h:panelGrid columns="2" cellpadding="5" >
-                                    <h:outputLabel value ="Tipo de Documento: " >
+                                    <h:outputLabel
+                                        value ="Tipo de Documento: " >
                                     </h:outputLabel>
-                                    <p:inputText id="documentType"
-                                                 readonly="true" 
-                                                 value="#{loginClientBean.loggedClient.people.peoplePK.documentType}">
+                                    <p:inputText
+                                        id="documentType"
+                                        readonly="true" 
+                                        value="#{loginClientBean.loggedClient.people.peoplePK.documentType}">
                                     </p:inputText>
 
-                                    <h:outputLabel value ="Número de Documento: " >
+                                    <h:outputLabel
+                                        value ="Número de Documento: " >
                                     </h:outputLabel>
                                     <p:inputText  
                                         id="idNumber"  
@@ -122,50 +157,60 @@
                                         value="#{loginClientBean.loggedClient.people.peoplePK.idNumber}">
                                     </p:inputText>
 
-                                    <h:outputLabel value ="Nombre(s): *" >
+                                    <h:outputLabel
+                                        value ="Nombre(s): *" >
                                     </h:outputLabel>
-                                    <p:inputText id="fullName" 
-                                                 disabled="false" label="Nombre Completo." 
-                                                 required="true"   
-                                                 requiredMessage="Por favor ingrese su nombre completo." 
-                                                 value="#{updateClientBean.loggedClient.people.firstNames}">
-                                        <f:validateRegex pattern="^[ a-zA-Z]+"  >
+                                    <p:inputText
+                                        id="fullName" 
+                                        disabled="false"
+                                        label="Nombre Completo." required="true"   
+                                        requiredMessage="Por favor ingrese su nombre completo." 
+                                        value="#{updateClientBean.loggedClient.people.firstNames}">
+                                        <f:validateRegex
+                                            pattern="^[ a-zA-Z]+"  >
                                         </f:validateRegex>  
                                     </p:inputText>
 
                                     <h:outputLabel value ="Apellidos: *" >
                                     </h:outputLabel>
-                                    <p:inputText id="lastNames" 
-                                                 disabled="false" label="Apellido(s)." 
-                                                 required="true"           
-                                                 requiredMessage="Por favor ingrese su(s) apellido(s)." 
-                                                 value="#{updateClientBean.loggedClient.people.lastNames}">
+                                    <p:inputText
+                                        id="lastNames" 
+                                        disabled="false" label="Apellido(s)." 
+                                        required="true"           
+                                        requiredMessage="Por favor ingrese su(s) apellido(s)." 
+                                        value="#{updateClientBean.loggedClient.people.lastNames}">
                                         <f:validateRegex pattern="^[ a-zA-Z]+"  >
                                         </f:validateRegex>  
                                     </p:inputText>
 
                                     <h:outputText value="E-mail: *" >
                                     </h:outputText>
-                                    <p:inputText id="email" 
-                                                 disabled="false" label="E-mail"
-                                                 required="true"
-                                                 requiredMessage="Por favor ingrese su E-mail." 
-                                                 value="#{updateClientBean.loggedClient.people.email}">
+                                    <p:inputText
+                                        id="email" 
+                                        disabled="false" label="E-mail"
+                                        required="true"
+                                        requiredMessage="Por favor ingrese su E-mail." 
+                                        value="#{updateClientBean.loggedClient.people.email}">
                                         <f:validateRegex
                                             pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" >
                                         </f:validateRegex>
                                     </p:inputText>
                                 </h:panelGrid>
 
-                                <p:watermark for="fullName" value="Obligatorio" />
-                                <p:watermark for="lastNames" value="Obligatorio" />
+                                <p:watermark
+                                    for="fullName" value="Obligatorio" >
+                                </p:watermark>
+                                <p:watermark for="lastNames"
+                                             value="Obligatorio" >
+                                </p:watermark>
 
                                 <center>
-                                    <p:commandButton actionListener="#{updateClientBean.updateData}"
-                                                     id="updateMemberButton"   
-                                                     oncomplete="handleUpdateRequest(xhr, status, args)" 
-                                                     update =":formUpdateData:growlUpdateData" 
-                                                     value="Actualizar Datos" >
+                                    <p:commandButton
+                                        actionListener="#{updateClientBean.updateData}"
+                                        id="updateMemberButton"   
+                                        oncomplete="handleUpdateRequest(xhr, status, args)" 
+                                        update =":formUpdateData:growlUpdateData" 
+                                        value="Actualizar Datos" >
                                     </p:commandButton>
                                 </center>
                             </p:fieldset>

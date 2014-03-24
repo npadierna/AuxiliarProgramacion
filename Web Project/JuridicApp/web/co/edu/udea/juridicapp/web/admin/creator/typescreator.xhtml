@@ -28,7 +28,7 @@
                 resizable="false" size="60" >
 
                 <p:commandButton
-                    id="home"
+                    icon="ui-icon-arrowthick-1-w" id="home"
                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
                     style="font-size:15px;" value="Volver a la Administración" >
                 </p:commandButton>
@@ -65,16 +65,16 @@
 
                                 <h:outputLabel
                                     for="oeuvreType" style="font-weight:bold" 
-                                    value="Tipo de Obra:" >
+                                    value="Tipo De Obra:" >
                                 </h:outputLabel>
                                 <p:inputText
                                     id="oeuvreType" label="Tipo de Obra"
-                                    maxlength="45"  required="true"  
+                                    maxlength="45" required="true"  
                                     requiredMessage="Por favor ingrese el tipo de obra." 
-                                    value="#{typeBean.type.name}" >
+                                    size="60" value="#{typeBean.type.name}" >
                                 </p:inputText>
                                 <p:watermark
-                                    for="oeuvreType" value="Obligatorio" >
+                                    for="oeuvreType" value="Nombre del Tipo" >
                                 </p:watermark>
 
                                 <h:outputLabel
@@ -84,12 +84,12 @@
                                 </h:outputLabel>
                                 <p:inputTextarea
                                     cols="45" id="oeuvreTypeDescription"
-                                    maxlength="75" 
+                                    maxlength="150" rows="3"
                                     value="#{typeBean.type.description}" >
                                 </p:inputTextarea>
                                 <p:watermark
                                     for="oeuvreTypeDescription"
-                                    value="Descripción breve." >
+                                    value="Descripción breve" >
                                 </p:watermark>
                             </h:panelGrid>
 

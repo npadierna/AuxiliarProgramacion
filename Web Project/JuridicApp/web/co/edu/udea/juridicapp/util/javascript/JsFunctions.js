@@ -50,6 +50,10 @@ function onSelectedContractRequest(xhr, status, args) {
     location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/contract/contractvisor.xhtml';
 }
 
+function onShowAuthorOeuvreFileListRequest(xhr, status, args) {
+    location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvrefilelist.xhtml';
+}
+
 function onShowProductsRequest(xhr, status, args) {
-    location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvrefilevisor.xhtml';
+    location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvreproductvisor.xhtml';
 }
