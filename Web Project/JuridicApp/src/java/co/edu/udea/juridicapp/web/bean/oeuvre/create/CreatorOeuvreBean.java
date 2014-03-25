@@ -17,15 +17,24 @@ import co.edu.udea.juridicapp.persistence.entity.Support;
 import co.edu.udea.juridicapp.persistence.entity.Oeuvre;
 import co.edu.udea.juridicapp.persistence.entity.OeuvreType;
 import co.edu.udea.juridicapp.persistence.entity.OeuvreTypePK;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -212,18 +221,46 @@ public final class CreatorOeuvreBean implements Serializable {
             }
 
             // TODO: Buscar el DNDA y el número del contrato.
-            
+
 //            if (this.dnd)
 
-            authorOeuvre.setIsbn(authorOeuvre.getIsbn().trim());
-            if (authorOeuvre.getIsbn().equals("")) {
-                authorOeuvre.setIsbn(null);
+            if (authorOeuvre.getIsbn() != null) {
+                authorOeuvre.setIsbn(authorOeuvre.getIsbn().trim());
+                if (authorOeuvre.getIsbn().equals("")) {
+                    authorOeuvre.setIsbn(null);
+                }
             }
 
             authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);
             authorOeuvre.setOeuvreType(oeuvreType);
 
             this.authorOeuvreDAO.saveAuthorOeuvre(authorOeuvre);
+        }
+    }
+
+    public void onHandleContractFileUpload(FileUploadEvent fileUploadEvent) {
+        UploadedFile contractFile = fileUploadEvent.getFile();
+        String name = contractFile.getFileName();
+
+        File targetFolder = new File("/home/rebien/Documentos/JuridicApp/"
+                + this.getOeuvre().getTitle() + "/contracts");
+        try {
+            InputStream inputStream = fileUploadEvent.getFile().getInputstream();
+            OutputStream outputStream = new FileOutputStream(new File(targetFolder,
+                    fileUploadEvent.getFile().getFileName()));
+
+            int read = 0;
+            byte[] bytes = new byte[2048];
+            while ((read = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+
+            inputStream.close();
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException ex) {
+            Logger.getLogger(CreatorOeuvreBean.class.getName()).log(
+                    Level.SEVERE, null, ex);
         }
     }
 

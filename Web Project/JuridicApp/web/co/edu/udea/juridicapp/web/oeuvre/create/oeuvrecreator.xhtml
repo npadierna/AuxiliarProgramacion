@@ -555,9 +555,15 @@
                                         </h:outputText>
                                         <p:fileUpload
                                             allowTypes="/(\.|\/)(pdf|docx?|gif|jpe?g|png)$/"
-                                            dragDropSupport="true" 
-                                            cancelLabel="Cancelar" 
-                                            label="Adjuntar" mode="advanced"
+                                            cancelLabel="Cancelar"
+                                            dragDropSupport="false"
+                                            fileLimit="1" 
+                                            fileLimitMessage="Solo se puede adjuntar un solo documento correspondiente al Contrato."
+                                            fileUploadListener="#{creatorOeuvreBean.onHandleContractFileUpload}"
+                                            invalidFileMessage="El formato del contrato no es válido. Debe tener extensión: pdf, doc, docx, gif, png, jpeg o jpg."
+                                            label="Adjuntar" multiple="false"
+                                            mode="advanced"
+                                            required="true" 
                                             sizeLimit="512000" 
                                             uploadLabel="Subir" >
                                         </p:fileUpload>                                 
