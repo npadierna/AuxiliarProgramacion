@@ -65,6 +65,7 @@ public final class CreatorOeuvreBean implements Serializable {
     private String documentType;
     private String idNumber;
     private Oeuvre oeuvre;
+    private UploadedFile file;
 
     public CreatorOeuvreBean() {
         super();
@@ -221,9 +222,7 @@ public final class CreatorOeuvreBean implements Serializable {
             }
 
             // TODO: Buscar el DNDA y el número del contrato.
-
 //            if (this.dnd)
-
             if (authorOeuvre.getIsbn() != null) {
                 authorOeuvre.setIsbn(authorOeuvre.getIsbn().trim());
                 if (authorOeuvre.getIsbn().equals("")) {
@@ -262,6 +261,57 @@ public final class CreatorOeuvreBean implements Serializable {
             Logger.getLogger(CreatorOeuvreBean.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
+    }
+
+    public UploadedFile getFile() {
+        System.out.println("FILE : " + file.getFileName( ));
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        System.out.println("FILE : " + file.getFileName( ));
+        this.file = file;
+    }
+
+    public void subir(ActionEvent actionEvent) {
+        FacesMessage m = null;
+        System.out.println("ENTRO!!!!!");
+        if (this.file != null) {
+            UploadedFile contractFile = this.getFile();
+            String name = contractFile.getFileName();
+
+            File targetFolder = new File("D:/tmp/"
+                    + this.getOeuvre().getTitle() + "/contracts");
+            try {
+                InputStream inputStream = this.file.getInputstream();
+                OutputStream outputStream = new FileOutputStream(new File(targetFolder,
+                        this.file.getFileName()));
+
+                int read = 0;
+                byte[] bytes = new byte[2048];
+                while ((read = inputStream.read(bytes)) != -1) {
+                    outputStream.write(bytes, 0, read);
+                }
+
+                inputStream.close();
+                outputStream.flush();
+                outputStream.close();
+               m = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Archivo Adjuntado",
+                    "El archivo ha sido subido correctamente.");
+            } catch (IOException ex) {
+                Logger.getLogger(CreatorOeuvreBean.class.getName()).log(
+                        Level.SEVERE, null, ex);
+              m =  new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Error Al Subir.",
+                    "Ha ocurrido un error inesperado, comuniquese con soporte.");
+            }
+        }else{
+            m = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Ningun Archivo",
+                    "No sé ha subido ningún archivo.");
+        }
+          FacesContext.getCurrentInstance().addMessage(null, m);
     }
 
     @PostConstruct()
