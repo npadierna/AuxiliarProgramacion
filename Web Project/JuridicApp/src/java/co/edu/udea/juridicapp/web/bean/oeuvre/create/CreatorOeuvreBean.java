@@ -33,6 +33,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.Part;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,7 @@ public final class CreatorOeuvreBean implements Serializable {
     private String documentType;
     private String idNumber;
     private Oeuvre oeuvre;
+    private Part file;
 
     public CreatorOeuvreBean() {
         super();
@@ -223,9 +225,7 @@ public final class CreatorOeuvreBean implements Serializable {
             }
 
             // TODO: Buscar el DNDA y el número del contrato.
-
 //            if (this.dnd)
-
             if (authorOeuvre.getIsbn() != null) {
                 authorOeuvre.setIsbn(authorOeuvre.getIsbn().trim());
                 if (authorOeuvre.getIsbn().equals("")) {
@@ -243,8 +243,9 @@ public final class CreatorOeuvreBean implements Serializable {
     public void onHandleContractFileUpload(FileUploadEvent fileUploadEvent) {
         UploadedFile contractFile = fileUploadEvent.getFile();
         String name = contractFile.getFileName();
+         System.out.println("ENTRO!!!!!");
 
-        File targetFolder = new File("/home/rebien/Documentos/JuridicApp/"
+        File targetFolder = new File("D:/tmp/"
                 + this.getOeuvre().getTitle() + "/contracts");
         try {
             InputStream inputStream = fileUploadEvent.getFile().getInputstream();
@@ -265,6 +266,88 @@ public final class CreatorOeuvreBean implements Serializable {
                     Level.SEVERE, null, ex);
         }
     }
+
+    public Part getFile() {
+        return file;
+    }
+
+    public void setFile(Part file) {
+        this.file = file;
+    }
+
+    public void subir(ActionEvent actionEvent) throws IOException {
+        FacesMessage m = null;
+       
+       /* if (this.file != null) {
+            System.out.println("ENTRO!!!!!");
+            UploadedFile contractFile = this.getFile();
+            String name = contractFile.getFileName();
+
+            File targetFolder = new File("D:/tmp/"
+                    + this.getOeuvre().getTitle() + "/contracts");
+            try {
+                InputStream inputStream = this.file.getInputstream();
+                OutputStream outputStream = new FileOutputStream(new File(targetFolder,
+                        this.file.getFileName()));
+
+                int read = 0;
+                byte[] bytes = new byte[2048];
+                while ((read = inputStream.read(bytes)) != -1) {
+                    outputStream.write(bytes, 0, read);
+                }
+
+                inputStream.close();
+                outputStream.flush();
+                outputStream.close();
+               m = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Archivo Adjuntado",
+                    "El archivo ha sido subido correctamente.");
+            } catch (IOException ex) {
+                Logger.getLogger(CreatorOeuvreBean.class.getName()).log(
+                        Level.SEVERE, null, ex);
+              m =  new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Error Al Subir.",
+                    "Ha ocurrido un error inesperado, comuniquese con soporte.");
+            }
+        }else{
+            m = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Ningun Archivo",
+                    "No sé ha subido ningún archivo.");
+        }
+          FacesContext.getCurrentInstance().addMessage(null, m);*/
+        if( this.file != null){
+        System.out.println("ENTRO!!!");
+        InputStream inputStream = file.getInputStream();          
+        FileOutputStream outputStream = new FileOutputStream(getFilename(file));  
+          
+        byte[] buffer = new byte[4096];          
+        int bytesRead = 0;  
+        while(true) {                          
+            bytesRead = inputStream.read(buffer);  
+            if(bytesRead > 0) {  
+                outputStream.write(buffer, 0, bytesRead);  
+            }else {  
+                break;  
+            }                         
+        }
+        outputStream.close();  
+        inputStream.close();  
+         
+
+        }else{
+
+        }
+    }
+    
+    private static String getFilename(Part part) {  
+        for (String cd : part.getHeader("content-disposition").split(";")) {  
+            if (cd.trim().startsWith("filename")) {  
+                String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");  
+                return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.  
+            }  
+        }  
+        return null;  
+    }  
 
     @PostConstruct()
     private void createFields() {
