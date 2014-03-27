@@ -33,6 +33,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.Part;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public final class CreatorOeuvreBean implements Serializable {
     private String documentType;
     private String idNumber;
     private Oeuvre oeuvre;
-    private UploadedFile file;
+    private Part file;
 
     public CreatorOeuvreBean() {
         super();
@@ -240,8 +241,9 @@ public final class CreatorOeuvreBean implements Serializable {
     public void onHandleContractFileUpload(FileUploadEvent fileUploadEvent) {
         UploadedFile contractFile = fileUploadEvent.getFile();
         String name = contractFile.getFileName();
+         System.out.println("ENTRO!!!!!");
 
-        File targetFolder = new File("/home/rebien/Documentos/JuridicApp/"
+        File targetFolder = new File("D:/tmp/"
                 + this.getOeuvre().getTitle() + "/contracts");
         try {
             InputStream inputStream = fileUploadEvent.getFile().getInputstream();
@@ -263,20 +265,19 @@ public final class CreatorOeuvreBean implements Serializable {
         }
     }
 
-    public UploadedFile getFile() {
-        System.out.println("FILE : " + file.getFileName( ));
+    public Part getFile() {
         return file;
     }
 
-    public void setFile(UploadedFile file) {
-        System.out.println("FILE : " + file.getFileName( ));
+    public void setFile(Part file) {
         this.file = file;
     }
 
-    public void subir(ActionEvent actionEvent) {
+    public String subir(ActionEvent actionEvent) throws IOException {
         FacesMessage m = null;
-        System.out.println("ENTRO!!!!!");
-        if (this.file != null) {
+       
+       /* if (this.file != null) {
+            System.out.println("ENTRO!!!!!");
             UploadedFile contractFile = this.getFile();
             String name = contractFile.getFileName();
 
@@ -311,8 +312,40 @@ public final class CreatorOeuvreBean implements Serializable {
                     "Ningun Archivo",
                     "No sé ha subido ningún archivo.");
         }
-          FacesContext.getCurrentInstance().addMessage(null, m);
+          FacesContext.getCurrentInstance().addMessage(null, m);*/
+        if( this.file != null){
+        System.out.println("ENTRO!!!");
+        InputStream inputStream = file.getInputStream();          
+        FileOutputStream outputStream = new FileOutputStream(getFilename(file));  
+          
+        byte[] buffer = new byte[4096];          
+        int bytesRead = 0;  
+        while(true) {                          
+            bytesRead = inputStream.read(buffer);  
+            if(bytesRead > 0) {  
+                outputStream.write(buffer, 0, bytesRead);  
+            }else {  
+                break;  
+            }                         
+        }
+        outputStream.close();  
+        inputStream.close();  
+         
+        return "Success";  
+        }else{
+            return "Error";
+        }
     }
+    
+    private static String getFilename(Part part) {  
+        for (String cd : part.getHeader("content-disposition").split(";")) {  
+            if (cd.trim().startsWith("filename")) {  
+                String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");  
+                return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.  
+            }  
+        }  
+        return null;  
+    }  
 
     @PostConstruct()
     private void createFields() {
