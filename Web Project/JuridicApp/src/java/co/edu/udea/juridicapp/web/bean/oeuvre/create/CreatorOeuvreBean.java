@@ -273,7 +273,7 @@ public final class CreatorOeuvreBean implements Serializable {
         this.file = file;
     }
 
-    public String subir(ActionEvent actionEvent) throws IOException {
+    public void subir(ActionEvent actionEvent) throws IOException {
         FacesMessage m = null;
        
        /* if (this.file != null) {
@@ -331,9 +331,9 @@ public final class CreatorOeuvreBean implements Serializable {
         outputStream.close();  
         inputStream.close();  
          
-        return "Success";  
+
         }else{
-            return "Error";
+
         }
     }
     
