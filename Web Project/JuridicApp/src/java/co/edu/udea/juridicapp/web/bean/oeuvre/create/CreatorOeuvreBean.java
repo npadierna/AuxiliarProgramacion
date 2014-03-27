@@ -36,6 +36,7 @@ import javax.faces.event.ActionEvent;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
@@ -44,6 +45,7 @@ import org.springframework.stereotype.Component;
  * @author Neiber Padierna P&eacute;rez
  */
 @Component()
+@Scope(value = "session")
 @SessionScoped()
 public final class CreatorOeuvreBean implements Serializable {
 
