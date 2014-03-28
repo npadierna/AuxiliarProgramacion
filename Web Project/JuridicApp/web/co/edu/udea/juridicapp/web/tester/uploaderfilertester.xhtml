@@ -2,10 +2,10 @@
     "http://www.w3.org/TR/html4/loose.dtd" >
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html" >
 
     <h:head>
         <title>Subir Archivo</title>
@@ -26,14 +26,15 @@
                     label="Seleccionar" mode="advanced" required="true"
                     sizeLimit="512000" uploadLabel="Cargar" >
                 </p:fileUpload>
-                
+
                 <p:fileUpload
                     mode="simple"
                     value="#{uploaderFileTesterBean.uploadedFile}" >
                 </p:fileUpload>
                 <p:commandButton
                     actionListener="#{uploaderFileTesterBean.onHandleUploadFile}"
-                    ajax="false" value="Subir" ></p:commandButton>
+                    ajax="false" value="Subir" >
+                </p:commandButton>
             </center>
         </h:form>
     </h:body>

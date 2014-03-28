@@ -5,8 +5,6 @@
              http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" >
 
     <display-name>JuridicApp</display-name>
-    
-       
     <filter>
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
         <filter-class>
@@ -18,12 +16,13 @@
         </init-param>
         <init-param>
             <param-name>uploadDirectory</param-name>
-            <param-value>D:/etc/</param-value>
+            <param-value>/home/rebien/Documentos/JuridicApp/temp</param-value>
         </init-param>
     </filter>
     <filter-mapping>
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
         <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
     <listener>
         <listener-class>
@@ -59,7 +58,6 @@
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
         <param-value>client</param-value>
     </context-param>
-
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>
@@ -81,7 +79,7 @@
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>30</session-timeout>
+        <session-timeout>15</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>

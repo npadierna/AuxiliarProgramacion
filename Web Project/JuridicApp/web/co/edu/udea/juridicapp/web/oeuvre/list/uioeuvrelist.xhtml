@@ -156,7 +156,7 @@
                         action="#{contractBean.onViewContractForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
                         icon="ui-icon-newwin"
                         id="viewContractButton"
-                        onclick="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/contract/contractvisor.xhtml','Contrato');"                                  
+                        onclick="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/contract/contractvisor.xhtml', 'Contrato');"                                  
                         value="Ver contrato" >
                     </p:commandButton>
 
@@ -164,7 +164,7 @@
                         action="#{authorOeuvreFileBean.onViewProductsListForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
                         icon="ui-icon-document"
                         id="viewProductsFilesButton"
-                        onclick="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvrefilelist.xhtml','Contrato');"
+                        oncomplete="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvrefilelist.xhtml', 'Contrato');"
                         value="Ver producto" >
                     </p:commandButton>
                 </f:facet>

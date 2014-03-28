@@ -67,7 +67,8 @@ public final class LoginClientBean implements Serializable {
     }
 
     public boolean isLogged() {
-        return loggedIn;
+        
+        return (this.loggedIn);
     }
 
     public boolean isAdmin(Client client) {

@@ -4,6 +4,7 @@ import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.dao.ICommentDAO;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
 import co.edu.udea.juridicapp.persistence.entity.Comment;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -23,7 +24,7 @@ import org.springframework.stereotype.Component;
 @Component()
 @Scope(value = "session")
 @SessionScoped()
-public final class OeuvreSelectorBean {
+public final class OeuvreSelectorBean implements Serializable {
 
     private static final long serialVersionUID = 3054628927294284800L;
     @Autowired()
