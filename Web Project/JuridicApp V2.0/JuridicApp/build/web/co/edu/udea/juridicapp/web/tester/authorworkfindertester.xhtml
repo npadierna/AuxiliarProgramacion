@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" >
+
+    <h:head>
+        <script type="text/javascript"
+                src="../../../util/javascript/JsFunctions.js" >
+        </script>
+          <title>Crear Obras Por Autor</title>
+        <f:facet name="authorsOeuvresCreator" >
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" >
+            </meta>
+          
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <h:form id="authorsOeuvresAdderForm" >
+            <center>
+                <p:panel header="Añadir Obras A Autores"
+                         id="authorsOeuvresAdderPanel" >
+
+                    <p:dataTable emptyMessage="No se han añadido Autores."
+                                 id="addedAuthorsOeuvresTable"
+                                 style="font-size:13px"
+                                 value="#{authorFinderTesterBean.authorsOeuvres}"
+                                 var="authorOeuvre" >
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="+" >
+                                </h:outputText>
+                            </f:facet>
+                            <p:rowToggler></p:rowToggler>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Tipo De Documento" >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{authorOeuvre.authorOeuvrePK.documentType}" >
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Número De Documento" >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Nombre Completo" >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="N° Contrato" >
+                                </h:outputText>
+                            </f:facet>
+                            <p:inputText maxlength="30" required="true" size="20"
+                                         value="#{authorOeuvre.authorOeuvrePK.contract}" >
+                            </p:inputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Fecha De Inicio" >
+                                </h:outputText>
+                            </f:facet>
+                            <p:calendar effect="explode" size="5"
+                                        value="#{authorOeuvre.beginning}" >
+                            </p:calendar>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Fecha De Entrega" >
+                                </h:outputText>
+                            </f:facet>
+                            <p:calendar effect="explode" size="5"
+                                        value="#{authorOeuvre.delivering}" >
+                            </p:calendar>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Tipo De Obra" >
+                                </h:outputText>
+                            </f:facet>
+                            <p:selectOneMenu id="authorOeuvreType"
+                                             label="Tipo de la Obra"
+                                             required="true"
+                                             value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
+                                <f:selectItems value="#{typeBean.typesNames}" >
+                                </f:selectItems>
+                            </p:selectOneMenu>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Soporte De La Obra" >
+                                </h:outputText>
+                            </f:facet>
+                            <p:selectOneMenu id="authorOeuvreSupport"
+                                             label="Soporte de la Obra"
+                                             required="true"
+                                             value="#{authorOeuvre.supportType.type}" >
+                                <f:selectItems value="#{supportBean.supportsNames}" >
+                                </f:selectItems>
+                            </p:selectOneMenu>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Vínculo Con La Universidad" >
+                                </h:outputText>
+                            </f:facet>
+                            <p:selectOneMenu id="authorOeuvreTitle"
+                                             label="Vínculo con Universidad"
+                                             required="true"
+                                             value="#{authorOeuvre.title.profile}" >
+                                <f:selectItems value="#{titleBean.titlesNames}" >
+                                </f:selectItems>
+                            </p:selectOneMenu>
+                        </p:column>
+
+                        <p:rowExpansion >
+                            <center>
+                                <p:spacer height="10px" ></p:spacer>
+                                <h:panelGrid cellpadding="7" columns="6"
+                                             style="font-size:15px" >
+                                    <h:outputText value="ISBN:" >
+                                    </h:outputText>
+                                    <p:inputText id="authorOeuvreISBN" maxlength="35"
+                                                 required="false" size="35"
+                                                 value="#{authorOeuvre.isbn}" >
+                                    </p:inputText>
+                                    <p:watermark for="authorOeuvreISBN"
+                                                 value="Opcional" >
+                                    </p:watermark>
+
+                                    <h:outputText value="DNDA:" >
+                                    </h:outputText>
+                                    <p:inputText id="authorOeuvreDNDA" maxlength="30"
+                                                 required="false" size="30"
+                                                 value="#{authorOeuvre.dnda}" >
+                                    </p:inputText>
+                                    <p:watermark for="authorOeuvreDNDA"
+                                                 value="Opcional" >
+                                    </p:watermark>
+                                </h:panelGrid>
+                                <p:spacer height="10px" ></p:spacer>
+                            </center>
+                        </p:rowExpansion>
+                    </p:dataTable>
+                </p:panel>
+
+                <p:commandButton id="createAuthorsOeuvresButton"
+                                 actionListener="#{authorFinderTesterBean.saveAuthorsOeuvres}"
+                                 update="authorsOeuvresAdderForm"
+                                 value="Guardar Obras" >
+                </p:commandButton>
+            </center>
+        </h:form>
+    </h:body>
+</html>
