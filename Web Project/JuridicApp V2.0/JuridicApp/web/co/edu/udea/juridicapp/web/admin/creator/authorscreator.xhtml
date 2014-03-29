@@ -69,9 +69,9 @@
                                 <p:selectOneMenu
                                     id="peopleDocumentType"
                                     label="Tipo de Documento"
-                                    value="#{registrationClientBean.documentType}">
+                                    value="#{registrationAuthorBean.documentType}">
                                     <f:selectItems
-                                        value="#{registrationClientBean.documentsType}" >
+                                        value="#{registrationAuthorBean.documentsType}" >
                                     </f:selectItems>
                                 </p:selectOneMenu>
                                 <p:watermark for="peopleDocumentType"
@@ -87,7 +87,7 @@
                                     label="Número de Documento" 
                                     required="true" 
                                     requiredMessage="Por favor ingrese el número de documento." 
-                                    size="45" value="#{registrationClientBean.idNumber}" 
+                                    size="45" value="#{registrationAuthorBean.idNumber}" 
                                     validatorMessage="Por favor ingrese solo números">
                                     <f:validateRegex pattern="[0-9]+" >
                                     </f:validateRegex>
@@ -106,7 +106,7 @@
                                     required="true" 
                                     requiredMessage="Por favor ingrese los nombres completos." 
                                     size="45" 
-                                    value="#{registrationClientBean.people.firstNames}" 
+                                    value="#{registrationAuthorBean.people.firstNames}" 
                                     validatorMessage="Por favor ingrese solo letras">
                                     <f:validateRegex pattern="^[ a-zA-Z]+"  >
                                     </f:validateRegex>                       
@@ -125,7 +125,7 @@
                                     required="true" 
                                     requiredMessage="Por favor ingrese los apellidos completos." 
                                     size="45"
-                                    value="#{registrationClientBean.people.lastNames}" 
+                                    value="#{registrationAuthorBean.people.lastNames}" 
                                     validatorMessage="Por favor ingrese solo letras">
                                     <f:validateRegex pattern="^[ a-zA-Z]+"  >
                                     </f:validateRegex>    
@@ -145,7 +145,7 @@
                                     required="true" 
                                     requiredMessage="Por favor ingrese el correo electronico." 
                                     size="45" 
-                                    value="#{registrationClientBean.people.email}" 
+                                    value="#{registrationAuthorBean.people.email}" 
                                     validatorMessage="El correo ingresado no es válido">
                                     <f:validateRegex
                                         pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" >
@@ -162,7 +162,7 @@
                                 <p:inputText
                                     id="phoneNumber"
                                     label="Número de Teléfono" 
-                                    size="45" value="#{registrationClientBean.idNumber}" 
+                                    size="45" value="#{registrationAuthorBean.author.phoneNumber}" 
                                     validatorMessage="Por favor ingrese solo números">
                                     <f:validateRegex pattern="[0-9]+" >
                                     </f:validateRegex>
@@ -178,7 +178,7 @@
                                 <p:inputText
                                     id="mobileNumber"
                                     label="Número de Teléfono Móvil" 
-                                    size="45" value="#{registrationClientBean.idNumber}" 
+                                    size="45" value="#{registrationAuthorBean.author.mobileNumber}" 
                                     validatorMessage="Por favor ingrese solo números">
                                     <f:validateRegex pattern="[0-9]+" >
                                     </f:validateRegex>
@@ -190,7 +190,7 @@
                                 <p:commandButton
                                     icon="ui-icon-person" id="registerButton"
                                     value="Registrar" update="registrerPanel"
-                                    actionListener="#{registrationClientBean.doRegistration}" >
+                                    actionListener="#{registrationAuthorBean.saveAuthor}" >
                                 </p:commandButton>
 
                                 <p:commandButton
