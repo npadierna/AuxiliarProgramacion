@@ -18,10 +18,13 @@
     </h:head>
 
     <h:body>
-        <form action="uploadFile.jsp" method="post" enctype="multipart/form-data"> 
-            <input type="file" name="file"/> 
-            <br /> 
-            <input type="submit" value="Subir archivo" /> 
-        </form>
+        <h:form id="mainForm" enctype="multipart/form-data" prependId="false">
+            <p><h:inputFile id="file" value="#{creatorOeuvreBean.file}">
+                </h:inputFile>
+            </p>
+            <br/>
+            <h:commandButton id ="button" value="Upload" actionListener="#{creatorOeuvreBean.subir}">
+                </h:commandButton>
+        </h:form>
     </h:body>
 </html>

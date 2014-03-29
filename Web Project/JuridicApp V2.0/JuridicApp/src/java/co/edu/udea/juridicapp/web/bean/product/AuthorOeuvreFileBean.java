@@ -4,14 +4,21 @@ import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreAcquisitionFileDAO;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvreAcquisitionFile;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvrePK;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -96,12 +103,18 @@ public class AuthorOeuvreFileBean implements Serializable {
     public void onSelectedAuthorOeuvreAcquisitionFile(
             AuthorOeuvreAcquisitionFile authorOeuvreAcquisitionFile) {
         this.setAuthorOeuvreAcquisitionFileSelected(authorOeuvreAcquisitionFile);
+        InputStream inputStream = null;
+        try {
+            File f = new File("/home/rebien/Documentos/JuridicApp/salida.pdf");
+            inputStream = new FileInputStream(f);
+            ExternalContext externalContext = FacesContext.getCurrentInstance()
+                    .getExternalContext();
 
-        ExternalContext c = FacesContext.getCurrentInstance().getExternalContext();
-        ServletContext o = (ServletContext) c.getContext();
-
-        InputStream inputStream = o.getResourceAsStream("/home/rebien/Documentos/JuridicApp/salida.pdf");
-        this.setFile(new DefaultStreamedContent(inputStream, "application/pdf", "salida.pdf"));
+            this.setFile(new DefaultStreamedContent(inputStream,
+                    externalContext.getMimeType(f.getName()), f.getName()));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AuthorOeuvreFileBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @PostConstruct()

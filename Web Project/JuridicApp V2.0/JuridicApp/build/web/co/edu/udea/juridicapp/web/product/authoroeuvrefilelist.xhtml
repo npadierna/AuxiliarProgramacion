@@ -96,10 +96,9 @@
 
                         <f:facet id="button" name="footer" >
                             <p:commandButton
-                                ajax="false"
-                                action="#{authorOeuvreFileBean.onSelectedAuthorOeuvreAcquisitionFile(authorOeuvreFile)}"
-                                icon="ui-icon-arrowthickstop-1-s"
-                                id="downloadFileButton" 
+                                actionListener="#{authorOeuvreFileBean.onSelectedAuthorOeuvreAcquisitionFile(authorOeuvreFile)}"
+                                ajax="false" icon="ui-icon-arrowthickstop-1-s"
+                                id="downloadFileButton"
                                 value="Descargar archivo" >
                                 <p:fileDownload
                                     value="#{authorOeuvreFileBean.file}" >
