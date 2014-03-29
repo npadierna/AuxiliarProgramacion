@@ -30,32 +30,13 @@ INSERT INTO `JuridicApp`.`AUTHOR` (`document_type`, `id_number`, `phone_number`,
 
 
 -- -----------------------------------------------------
--- Table `JuridicApp`.`DNDA`
--- -----------------------------------------------------
--- INSERT INTO `JuridicApp`.`DNDA` (`number`)
---     VALUES (NULL);
-INSERT INTO `JuridicApp`.`DNDA` (`number`)
-    VALUES ('12345');
-INSERT INTO `JuridicApp`.`DNDA` (`number`)
-    VALUES ('23456');
-INSERT INTO `JuridicApp`.`DNDA` (`number`)
-    VALUES ('34567');
-INSERT INTO `JuridicApp`.`DNDA` (`number`)
-    VALUES ('45678');
-INSERT INTO `JuridicApp`.`DNDA` (`number`)
-    VALUES ('56789');
-INSERT INTO `JuridicApp`.`DNDA` (`number`)
-    VALUES ('67890');
-
-
--- -----------------------------------------------------
 -- Table `JuridicApp`.`DEPENDENCY`
 -- -----------------------------------------------------
--- INSERT INTO `JuridicApp`.`DEPENDENCY` (`name`, `description`, `dnda`)
---    VALUES (NULL, NULL, NULL);
--- INSERT INTO `JuridicApp`.`DEPENDENCY` (`name`, `description`, `dnda`)
+-- INSERT INTO `JuridicApp`.`DEPENDENCY` (`name`, `description`)
+--    VALUES (NULL, NULL);
+-- INSERT INTO `JuridicApp`.`DEPENDENCY` (`name`, `description`)
 --     VALUES ('DRAI Facultad De Ingeniería', NULL, '12345');
-INSERT INTO `JuridicApp`.`DEPENDENCY` (`name`, `description`, `dnda`)
+INSERT INTO `JuridicApp`.`DEPENDENCY` (`name`, `description`)
     VALUES ('DRAI Facultad De Medicina', 'Departamentos de Recursos y Apoyo Didáctico (D.R.A.I.) para la Facultad de Medicina.', '23456');
 
 
@@ -90,22 +71,53 @@ INSERT INTO `JuridicApp`.`OEUVRE` (`title`, `description`, `dependency`)
 
 
 -- -----------------------------------------------------
+-- Table `JuridicApp`.`DNDA`
+-- -----------------------------------------------------
+-- INSERT INTO `JuridicApp`.`DNDA` (`number`)
+--     VALUES (NULL);
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('12345');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('23456');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('34567');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('45678');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('56789');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('67890');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('09876');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('98765');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('87654');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('76543');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('65432');
+INSERT INTO `JuridicApp`.`DNDA` (`number`)
+    VALUES ('54321');
+
+	
+-- -----------------------------------------------------
 -- Table `JuridicApp`.`CONTRACT`
 -- -----------------------------------------------------
--- INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`)
---     VALUES (NULL, NULL);
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`)
-    VALUES ('12345', NULL);
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`)
-    VALUES ('23456', NULL);
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`)
-    VALUES ('34567', NULL);
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`)
-    VALUES ('45678', NULL);
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`)
-    VALUES ('56789', NULL);
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`)
-    VALUES ('67890', NULL);
+-- INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
+--    VALUES (NULL, NULL, NULL);
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
+    VALUES ('12345', NULL, '12345');
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
+    VALUES ('23456', NULL, '');
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
+    VALUES ('34567', NULL, '23456');
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
+    VALUES ('45678', NULL, '34567');
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
+    VALUES ('56789', NULL, '');
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
+    VALUES ('67890', NULL, '45678');
 
 
 -- -----------------------------------------------------
@@ -188,21 +200,21 @@ INSERT INTO `JuridicApp`.`OEUVRE_TYPE` (`oeuvre_id`, `type_name`)
 -- INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`)
 --     VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`)
-    VALUES (1, 'Composición Musical', 'Cédula De Extranjería', '1035859551', '12345', 'Digital', '34567', '123456789', '2014-03-03', '2014-03-03', 'Externo');
+    VALUES (1, 'Composición Musical', 'Cédula De Extranjería', '1035859551', '12345', 'Digital', '56789', '123456789', '2014-03-03', '2014-03-03', 'Externo');
 INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`)
     VALUES (2, 'Exposición (Conferencia)', 'Número Único De Identificación Personal', '1037622083', '23456', 'Físico', NULL, '987654321', '2014-03-03', '2014-03-03', 'Empleado De Carrera');
 INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`)
     VALUES (2, 'Escrito', 'Número Único De Identificación Personal', '1037622083', '23456', 'Digital', NULL, NULL, '2014-03-03', '2014-03-03', 'Empleado Provisional');
 INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`)
-    VALUES (3, 'Obra Derivada', 'Tarjeta De Identidad', '1039456678', '34567', 'Digital', '45678', '654987321', '2014-03-03', '2014-03-03', 'Empleado Provisional');
+    VALUES (3, 'Obra Derivada', 'Tarjeta De Identidad', '1039456678', '34567', 'Digital', '67890', '654987321', '2014-03-03', '2014-03-03', 'Empleado Provisional');
 INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`)
     VALUES (4, 'Programa De Ordenador (Software)', 'Cédula De Ciudadanía', '1022095657', '56789', 'Físico', NULL, NULL, '2014-03-03', '2014-03-03', 'Profesor Visitante');
 INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`)
-    VALUES (4, 'Audiovisual, Multimedia', 'Cédula De Ciudadanía', '1022095657', '56789', 'Digital', NULL, '321654987', '2014-03-03', '2014-03-03', 'Profesor Visitante');
+    VALUES (4, 'Audiovisual, Multimedia', 'Cédula De Ciudadanía', '1022095657', '56789', 'Digital', '09876', '321654987', '2014-03-03', '2014-03-03', 'Profesor Visitante');
 INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`)
     VALUES (4, 'Escrito', 'Cédula De Extranjería', '1035859551', '67890', 'Digital', NULL, '951847263', '2014-03-03', '2014-03-03', 'No Aplica');
 INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`)
-    VALUES (5, 'Obra Fotográfica', 'Tarjeta De Identidad', '1039456678', '67890', 'Físico', '67890', NULL, '2014-03-03', '2014-03-03', 'Empleado De Libre Nombramiento');
+    VALUES (5, 'Obra Fotográfica', 'Tarjeta De Identidad', '1039456678', '67890', 'Físico', '98765', NULL, '2014-03-03', '2014-03-03', 'Empleado De Libre Nombramiento');
 
 
 -- -----------------------------------------------------
@@ -230,7 +242,7 @@ INSERT INTO `JuridicApp`.`CLIENT` (`document_type`, `id_number`, `user_name`, `p
     VALUES ('Número Único De Identificación Personal', '1037622083', 'anderber', 'Anderber', 'Consultor', 'DRAI Facultad De Medicina');
 
 -- -----------------------------------------------------
--- Table `JuridicApp`.`AUTHOR_OEUVRE_ACQUISITION`
+-- Table `JuridicApp`.`AUTHOR_OEUVRE_ACQUISITION_FILE`
 -- -----------------------------------------------------
 -- INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE_ACQUISITION_FILE` (`acquisition`, `oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `route`)
 --     VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL);
