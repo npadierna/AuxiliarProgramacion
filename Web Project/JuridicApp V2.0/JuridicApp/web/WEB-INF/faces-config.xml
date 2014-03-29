@@ -20,6 +20,13 @@
             co.edu.udea.juridicapp.security.authorization.AuthorizationListener
         </phase-listener>
     </lifecycle>
+     <managed-bean>
+        <managed-bean-name>registrationAuthorBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.author.registration.RegistrationAuthorBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <managed-bean>
         <managed-bean-name>adminCreatorEntityBean</managed-bean-name>
         <managed-bean-class>

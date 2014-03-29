@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title>Ingresar Autor</title>
+        <script type="text/javascript"
+                src="../../../util/javascript/JsFunctions.js" >
+        </script>
+        <f:facet name="dependencyCreator" >
+            <meta content='text/html; charset=UTF-8'
+                  http-equiv="Content-Type" >
+            </meta>
+
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <p:layout fullPage="true" >
+            <p:layoutUnit closable="false" collapsible="false" position="south"
+                          resizable="false" size="60" >
+
+                <p:commandButton
+                    icon="ui-icon-arrowthick-1-w" id="home"
+                    onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
+                    style="font-size:15px;" value="Volver a la Administración" >
+                </p:commandButton>
+            </p:layoutUnit>
+
+            <p:layoutUnit
+                closable="false" collapsible="true" effect="drop"
+                header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
+                position="north" resizable="false" size="120" >
+
+                <center>
+                    <p:panel id="memberManagementPanel" >
+                        <center>
+                            <ui:include
+                                src="../../client/update/logoutinfoclient.xhtml" >
+                            </ui:include>
+                        </center>
+                    </p:panel>
+                </center>
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="center" >
+                <h:form id="registrerForm" >
+                    <p:panel header="Registro De Usuario" id="registrerPanel" 
+                             style="font-weight:bold" >
+
+                        <center>
+                            <p:growl
+                                id="growlRegistrer" showDetail="true"
+                                life="3000" >
+                            </p:growl>
+
+                            <h:panelGrid cellpadding="5" columns="3" >
+                                <h:outputLabel
+                                    for="peopleDocumentType"
+                                    style="font-weight:bold"
+                                    value="Tipo De Documento:" >
+                                </h:outputLabel>
+                                <p:selectOneMenu
+                                    id="peopleDocumentType"
+                                    label="Tipo de Documento"
+                                    value="#{registrationClientBean.documentType}">
+                                    <f:selectItems
+                                        value="#{registrationClientBean.documentsType}" >
+                                    </f:selectItems>
+                                </p:selectOneMenu>
+                                <p:watermark for="peopleDocumentType"
+                                             value="Tipo De Documento" >
+                                </p:watermark>
+
+                                <h:outputLabel
+                                    for="peopleIdNumber" style="font-weight:bold"
+                                    value="Número De Documento:" >
+                                </h:outputLabel>
+                                <p:inputText
+                                    id="peopleIdNumber"
+                                    label="Número de Documento" 
+                                    required="true" 
+                                    requiredMessage="Por favor ingrese el número de documento." 
+                                    size="45" value="#{registrationClientBean.idNumber}" 
+                                    validatorMessage="Por favor ingrese solo números">
+                                    <f:validateRegex pattern="[0-9]+" >
+                                    </f:validateRegex>
+                                </p:inputText>
+                                <p:watermark
+                                    for="peopleIdNumber" value="Obligatorio" >
+                                </p:watermark>
+
+                                <h:outputLabel
+                                    for="peopleFirstNames" 
+                                    style="font-weight:bold"
+                                    value="Nombres:" >
+                                </h:outputLabel>
+                                <p:inputText
+                                    id="peopleFirstNames" label="Nombres" 
+                                    required="true" 
+                                    requiredMessage="Por favor ingrese los nombres completos." 
+                                    size="45" 
+                                    value="#{registrationClientBean.people.firstNames}" 
+                                    validatorMessage="Por favor ingrese solo letras">
+                                    <f:validateRegex pattern="^[ a-zA-Z]+"  >
+                                    </f:validateRegex>                       
+                                </p:inputText>
+                                <p:watermark
+                                    for="peopleFirstNames"
+                                    value="Primeros Nombres" >
+                                </p:watermark>
+
+                                <h:outputLabel
+                                    for="peopleLastNames" value="Apellidos:"
+                                    style="font-weight:bold" >
+                                </h:outputLabel>
+                                <p:inputText
+                                    id="peopleLastNames" label="Apellidos"
+                                    required="true" 
+                                    requiredMessage="Por favor ingrese los apellidos completos." 
+                                    size="45"
+                                    value="#{registrationClientBean.people.lastNames}" 
+                                    validatorMessage="Por favor ingrese solo letras">
+                                    <f:validateRegex pattern="^[ a-zA-Z]+"  >
+                                    </f:validateRegex>    
+                                </p:inputText>
+                                <p:watermark
+                                    for="peopleLastNames" 
+                                    value="Apellidos Completos" >
+                                </p:watermark>
+
+                                <h:outputLabel
+                                    for="peopleEmail" value="E-Mail:"
+                                    style="font-weight: bold;" >
+                                </h:outputLabel>
+                                <p:inputText
+                                    id="peopleEmail"
+                                    label="Correo Electrónico" 
+                                    required="true" 
+                                    requiredMessage="Por favor ingrese el correo electronico." 
+                                    size="45" 
+                                    value="#{registrationClientBean.people.email}" 
+                                    validatorMessage="El correo ingresado no es válido">
+                                    <f:validateRegex
+                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" >
+                                    </f:validateRegex>
+                                </p:inputText>
+                                <p:watermark
+                                    for="peopleEmail" value="Obligatorio" >
+                                </p:watermark>
+
+                                <h:outputLabel
+                                    for="phoneNumber" style="font-weight:bold"
+                                    value="Número De Teléfono" >
+                                </h:outputLabel>
+                                <p:inputText
+                                    id="phoneNumber"
+                                    label="Número de Teléfono" 
+                                    size="45" value="#{registrationClientBean.idNumber}" 
+                                    validatorMessage="Por favor ingrese solo números">
+                                    <f:validateRegex pattern="[0-9]+" >
+                                    </f:validateRegex>
+                                </p:inputText>
+                                <p:watermark
+                                    for="phoneNumber" value="Obligatorio" >
+                                </p:watermark>
+
+                                <h:outputLabel
+                                    for="mobileNumber" style="font-weight:bold"
+                                    value="Número De Teléfono Móvil" >
+                                </h:outputLabel>
+                                <p:inputText
+                                    id="mobileNumber"
+                                    label="Número de Teléfono Móvil" 
+                                    size="45" value="#{registrationClientBean.idNumber}" 
+                                    validatorMessage="Por favor ingrese solo números">
+                                    <f:validateRegex pattern="[0-9]+" >
+                                    </f:validateRegex>
+                                </p:inputText>
+                                <p:watermark
+                                    for="mobileNumber" value="Obligatorio" >
+                                </p:watermark>
+
+                                <p:commandButton
+                                    icon="ui-icon-person" id="registerButton"
+                                    value="Registrar" update="registrerPanel"
+                                    actionListener="#{registrationClientBean.doRegistration}" >
+                                </p:commandButton>
+
+                                <p:commandButton
+                                    icon="ui-icon-refresh" id="clearButton"
+                                    update="registrerPanel" type="reset"
+                                    process="@this" ajax="true" value="Limpiar" >
+
+                                    <p:resetInput
+                                        target="peopleEmail" >
+                                    </p:resetInput>
+                                    <p:resetInput
+                                        target="peopleIdNumber" >
+                                    </p:resetInput>
+                                    <p:resetInput
+                                        target="peopleFirstNames" >
+                                    </p:resetInput>
+                                    <p:resetInput
+                                        target="mobileNumber" >
+                                    </p:resetInput>
+                                    <p:resetInput
+                                        target="phoneNumber" >
+                                    </p:resetInput>
+                                </p:commandButton>
+                        </center>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
