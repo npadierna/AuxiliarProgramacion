@@ -23,6 +23,8 @@ import javax.persistence.criteria.Root;
  */
 public abstract class AbstractEntityDAO implements IEntityDAO {
 
+    private static final Logger LOG = Logger.getLogger(AbstractEntityDAO.class.
+            getSimpleName());
     @PersistenceContext(unitName = "JuridicAppPU")
     protected EntityManager entityManager;
 
@@ -45,12 +47,17 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
         try {
             found = this.find(entity.getClass(),
                     entity.getKey());
-            this.getEntityManager().remove(found);
+
+            if (found != null) {
+                this.getEntityManager().remove(found);
+            }
+            this.getEntityManager().flush();
         } catch (IllegalArgumentException | TransactionRequiredException e) {
-            System.out.println(" - Fatal error while the DAO was trying delete a entity.");
-            e.printStackTrace();
+            AbstractEntityDAO.LOG.logp(Level.SEVERE,
+                    AbstractEntityDAO.class.getName(),
+                    "public IEntityContext delete(IEntityContext entity)",
+                    "Fatal error while the DAO was trying delete a entity.", e);
         }
-        this.getEntityManager().flush();
 
         return (found);
     }
@@ -58,10 +65,6 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
     @Override()
     @SuppressWarnings({"rawtypes", "unchecked"})
     public Object findAll(Class clazz) {
-        Logger.getLogger(AbstractEntityDAO.class.getName())
-                .log(Level.INFO, "Selecting all entities from: "
-                + clazz.getName(), clazz.toString());
-
         Query query;
         List<IEntityContext> entities = null;
 
@@ -70,8 +73,11 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
                     + clazz.getSimpleName());
             entities = (List<IEntityContext>) query.getResultList();
         } catch (IllegalArgumentException | IllegalStateException | LockTimeoutException | PessimisticLockException | QueryTimeoutException | TransactionRequiredException e) {
-            System.out.println(" - Fatal error while the DAO was trying to recover a list of entities from Data Base.");
-            e.printStackTrace();
+            AbstractEntityDAO.LOG.logp(Level.SEVERE,
+                    AbstractEntityDAO.class.getName(),
+                    "public Object findAll(Class clazz)",
+                    "Fatal error while the DAO was trying to recover a list of entities from Data Base.",
+                    e);
         }
 
         return (entities);
@@ -81,7 +87,8 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
     @SuppressWarnings({"rawtypes", "unchecked"})
     public Object findByAttributes(Class clazz, Object... attributes) {
         if (attributes.length % 2 != 0) {
-            throw new IllegalArgumentException("The number of the arguments for attributes is incorrect: "
+            throw new IllegalArgumentException(
+                    "The number of the arguments for attributes is incorrect: "
                     + attributes.length);
         }
 
@@ -118,10 +125,16 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
     public IEntityContext find(Class clazz, Object key) {
         IEntityContext entity = null;
         try {
-            entity = (IEntityContext) this.getEntityManager().find(clazz, key);
+            if (key != null) {
+                entity = (IEntityContext) this.getEntityManager().find(clazz,
+                        key);
+            }
         } catch (IllegalArgumentException e) {
-            System.out.println(" - Fatal error while the DAO was trying to find or search an entity.");
-            e.printStackTrace();
+            AbstractEntityDAO.LOG.logp(Level.SEVERE,
+                    AbstractEntityDAO.class.getName(),
+                    "public IEntityContext find(Class clazz, Object key)",
+                    "Fatal error while the DAO was trying to find or search an entity.",
+                    e);
         }
 
         return (entity);
@@ -133,10 +146,12 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
             this.getEntityManager().persist(entity);
             this.getEntityManager().flush();
         } catch (EntityExistsException | IllegalArgumentException | TransactionRequiredException e) {
-            System.out.println(" - Fatal error while the DAO was trying to persist or save a entity.");
-            e.printStackTrace();
+            AbstractEntityDAO.LOG.logp(Level.SEVERE,
+                    AbstractEntityDAO.class.getName(),
+                    "public Object save(IEntityContext entity)",
+                    "Fatal error while the DAO was trying to persist or save a entity.",
+                    e);
         }
-        this.getEntityManager().flush();
 
         return (entity.getKey());
     }
@@ -145,11 +160,14 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
     public IEntityContext update(IEntityContext entity) {
         try {
             this.getEntityManager().merge(entity);
+            this.getEntityManager().flush();
         } catch (IllegalArgumentException | TransactionRequiredException e) {
-            System.out.println(" - Fatal error while the DAO was trying to update or refresh a entity.");
-            e.printStackTrace();
+            AbstractEntityDAO.LOG.logp(Level.SEVERE,
+                    AbstractEntityDAO.class.getName(),
+                    "public IEntityContext update(IEntityContext entity)",
+                    "Fatal error while the DAO was trying to update or refresh a entity.",
+                    e);
         }
-        this.getEntityManager().flush();
 
         return (entity);
     }
@@ -179,8 +197,11 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
             query.setParameter(paramName, paramValue);
             entities = (List<IEntityContext>) query.getResultList();
         } catch (IllegalArgumentException e) {
-            System.out.println(" - Fatal error while the DAO was trying to execute the named query.");
-            e.printStackTrace();
+            AbstractEntityDAO.LOG.logp(Level.SEVERE,
+                    AbstractEntityDAO.class.getName(),
+                    "public Object executeNamedQuery(String namedQuery, String paramName, Object paramValue)",
+                    "Fatal error while the DAO was trying to execute the named query.",
+                    e);
         }
 
         return (entities);
