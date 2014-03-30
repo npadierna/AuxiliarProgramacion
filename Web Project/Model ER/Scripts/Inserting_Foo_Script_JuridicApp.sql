@@ -35,9 +35,9 @@ INSERT INTO `JuridicApp`.`AUTHOR` (`document_type`, `id_number`, `phone_number`,
 -- INSERT INTO `JuridicApp`.`DEPENDENCY` (`name`, `description`)
 --    VALUES (NULL, NULL);
 -- INSERT INTO `JuridicApp`.`DEPENDENCY` (`name`, `description`)
---     VALUES ('DRAI Facultad De Ingeniería', NULL, '12345');
+--     VALUES ('DRAI Facultad De Ingeniería', NULL);
 INSERT INTO `JuridicApp`.`DEPENDENCY` (`name`, `description`)
-    VALUES ('DRAI Facultad De Medicina', 'Departamentos de Recursos y Apoyo Didáctico (D.R.A.I.) para la Facultad de Medicina.', '23456');
+    VALUES ('DRAI Facultad De Medicina', 'Departamentos de Recursos y Apoyo Didáctico (D.R.A.I.) para la Facultad de Medicina.');
 
 
 -- -----------------------------------------------------
@@ -109,13 +109,13 @@ INSERT INTO `JuridicApp`.`DNDA` (`number`)
 INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
     VALUES ('12345', NULL, '12345');
 INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
-    VALUES ('23456', NULL, '');
+    VALUES ('23456', NULL, NULL);
 INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
     VALUES ('34567', NULL, '23456');
 INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
     VALUES ('45678', NULL, '34567');
 INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
-    VALUES ('56789', NULL, '');
+    VALUES ('56789', NULL, NULL);
 INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
     VALUES ('67890', NULL, '45678');
 
