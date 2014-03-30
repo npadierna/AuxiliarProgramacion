@@ -3,6 +3,8 @@ package co.edu.udea.juridicapp.persistence.dao.impl;
 import co.edu.udea.juridicapp.persistence.dao.IEntityDAO;
 import co.edu.udea.juridicapp.persistence.entity.IEntityContext;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.LockTimeoutException;
@@ -56,6 +58,10 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
     @Override()
     @SuppressWarnings({"rawtypes", "unchecked"})
     public Object findAll(Class clazz) {
+        Logger.getLogger(AbstractEntityDAO.class.getName())
+                .log(Level.INFO, "Selecting all entities from: "
+                + clazz.getName(), clazz.toString());
+
         Query query;
         List<IEntityContext> entities = null;
 

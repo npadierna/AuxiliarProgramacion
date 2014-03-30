@@ -35,7 +35,6 @@ public final class DependencyBean implements Serializable {
         super();
 
         this.setDependency(new Dependency());
-        this.getDependency().setDnda(new Dnda());
     }
 
     public Dependency getDependency() {

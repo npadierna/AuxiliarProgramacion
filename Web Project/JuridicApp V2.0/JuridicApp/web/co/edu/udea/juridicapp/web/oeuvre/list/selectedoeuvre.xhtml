@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
@@ -14,11 +14,8 @@
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
         <f:facet name="selectedOeuvre" >
-
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" >
             </meta>
-
         </f:facet>
     </h:head>
 
@@ -87,13 +84,6 @@
 
                                     <p:fieldset legend="Datos De La Dependencia" >
                                         <h:panelGrid columns="2" cellpadding="10" >
-                                            <h:outputText
-                                                value="Registro DNDA:" >
-                                            </h:outputText>
-                                            <h:outputText
-                                                value="#{oeuvreSelectorBean.selectedAuthorOeuvre.oeuvreType.oeuvre.dependency.dnda.number}" >
-                                            </h:outputText>
-
                                             <h:outputText
                                                 value="Dependencia Acádemica:" >
                                             </h:outputText>
@@ -253,7 +243,7 @@
 
                                         <p:column headerText="Fecha" width="200" >
                                             <h:outputText
-                                                value="#{comment.dateTime}" >
+                                                value="#{oeuvreSelectorBean.applyFormatForDate(comment.dateTime)}" >
                                             </h:outputText>
                                         </p:column>
                                     </p:dataTable>

@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
@@ -15,8 +15,7 @@
         </script>
 
         <f:facet name="dependencyCreator" >
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" >
             </meta>
         </f:facet>
     </h:head>
@@ -70,21 +69,6 @@
 
                                 <h:panelGrid cellpadding="5" columns="3" >
                                     <h:outputLabel
-                                        for="dnda" style="font-weight:bold" 
-                                        value="DNDA:" >
-                                    </h:outputLabel>
-                                    <p:inputText
-                                        id="dnda" label="DNDA" maxlength="30"
-                                        required="true" 
-                                        requiredMessage="Por favor ingrese el DNDA."  
-                                        size="60"
-                                        value="#{dependencyBean.dependency.dnda.number}" >
-                                    </p:inputText>
-                                    <p:watermark
-                                        for="dnda" value="Número de DNDA" >
-                                    </p:watermark>
-
-                                    <h:outputLabel
                                         for="dependencyName"
                                         style="font-weight:bold" 
                                         value="Nombre de la Dependencia:" >
@@ -125,6 +109,8 @@
                                     value="Guardar" update="growlCreator"
                                     actionListener="#{dependencyBean.save}" >
                                 </p:commandButton>
+
+                                <p:spacer width="25px" ></p:spacer>
 
                                 <p:commandButton
                                     id="clearButton" icon="ui-icon-refresh"

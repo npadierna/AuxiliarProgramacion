@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -46,6 +48,9 @@ public class Contract implements IEntityContext, Serializable {
     private String route;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "contract1")
     private List<AuthorOeuvre> authorOeuvreList;
+    @JoinColumn(name = "dnda", referencedColumnName = "number")
+    @ManyToOne()
+    private Dnda dnda;
     @Transient()
     private UploadedFile contractFile;
 
@@ -83,6 +88,15 @@ public class Contract implements IEntityContext, Serializable {
 
     public void setAuthorOeuvreList(List<AuthorOeuvre> authorOeuvreList) {
         this.authorOeuvreList = authorOeuvreList;
+    }
+
+    public Dnda getDnda() {
+
+        return (this.dnda);
+    }
+
+    public void setDnda(Dnda dnda) {
+        this.dnda = dnda;
     }
 
     public UploadedFile getContractFile() {

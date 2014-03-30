@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
@@ -14,10 +14,8 @@
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
         <f:facet name="dependencyCreator" >
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" >
             </meta>
-
         </f:facet>
     </h:head>
 
@@ -88,7 +86,7 @@
                                     required="true" 
                                     requiredMessage="Por favor ingrese el número de documento." 
                                     size="45" value="#{registrationAuthorBean.idNumber}" 
-                                    validatorMessage="Por favor ingrese solo números">
+                                    validatorMessage="Por favor ingrese solo números" >
                                     <f:validateRegex pattern="[0-9]+" >
                                     </f:validateRegex>
                                 </p:inputText>
@@ -106,8 +104,8 @@
                                     required="true" 
                                     requiredMessage="Por favor ingrese los nombres completos." 
                                     size="45" 
-                                    value="#{registrationAuthorBean.people.firstNames}" 
-                                    validatorMessage="Por favor ingrese solo letras">
+                                    value="#{registrationAuthorBean.people.firstNames}"
+                                    validatorMessage="Por favor ingrese solo letras" >
                                     <f:validateRegex pattern="^[ a-zA-Z]+"  >
                                     </f:validateRegex>                       
                                 </p:inputText>
@@ -126,7 +124,7 @@
                                     requiredMessage="Por favor ingrese los apellidos completos." 
                                     size="45"
                                     value="#{registrationAuthorBean.people.lastNames}" 
-                                    validatorMessage="Por favor ingrese solo letras">
+                                    validatorMessage="Por favor ingrese solo letras" >
                                     <f:validateRegex pattern="^[ a-zA-Z]+"  >
                                     </f:validateRegex>    
                                 </p:inputText>
@@ -141,79 +139,80 @@
                                 </h:outputLabel>
                                 <p:inputText
                                     id="peopleEmail"
-                                    label="Correo Electrónico" 
-                                    required="true" 
-                                    requiredMessage="Por favor ingrese el correo electronico." 
+                                    label="Correo Electrónico"
                                     size="45" 
                                     value="#{registrationAuthorBean.people.email}" 
-                                    validatorMessage="El correo ingresado no es válido">
+                                    validatorMessage="El correo ingresado no es válido" >
                                     <f:validateRegex
                                         pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" >
                                     </f:validateRegex>
                                 </p:inputText>
                                 <p:watermark
-                                    for="peopleEmail" value="Obligatorio" >
+                                    for="peopleEmail" value="Opcional" >
                                 </p:watermark>
 
                                 <h:outputLabel
                                     for="phoneNumber" style="font-weight:bold"
-                                    value="Número De Teléfono" >
+                                    value="Número De Teléfono:" >
                                 </h:outputLabel>
                                 <p:inputText
                                     id="phoneNumber"
                                     label="Número de Teléfono" 
                                     size="45" value="#{registrationAuthorBean.author.phoneNumber}" 
-                                    validatorMessage="Por favor ingrese solo números">
+                                    validatorMessage="Por favor ingrese solo números" >
                                     <f:validateRegex pattern="[0-9]+" >
                                     </f:validateRegex>
                                 </p:inputText>
                                 <p:watermark
-                                    for="phoneNumber" value="Obligatorio" >
+                                    for="phoneNumber" value="Opcional" >
                                 </p:watermark>
 
                                 <h:outputLabel
                                     for="mobileNumber" style="font-weight:bold"
-                                    value="Número De Teléfono Móvil" >
+                                    value="Número De Teléfono Móvil:" >
                                 </h:outputLabel>
                                 <p:inputText
                                     id="mobileNumber"
                                     label="Número de Teléfono Móvil" 
                                     size="45" value="#{registrationAuthorBean.author.mobileNumber}" 
-                                    validatorMessage="Por favor ingrese solo números">
+                                    validatorMessage="Por favor ingrese solo números" >
                                     <f:validateRegex pattern="[0-9]+" >
                                     </f:validateRegex>
                                 </p:inputText>
                                 <p:watermark
-                                    for="mobileNumber" value="Obligatorio" >
+                                    for="mobileNumber" value="Opcional" >
                                 </p:watermark>
+                            </h:panelGrid>
 
-                                <p:commandButton
-                                    icon="ui-icon-person" id="registerButton"
-                                    value="Registrar" update="registrerPanel"
-                                    actionListener="#{registrationAuthorBean.saveAuthor}" >
-                                </p:commandButton>
+                            <p:commandButton
+                                icon="ui-icon-person" id="registerButton"
+                                value="Registrar" update="registrerPanel"
+                                actionListener="#{registrationAuthorBean.saveAuthor}" >
+                            </p:commandButton>
 
-                                <p:commandButton
-                                    icon="ui-icon-refresh" id="clearButton"
-                                    update="registrerPanel" type="reset"
-                                    process="@this" ajax="true" value="Limpiar" >
+                            <p:spacer width="25px" ></p:spacer>
 
-                                    <p:resetInput
-                                        target="peopleEmail" >
-                                    </p:resetInput>
-                                    <p:resetInput
-                                        target="peopleIdNumber" >
-                                    </p:resetInput>
-                                    <p:resetInput
-                                        target="peopleFirstNames" >
-                                    </p:resetInput>
-                                    <p:resetInput
-                                        target="mobileNumber" >
-                                    </p:resetInput>
-                                    <p:resetInput
-                                        target="phoneNumber" >
-                                    </p:resetInput>
-                                </p:commandButton>
+                            <p:commandButton
+                                icon="ui-icon-refresh" id="clearButton"
+                                update="registrerPanel" type="reset"
+                                process="@this" ajax="true" value="Limpiar" >
+
+                                <p:resetInput
+                                    target="peopleEmail" >
+                                </p:resetInput>
+                                <p:resetInput
+                                    target="peopleIdNumber" >
+                                </p:resetInput>
+                                <p:resetInput
+                                    target="peopleFirstNames" >
+                                </p:resetInput>
+                                <p:resetInput
+                                    target="mobileNumber" >
+                                </p:resetInput>
+                                <p:resetInput
+                                    target="phoneNumber" >
+                                </p:resetInput>
+                            </p:commandButton>
                         </center>
                     </p:panel>
                 </h:form>

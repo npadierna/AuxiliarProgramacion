@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
@@ -165,67 +165,56 @@
             </p:dataTable>
         </center>
 
+        <p:spacer width="15px" ></p:spacer>
+
         <h:panelGrid columns="2" >
             <p:panel header="Exportar todas las obras" >
-                <h:commandLink>
-                    <p:graphicImage
-                        value="/faces/co/edu/udea/juridicapp/util/images/download_excel.jpg" >
-                    </p:graphicImage>  
-                    <p:dataExporter fileName="obras" target="mainTable" 
-                                    type="xls" >
-                    </p:dataExporter>
-                </h:commandLink>
+                <center>
+                    <h:commandLink>
+                        <p:graphicImage height="50px" width="50px"
+                                        value="/faces/co/edu/udea/juridicapp/util/images/download_excel.png" >
+                        </p:graphicImage>  
+                        <p:dataExporter fileName="ObrasCompletas" target="mainTable" 
+                                        type="xls" >
+                        </p:dataExporter>
+                    </h:commandLink>
 
-                <h:commandLink>  
-                    <p:graphicImage
-                        value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.jpg" >
-                    </p:graphicImage>  
-                    <p:dataExporter fileName="obras" target="mainTable" 
-                                    type="pdf" >
-                    </p:dataExporter>
-                </h:commandLink>
+                    <p:spacer width="25px" ></p:spacer>
+
+                    <h:commandLink>  
+                        <p:graphicImage height="50px" width="50px"
+                                        value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.png" >
+                        </p:graphicImage>  
+                        <p:dataExporter fileName="Obras" target="mainTable" 
+                                        type="pdf" >
+                        </p:dataExporter>
+                    </h:commandLink>
+                </center>
             </p:panel>
 
             <p:panel header="Exportar esta vista" >
-                <h:commandLink>
-                    <p:graphicImage
-                        value="/faces/co/edu/udea/juridicapp/util/images/download_excel.jpg" > 
-                    </p:graphicImage>
-                    <p:dataExporter fileName="obras" pageOnly="true"
-                                    type="xls" target="mainTable" >
-                    </p:dataExporter>
-                </h:commandLink>
+                <center>
+                    <h:commandLink>
+                        <p:graphicImage height="50px" width="50px"
+                                        value="/faces/co/edu/udea/juridicapp/util/images/download_excel.png" > 
+                        </p:graphicImage>
+                        <p:dataExporter fileName="ObrasCompletas" pageOnly="true"
+                                        type="xls" target="mainTable" >
+                        </p:dataExporter>
+                    </h:commandLink>
 
-                <h:commandLink>  
-                    <p:graphicImage
-                        value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.jpg" > 
-                    </p:graphicImage>
-                    <p:dataExporter fileName="obras" pageOnly="true"
-                                    type="pdf" target="mainTable" >
-                    </p:dataExporter>
-                </h:commandLink>
+                    <p:spacer width="25px" ></p:spacer>
+
+                    <h:commandLink>  
+                        <p:graphicImage height="50px" width="50px"
+                                        value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.png" > 
+                        </p:graphicImage>
+                        <p:dataExporter fileName="Obras" pageOnly="true"
+                                        type="pdf" target="mainTable" >
+                        </p:dataExporter>
+                    </h:commandLink>
+                </center>
             </p:panel>
         </h:panelGrid>
-
-        <p:dialog header="Contrato #{oeuvreListBean.selectedAuthorOeuvre.contract1.id}"
-                  hideEffect="explode" id="contractDialog" resizable="false"
-                  showEffect="fade" widgetVar="contractDialog" width="1200px"
-                  height="650px" >
-
-            <h:panelGrid cellpadding="4" columns="2" id="display" >
-                <h:outputText value="Nombre de la Obra:" ></h:outputText>
-                <h:outputText
-                    value="#{oeuvreListBean.selectedAuthorOeuvre.oeuvreType.oeuvre.title}" >
-                </h:outputText>
-            </h:panelGrid>
-
-            <p:media id="pdfVisorMedia" value="salida.pdf" width="1024px"
-                     height="650px">
-                Your browser can't display pdf,
-                <h:outputLink value="salida.pdf" target="_blanck">
-                    click
-                </h:outputLink> to download pdf instead.
-            </p:media>
-        </p:dialog>
     </h:form>
 </ui:composition>

@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-
 /**
  *
  * @author Miguel Ossa Ruiz
@@ -23,8 +22,8 @@ import org.springframework.stereotype.Component;
 @Component()
 @Scope(value = "session")
 @SessionScoped()
-public class RegistrationAuthorBean implements Serializable{
-    
+public class RegistrationAuthorBean implements Serializable {
+
     private static final long serialVersionUID = 3457147504987197440L;
     @Autowired()
     private IPeopleDAO peopleDAO;
@@ -77,12 +76,12 @@ public class RegistrationAuthorBean implements Serializable{
     public void setAuthor(Author author) {
         this.author = author;
     }
-    
-    public void saveAuthor(ActionEvent actionEvent){
+
+    public void saveAuthor(ActionEvent actionEvent) {
         System.out.println("GUARDANDO!!!");
     }
-    
-     @PostConstruct()
+
+    @PostConstruct()
     private void createFields() {
         FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 

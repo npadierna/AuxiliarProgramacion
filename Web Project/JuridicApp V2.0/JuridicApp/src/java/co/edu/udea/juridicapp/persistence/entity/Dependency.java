@@ -46,9 +46,6 @@ public class Dependency implements IEntityContext, Serializable {
     private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dependency")
     private List<Client> clientList;
-    @JoinColumn(name = "dnda", referencedColumnName = "number")
-    @ManyToOne()
-    private Dnda dnda;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dependency")
     private List<Oeuvre> oeuvreList;
 
@@ -86,15 +83,6 @@ public class Dependency implements IEntityContext, Serializable {
 
     public void setClientList(List<Client> clientList) {
         this.clientList = clientList;
-    }
-
-    public Dnda getDnda() {
-
-        return (this.dnda);
-    }
-
-    public void setDnda(Dnda dnda) {
-        this.dnda = dnda;
     }
 
     @XmlTransient()

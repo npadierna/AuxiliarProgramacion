@@ -39,7 +39,7 @@ public class Dnda implements IEntityContext, Serializable {
     @OneToMany(mappedBy = "dnda")
     private List<AuthorOeuvre> authorOeuvreList;
     @OneToMany(mappedBy = "dnda")
-    private List<Dependency> dependencyList;
+    private List<Contract> contractList;
 
     public Dnda() {
         super();
@@ -69,13 +69,13 @@ public class Dnda implements IEntityContext, Serializable {
     }
 
     @XmlTransient()
-    public List<Dependency> getDependencyList() {
+    public List<Contract> getContractList() {
 
-        return (this.dependencyList);
+        return (this.contractList);
     }
 
-    public void setDependencyList(List<Dependency> dependencyList) {
-        this.dependencyList = dependencyList;
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 
     @Override()
