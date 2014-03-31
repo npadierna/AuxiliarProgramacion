@@ -8,16 +8,15 @@
       xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:head>
-        <title>Crear Soporte</title>
+    <h:head lang="es" >
+        <meta content="text/html" http-equiv="Content-Type" ></meta>
+        <meta charset="UTF-8" ></meta>
         <script type="text/javascript"
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
+        <title>Crear Soporte</title>
 
-        <f:facet name="dependencyCreator" >
-            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" >
-            </meta>
-        </f:facet>
+        <f:facet name="supportsCreator" ></f:facet>
     </h:head>
 
     <h:body>
@@ -70,7 +69,7 @@
                                     id="supportType" label="Tipo de Soporte"
                                     maxlength="25" required="true"  
                                     requiredMessage="Por favor ingrese el tipo de soporte." 
-                                    size="60"
+                                    size="30"
                                     value="#{supportBean.support.type}" >
                                 </p:inputText>
                                 <p:watermark
@@ -83,8 +82,8 @@
                                     value="Descripción:" >
                                 </h:outputLabel>
                                 <p:inputTextarea
-                                    cols="45" id="supportDescription"
-                                    maxlength="150" required="false" rows="3"
+                                    cols="30" id="supportDescription"
+                                    maxlength="150" required="false" rows="7"
                                     value="#{supportBean.support.description}" >
                                 </p:inputTextarea>
                                 <p:watermark

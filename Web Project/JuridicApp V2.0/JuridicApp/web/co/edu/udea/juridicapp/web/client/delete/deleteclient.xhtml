@@ -9,16 +9,15 @@
       xmlns:p="http://primefaces.org/ui" >
 
     <f:view contentType="text/html" >
-        <h:head>
-            <title>Borrar Usuario</title>
+        <h:head lang="es" >
+            <meta content="text/html" http-equiv="Content-Type" ></meta>
+            <meta charset="UTF-8" ></meta>
             <script type="text/javascript"
                     src="../../../util/javascript/JsFunctions.js" >
             </script>
-            <f:facet name="first" >
-                <meta content="text/html; charset=UTF-8"
-                      http-equiv="Content-Type" >
-                </meta>
-            </f:facet>
+            <title>Borrar Usuario</title>
+
+            <f:facet name="deleteClient" ></f:facet>
         </h:head>
 
         <h:body>
@@ -135,14 +134,14 @@
                                 <center>
                                     <p:commandButton
                                         id="deleteMemberButton"   
-                                        onclick="handleDeleteRequest(xhr, status, args)"
+                                        onclick="handleDeleteRequest(xhr, status, args);"
                                         update ="deletedMemberForm" 
                                         value="Eliminar Usuario" >
                                     </p:commandButton>
                                 </center>
 
                                 <p:confirmDialog widgetVar="dlg" header="¿Desea Eliminar este Usuario?">
-                                    
+
                                 </p:confirmDialog> 
                             </p:panel>
                         </p:panel>
