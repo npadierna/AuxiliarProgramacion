@@ -127,6 +127,7 @@ public class DeleteClientBean implements Serializable {
                     "Eliminando a " + this.people.getFirstNames());
             this.peopleDAO.deletePeople(this.people);
         }
+        
         FacesContext.getCurrentInstance().addMessage(null, m);
         this.setClient(new Client( ));
         this.setPeople(new People( ));
