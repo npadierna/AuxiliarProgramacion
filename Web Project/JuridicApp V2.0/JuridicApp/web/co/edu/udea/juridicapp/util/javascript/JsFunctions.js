@@ -1,10 +1,6 @@
 function handleDeleteRequest(xhr, status, args) {
-        PF('dlg').jq.effect("shake", {times: 5}, 100);
-
-
-
     // if (args.deleted) {
-    location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/delete/deleteclient.xhtml';
+    location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';
     // }
 }
 
