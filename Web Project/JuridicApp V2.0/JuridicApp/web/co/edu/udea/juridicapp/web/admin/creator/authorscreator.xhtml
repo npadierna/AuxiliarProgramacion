@@ -6,7 +6,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core" 
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <h:head lang="es" >
         <meta content="text/html" http-equiv="Content-Type" ></meta>
@@ -23,12 +24,23 @@
         <p:layout fullPage="true" >
             <p:layoutUnit closable="false" collapsible="false" position="south"
                           resizable="false" size="60" >
+                <c:if
+                    test="${loginClientBean.loggedClient.title.title == 'Gestor De Contratos'}" >
+                    <p:commandButton
+                        icon="ui-icon-arrowthick-1-w" id="list"
+                        onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';" 
+                        style="font-size:15px;" value="Volver a la Lista de Obras" >
+                    </p:commandButton>
+                </c:if>
+                <c:if
+                    test="${loginClientBean.loggedClient.title.title == 'Administrador'}" >
+                    <p:commandButton
+                        icon="ui-icon-arrowthick-1-w" id="home"
+                        onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
+                        style="font-size:15px;" value="Volver a la Administración" >
+                    </p:commandButton>
+                </c:if>
 
-                <p:commandButton
-                    icon="ui-icon-arrowthick-1-w" id="home"
-                    onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
-                    style="font-size:15px;" value="Volver a la Administración" >
-                </p:commandButton>
             </p:layoutUnit>
 
             <p:layoutUnit
@@ -184,11 +196,24 @@
                                 </p:watermark>
                             </h:panelGrid>
 
-                            <p:commandButton
-                                icon="ui-icon-person" id="registerButton"
-                                value="Registrar" update="registrerPanel"
-                                actionListener="#{registrationAuthorBean.saveAuthor}" >
-                            </p:commandButton>
+                            <c:if
+                                test="${loginClientBean.loggedClient.title.title == 'Gestor De Contratos'}" >
+                                <p:commandButton
+                                    icon="ui-icon-person" id="registerButton"
+                                    value="Registrar" update="registrerPanel"
+                                    actionListener="#{registrationAuthorBean.saveAuthor}" 
+                                    oncomplete="handleRegistryOkRequest(xhr, status, args)">
+                                </p:commandButton>
+                            </c:if>
+                            <c:if
+                                test="${loginClientBean.loggedClient.title.title == 'Administrador'}" >
+                                <p:commandButton
+                                    icon="ui-icon-person" id="registerButton"
+                                    value="Registrar" update="registrerPanel"
+                                    actionListener="#{registrationAuthorBean.saveAuthor}"
+                                    oncomplete="createAuthorRequest(xhr, status, args)">
+                                </p:commandButton>
+                            </c:if>
 
                             <p:spacer width="25px" ></p:spacer>
 

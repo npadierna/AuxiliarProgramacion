@@ -24,8 +24,8 @@ import org.springframework.stereotype.Component;
 @Component()
 @Scope(value = "session")
 @SessionScoped()
-public class DeleteClientBean implements Serializable{
-    
+public class DeleteClientBean implements Serializable {
+
     private static final long serialVersionUID = 3157147504987197440L;
     @Autowired()
     private IPeopleDAO peopleDAO;
@@ -79,36 +79,61 @@ public class DeleteClientBean implements Serializable{
         this.client = client;
     }
     
-    public void findClient(ActionEvent actionEvent){
-         FacesMessage m = null;
+    public void isEmpty(ActionEvent actionEvent){
+        FacesMessage m = null;
+        if(this.peopleDAO.findPeople(new PeoplePK(this.getDocumentType( ), 
+                this.getIdNumber())) == null){
+             m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Datos Inválidos", "Primero debes buscar el Usuario");
+        }
+        FacesContext.getCurrentInstance().addMessage(null, m);
+    }
+
+    public void findClient(ActionEvent actionEvent) {
+        FacesMessage m = null;
         if ((this.getDocumentType() != null) && (this.getIdNumber() != null)) {
             People p = this.peopleDAO.findPeople(
-                    new PeoplePK(this.getDocumentType(), this.getIdNumber( )));
-            
-            if( p != null){
-                  m = new FacesMessage(FacesMessage.SEVERITY_INFO, 
-                        "Buscando Cliente","Esto puede tardar un momento...");
-                this.setPeople( p);
-                this.setClient(p.getClient( ));
-            }else{
-                m = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-                        "Cliente No Existe","No se ha encontrado algún Cliente "
-                                + "con : \n\n"
-                                + "Tipo De Documento: " + this.getDocumentType( )
-                                + "\nNúmero De Documento: " + this.getIdNumber( ));
+                    new PeoplePK(this.getDocumentType(), this.getIdNumber()));
+
+            if (p != null) {
+                m = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                        "Buscando Cliente", "Esto puede tardar un momento...");
+                this.setPeople(p);
+                this.setClient(p.getClient());
+            } else {
+                m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                        "Cliente No Existe", "No se ha encontrado algún Cliente "
+                        + "con : \n\n"
+                        + "Tipo De Documento: " + this.getDocumentType()
+                        + "\nNúmero De Documento: " + this.getIdNumber());
             }
-        }else{
-              m = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-                        "Datos Inválidos","Los datos ingresados no son válidos");
+        } else {
+            m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Datos Inválidos", "Los datos ingresados no son válidos");
         }
-         FacesContext.getCurrentInstance().addMessage(null, m);
+        FacesContext.getCurrentInstance().addMessage(null, m);
     }
-    
-    public void deleteClient(ActionEvent actionEvent){
-       System.out.println("ELIMINANDO...."); 
+
+    public void deleteClient(ActionEvent actionEvent) {
+        FacesMessage m = null;
+        People p = this.peopleDAO.findPeople( new PeoplePK( this.getDocumentType( ),
+                    this.getIdNumber( )));
+        if (p == null) {
+            m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al Eliminar!!",
+                    "El Usuario no existe");
+        } else {
+            m = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Eliminando...!!",
+                    "Eliminando a " + this.people.getFirstNames());
+            this.peopleDAO.deletePeople(this.people);
+        }
+        FacesContext.getCurrentInstance().addMessage(null, m);
+        this.setClient(new Client( ));
+        this.setPeople(new People( ));
+        this.setDocumentType("");
+        this.setIdNumber("");
     }
-    
-    
+
     @PostConstruct()
     private void createFields() {
         FacesContext.getCurrentInstance().getExternalContext().getSession(true);

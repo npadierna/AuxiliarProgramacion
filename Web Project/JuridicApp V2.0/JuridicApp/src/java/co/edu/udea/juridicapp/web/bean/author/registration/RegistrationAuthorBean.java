@@ -3,10 +3,12 @@ package co.edu.udea.juridicapp.web.bean.author.registration;
 import co.edu.udea.juridicapp.persistence.dao.IPeopleDAO;
 import co.edu.udea.juridicapp.persistence.entity.Author;
 import co.edu.udea.juridicapp.persistence.entity.People;
+import co.edu.udea.juridicapp.persistence.entity.PeoplePK;
 import co.edu.udea.juridicapp.persistence.entity.enums.DocumentTypeClientEnum;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -78,7 +80,36 @@ public class RegistrationAuthorBean implements Serializable {
     }
 
     public void saveAuthor(ActionEvent actionEvent) {
-        System.out.println("GUARDANDO!!!");
+         FacesMessage m = null;
+        if ((this.getDocumentType() != null) && (this.getIdNumber() != null)) {
+            this.author.setPeoplePK(new PeoplePK(this.documentType,
+                    this.idNumber.trim()));
+            this.people.setPeoplePK(new PeoplePK(this.documentType,
+                    this.idNumber.trim()));
+            this.people.setAuthor(this.author);
+
+            People p = this.peopleDAO.findPeople(new PeoplePK(this.documentType, this.idNumber));
+
+            if (p == null) {
+                m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardando...!!",
+                        this.people.getFirstNames());
+                this.peopleDAO.savePeople(this.people);
+                
+            } else {
+                m = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                        "Datos Inválidos",
+                        "Este Autor ya existe");
+            }
+        } else {
+            m = new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "Datos Inválidos",
+                    "Hay Campos obligatorios que están vacios");
+        }
+        FacesContext.getCurrentInstance().addMessage(null, m);
+        this.setAuthor(new Author());
+        this.setPeople(new People());
+        this.setDocumentType("");
+        this.setIdNumber("");
     }
 
     @PostConstruct()
