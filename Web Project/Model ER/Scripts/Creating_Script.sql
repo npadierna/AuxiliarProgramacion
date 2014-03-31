@@ -186,19 +186,22 @@ CREATE  TABLE IF NOT EXISTS `JuridicApp`.`AUTHOR_OEUVRE` (
   `document_type` VARCHAR(45) NOT NULL ,
   `id_number` VARCHAR(20) NOT NULL ,
   `contract` VARCHAR(30) NOT NULL ,
+  `acquisition` VARCHAR(35) NOT NULL ,
   `support_type` VARCHAR(25) NOT NULL ,
   `dnda` VARCHAR(30) NULL ,
   `isbn` VARCHAR(35) NULL ,
   `beginning` DATE NOT NULL ,
   `delivering` DATE NOT NULL ,
   `title` VARCHAR(35) NOT NULL ,
-  PRIMARY KEY (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`) ,
+  `route` VARCHAR(300) NOT NULL ,
+  PRIMARY KEY (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`) ,
   INDEX `fk_AUTHOR_WORK_WORK_TYPE1_idx` (`oeuvre_type_id` ASC, `oeuvre_type_name` ASC) ,
   INDEX `fk_AUTHOR_WORK_SUPPORT1_idx` (`support_type` ASC) ,
   INDEX `fk_AUTHOR_WORK_DNDA1_idx` (`dnda` ASC) ,
   INDEX `fk_AUTHOR_WORK_AUTHOR1_idx` (`document_type` ASC, `id_number` ASC) ,
   INDEX `fk_AUTHOR_WORK_ROLE1_idx` (`title` ASC) ,
   INDEX `fk_AUTHOR_WORK_CONTRACT1_idx` (`contract` ASC) ,
+  INDEX `fk_AUTHOR_OEUVRE_ACQUISITION1_idx` (`acquisition` ASC) ,
   CONSTRAINT `fk_AUTHOR_WORK_WORK_TYPE1`
     FOREIGN KEY (`oeuvre_type_id` , `oeuvre_type_name` )
     REFERENCES `JuridicApp`.`OEUVRE_TYPE` (`oeuvre_id` , `type_name` )
@@ -227,6 +230,11 @@ CREATE  TABLE IF NOT EXISTS `JuridicApp`.`AUTHOR_OEUVRE` (
   CONSTRAINT `fk_AUTHOR_WORK_CONTRACT1`
     FOREIGN KEY (`contract` )
     REFERENCES `JuridicApp`.`CONTRACT` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_AUTHOR_OEUVRE_ACQUISITION1`
+    FOREIGN KEY (`acquisition` )
+    REFERENCES `JuridicApp`.`ACQUISITION` (`type` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -268,33 +276,6 @@ CREATE  TABLE IF NOT EXISTS `JuridicApp`.`CLIENT` (
   CONSTRAINT `fk_USER_DEPENDENCY1`
     FOREIGN KEY (`dependency` )
     REFERENCES `JuridicApp`.`DEPENDENCY` (`name` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `JuridicApp`.`AUTHOR_OEUVRE_ACQUISITION_FILE`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `JuridicApp`.`AUTHOR_OEUVRE_ACQUISITION_FILE` (
-  `acquisition` VARCHAR(35) NOT NULL ,
-  `oeuvre_type_id` BIGINT UNSIGNED NOT NULL ,
-  `oeuvre_type_name` VARCHAR(45) NOT NULL ,
-  `document_type` VARCHAR(45) NOT NULL ,
-  `id_number` VARCHAR(20) NOT NULL ,
-  `contract` VARCHAR(30) NOT NULL ,
-  `route` VARCHAR(300) NOT NULL ,
-  PRIMARY KEY (`acquisition`, `oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`) ,
-  INDEX `fk_AUTHOR_WORK_ACQUISITION_ACQUISITION1_idx` (`acquisition` ASC) ,
-  INDEX `fk_AUTHOR_WORK_ACQUISITION_AUTHOR_WORK1_idx` (`oeuvre_type_id` ASC, `oeuvre_type_name` ASC, `document_type` ASC, `id_number` ASC, `contract` ASC) ,
-  CONSTRAINT `fk_AUTHOR_WORK_ACQUISITION_ACQUISITION1`
-    FOREIGN KEY (`acquisition` )
-    REFERENCES `JuridicApp`.`ACQUISITION` (`type` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_AUTHOR_WORK_ACQUISITION_AUTHOR_WORK1`
-    FOREIGN KEY (`oeuvre_type_id` , `oeuvre_type_name` , `document_type` , `id_number` , `contract` )
-    REFERENCES `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id` , `oeuvre_type_name` , `document_type` , `id_number` , `contract` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
