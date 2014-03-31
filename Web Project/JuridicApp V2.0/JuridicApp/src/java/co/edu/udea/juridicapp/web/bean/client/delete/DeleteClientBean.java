@@ -104,14 +104,8 @@ public class DeleteClientBean implements Serializable{
          FacesContext.getCurrentInstance().addMessage(null, m);
     }
     
-     public void destroyWorld(ActionEvent actionEvent){  
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "System Error",  "Please try again later.");  
-          
-        FacesContext.getCurrentInstance().addMessage(null, message);  
-    }  
-    
     public void deleteClient(ActionEvent actionEvent){
-        
+       System.out.println("ELIMINANDO...."); 
     }
     
     

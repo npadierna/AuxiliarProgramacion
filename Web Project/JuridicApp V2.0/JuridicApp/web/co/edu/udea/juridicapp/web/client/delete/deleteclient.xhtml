@@ -135,14 +135,24 @@
                                 <center>
                                     <p:commandButton
                                         id="deleteMemberButton"   
-                                        onclick="handleDeleteRequest(xhr, status, args)"
+                                        oncomplete="confirmation.show()"
                                         update ="deletedMemberForm" 
                                         value="Eliminar Usuario" >
                                     </p:commandButton>
                                 </center>
 
-                                <p:confirmDialog widgetVar="dlg" header="¿Desea Eliminar este Usuario?">
-                                    
+                                <p:confirmDialog widgetVar="confirmation" 
+                                                 header="¿Desea realmente eliminar este Usuario?"
+                                                 message="Sí elimina al usuario, este no podrá volver a ingresar al sistema."
+                                                 severity="alert">
+                                    <center>
+                                        <p:commandButton actionListener="#{deleteClientBean.deleteClient}" 
+                                                     value="Sí" 
+                                                     update="deletedMemberForm" 
+                                                     oncomplete="confirmation.hide()"/>
+                                    <p:commandButton value="No" 
+                                                     onclick="confirmation.hide()" />
+                                    </center>
                                 </p:confirmDialog> 
                             </p:panel>
                         </p:panel>
