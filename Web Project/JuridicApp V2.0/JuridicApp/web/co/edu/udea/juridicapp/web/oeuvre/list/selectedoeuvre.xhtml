@@ -6,7 +6,7 @@
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:p="http://primefaces.org/ui" 
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
 
     <h:head lang="es" >
         <meta content="text/html" http-equiv="Content-Type" ></meta>
@@ -231,7 +231,7 @@
                                             </p:commandButton>
 
                                             <p:commandButton
-                                                action="#{authorOeuvreFileBean.onViewProductsListForAuthorOeuvre(oeuvreSelectorBean.selectedAuthorOeuvre)}"
+                                                action="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(oeuvreSelectorBean.selectedAuthorOeuvre)}"
                                                 icon="ui-icon-document"
                                                 id="viewProductsFilesButton"
                                                 onclick="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvrefilelist.xhtml', 'Contrato');"   

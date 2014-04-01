@@ -47,10 +47,17 @@
                     <p:spacer height="20px" ></p:spacer>
 
                     <p:media
-                        value="salida.pdf" width="100%" player="pdf"
+                        player="pdf" value="#{contractBean.contractFile.name}" width="100%"
                         height="580px" >
-                        Su navegador no ha podido mostrar el archivo PDF, haga
-                        <h:outputLink value="salida.pdf" >aquí</h:outputLink>
+                        Su navegador no ha podido mostrar el archivo de Soporte para el Contrato, haga clic
+                        <p:commandButton
+                            actionListener="#{contractBean.onViewContractForAuthorOeuvre(contractBean.authorOeuvre)}"
+                            ajax="false" icon="ui-icon-arrowthickstop-1-s"
+                            id="downloadFileButton" value="Aquí" >
+                            <p:fileDownload
+                                value="#{contractBean.contractFile}" >
+                            </p:fileDownload>
+                        </p:commandButton>
                         para descargar y visualizar el archivo.
                     </p:media>
                 </center>

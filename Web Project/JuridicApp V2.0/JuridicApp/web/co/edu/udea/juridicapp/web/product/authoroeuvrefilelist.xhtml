@@ -25,7 +25,7 @@
                 <center>
                     <h:outputText value="Nombre De La Obra: " ></h:outputText>
                     <h:outputText
-                        value="#{authorOeuvreFileBean.authorOeuvre.oeuvreType.oeuvre.title}" >
+                        value="#{authorOeuvreFileBean.authorOeuvreSelected.oeuvreType.oeuvre.title}" >
                     </h:outputText>
 
                     <p:dataTable
@@ -35,9 +35,8 @@
                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowKey="#{authorOeuvreFile.key}"
                         rows="5" rowsPerPageTemplate="5,7,10"
-                        selection="#{authorOeuvreFileBean.authorOeuvreAcquisitionFileSelected}"
                         selectionMode="single" style="width:98%; font-size:13px;"
-                        value="#{authorOeuvreFileBean.authorOeuvreAcquisitionFiles}"
+                        value="#{authorOeuvreFileBean.authorOeuvreFileList}"
                         var="authorOeuvreFile" >
 
                         <f:facet name="header" >
@@ -68,7 +67,7 @@
 
                         <p:column style="font-size:15px; text-align: center;" >
                             <f:facet id="type" name="header" >
-                                <h:outputText value="Tipo" >
+                                <h:outputText value="Tipo De Obra" >
                                 </h:outputText>  
                             </f:facet>
                             <h:outputText
@@ -90,12 +89,12 @@
 
                         <f:facet id="button" name="footer" >
                             <p:commandButton
-                                actionListener="#{authorOeuvreFileBean.onSelectedAuthorOeuvreAcquisitionFile(authorOeuvreFile)}"
+                                actionListener="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(authorOeuvreFile)}"
                                 ajax="false" icon="ui-icon-arrowthickstop-1-s"
                                 id="downloadFileButton"
                                 value="Descargar archivo" >
                                 <p:fileDownload
-                                    value="#{authorOeuvreFileBean.file}" >
+                                    value="#{authorOeuvreFileBean.productFile}" >
                                 </p:fileDownload>
                             </p:commandButton>
                         </f:facet>

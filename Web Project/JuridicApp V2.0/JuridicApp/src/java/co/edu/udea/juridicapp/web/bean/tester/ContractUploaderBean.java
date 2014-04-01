@@ -95,8 +95,8 @@ public class ContractUploaderBean implements Serializable {
     public void deleteContract(Contract c) {
         // Invocación al método para eliminar el Contrato de la carpeta temporal.
 
-        this.dndaDAO.deleteDnda(c.getDnda());
         this.contractDAO.deleteContract(c);
+        this.dndaDAO.deleteDnda(c.getDnda());
         this.getContracts().remove(c);
     }
 
