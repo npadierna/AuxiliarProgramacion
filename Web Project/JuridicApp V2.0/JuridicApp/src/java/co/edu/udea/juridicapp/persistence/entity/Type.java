@@ -101,6 +101,7 @@ public class Type implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getName() != null ? this.getName().hashCode() : 0);
 
         return (hash);
@@ -129,9 +130,5 @@ public class Type implements IEntityContext, Serializable {
 
         return ("co.edu.udea.juridicapp.persistence.entity.Type[ name="
                 + this.getName() + " ]");
-    }
-
-    private void IllegalArgumentException() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -44,7 +44,7 @@ public class Acquisition implements IEntityContext, Serializable {
     @Column(name = "description")
     private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "acquisition1")
-    private List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFileList;
+    private List<AuthorOeuvre> authorOeuvreList;
 
     public Acquisition() {
         super();
@@ -73,14 +73,13 @@ public class Acquisition implements IEntityContext, Serializable {
     }
 
     @XmlTransient()
-    public List<AuthorOeuvreAcquisitionFile> getAuthorOeuvreAcquisitionFileList() {
+    public List<AuthorOeuvre> getAuthorOeuvreList() {
 
-        return (this.authorOeuvreAcquisitionFileList);
+        return (this.authorOeuvreList);
     }
 
-    public void setAuthorOeuvreAcquisitionFileList(
-            List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFileList) {
-        this.authorOeuvreAcquisitionFileList = authorOeuvreAcquisitionFileList;
+    public void setAuthorOeuvreList(List<AuthorOeuvre> authorOeuvreList) {
+        this.authorOeuvreList = authorOeuvreList;
     }
 
     @Override()

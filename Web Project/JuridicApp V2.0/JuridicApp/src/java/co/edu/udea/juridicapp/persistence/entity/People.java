@@ -66,12 +66,10 @@ public class People implements IEntityContext, Serializable {
         this.peoplePK = peoplePK;
     }
 
-    public People(PeoplePK peoplePK, String firstNames, String lastNames,
-            String email) {
+    public People(PeoplePK peoplePK, String firstNames, String lastNames) {
         this.peoplePK = peoplePK;
         this.firstNames = firstNames;
         this.lastNames = lastNames;
-        this.email = email;
     }
 
     public People(String documentType, String idNumber) {
@@ -152,6 +150,7 @@ public class People implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getPeoplePK() != null ? this.getPeoplePK().hashCode() : 0);
 
         return (hash);

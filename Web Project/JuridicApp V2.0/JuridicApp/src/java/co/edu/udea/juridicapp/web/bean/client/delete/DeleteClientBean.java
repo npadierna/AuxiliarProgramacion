@@ -78,12 +78,12 @@ public class DeleteClientBean implements Serializable {
     public void setClient(Client client) {
         this.client = client;
     }
-    
-    public void isEmpty(ActionEvent actionEvent){
+
+    public void isEmpty(ActionEvent actionEvent) {
         FacesMessage m = null;
-        if(this.peopleDAO.findPeople(new PeoplePK(this.getDocumentType( ), 
-                this.getIdNumber())) == null){
-             m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+        if (this.peopleDAO.findPeople(new PeoplePK(this.getDocumentType(),
+                this.getIdNumber())) == null) {
+            m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Datos Inválidos", "Primero debes buscar el Usuario");
         }
         FacesContext.getCurrentInstance().addMessage(null, m);
@@ -115,9 +115,9 @@ public class DeleteClientBean implements Serializable {
     }
 
     public void deleteClient(ActionEvent actionEvent) {
-        FacesMessage m = null;
-        People p = this.peopleDAO.findPeople( new PeoplePK( this.getDocumentType( ),
-                    this.getIdNumber( )));
+        FacesMessage m;
+        People p = this.peopleDAO.findPeople(new PeoplePK(this.getDocumentType(),
+                this.getIdNumber()));
         if (p == null) {
             m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al Eliminar!!",
                     "El Usuario no existe");
@@ -127,10 +127,10 @@ public class DeleteClientBean implements Serializable {
                     "Eliminando a " + this.people.getFirstNames());
             this.peopleDAO.deletePeople(this.people);
         }
-        
+
         FacesContext.getCurrentInstance().addMessage(null, m);
-        this.setClient(new Client( ));
-        this.setPeople(new People( ));
+        this.setClient(new Client());
+        this.setPeople(new People());
         this.setDocumentType("");
         this.setIdNumber("");
     }

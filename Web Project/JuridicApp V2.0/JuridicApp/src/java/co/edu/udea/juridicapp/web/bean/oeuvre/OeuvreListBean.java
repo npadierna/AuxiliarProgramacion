@@ -70,7 +70,7 @@ public final class OeuvreListBean implements Serializable {
 
         pdfDocument.open();
         pdfDocument.setPageSize(PageSize.LETTER.rotate());
-        pdfDocument.setMargins(13.0F, 13.0F, 20.0F, 20.0F);
+        pdfDocument.setMargins(10.0F, 10.0F, 20.0F, 20.0F);
         pdfDocument.newPage();
     }
 

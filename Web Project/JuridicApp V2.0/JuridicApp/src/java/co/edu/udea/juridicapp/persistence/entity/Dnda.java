@@ -98,6 +98,7 @@ public class Dnda implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getNumber() != null ? this.getNumber().hashCode() : 0);
 
         return (hash);

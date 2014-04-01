@@ -12,10 +12,6 @@
           class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorDAO" >
     </bean>
 
-    <bean name="authorOeuvreAcquisitionDAO"
-          class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorOeuvreAcquisitionFileDAO" >
-    </bean>
-
     <bean name="authorOeuvreDAO"
           class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorOeuvreDAO" >
     </bean>

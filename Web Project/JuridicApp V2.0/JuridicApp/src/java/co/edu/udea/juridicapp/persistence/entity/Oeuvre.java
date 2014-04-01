@@ -153,6 +153,7 @@ public class Oeuvre implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getId() != null ? this.getId().hashCode() : 0);
 
         return (hash);

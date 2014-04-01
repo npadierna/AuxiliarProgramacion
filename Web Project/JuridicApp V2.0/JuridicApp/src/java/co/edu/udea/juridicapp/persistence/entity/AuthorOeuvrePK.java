@@ -40,18 +40,25 @@ public class AuthorOeuvrePK implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "contract")
     private String contract;
+    @Basic(optional = false)
+    @NotNull()
+    @Size(min = 1, max = 35)
+    @Column(name = "acquisition")
+    private String acquisition;
 
     public AuthorOeuvrePK() {
         super();
     }
 
     public AuthorOeuvrePK(Long oeuvreTypeId, String oeuvreTypeName,
-            String documentType, String idNumber, String contract) {
+            String documentType, String idNumber, String contract,
+            String acquisition) {
         this.oeuvreTypeId = oeuvreTypeId;
         this.oeuvreTypeName = oeuvreTypeName;
         this.documentType = documentType;
         this.idNumber = idNumber;
         this.contract = contract;
+        this.acquisition = acquisition;
     }
 
     public Long getOeuvreTypeId() {
@@ -99,16 +106,28 @@ public class AuthorOeuvrePK implements Serializable {
         this.contract = contract;
     }
 
+    public String getAcquisition() {
+
+        return (this.acquisition);
+    }
+
+    public void setAcquisition(String acquisition) {
+        this.acquisition = acquisition;
+    }
+
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (int) this.getOeuvreTypeId().longValue();
-        hash += (this.getOeuvreTypeName() != null ? this.getOeuvreTypeName()
-                .hashCode() : 0);
-        hash += (this.getDocumentType() != null ? this.getDocumentType()
-                .hashCode() : 0);
+        hash += (this.getOeuvreTypeName() != null
+                ? this.getOeuvreTypeName().hashCode() : 0);
+        hash += (this.getDocumentType() != null
+                ? this.getDocumentType().hashCode() : 0);
         hash += (this.getIdNumber() != null ? this.getIdNumber().hashCode() : 0);
         hash += (this.getContract() != null ? this.getContract().hashCode() : 0);
+        hash += (this.getAcquisition() != null
+                ? this.getAcquisition().hashCode() : 0);
 
         return (hash);
     }
@@ -156,6 +175,13 @@ public class AuthorOeuvrePK implements Serializable {
             return (false);
         }
 
+        if (((this.getAcquisition() == null) && (other.getAcquisition() != null))
+                || ((this.getAcquisition() != null)
+                && !(this.getAcquisition().equals(other.getAcquisition())))) {
+
+            return (false);
+        }
+
         return (true);
     }
 
@@ -165,7 +191,8 @@ public class AuthorOeuvrePK implements Serializable {
         return ("co.edu.udea.juridicapp.persistence.entity.AuthorOeuvrePK[ oeuvreTypeId="
                 + this.getOeuvreTypeId() + ", oeuvreTypeName="
                 + this.getOeuvreTypeName() + ", documentType="
-                + this.getDocumentType() + ", idNumber="
-                + this.getIdNumber() + ", contract=" + this.getContract() + " ]");
+                + this.getDocumentType() + ", idNumber=" + this.getIdNumber()
+                + ", contract=" + this.getContract() + ", acquisition="
+                + this.getAcquisition() + " ]");
     }
 }

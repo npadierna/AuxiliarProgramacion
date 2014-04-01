@@ -5,6 +5,7 @@ import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.dao.ICommentDAO;
 import co.edu.udea.juridicapp.persistence.dao.IOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.dao.IOeuvreTypeDAO;
+import co.edu.udea.juridicapp.persistence.entity.Acquisition;
 import co.edu.udea.juridicapp.persistence.entity.Author;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
 import co.edu.udea.juridicapp.persistence.entity.Comment;
@@ -141,8 +142,9 @@ public final class CreatorOeuvreBean implements Serializable {
     public void addAuthor(Author author) {
         AuthorOeuvre authorOeuvre = new AuthorOeuvre(-1L, null,
                 author.getPeoplePK().getDocumentType(),
-                author.getPeoplePK().getIdNumber(), null);
+                author.getPeoplePK().getIdNumber(), null, null);
         authorOeuvre.setAuthor(author);
+        authorOeuvre.setAcquisition1(new Acquisition());
         authorOeuvre.setContract1(new Contract());
         authorOeuvre.setDnda(new Dnda());
         authorOeuvre.setTitle(new Title());

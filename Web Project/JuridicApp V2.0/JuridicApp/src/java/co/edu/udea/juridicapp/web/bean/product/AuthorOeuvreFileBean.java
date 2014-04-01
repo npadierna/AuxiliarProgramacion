@@ -1,8 +1,7 @@
 package co.edu.udea.juridicapp.web.bean.product;
 
-import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreAcquisitionFileDAO;
+import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
-import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvreAcquisitionFile;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvrePK;
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,10 +34,10 @@ public class AuthorOeuvreFileBean implements Serializable {
 
     private static final long serialVersionUID = 8655659063769262608L;
     @Autowired()
-    private IAuthorOeuvreAcquisitionFileDAO authorOeuvreAcquisitionFileDAO;
+    private IAuthorOeuvreDAO authorOeuvreDAO;
     private AuthorOeuvre authorOeuvre;
-    private AuthorOeuvreAcquisitionFile authorOeuvreAcquisitionFileSelected;
-    private List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFiles;
+    private AuthorOeuvre authorOeuvreAcquisitionFileSelected;
+    private List<AuthorOeuvre> authorOeuvreAcquisitionFiles;
     private StreamedContent file;
 
     public AuthorOeuvreFileBean() {
@@ -54,23 +53,23 @@ public class AuthorOeuvreFileBean implements Serializable {
         this.authorOeuvre = authorOeuvre;
     }
 
-    public AuthorOeuvreAcquisitionFile getAuthorOeuvreAcquisitionFileSelected() {
+    public AuthorOeuvre getAuthorOeuvreAcquisitionFileSelected() {
 
         return (this.authorOeuvreAcquisitionFileSelected);
     }
 
     public void setAuthorOeuvreAcquisitionFileSelected(
-            AuthorOeuvreAcquisitionFile authorOeuvreAcquisitionFileSelected) {
+            AuthorOeuvre authorOeuvreAcquisitionFileSelected) {
         this.authorOeuvreAcquisitionFileSelected = authorOeuvreAcquisitionFileSelected;
     }
 
-    public List<AuthorOeuvreAcquisitionFile> getAuthorOeuvreAcquisitionFiles() {
+    public List<AuthorOeuvre> getAuthorOeuvreAcquisitionFiles() {
 
         return (this.authorOeuvreAcquisitionFiles);
     }
 
     public void setAuthorOeuvreAcquisitionFiles(
-            List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFiles) {
+            List<AuthorOeuvre> authorOeuvreAcquisitionFiles) {
         this.authorOeuvreAcquisitionFiles = authorOeuvreAcquisitionFiles;
     }
 
@@ -86,40 +85,40 @@ public class AuthorOeuvreFileBean implements Serializable {
     public void onViewProductsListForAuthorOeuvre(AuthorOeuvre authorOeuvre) {
         this.setAuthorOeuvre(authorOeuvre);
 
-        AuthorOeuvrePK authorOeuvrePK = this.getAuthorOeuvre()
-                .getAuthorOeuvrePK();
-        this.setAuthorOeuvreAcquisitionFiles(this.authorOeuvreAcquisitionFileDAO
-                .findAuthorsOeuvresAcquisitionsByAttributes(
-                "authorOeuvreAcquisitionFilePK.oeuvreTypeId", authorOeuvrePK.getOeuvreTypeId(),
-                "authorOeuvreAcquisitionFilePK.oeuvreTypeName", authorOeuvrePK.getOeuvreTypeName(),
-                "authorOeuvreAcquisitionFilePK.documentType", authorOeuvrePK.getDocumentType(),
-                "authorOeuvreAcquisitionFilePK.idNumber", authorOeuvrePK.getIdNumber(),
-                "authorOeuvreAcquisitionFilePK.contract", authorOeuvrePK.getContract()));
+//        AuthorOeuvrePK authorOeuvrePK = this.getAuthorOeuvre()
+//                .getAuthorOeuvrePK();
+//        this.setAuthorOeuvreAcquisitionFiles(this.authorOeuvreAcquisitionFileDAO
+//                .findAuthorsOeuvresAcquisitionsByAttributes(
+//                "authorOeuvreAcquisitionFilePK.oeuvreTypeId", authorOeuvrePK.getOeuvreTypeId(),
+//                "authorOeuvreAcquisitionFilePK.oeuvreTypeName", authorOeuvrePK.getOeuvreTypeName(),
+//                "authorOeuvreAcquisitionFilePK.documentType", authorOeuvrePK.getDocumentType(),
+//                "authorOeuvreAcquisitionFilePK.idNumber", authorOeuvrePK.getIdNumber(),
+//                "authorOeuvreAcquisitionFilePK.contract", authorOeuvrePK.getContract()));
     }
 
     public void onSelectedAuthorOeuvreAcquisitionFile(
-            AuthorOeuvreAcquisitionFile authorOeuvreAcquisitionFile) {
-        this.setAuthorOeuvreAcquisitionFileSelected(
-                authorOeuvreAcquisitionFile);
-
-        InputStream inputStream = null;
-        try {
-            File f = new File("/home/rebien/Documentos/JuridicApp/salida.pdf");
-            inputStream = new FileInputStream(f);
-            ExternalContext externalContext = FacesContext.getCurrentInstance()
-                    .getExternalContext();
-
-            this.setFile(new DefaultStreamedContent(inputStream,
-                    externalContext.getMimeType(f.getName()), f.getName()));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AuthorOeuvreFileBean.class.getName())
-                    .log(Level.SEVERE, null, ex);
-        }
+            AuthorOeuvre authorOeuvreAcquisitionFile) {
+//        this.setAuthorOeuvreAcquisitionFileSelected(
+//                authorOeuvreAcquisitionFile);
+//
+//        InputStream inputStream = null;
+//        try {
+//            File f = new File("/home/rebien/Documentos/JuridicApp/salida.pdf");
+//            inputStream = new FileInputStream(f);
+//            ExternalContext externalContext = FacesContext.getCurrentInstance()
+//                    .getExternalContext();
+//
+//            this.setFile(new DefaultStreamedContent(inputStream,
+//                    externalContext.getMimeType(f.getName()), f.getName()));
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(AuthorOeuvreFileBean.class.getName())
+//                    .log(Level.SEVERE, null, ex);
+//        }
     }
 
     @PostConstruct()
     private void createFields() {
         this.setAuthorOeuvreAcquisitionFiles(
-                new ArrayList<AuthorOeuvreAcquisitionFile>());
+                new ArrayList<AuthorOeuvre>());
     }
 }

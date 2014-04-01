@@ -156,6 +156,7 @@ public class Client implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getPeoplePK() != null ? this.getPeoplePK().hashCode() : 0);
 
         return (hash);

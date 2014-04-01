@@ -7,8 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,7 +23,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity()
 @NamedQueries({
-    @NamedQuery(name = "Dependency.findAll", query = "SELECT d FROM Dependency d"),
+    @NamedQuery(name = "Dependency.findAll",
+            query = "SELECT d FROM Dependency d"),
     @NamedQuery(name = "Dependency.findByName",
             query = "SELECT d FROM Dependency d WHERE d.name = :name"),
     @NamedQuery(name = "Dependency.findByDescription",
@@ -115,6 +114,7 @@ public class Dependency implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getName() != null ? this.getName().hashCode() : 0);
 
         return (hash);

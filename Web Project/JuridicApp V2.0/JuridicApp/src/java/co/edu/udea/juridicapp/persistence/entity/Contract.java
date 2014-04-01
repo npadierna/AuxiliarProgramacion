@@ -128,6 +128,7 @@ public class Contract implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getId() != null ? this.getId().hashCode() : 0);
 
         return (hash);
@@ -142,8 +143,8 @@ public class Contract implements IEntityContext, Serializable {
 
         Contract other = (Contract) object;
         if (((this.getId() == null) && (other.getId() != null))
-                || (this.getId() != null)
-                && !(this.getId().equals(other.getId()))) {
+                || ((this.getId() != null)
+                && !(this.getId().equals(other.getId())))) {
 
             return (false);
         }

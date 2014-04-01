@@ -101,6 +101,7 @@ public class Support implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getType() != null ? this.getType().hashCode() : 0);
 
         return (hash);
