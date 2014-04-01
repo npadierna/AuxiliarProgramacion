@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component()
 @Scope(value = "session")
 @SessionScoped()
-public class ContractBean implements Serializable {
+public final class ContractBean implements Serializable {
 
     private static final long serialVersionUID = 1332869958240524352L;
     @Autowired()

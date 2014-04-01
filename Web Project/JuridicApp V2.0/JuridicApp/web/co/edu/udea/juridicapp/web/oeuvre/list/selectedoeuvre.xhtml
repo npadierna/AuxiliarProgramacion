@@ -155,7 +155,7 @@
                                         <p:column style="font-size:15px; text-align: center;" >
                                             <f:facet id="fullName" name="header" >
                                                 <h:outputText 
-                                                    value="Vínculo Con La Universidad" >
+                                                    value="Vínculo Con Universidad" >
                                                 </h:outputText>  
                                             </f:facet>
                                             <h:outputText
@@ -173,6 +173,18 @@
                                             <h:outputText
                                                 style="font-size:13px;"
                                                 value="#{authorOeuvre.contract1.id}" >
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="fullName" name="header" >
+                                                <h:outputText 
+                                                    value="Acquisición" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText
+                                                style="font-size:13px;"
+                                                value="#{authorOeuvre.acquisition1.type}" >
                                             </h:outputText>
                                         </p:column>
 

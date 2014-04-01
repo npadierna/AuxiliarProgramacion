@@ -110,6 +110,13 @@
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>acquisitionBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.acquisition.AcquisitionBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 
     <!-- Tester -->
     <managed-bean>

@@ -23,7 +23,7 @@
         <h:form id="mainFileListForm" >
             <p:panel>
                 <center>
-                    <h:outputText value="Nombre De La Obra:" ></h:outputText>
+                    <h:outputText value="Nombre De La Obra: " ></h:outputText>
                     <h:outputText
                         value="#{authorOeuvreFileBean.authorOeuvre.oeuvreType.oeuvre.title}" >
                     </h:outputText>
@@ -51,7 +51,7 @@
                             </f:facet>
                             <h:outputText
                                 style="font-size:13px;"
-                                value="#{authorOeuvreFile.authorOeuvreAcquisitionFilePK.contract}" >
+                                value="#{authorOeuvreFile.contract1.id}" >
                             </h:outputText>
                         </p:column>
 
@@ -62,7 +62,7 @@
                             </f:facet>
                             <h:outputText
                                 style="font-size:13px;"
-                                value="#{authorOeuvreFile.authorOeuvreAcquisitionFilePK.acquisition}" >
+                                value="#{authorOeuvreFile.acquisition1.type}" >
                             </h:outputText>
                         </p:column>
 
@@ -73,7 +73,7 @@
                             </f:facet>
                             <h:outputText
                                 style="font-size:13px;"
-                                value="#{authorOeuvreFile.authorOeuvreAcquisitionFilePK.oeuvreTypeName}" >
+                                value="#{authorOeuvreFile.authorOeuvrePK.oeuvreTypeName}" >
                             </h:outputText>
                         </p:column>
 

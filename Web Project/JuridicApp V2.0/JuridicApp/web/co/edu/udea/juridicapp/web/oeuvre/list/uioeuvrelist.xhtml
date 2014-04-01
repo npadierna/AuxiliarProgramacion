@@ -98,6 +98,22 @@
                     </h:outputText>
                 </p:column>
 
+                <p:column
+                    filterBy="#{authorOeuvre.acquisition1.type}"
+                    filterOptions="#{acquisitionBean.acquisitionsSelectItems}"
+                    filterMatchMode="exact"
+                    sortBy="#{authorOeuvre.acquisition1.type}"
+                    style="font-size:15px; text-align: center;" >
+                    <f:facet id="isbn" name="header" > 
+                        <h:outputText value="Acquisición" >
+                        </h:outputText>
+                    </f:facet>
+                    <h:outputText
+                        style="font-size:13px;"
+                        value="#{authorOeuvre.acquisition1.type}" >
+                    </h:outputText>                    
+                </p:column>
+
                 <p:column style="font-size:15px; text-align: center;" >
                     <f:facet id="isbn" name="header" > 
                         <h:outputText value="ISBN" >
