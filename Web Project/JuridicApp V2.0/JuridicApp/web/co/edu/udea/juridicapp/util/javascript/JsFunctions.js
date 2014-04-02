@@ -1,3 +1,15 @@
+function onViewContractRequest(xhr, status, args) {
+    if (args.selectedContract) {
+        window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/contract/contractvisor.xhtml', 'Contrato');
+    }
+}
+
+function onViewProductRequest(xhr, status, args) {
+    if (args.selectedProduct) {
+        window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvrefilelist.xhtml', 'Productos');
+    }
+}
+
 function handleDeleteRequest(xhr, status, args) {
     // if (args.deleted) {
     location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';

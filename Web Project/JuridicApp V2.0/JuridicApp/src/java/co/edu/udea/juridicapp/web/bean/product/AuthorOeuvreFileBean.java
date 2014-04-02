@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.springframework.context.annotation.Scope;
@@ -30,12 +31,16 @@ import org.springframework.stereotype.Component;
 public class AuthorOeuvreFileBean implements Serializable {
 
     private static final long serialVersionUID = 8655659063769262608L;
+    private static final String SELECTED_PRODUCT = "selectedProduct";
     private AuthorOeuvre authorOeuvreSelected;
     private List<AuthorOeuvre> authorOeuvreFileList;
     private StreamedContent productFile;
+    private boolean selectedProduct;
+
 
     public AuthorOeuvreFileBean() {
         super();
+        this.selectedProduct = false;
     }
 
     public AuthorOeuvre getAuthorOeuvreSelected() {
@@ -68,24 +73,36 @@ public class AuthorOeuvreFileBean implements Serializable {
 
     public void onSelectedAuthorOeuvre(
             AuthorOeuvre authorOeuvreSelected) {
-        this.setAuthorOeuvre(authorOeuvreSelected);
-        this.getAuthorOeuvreFileList().clear();
-        this.getAuthorOeuvreFileList().add(this.getAuthorOeuvreSelected());
+         RequestContext context = RequestContext.getCurrentInstance();
+        if (authorOeuvreSelected != null) {
+            this.setAuthorOeuvre(authorOeuvreSelected);
+            this.getAuthorOeuvreFileList().clear();
+            this.getAuthorOeuvreFileList().add(this.getAuthorOeuvreSelected());
 
-        InputStream inputStream;
-        try {
-            File f = new File(this.getAuthorOeuvreSelected().getRoute());
+            if (this.getAuthorOeuvreSelected().getRoute() != null) {
+                InputStream inputStream;
+                try {
+                    File f = new File(this.getAuthorOeuvreSelected().getRoute());
 //            File f = new File("/home/rebien/Documentos/JuridicApp/salida.pdf");
-            inputStream = new FileInputStream(f);
-            ExternalContext externalContext = FacesContext.getCurrentInstance()
-                    .getExternalContext();
+                    inputStream = new FileInputStream(f);
+                    ExternalContext externalContext = FacesContext.getCurrentInstance()
+                            .getExternalContext();
 
-            this.setProductFile(new DefaultStreamedContent(inputStream,
-                    externalContext.getMimeType(f.getName()), f.getName()));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AuthorOeuvreFileBean.class.getName())
-                    .log(Level.SEVERE, null, ex);
+                    this.setProductFile(new DefaultStreamedContent(inputStream,
+                            externalContext.getMimeType(f.getName()), f.getName()));
+                     
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(AuthorOeuvreFileBean.class.getName())
+                            .log(Level.SEVERE, null, ex);
+                }
+                this.selectedProduct = true;
+            } else {
+                this.selectedProduct = true;
+            }
+        } else {
+            this.selectedProduct = false;
         }
+        context.addCallbackParam(AuthorOeuvreFileBean.SELECTED_PRODUCT, this.selectedProduct);
     }
 
     @PostConstruct()
