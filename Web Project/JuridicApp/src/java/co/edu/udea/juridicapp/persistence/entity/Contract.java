@@ -7,14 +7,18 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -44,6 +48,11 @@ public class Contract implements IEntityContext, Serializable {
     private String route;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "contract1")
     private List<AuthorOeuvre> authorOeuvreList;
+    @JoinColumn(name = "dnda", referencedColumnName = "number")
+    @ManyToOne()
+    private Dnda dnda;
+    @Transient()
+    private UploadedFile contractFile;
 
     public Contract() {
         super();
@@ -81,6 +90,24 @@ public class Contract implements IEntityContext, Serializable {
         this.authorOeuvreList = authorOeuvreList;
     }
 
+    public Dnda getDnda() {
+
+        return (this.dnda);
+    }
+
+    public void setDnda(Dnda dnda) {
+        this.dnda = dnda;
+    }
+
+    public UploadedFile getContractFile() {
+
+        return (this.contractFile);
+    }
+
+    public void setContractFile(UploadedFile contractFile) {
+        this.contractFile = contractFile;
+    }
+
     @Override()
     public String getKey() {
 
@@ -101,6 +128,7 @@ public class Contract implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getId() != null ? this.getId().hashCode() : 0);
 
         return (hash);
@@ -115,8 +143,8 @@ public class Contract implements IEntityContext, Serializable {
 
         Contract other = (Contract) object;
         if (((this.getId() == null) && (other.getId() != null))
-                || (this.getId() != null)
-                && !(this.getId().equals(other.getId()))) {
+                || ((this.getId() != null)
+                && !(this.getId().equals(other.getId())))) {
 
             return (false);
         }

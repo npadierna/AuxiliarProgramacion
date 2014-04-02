@@ -101,6 +101,7 @@ public class Title implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getProfile() != null ? this.getProfile().hashCode() : 0);
 
         return (hash);

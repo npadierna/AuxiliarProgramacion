@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core" >
+
+    <center>
+        <p:panel>
+            <p:spacer height="10px" ></p:spacer>
+
+            <p:dataTable 
+                draggableColumns="true"
+                id="mainTable"
+                style="width:98%; font-size:13px;"
+                value="#{creatorOeuvreBean.authorsOeuvres}"
+                var="authorOeuvre" > 
+
+                <f:facet name="header" >
+                    Obras Creadas
+                </f:facet>
+
+                <p:column 
+                    style="font-size:15px;" >
+                    <f:facet id="issue" name="header" >
+                        <h:outputText 
+                            value="Nombre De La Obra" >
+                        </h:outputText>  
+                    </f:facet>
+                    <h:outputText
+                        style="font-size:13px;"
+                        value="#{creatorOeuvreBean.oeuvre.title}" >
+                    </h:outputText>
+                </p:column>
+
+                <p:column 
+                    style="font-size:15px;" >
+                    <f:facet id="year" name="header" >
+                        <h:outputText
+                            value="Fecha De Entrega" >
+                        </h:outputText>  
+                    </f:facet>
+                    <center>
+                        <h:outputText
+                            style="font-size:13px;"
+                            value="#{authorOeuvre.delivering}" >
+                        </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column 
+                    style="font-size:15px;" >
+                    <f:facet id="type" name="header" >
+                        <h:outputText value="Tipo" >
+                        </h:outputText>
+                    </f:facet>
+                    <h:outputText
+                        style="font-size:13px;"
+                        value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
+                    </h:outputText>
+                </p:column>
+
+                <p:column 
+                    style="font-size:15px;" >
+                    <f:facet id="author" name="header" >
+                        <h:outputText
+                            value="Autor" >
+                        </h:outputText>  
+                    </f:facet>
+                    <h:outputText
+                        style="font-size:13px;"
+                        value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
+                    </h:outputText>
+                </p:column>
+
+                <p:column 
+                    style="font-size:15px;" >
+                    <f:facet id="contract" name="header" > 
+                        <h:outputText 
+                            value="N° Contrato" >
+                        </h:outputText> 
+                    </f:facet>
+                    <center>
+                        <h:outputText
+                            style="font-size:13px;"
+                            value="#{authorOeuvre.authorOeuvrePK.contract}" >
+                        </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column style="font-size:15px;" >
+                    <f:facet id="isbn" name="header" > 
+                        <h:outputText 
+                            value="ISBN" >
+                        </h:outputText>
+                    </f:facet>
+                    <center>
+                        <h:outputText
+                            style="font-size:13px;"
+                            value="#{authorOeuvre.isbn}" >
+                        </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column 
+                    style="font-size:15px;" >
+                    <f:facet id="dnda" name="header" >
+                        <h:outputText 
+                            value="DNDA" >
+                        </h:outputText>  
+                    </f:facet>
+                    <center>
+                        <h:outputText
+                            style="font-size:13px;"
+                            value="#{authorOeuvre.dnda.number}" >
+                        </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column 
+                    style="font-size:15px;" >
+                    <f:facet id="support" name="header" >
+                        <h:outputText
+                            value="Soporte" >
+                        </h:outputText>  
+                    </f:facet>
+                    <center>
+                        <h:outputText
+                            style="font-size:13px;"
+                            value="#{authorOeuvre.supportType.type}" >
+                        </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column 
+                    style="font-size:15px;" >
+                    <f:facet id="support" name="header" >
+                        <h:outputText
+                            value="Archivo De Contrato" >
+                        </h:outputText>  
+                    </f:facet>
+                    <center>
+                        <h:outputText
+                            style="font-size:13px;"
+                            value="FALTA" >
+                        </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column 
+                    style="font-size:15px;" >
+                    <f:facet id="support" name="header" >
+                        <h:outputText
+                            value="Archivo De Producto" >
+                        </h:outputText>  
+                    </f:facet>
+                    <center>
+                        <h:outputText
+                            style="font-size:13px;"
+                            value="FALTA" >
+                        </h:outputText>
+                    </center>
+                </p:column>
+            </p:dataTable>
+
+            <p:spacer height="10px" ></p:spacer>
+
+            <p:commandButton
+                actionListener="#{creatorOeuvreBean.saveAuthorsOeuvres}"
+                id="save" icon="ui-icon-disk"
+                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';"
+                value="Guardar" >
+            </p:commandButton>
+        </p:panel>
+    </center>
+</ui:composition>

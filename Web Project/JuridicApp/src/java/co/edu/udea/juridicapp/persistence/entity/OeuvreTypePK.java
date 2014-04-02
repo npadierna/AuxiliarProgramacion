@@ -56,6 +56,7 @@ public class OeuvreTypePK implements Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (int) this.getOeuvreId();
         hash += (this.getTypeName() != null ? this.getTypeName().hashCode() : 0);
 

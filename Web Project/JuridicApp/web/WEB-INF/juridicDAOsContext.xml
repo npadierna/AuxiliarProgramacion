@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -10,10 +10,6 @@
 
     <bean name="authorDAO"
           class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorDAO" >
-    </bean>
-
-    <bean name="authorOeuvreAcquisitionDAO"
-          class="co.edu.udea.juridicapp.persistence.dao.impl.AuthorOeuvreAcquisitionFileDAO" >
     </bean>
 
     <bean name="authorOeuvreDAO"

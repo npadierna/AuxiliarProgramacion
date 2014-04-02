@@ -21,7 +21,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity()
 @NamedQueries({
-    @NamedQuery(name = "OeuvreType.findAll", query = "SELECT o FROM OeuvreType o"),
+    @NamedQuery(name = "OeuvreType.findAll",
+            query = "SELECT o FROM OeuvreType o"),
     @NamedQuery(name = "OeuvreType.findByOeuvreId",
             query = "SELECT o FROM OeuvreType o WHERE o.oeuvreTypePK.oeuvreId = :oeuvreId"),
     @NamedQuery(name = "OeuvreType.findByTypeName",
@@ -113,8 +114,9 @@ public class OeuvreType implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (this.getOeuvreTypePK() != null ? this.getOeuvreTypePK()
-                .hashCode() : 0);
+
+        hash += (this.getOeuvreTypePK() != null
+                ? this.getOeuvreTypePK().hashCode() : 0);
 
         return (hash);
     }

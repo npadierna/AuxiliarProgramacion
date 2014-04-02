@@ -2,6 +2,8 @@ package co.edu.udea.juridicapp.web.bean.oeuvre;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
+import com.lowagie.text.Document;
+import com.lowagie.text.PageSize;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -61,6 +63,15 @@ public final class OeuvreListBean implements Serializable {
 
     public void setSelectedAuthorOeuvre(AuthorOeuvre selectedAuthorOeuvre) {
         this.selectedAuthorOeuvre = selectedAuthorOeuvre;
+    }
+
+    public void preProcessForPDFFile(Object document) {
+        Document pdfDocument = (Document) document;
+
+        pdfDocument.open();
+        pdfDocument.setPageSize(PageSize.LETTER.rotate());
+        pdfDocument.setMargins(10.0F, 10.0F, 20.0F, 20.0F);
+        pdfDocument.newPage();
     }
 
     @PostConstruct()

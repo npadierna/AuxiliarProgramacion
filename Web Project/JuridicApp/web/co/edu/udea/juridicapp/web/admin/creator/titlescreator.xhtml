@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
@@ -8,17 +8,15 @@
       xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:head>
-        <title>Crear Vínculo Universitario</title>
+    <h:head lang="es" >
+        <meta content="text/html" http-equiv="Content-Type" ></meta>
+        <meta charset="UTF-8" ></meta>
         <script type="text/javascript"
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
+        <title>Crear Vínculo Universitario</title>
 
-        <f:facet name="dependencyCreator" >
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
-            </meta>
-        </f:facet>
+        <f:facet name="titlesCreator" ></f:facet>
     </h:head>
 
     <h:body>
@@ -70,7 +68,7 @@
                                     id="titleName" label="Nombre del Vínculo"
                                     maxlength="35" required="true"  
                                     requiredMessage="Por favor ingrese el nombre del vínculo." 
-                                    size="60"
+                                    size="42"
                                     value="#{titleBean.title.profile}" >
                                 </p:inputText>
                                 <p:watermark
@@ -84,9 +82,9 @@
                                     value="Descripción:" >
                                 </h:outputLabel>
                                 <p:inputTextarea
-                                    autoResize="false" cols="45"
+                                    autoResize="false" cols="42"
                                     id="titleDescription" maxlength="150"
-                                    required="false" rows="3"
+                                    required="false" rows="5"
                                     value="#{titleBean.title.description}" >
                                 </p:inputTextarea>
                                 <p:watermark
@@ -100,6 +98,8 @@
                                 id="saveTitleButton" icon="ui-icon-disk"
                                 update="growlLogin" value="Guardar" >
                             </p:commandButton>
+
+                            <p:spacer width="25px" ></p:spacer>
 
                             <p:commandButton
                                 id="clearButton" icon="ui-icon-refresh"

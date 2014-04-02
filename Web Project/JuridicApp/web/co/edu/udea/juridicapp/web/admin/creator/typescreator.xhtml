@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
@@ -8,17 +8,15 @@
       xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:head>
-        <title>Crear Tipo De Obra</title>
+    <h:head lang="es" >
+        <meta content="text/html" http-equiv="Content-Type" ></meta>
+        <meta charset="UTF-8" ></meta>
         <script type="text/javascript"
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
+        <title>Crear Tipo De Obra</title>
 
-        <f:facet name="dependencyCreator" >
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
-            </meta>
-        </f:facet>
+        <f:facet name="typesCreator" ></f:facet>
     </h:head>
 
     <h:body>
@@ -71,7 +69,7 @@
                                     id="oeuvreType" label="Tipo de Obra"
                                     maxlength="45" required="true"  
                                     requiredMessage="Por favor ingrese el tipo de obra." 
-                                    size="60" value="#{typeBean.type.name}" >
+                                    size="55" value="#{typeBean.type.name}" >
                                 </p:inputText>
                                 <p:watermark
                                     for="oeuvreType" value="Nombre del Tipo" >
@@ -83,8 +81,8 @@
                                     value="Descripción:" >
                                 </h:outputLabel>
                                 <p:inputTextarea
-                                    cols="45" id="oeuvreTypeDescription"
-                                    maxlength="150" rows="3"
+                                    cols="55" id="oeuvreTypeDescription"
+                                    maxlength="150" rows="4"
                                     value="#{typeBean.type.description}" >
                                 </p:inputTextarea>
                                 <p:watermark
@@ -98,6 +96,8 @@
                                 icon="ui-icon-disk" id="saveTitleButton"
                                 update="growlLogin" value="Guardar" >
                             </p:commandButton>
+
+                            <p:spacer width="25px" ></p:spacer>
 
                             <p:commandButton
                                 icon="ui-icon-refresh" id="clearButton" 

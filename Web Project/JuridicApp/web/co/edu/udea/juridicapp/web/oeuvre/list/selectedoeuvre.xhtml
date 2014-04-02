@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
@@ -6,20 +6,19 @@
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:p="http://primefaces.org/ui" 
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
 
-    <h:head>
-        <title>Selección De Obra</title>
+    <h:head lang="es" >
+        <meta content="text/html" http-equiv="Content-Type" ></meta>
+        <meta charset="UTF-8" ></meta>
         <script type="text/javascript"
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
-        <f:facet name="selectedOeuvre" >
+        <title>
+            Obra: #{oeuvreSelectorBean.selectedAuthorOeuvre.oeuvreType.oeuvre.title}
+        </title>
 
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
-            </meta>
-
-        </f:facet>
+        <f:facet name="selectedOeuvre" ></f:facet>
     </h:head>
 
     <h:body>
@@ -88,13 +87,6 @@
                                     <p:fieldset legend="Datos De La Dependencia" >
                                         <h:panelGrid columns="2" cellpadding="10" >
                                             <h:outputText
-                                                value="Registro DNDA:" >
-                                            </h:outputText>
-                                            <h:outputText
-                                                value="#{oeuvreSelectorBean.selectedAuthorOeuvre.oeuvreType.oeuvre.dependency.dnda.number}" >
-                                            </h:outputText>
-
-                                            <h:outputText
                                                 value="Dependencia Acádemica:" >
                                             </h:outputText>
                                             <h:outputText
@@ -124,32 +116,28 @@
                                             Listado De Autores
                                         </f:facet>
 
-                                        <p:column style="font-size:15px;" >
+                                        <p:column style="font-size:15px; text-align: center;" >
                                             <f:facet id="documentType" name="header">  
                                                 <h:outputText 
                                                     value="Tipo De Documento" >
                                                 </h:outputText>  
                                             </f:facet>
-                                            <center>
-                                                <h:outputText
-                                                    style="font-size:13px;"
-                                                    value="#{authorOeuvre.authorOeuvrePK.documentType}" >
-                                                </h:outputText>
-                                            </center>
+                                            <h:outputText
+                                                style="font-size:13px;"
+                                                value="#{authorOeuvre.authorOeuvrePK.documentType}" >
+                                            </h:outputText>
                                         </p:column>
 
-                                        <p:column style="font-size:15px;" >
+                                        <p:column style="font-size:15px; text-align: center;" >
                                             <f:facet id="documentNumber" name="header">  
                                                 <h:outputText 
                                                     value="Número De Documento" >
                                                 </h:outputText>  
                                             </f:facet>
-                                            <center>
-                                                <h:outputText 
-                                                    style="font-size:13px;"
-                                                    value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
-                                                </h:outputText>
-                                            </center>
+                                            <h:outputText 
+                                                style="font-size:13px;"
+                                                value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
+                                            </h:outputText>
                                         </p:column>
 
                                         <p:column style="font-size:15px;" >
@@ -164,32 +152,40 @@
                                             </h:outputText>
                                         </p:column>
 
-                                        <p:column style="font-size:15px;" >
+                                        <p:column style="font-size:15px; text-align: center;" >
                                             <f:facet id="fullName" name="header" >
                                                 <h:outputText 
-                                                    value="Vínculo Con La Universidad" >
+                                                    value="Vínculo Con Universidad" >
                                                 </h:outputText>  
                                             </f:facet>
-                                            <center>
-                                                <h:outputText
-                                                    style="font-size:13px;"
-                                                    value="#{authorOeuvre.title.profile}" >
-                                                </h:outputText>
-                                            </center>
+                                            <h:outputText
+                                                style="font-size:13px;"
+                                                value="#{authorOeuvre.title.profile}" >
+                                            </h:outputText>
                                         </p:column>
 
-                                        <p:column style="font-size:15px;" >
+                                        <p:column style="font-size:15px; text-align: center;" >
                                             <f:facet id="fullName" name="header" >
                                                 <h:outputText 
                                                     value="N° Contrato" >
                                                 </h:outputText>  
                                             </f:facet>
-                                            <center>
-                                                <h:outputText
-                                                    style="font-size:13px;"
-                                                    value="#{authorOeuvre.contract1.id}" >
-                                                </h:outputText>
-                                            </center>
+                                            <h:outputText
+                                                style="font-size:13px;"
+                                                value="#{authorOeuvre.contract1.id}" >
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column style="font-size:15px;" >
+                                            <f:facet id="fullName" name="header" >
+                                                <h:outputText 
+                                                    value="Acquisición" >
+                                                </h:outputText>  
+                                            </f:facet>
+                                            <h:outputText
+                                                style="font-size:13px;"
+                                                value="#{authorOeuvre.acquisition1.type}" >
+                                            </h:outputText>
                                         </p:column>
 
                                         <p:column style="font-size:15px;" >
@@ -203,30 +199,26 @@
                                             </h:outputText>
                                         </p:column>
 
-                                        <p:column style="font-size:15px;" >
+                                        <p:column style="font-size:15px; text-align: center;" >
                                             <f:facet id="fullName" name="header" >
                                                 <h:outputText value="ISBN" >
                                                 </h:outputText>
                                             </f:facet>
-                                            <center>
-                                                <h:outputText
-                                                    style="font-size:13px;"
-                                                    value="#{authorOeuvre.isbn}" >
-                                                </h:outputText>
-                                            </center>
+                                            <h:outputText
+                                                style="font-size:13px;"
+                                                value="#{authorOeuvre.isbn}" >
+                                            </h:outputText>
                                         </p:column>
 
-                                        <p:column style="font-size:15px;" >
+                                        <p:column style="font-size:15px; text-align: center;" >
                                             <f:facet id="fullName" name="header" >
                                                 <h:outputText value="Soporte" >
                                                 </h:outputText>  
                                             </f:facet>
-                                            <center>
-                                                <h:outputText
-                                                    style="font-size:13px;"
-                                                    value="#{authorOeuvre.supportType.type}" >
-                                                </h:outputText>
-                                            </center>
+                                            <h:outputText
+                                                style="font-size:13px;"
+                                                value="#{authorOeuvre.supportType.type}" >
+                                            </h:outputText>
                                         </p:column>
 
                                         <f:facet id="button" name="footer" >
@@ -234,15 +226,15 @@
                                                 action="#{contractBean.onViewContractForAuthorOeuvre(oeuvreSelectorBean.selectedAuthorOeuvre)}"
                                                 icon="ui-icon-newwin"
                                                 id="viewContractButton"
-                                                onclick="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/contract/contractvisor.xhtml','Contrato');"                                  
+                                                onclick="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/contract/contractvisor.xhtml', 'Contrato');"                                  
                                                 value="Ver contrato" >
                                             </p:commandButton>
 
                                             <p:commandButton
-                                                action="#{authorOeuvreFileBean.onViewProductsListForAuthorOeuvre(oeuvreSelectorBean.selectedAuthorOeuvre)}"
+                                                action="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(oeuvreSelectorBean.selectedAuthorOeuvre)}"
                                                 icon="ui-icon-document"
                                                 id="viewProductsFilesButton"
-                                                onclick="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvrefilelist.xhtml','Contrato');"   
+                                                onclick="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvrefilelist.xhtml', 'Contrato');"   
                                                 value="Ver producto" >
                                             </p:commandButton>
                                         </f:facet>
@@ -265,7 +257,7 @@
 
                                         <p:column headerText="Fecha" width="200" >
                                             <h:outputText
-                                                value="#{comment.dateTime}" >
+                                                value="#{oeuvreSelectorBean.applyFormatForDate(comment.dateTime)}" >
                                             </h:outputText>
                                         </p:column>
                                     </p:dataTable>

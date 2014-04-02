@@ -2,9 +2,7 @@ package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -13,14 +11,14 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -41,12 +39,16 @@ import javax.xml.bind.annotation.XmlTransient;
             query = "SELECT a FROM AuthorOeuvre a WHERE a.authorOeuvrePK.idNumber = :idNumber"),
     @NamedQuery(name = "AuthorOeuvre.findByContract",
             query = "SELECT a FROM AuthorOeuvre a WHERE a.authorOeuvrePK.contract = :contract"),
+    @NamedQuery(name = "AuthorOeuvre.findByAcquisition",
+            query = "SELECT a FROM AuthorOeuvre a WHERE a.authorOeuvrePK.acquisition = :acquisition"),
     @NamedQuery(name = "AuthorOeuvre.findByIsbn",
             query = "SELECT a FROM AuthorOeuvre a WHERE a.isbn = :isbn"),
-    @NamedQuery(name = "AuthorOeuvre.findByStarting",
+    @NamedQuery(name = "AuthorOeuvre.findByBeginning",
             query = "SELECT a FROM AuthorOeuvre a WHERE a.beginning = :beginning"),
     @NamedQuery(name = "AuthorOeuvre.findByDelivering",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.delivering = :delivering")})
+            query = "SELECT a FROM AuthorOeuvre a WHERE a.delivering = :delivering"),
+    @NamedQuery(name = "AuthorOeuvre.findByRoute",
+            query = "SELECT a FROM AuthorOeuvre a WHERE a.route = :route")})
 @Table(name = "AUTHOR_OEUVRE")
 @XmlRootElement()
 public class AuthorOeuvre implements IEntityContext, Serializable {
@@ -67,6 +69,15 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     @Column(name = "delivering")
     @Temporal(TemporalType.DATE)
     private Date delivering;
+    @Basic(optional = false)
+    @NotNull()
+    @Size(min = 1, max = 300)
+    @Column(name = "route")
+    private String route;
+    @JoinColumn(name = "acquisition", referencedColumnName = "type",
+            insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Acquisition acquisition1;
     @JoinColumn(name = "contract", referencedColumnName = "id",
             insertable = false, updatable = false)
     @ManyToOne(optional = false)
@@ -83,7 +94,7 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     @ManyToOne(optional = false)
     private Author author;
     @JoinColumn(name = "dnda", referencedColumnName = "number")
-    @ManyToOne
+    @ManyToOne()
     private Dnda dnda;
     @JoinColumn(name = "support_type", referencedColumnName = "type")
     @ManyToOne(optional = false)
@@ -96,8 +107,8 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
                 updatable = false)})
     @ManyToOne(optional = false)
     private OeuvreType oeuvreType;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "authorOeuvre")
-    private List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFileList;
+    @Transient()
+    private UploadedFile productFile;
 
     public AuthorOeuvre() {
         super();
@@ -108,16 +119,18 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     }
 
     public AuthorOeuvre(AuthorOeuvrePK authorOeuvrePK, Date beginning,
-            Date delivering) {
+            Date delivering, String route) {
         this.authorOeuvrePK = authorOeuvrePK;
         this.beginning = beginning;
         this.delivering = delivering;
+        this.route = route;
     }
 
     public AuthorOeuvre(long oeuvreTypeId, String oeuvreTypeName,
-            String documentType, String idNumber, String contract) {
+            String documentType, String idNumber, String contract,
+            String acquisition) {
         this.authorOeuvrePK = new AuthorOeuvrePK(oeuvreTypeId, oeuvreTypeName,
-                documentType, idNumber, contract);
+                documentType, idNumber, contract, acquisition);
     }
 
     public AuthorOeuvrePK getAuthorOeuvrePK() {
@@ -154,6 +167,24 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
 
     public void setDelivering(Date delivering) {
         this.delivering = delivering;
+    }
+
+    public String getRoute() {
+
+        return (this.route);
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    public Acquisition getAcquisition1() {
+
+        return (this.acquisition1);
+    }
+
+    public void setAcquisition1(Acquisition acquisition1) {
+        this.acquisition1 = acquisition1;
     }
 
     public Contract getContract1() {
@@ -210,15 +241,13 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
         this.oeuvreType = oeuvreType;
     }
 
-    @XmlTransient()
-    public List<AuthorOeuvreAcquisitionFile> getAuthorOeuvreAcquisitionFileList() {
+    public UploadedFile getProductFile() {
 
-        return (this.authorOeuvreAcquisitionFileList);
+        return (this.productFile);
     }
 
-    public void setAuthorOeuvreAcquisitionFileList(
-            List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFileList) {
-        this.authorOeuvreAcquisitionFileList = authorOeuvreAcquisitionFileList;
+    public void setProductFile(UploadedFile productFile) {
+        this.productFile = productFile;
     }
 
     @Override()
@@ -242,8 +271,8 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     public int hashCode() {
         int hash = 0;
 
-        hash += (this.getAuthorOeuvrePK() != null ? this.getAuthorOeuvrePK()
-                .hashCode() : 0);
+        hash += (this.getAuthorOeuvrePK() != null
+                ? this.getAuthorOeuvrePK().hashCode() : 0);
 
         return (hash);
     }

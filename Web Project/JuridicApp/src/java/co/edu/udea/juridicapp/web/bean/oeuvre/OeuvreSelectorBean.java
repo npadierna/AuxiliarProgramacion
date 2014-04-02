@@ -5,7 +5,10 @@ import co.edu.udea.juridicapp.persistence.dao.ICommentDAO;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
 import co.edu.udea.juridicapp.persistence.entity.Comment;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -27,6 +30,7 @@ import org.springframework.stereotype.Component;
 public final class OeuvreSelectorBean implements Serializable {
 
     private static final long serialVersionUID = 3054628927294284800L;
+    public static final String FORMAT_FOR_DATE = "yyyy-MM-dd hh:mm aaa";
     @Autowired()
     private IAuthorOeuvreDAO authorOeuvreDAO;
     @Autowired()
@@ -35,6 +39,7 @@ public final class OeuvreSelectorBean implements Serializable {
     private AuthorOeuvre selectedAuthorOeuvre;
     private List<AuthorOeuvre> authorsOeuvres;
     private List<Comment> oeuvreComments;
+    private DateFormat dateFormat;
 
     public OeuvreSelectorBean() {
         super();
@@ -90,12 +95,9 @@ public final class OeuvreSelectorBean implements Serializable {
         context.addCallbackParam("onSelected", this.onSelected);
     }
 
-    @PostConstruct()
-    private void createFields() {
-        this.onSelected = false;
+    public String applyFormatForDate(Date date) {
 
-        this.setAuthorsOeuvres(new ArrayList<AuthorOeuvre>());
-        this.setOeuvreComments(new ArrayList<Comment>());
+        return (this.dateFormat.format(date));
     }
 
     private void findAuthorsOeuvres() {
@@ -108,5 +110,15 @@ public final class OeuvreSelectorBean implements Serializable {
         this.setOeuvreComments(this.commentDAO.findCommnetsByOeuvreId(
                 this.getSelectedAuthorOeuvre().getAuthorOeuvrePK()
                 .getOeuvreTypeId()));
+    }
+
+    @PostConstruct()
+    private void createFields() {
+        this.onSelected = false;
+        this.dateFormat = new SimpleDateFormat(
+                OeuvreSelectorBean.FORMAT_FOR_DATE);
+
+        this.setAuthorsOeuvres(new ArrayList<AuthorOeuvre>());
+        this.setOeuvreComments(new ArrayList<Comment>());
     }
 }

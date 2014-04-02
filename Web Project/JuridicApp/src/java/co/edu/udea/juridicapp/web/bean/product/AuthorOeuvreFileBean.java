@@ -1,15 +1,22 @@
 package co.edu.udea.juridicapp.web.bean.product;
 
-import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreAcquisitionFileDAO;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
-import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvreAcquisitionFile;
-import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvrePK;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -24,67 +31,82 @@ import org.springframework.stereotype.Component;
 public class AuthorOeuvreFileBean implements Serializable {
 
     private static final long serialVersionUID = 8655659063769262608L;
-    @Autowired()
-    private IAuthorOeuvreAcquisitionFileDAO authorOeuvreAcquisitionFileDAO;
-    private AuthorOeuvre authorOeuvre;
-    private AuthorOeuvreAcquisitionFile authorOeuvreAcquisitionFileSelected;
-    private List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFiles;
+    private static final String SELECTED_PRODUCT = "selectedProduct";
+    private AuthorOeuvre authorOeuvreSelected;
+    private List<AuthorOeuvre> authorOeuvreFileList;
+    private StreamedContent productFile;
+    private boolean selectedProduct;
+
 
     public AuthorOeuvreFileBean() {
         super();
+        this.selectedProduct = false;
     }
 
-    public AuthorOeuvre getAuthorOeuvre() {
+    public AuthorOeuvre getAuthorOeuvreSelected() {
 
-        return (this.authorOeuvre);
+        return (this.authorOeuvreSelected);
     }
 
     public void setAuthorOeuvre(AuthorOeuvre authorOeuvre) {
-        this.authorOeuvre = authorOeuvre;
+        this.authorOeuvreSelected = authorOeuvre;
     }
 
-    public AuthorOeuvreAcquisitionFile getAuthorOeuvreAcquisitionFileSelected() {
+    public StreamedContent getProductFile() {
 
-        return (this.authorOeuvreAcquisitionFileSelected);
+        return (this.productFile);
     }
 
-    public void setAuthorOeuvreAcquisitionFileSelected(
-            AuthorOeuvreAcquisitionFile authorOeuvreAcquisitionFileSelected) {
-        this.authorOeuvreAcquisitionFileSelected = authorOeuvreAcquisitionFileSelected;
+    public void setProductFile(StreamedContent productFile) {
+        this.productFile = productFile;
     }
 
-    public List<AuthorOeuvreAcquisitionFile> getAuthorOeuvreAcquisitionFiles() {
+    public List<AuthorOeuvre> getAuthorOeuvreFileList() {
 
-        return (this.authorOeuvreAcquisitionFiles);
+        return (this.authorOeuvreFileList);
     }
 
-    public void setAuthorOeuvreAcquisitionFiles(
-            List<AuthorOeuvreAcquisitionFile> authorOeuvreAcquisitionFiles) {
-        this.authorOeuvreAcquisitionFiles = authorOeuvreAcquisitionFiles;
+    public void setAuthorOeuvreFileList(
+            List<AuthorOeuvre> authorOeuvreFileList) {
+        this.authorOeuvreFileList = authorOeuvreFileList;
     }
 
-    public void onViewProductsListForAuthorOeuvre(AuthorOeuvre authorOeuvre) {
-        this.setAuthorOeuvre(authorOeuvre);
+    public void onSelectedAuthorOeuvre(
+            AuthorOeuvre authorOeuvreSelected) {
+         RequestContext context = RequestContext.getCurrentInstance();
+        if (authorOeuvreSelected != null) {
+            this.setAuthorOeuvre(authorOeuvreSelected);
+            this.getAuthorOeuvreFileList().clear();
+            this.getAuthorOeuvreFileList().add(this.getAuthorOeuvreSelected());
 
-        AuthorOeuvrePK authorOeuvrePK = this.getAuthorOeuvre()
-                .getAuthorOeuvrePK();
-        this.setAuthorOeuvreAcquisitionFiles(this.authorOeuvreAcquisitionFileDAO
-                .findAuthorsOeuvresAcquisitionsByAttributes(
-                "authorOeuvreAcquisitionFilePK.oeuvreTypeId", authorOeuvrePK.getOeuvreTypeId(),
-                "authorOeuvreAcquisitionFilePK.oeuvreTypeName", authorOeuvrePK.getOeuvreTypeName(),
-                "authorOeuvreAcquisitionFilePK.documentType", authorOeuvrePK.getDocumentType(),
-                "authorOeuvreAcquisitionFilePK.idNumber", authorOeuvrePK.getIdNumber(),
-                "authorOeuvreAcquisitionFilePK.contract", authorOeuvrePK.getContract()));
-    }
+            if (this.getAuthorOeuvreSelected().getRoute() != null) {
+                InputStream inputStream;
+                try {
+                    File f = new File(this.getAuthorOeuvreSelected().getRoute());
+//            File f = new File("/home/rebien/Documentos/JuridicApp/salida.pdf");
+                    inputStream = new FileInputStream(f);
+                    ExternalContext externalContext = FacesContext.getCurrentInstance()
+                            .getExternalContext();
 
-    public void onSelectedAuthorOeuvreAcquisitionFile(
-            AuthorOeuvreAcquisitionFile authorOeuvreAcquisitionFile) {
-        this.setAuthorOeuvreAcquisitionFileSelected(authorOeuvreAcquisitionFile);
+                    this.setProductFile(new DefaultStreamedContent(inputStream,
+                            externalContext.getMimeType(f.getName()), f.getName()));
+                     
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(AuthorOeuvreFileBean.class.getName())
+                            .log(Level.SEVERE, null, ex);
+                }
+                this.selectedProduct = true;
+            } else {
+                this.selectedProduct = true;
+            }
+        } else {
+            this.selectedProduct = false;
+        }
+        context.addCallbackParam(AuthorOeuvreFileBean.SELECTED_PRODUCT, this.selectedProduct);
     }
 
     @PostConstruct()
     private void createFields() {
-        this.setAuthorOeuvreAcquisitionFiles(
-                new ArrayList<AuthorOeuvreAcquisitionFile>());
+        this.setAuthorOeuvreFileList(new ArrayList<AuthorOeuvre>());
     }
 }

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core" >
+
+    <center>
+        <p:panel header="Adjuntar Archivos"
+                 id="filesAdderPanel" >
+
+            <p:dataTable 
+                emptyMessage="No se han añadido Autores."
+                id="filesTable"
+                style="font-size:13px"
+                value="#{creatorOeuvreBean.authorsOeuvres}"
+                var="authorOeuvre" >
+
+                <p:column>
+                    <f:facet name="header" >
+                        <h:outputText
+                            value="Nombre Completo" >
+                        </h:outputText>
+                    </f:facet>
+                    <h:outputText
+                        value="#{authorOeuvre.author.people.firstNames} #{authorOeuvre.author.people.lastNames}" >
+                    </h:outputText>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header" >
+                        <h:outputText
+                            value="N° Contrato" >
+                        </h:outputText>
+                    </f:facet>
+                    <h:outputText
+                        value="#{authorOeuvre.authorOeuvrePK.contract}" >
+                    </h:outputText>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header" >
+                        <h:outputText
+                            value="Tipo De Obra" >
+                        </h:outputText>
+                    </f:facet>
+                    <h:outputText
+                        value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
+                    </h:outputText>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header" >
+                        <h:outputText
+                            value="Soporte De La Obra" >
+                        </h:outputText>
+                    </f:facet>
+                    <h:outputText
+                        value="#{authorOeuvre.supportType.type}" >
+                    </h:outputText>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header" >
+                        <h:outputText
+                            value="Adjuntar Contrato" >
+                        </h:outputText>
+                    </f:facet>
+                    <!--                                                <p:fileUpload
+                                                                        allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                                                        cancelLabel="Cancelar"
+                                                                        dragDropSupport="false"
+                                                                        id="contractFileUpload"
+                                                                        label="Seleccionar"
+                                                                        mode="advanced"
+                                                                        multiple="false"
+                                                                        required="true"
+                                                                        sizeLimit="512000"
+                                                                        uploadLabel="Cargar" >
+                                                                    </p:fileUpload>-->
+                    <p:fileUpload
+                        allowTypes="/(\.|\/)(pdf|docx?|gif|jpe?g|png)$/"
+                        id="contractFileUpload"
+                        mode="simple"
+                        value="#{authorOeuvre.contract1.contractFile}" >
+                    </p:fileUpload>
+
+                    <p:commandButton
+                        action="#{uploaderFileTesterBean.onHandleUploadFileEvent(authorOeuvre)}"
+                        ajax="false"
+                        id="contractUploadButton"
+                        value="Subir" >
+                    </p:commandButton>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header" >
+                        <h:outputText
+                            value="Adjuntar Producto" >
+                        </h:outputText>
+                    </f:facet>
+                    <p:fileUpload
+                        allowTypes="/(\.|\/)(iso|rar|zip|pdf|gif|jpe?g|png)$/"
+                        cancelLabel="Cancelar"
+                        dragDropSupport="false" 
+                        fileUploadListener="#{uploaderFileTesterBean.onHandleUploadFileEvent}"
+                        id="productFileUpload"
+                        label="Seleccionar"
+                        mode="advanced"
+                        multiple="false"
+                        required="true"
+                        sizeLimit="512000"
+                        uploadLabel="Cargar" >
+                    </p:fileUpload>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </center>
+</ui:composition>

@@ -57,7 +57,7 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         this.createDefaultProfiles();
         this.createDefaultTitles();
 
-//        this.tester();
+        this.tester();
     }
 
     @Override()
@@ -245,16 +245,5 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     }
 
     private void tester() {
-        Client client = this.clientDAO.findClientByLogin("neiber.padierna",
-                "neiber123");
-
-        Author author = new Author(client.getPeoplePK().getDocumentType(),
-                client.getPeoplePK().getIdNumber());
-
-        List<AuthorOeuvre> authorOeuvres = this.authorOeuvreDAO
-                .findAuthorsOeuvresByAuthor(author);
-
-        List<AuthorOeuvre> allOeuvres = this.authorOeuvreDAO
-                .findAllAuthorsOeuvres();
     }
 }

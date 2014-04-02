@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
@@ -8,17 +8,15 @@
       xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:head>
-        <title>Crear Dependencia</title>
+    <h:head lang="es" >
+        <meta content="text/html" http-equiv="Content-Type" ></meta>
+        <meta charset="UTF-8" ></meta>
         <script type="text/javascript"
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
+        <title>Crear Dependencia</title>
 
-        <f:facet name="dependencyCreator" >
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
-            </meta>
-        </f:facet>
+        <f:facet name="dependenciesCreator" ></f:facet>
     </h:head>
 
     <h:body>
@@ -70,21 +68,6 @@
 
                                 <h:panelGrid cellpadding="5" columns="3" >
                                     <h:outputLabel
-                                        for="dnda" style="font-weight:bold" 
-                                        value="DNDA:" >
-                                    </h:outputLabel>
-                                    <p:inputText
-                                        id="dnda" label="DNDA" maxlength="30"
-                                        required="true" 
-                                        requiredMessage="Por favor ingrese el DNDA."  
-                                        size="60"
-                                        value="#{dependencyBean.dependency.dnda.number}" >
-                                    </p:inputText>
-                                    <p:watermark
-                                        for="dnda" value="Número de DNDA" >
-                                    </p:watermark>
-
-                                    <h:outputLabel
                                         for="dependencyName"
                                         style="font-weight:bold" 
                                         value="Nombre de la Dependencia:" >
@@ -94,7 +77,7 @@
                                         label="Nombre de Dependencia"
                                         maxlength="35" required="true" 
                                         requiredMessage="Por favor ingrese el nombre."
-                                        size="60"
+                                        size="42"
                                         value="#{dependencyBean.dependency.name}" >
                                     </p:inputText>
                                     <p:watermark
@@ -108,8 +91,9 @@
                                         value="Descripción:" >
                                     </h:outputLabel>
                                     <p:inputTextarea
-                                        cols="45" id="dependencyDescription"
+                                        cols="42" id="dependencyDescription"
                                         maxlength="150" required="false"
+                                        rows="5"
                                         value="#{dependencyBean.dependency.description}" >
                                     </p:inputTextarea>
                                     <p:watermark
@@ -125,6 +109,8 @@
                                     value="Guardar" update="growlCreator"
                                     actionListener="#{dependencyBean.save}" >
                                 </p:commandButton>
+
+                                <p:spacer width="25px" ></p:spacer>
 
                                 <p:commandButton
                                     id="clearButton" icon="ui-icon-refresh"

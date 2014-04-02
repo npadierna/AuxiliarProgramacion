@@ -50,9 +50,7 @@ public class People implements IEntityContext, Serializable {
     @Column(name = "last_names")
     private String lastNames;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull()
-    @Size(min = 1, max = 35)
+    @Size(max = 35)
     @Column(name = "email")
     private String email;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "people")
@@ -68,12 +66,10 @@ public class People implements IEntityContext, Serializable {
         this.peoplePK = peoplePK;
     }
 
-    public People(PeoplePK peoplePK, String firstNames, String lastNames,
-            String email) {
+    public People(PeoplePK peoplePK, String firstNames, String lastNames) {
         this.peoplePK = peoplePK;
         this.firstNames = firstNames;
         this.lastNames = lastNames;
-        this.email = email;
     }
 
     public People(String documentType, String idNumber) {
@@ -154,6 +150,7 @@ public class People implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
+
         hash += (this.getPeoplePK() != null ? this.getPeoplePK().hashCode() : 0);
 
         return (hash);

@@ -1,41 +1,28 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd" >
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html" >
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui" >
 
-    <h:head>
-        <title>Subir Archivo</title>
-        <f:facet name="uploaderFileTester" >
-            <meta content="text/html; charset=UTF-8"
-                  http-equiv="Content-Type" >
-            </meta>
-        </f:facet>
+    <h:head lang="es" >
+        <meta content="text/html" http-equiv="Content-Type" ></meta>
+        <meta charset="UTF-8" ></meta>
+        <title>Facelet Title</title>
     </h:head>
-
     <h:body>
-        <h:form enctype="multipart/form-data" id="mainUpoladerFileForm" >
-            <center>
+        <center>
+            <h:form id="mainForm" >
                 <p:fileUpload
-                    allowTypes="/(\.|\/)(gif|jpe?g|png)$/" cancelLabel="Cancelar"
-                    dragDropSupport="false" fileLimit="1"
-                    fileUploadListener="#{creatorOeuvreBean.onHandleContractFileUpload}"
-                    label="Seleccionar" mode="advanced" required="true"
-                    sizeLimit="512000" uploadLabel="Cargar" >
-                </p:fileUpload>
-
-                <p:fileUpload
-                    mode="simple"
+                    allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                    cancelLabel="Cancelar" dragDropSupport="false" 
+                    fileUploadListener="#{uploaderFileTesterBean.onHandleUploadFileEvent}"
+                    label="Seleccionar" mode="advanced" multiple="false"
+                    required="true" sizeLimit="512000" uploadLabel="Cargar"
                     value="#{uploaderFileTesterBean.uploadedFile}" >
                 </p:fileUpload>
-                <p:commandButton
-                    actionListener="#{uploaderFileTesterBean.onHandleUploadFile}"
-                    ajax="false" value="Subir" >
-                </p:commandButton>
-            </center>
-        </h:form>
+            </h:form>
+        </center>
     </h:body>
 </html>

@@ -57,8 +57,9 @@ public class PeoplePK implements Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        hash += (this.getDocumentType() != null ? this.getDocumentType()
-                .hashCode() : 0);
+
+        hash += (this.getDocumentType() != null
+                ? this.getDocumentType().hashCode() : 0);
         hash += (this.getIdNumber() != null ? this.getIdNumber().hashCode() : 0);
 
         return (hash);

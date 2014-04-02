@@ -83,7 +83,7 @@ public class AuthorFinderTesterBean implements Serializable {
     public void addAuthor(Author author) {
         AuthorOeuvre authorOeuvre = new AuthorOeuvre(-1L, null,
                 author.getPeoplePK().getDocumentType(),
-                author.getPeoplePK().getIdNumber(), null);
+                author.getPeoplePK().getIdNumber(), null, null);
         authorOeuvre.setAuthor(author);
         authorOeuvre.setTitle(new Title());
         authorOeuvre.setSupportType(new Support());

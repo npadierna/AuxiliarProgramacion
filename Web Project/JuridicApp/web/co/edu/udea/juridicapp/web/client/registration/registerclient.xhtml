@@ -1,30 +1,29 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:head>
-        <title>Crear Usuario</title>
+    <h:head lang="es" >
+        <meta content="text/html" http-equiv="Content-Type" ></meta>
+        <meta charset="UTF-8" ></meta>
         <script type="text/javascript"
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
-        <f:facet name="dependencyCreator" >
-            <meta content='text/html; charset=UTF-8'
-                  http-equiv="Content-Type" >
-            </meta>
+        <title>Crear Usuario</title>
 
-        </f:facet>
+        <f:facet name="registerClient" ></f:facet>
     </h:head>
 
     <h:body>
         <p:layout fullPage="true" >
-            <p:layoutUnit closable="false" collapsible="false" position="south"
-                          resizable="false" size="60" >
+            <p:layoutUnit
+                closable="false" collapsible="false" position="south"
+                resizable="false" size="60" >
 
                 <p:commandButton
                     icon="ui-icon-arrowthick-1-w" id="home"
@@ -166,9 +165,10 @@
                                     for="userPassword" value="**********" >
                                 </p:watermark>
 
-                                <h:outputLabel for="userPassword2"
-                                               style="font-weight:bold"
-                                               value="Confirmar Contraseña:" >
+                                <h:outputLabel
+                                    for="userPassword2"
+                                    style="font-weight:bold"
+                                    value="Confirmar Contraseña:" >
                                 </h:outputLabel>
                                 <p:password
                                     id="userPassword2"
@@ -182,16 +182,13 @@
                                     for="userPassword2" value="**********" >
                                 </p:watermark>
 
-
                                 <h:outputLabel
                                     for="peopleEmail" value="E-Mail:"
-                                    style="font-weight:bold" >
+                                    style="font-weight: bold;" >
                                 </h:outputLabel>
                                 <p:inputText
                                     id="peopleEmail"
-                                    label="Correo Electrónico" 
-                                    required="true" 
-                                    requiredMessage="Por favor ingrese el correo electronico." 
+                                    label="Correo Electrónico"
                                     size="45" 
                                     value="#{registrationClientBean.people.email}" 
                                     validatorMessage="El correo ingresado no es válido">
@@ -200,7 +197,7 @@
                                     </f:validateRegex>
                                 </p:inputText>
                                 <p:watermark
-                                    for="peopleEmail" value="Obligatorio" >
+                                    for="peopleEmail" value="Opcional" >
                                 </p:watermark>
 
                                 <h:outputLabel
@@ -242,6 +239,8 @@
                                 value="Registrar" update="registrerPanel"
                                 actionListener="#{registrationClientBean.doRegistration}" >
                             </p:commandButton>
+
+                            <p:spacer width="25px" ></p:spacer>
 
                             <p:commandButton
                                 icon="ui-icon-refresh" id="clearButton"
