@@ -69,7 +69,7 @@ public class UploaderFileTesterBean implements Serializable {
 
     private void saveFileIntoDisc(UploadedFile uploadedFile)
             throws IOException {
-        File targetFolder = new File("/home/rebien/Documentos/JuridicApp/");
+        File targetFolder = new File("/D:/tmp/");
         InputStream inputStream = uploadedFile.getInputstream();
         OutputStream outputStream = new FileOutputStream(
                 new File(targetFolder, uploadedFile.getFileName()));
