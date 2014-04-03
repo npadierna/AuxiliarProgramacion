@@ -36,7 +36,7 @@
         </init-param>
         <init-param>
             <param-name>uploadDirectory</param-name>
-            <param-value>/home/rebien/Documentos/JuridicApp/temp</param-value>
+            <param-value>/D:/tmp</param-value>
         </init-param>
     </filter>
     <filter-mapping>

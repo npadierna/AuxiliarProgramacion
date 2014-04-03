@@ -57,6 +57,20 @@
 
                             <c:if
                                 test="${loginClientBean.loggedClient.title.title == 'Gestor De Contratos'}" >
+                                
+                                
+                                <p:commandButton action="#{contractBean.onViewContractForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
+                                                 icon="ui-icon-person"
+                                                 id="createAuthorButton"
+                                                 onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/authorscreator.xhtml';"
+                                                 style="font-size:15px;"
+                                                 value="Crear Nuevo Autor" >
+                                </p:commandButton>
+
+                                <p:spacer 
+                                    height="5px" width="15px" >
+                                </p:spacer>
+                                
                                 <p:commandButton
                                     icon="ui-icon-plusthick"
                                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/create/oeuvrecreator.xhtml';"
