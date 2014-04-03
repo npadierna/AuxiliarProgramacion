@@ -222,19 +222,20 @@
                                         </p:column>
 
                                         <f:facet id="button" name="footer" >
+
                                             <p:commandButton
-                                                action="#{contractBean.onViewContractForAuthorOeuvre(oeuvreSelectorBean.selectedAuthorOeuvre)}"
+                                                action="#{contractBean.onViewContractForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
                                                 icon="ui-icon-newwin"
                                                 id="viewContractButton"
-                                                onclick="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/contract/contractvisor.xhtml', 'Contrato');"                                  
+                                                oncomplete="onViewContractRequest(xhr, status, args)"                                  
                                                 value="Ver contrato" >
                                             </p:commandButton>
 
                                             <p:commandButton
-                                                action="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(oeuvreSelectorBean.selectedAuthorOeuvre)}"
+                                                action="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
                                                 icon="ui-icon-document"
                                                 id="viewProductsFilesButton"
-                                                onclick="window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvrefilelist.xhtml', 'Contrato');"   
+                                                oncomplete="onViewProductRequest(xhr,status,args)"
                                                 value="Ver producto" >
                                             </p:commandButton>
                                         </f:facet>

@@ -163,16 +163,6 @@
                         value="Ver más detalles" >
                     </p:commandButton>
 
-                    <c:if
-                        test="${loginClientBean.loggedClient.title.title == 'Gestor De Contratos'}" >
-                        <p:commandButton action="#{contractBean.onViewContractForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
-                                         icon="ui-icon-person"
-                                         id="createAuthorButton"
-                                         onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/authorscreator.xhtml';"                                  
-                                         value="Crear Nuevo Autor" >
-                        </p:commandButton>
-                    </c:if>
-
                     <p:commandButton
                         action="#{contractBean.onViewContractForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
                         icon="ui-icon-newwin"
