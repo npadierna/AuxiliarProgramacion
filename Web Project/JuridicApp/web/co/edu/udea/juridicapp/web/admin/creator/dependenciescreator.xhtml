@@ -14,7 +14,7 @@
         <script type="text/javascript"
                 src="../../../util/javascript/JsFunctions.js" >
         </script>
-        <title>Crear Dependencia</title>
+        <title>Crear Dependencia Académica</title>
 
         <f:facet name="dependenciesCreator" ></f:facet>
     </h:head>
@@ -28,7 +28,7 @@
                 <p:commandButton
                     icon="ui-icon-arrowthick-1-w" id="home"
                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
-                    style="font-size:15px;" value="Volver a la Administración" >
+                    style="font-size: 15px;" value="Volver a la Administración" >
                 </p:commandButton>
             </p:layoutUnit>
 
@@ -53,7 +53,7 @@
                     <center>
                         <p:panel
                             header="Crear Dependencia" id="dependecyCreatorPanel"
-                            style="font-weight:bold" >
+                            style="font-weight: bold;" >
 
                             <p:growl
                                 id="growlCreator" life="3000"
@@ -69,16 +69,16 @@
                                 <h:panelGrid cellpadding="5" columns="3" >
                                     <h:outputLabel
                                         for="dependencyName"
-                                        style="font-weight:bold" 
+                                        style="font-weight: bold;" 
                                         value="Nombre de la Dependencia:" >
                                     </h:outputLabel>
                                     <p:inputText
                                         id="dependencyName" 
                                         label="Nombre de Dependencia"
                                         maxlength="35" required="true" 
-                                        requiredMessage="Por favor ingrese el nombre."
+                                        requiredMessage="Por favor ingrese el nombre o sigla para la Dependencia Académica."
                                         size="42"
-                                        value="#{dependencyBean.dependency.name}" >
+                                        value="#{dependencyCreatorBean.newDependency.name}" >
                                     </p:inputText>
                                     <p:watermark
                                         for="dependencyName"
@@ -87,14 +87,14 @@
 
                                     <h:outputLabel
                                         for="dependencyDescription"
-                                        style="font-weight:bold" 
+                                        style="font-weight: bold;" 
                                         value="Descripción:" >
                                     </h:outputLabel>
                                     <p:inputTextarea
                                         cols="42" id="dependencyDescription"
                                         maxlength="150" required="false"
                                         rows="5"
-                                        value="#{dependencyBean.dependency.description}" >
+                                        value="#{dependencyCreatorBean.newDependency.description}" >
                                     </p:inputTextarea>
                                     <p:watermark
                                         for="dependencyDescription"
@@ -106,8 +106,9 @@
 
                                 <p:commandButton
                                     id="registerButton" icon="ui-icon-disk"
-                                    value="Guardar" update="growlCreator"
-                                    actionListener="#{dependencyBean.save}" >
+                                    value="Guardar"
+                                    update="dependecyCreatorPanel"
+                                    actionListener="#{dependencyCreatorBean.saveDependency}" >
                                 </p:commandButton>
 
                                 <p:spacer width="25px" ></p:spacer>

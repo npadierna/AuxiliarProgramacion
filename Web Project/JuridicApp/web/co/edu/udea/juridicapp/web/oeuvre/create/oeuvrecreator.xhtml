@@ -28,7 +28,7 @@
                 <p:commandButton
                     icon="ui-icon-home" id="home"
                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';" 
-                    value="Volver al Listado de Obras" style="font-size:15px;" >
+                    value="Volver al Listado de Obras" style="font-size: 15px;" >
                 </p:commandButton>
             </p:layoutUnit>
 
@@ -45,7 +45,7 @@
                     <p:commandButton
                         icon="ui-icon-arrowrefresh-1-s"
                         onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/updateinfoclient.xhtml';"
-                        style="font-size:15px;"
+                        style="font-size: 15px;"
                         value="Actualizar Datos" >
                     </p:commandButton>
 
@@ -56,8 +56,7 @@
                         icon="ui-icon-circle-close"
                         onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';"
                         oncomplete="handleLogoutRequest(xhr, status, args)"
-                        style="font-size:15px;"
-                        value="Cerrar Sesión" >
+                        style="font-size: 15px;" value="Cerrar Sesión" >
                     </p:commandButton>
                     </p>
                 </h:form>
@@ -99,13 +98,13 @@
                                 </ui:include>
                             </p:tab>
 
-                            <p:tab id="file" title="Archivos" >
+                            <p:tab id="file" title="Archivos De Soporte" >
                                 <ui:include
                                     src="uiproductuploadercreator.xhtml" >
                                 </ui:include>
                             </p:tab>
 
-                            <p:tab id="coments" title="Observaciones" >
+                            <p:tab id="coments" title="Comentarios" >
                                 <ui:include
                                     src="uicommentscreator.xhtml" >
                                 </ui:include>

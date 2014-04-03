@@ -6,10 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.model.SelectItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -21,8 +18,8 @@ import org.springframework.stereotype.Component;
  * @author Neiber Padierna P&eacute;rez
  */
 @Component()
-@Scope(value = "session")
-@SessionScoped()
+@Scope(value = "singleton")
+@ApplicationScoped()
 public final class SupportBean implements Serializable {
 
     private static final long serialVersionUID = 2392665482524712960L;
@@ -30,12 +27,9 @@ public final class SupportBean implements Serializable {
     private ISupportDAO supportDAO;
     private List<SelectItem> supportsSelectItems;
     private List<String> supportsNames;
-    private Support support;
 
     public SupportBean() {
         super();
-
-        this.setSupport(new Support());
     }
 
     public List<SelectItem> getSupportsSelectItems() {
@@ -61,43 +55,6 @@ public final class SupportBean implements Serializable {
 
     public void setSupportsNames(List<String> supportsNames) {
         this.supportsNames = supportsNames;
-    }
-
-    public Support getSupport() {
-
-        return (this.support);
-    }
-
-    public void setSupport(Support support) {
-        this.support = support;
-    }
-
-    public void save(ActionEvent actionEvent) {
-        FacesMessage msg;
-        if (this.getSupport().getType() != null) {
-            this.getSupport().setType(this.getSupport().getType().trim());
-
-            Support s = this.supportDAO.findSupport(this.getSupport().getType());
-            if (s == null) {
-                this.supportDAO.saveSupport(this.getSupport());
-                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
-                        "Se ha guardado exitosamente: "
-                        + this.getSupport().getType() + ".");
-            } else {
-                msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Datos Inválidos", "Ya existe un Soporte Para Obras: "
-                        + this.getSupport().getType() + ".");
-            }
-
-            this.getSupport().setDescription("");
-            this.getSupport().setType("");
-        } else {
-            msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                    "Datos Inválidos",
-                    "Hay campos obligatorios que están vacíos.");
-        }
-
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     @PostConstruct()

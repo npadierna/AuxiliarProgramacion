@@ -1,4 +1,4 @@
-package co.edu.udea.juridicapp.web.bean.oeuvre;
+package co.edu.udea.juridicapp.web.bean.authoroeuvre;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.dao.ICommentDAO;
@@ -27,9 +27,10 @@ import org.springframework.stereotype.Component;
 @Component()
 @Scope(value = "session")
 @SessionScoped()
-public final class OeuvreSelectorBean implements Serializable {
+public final class AuthorOeuvreSelectorBean implements Serializable {
 
     private static final long serialVersionUID = 3054628927294284800L;
+    private static final String OEUVRE_SELECTED = "onSelected";
     public static final String FORMAT_FOR_DATE = "yyyy-MM-dd hh:mm aaa";
     @Autowired()
     private IAuthorOeuvreDAO authorOeuvreDAO;
@@ -41,7 +42,7 @@ public final class OeuvreSelectorBean implements Serializable {
     private List<Comment> oeuvreComments;
     private DateFormat dateFormat;
 
-    public OeuvreSelectorBean() {
+    public AuthorOeuvreSelectorBean() {
         super();
     }
 
@@ -88,11 +89,12 @@ public final class OeuvreSelectorBean implements Serializable {
         } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
                     "Datos Inválidos",
-                    "Por favor seleccione una obra Valida.");
+                    "Por favor seleccione una Obra válida.");
         }
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        context.addCallbackParam("onSelected", this.onSelected);
+        context.addCallbackParam(AuthorOeuvreSelectorBean.OEUVRE_SELECTED,
+                this.onSelected);
     }
 
     public String applyFormatForDate(Date date) {
@@ -116,7 +118,7 @@ public final class OeuvreSelectorBean implements Serializable {
     private void createFields() {
         this.onSelected = false;
         this.dateFormat = new SimpleDateFormat(
-                OeuvreSelectorBean.FORMAT_FOR_DATE);
+                AuthorOeuvreSelectorBean.FORMAT_FOR_DATE);
 
         this.setAuthorsOeuvres(new ArrayList<AuthorOeuvre>());
         this.setOeuvreComments(new ArrayList<Comment>());

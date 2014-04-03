@@ -30,8 +30,9 @@
 
                     <h1>Iniciar Sesión</h1>
                     <h:panelGrid cellpadding="5" columns="3" >
-                        <h:outputLabel for="userName"
-                                       value="Nombre De Usuario: *" >
+                        <h:outputLabel
+                            for="userName"
+                            value="Nombre De Usuario: *" >
                         </h:outputLabel>
                         <p:inputText
                             id="userName" label="Nombre De Usuario." 
@@ -40,10 +41,12 @@
                             validatorMessage="Nombre de usuario inválido." 
                             value="#{loginClientBean.userName}" >
                         </p:inputText>
-                        <p:watermark for="userName" value="Obligatorio" >
+                        <p:watermark
+                            for="userName" value="Obligatorio" >
                         </p:watermark>
 
-                        <h:outputLabel for="password" value="Contraseña: *" >
+                        <h:outputLabel
+                            for="password" value="Contraseña: *" >
                         </h:outputLabel>
                         <p:password
                             id="password" label="Contraseña" 
@@ -52,8 +55,8 @@
                             validatorMessage="Contraseña inválida."
                             value="#{loginClientBean.password}" >
                         </p:password>
-                        <p:watermark for="password"
-                                     value="*********" >
+                        <p:watermark
+                            for="password" value="*********" >
                         </p:watermark>
                     </h:panelGrid>
 
@@ -64,8 +67,7 @@
                         actionListener="#{loginClientBean.logIn}"
                         icon="ui-icon-person" id="loginButton"
                         oncomplete="handleLoginRequest(xhr, status, args)"
-                        update=":loginForm"
-                        value="Iniciar Sesión" >
+                        update=":loginForm" value="Iniciar Sesión" >
                     </p:commandButton>
                 </p:panel>
             </center>

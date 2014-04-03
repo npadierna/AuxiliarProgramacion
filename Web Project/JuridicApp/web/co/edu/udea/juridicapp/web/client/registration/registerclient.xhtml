@@ -28,7 +28,7 @@
                 <p:commandButton
                     icon="ui-icon-arrowthick-1-w" id="home"
                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
-                    style="font-size:15px;" value="Volver a la Administración" >
+                    style="font-size: 15px;" value="Volver a la Administración" >
                 </p:commandButton>
             </p:layoutUnit>
 
@@ -51,7 +51,7 @@
             <p:layoutUnit position="center" >
                 <h:form id="registrerForm" >
                     <p:panel header="Registro De Usuario" id="registrerPanel" 
-                             style="font-weight:bold" >
+                             style="font-weight: bold;" >
 
                         <center>
                             <p:growl
@@ -62,7 +62,7 @@
                             <h:panelGrid cellpadding="5" columns="3" >
                                 <h:outputLabel
                                     for="peopleDocumentType"
-                                    style="font-weight:bold"
+                                    style="font-weight: bold;"
                                     value="Tipo De Documento:" >
                                 </h:outputLabel>
                                 <p:selectOneMenu
@@ -73,12 +73,14 @@
                                         value="#{registrationClientBean.documentsType}" >
                                     </f:selectItems>
                                 </p:selectOneMenu>
-                                <p:watermark for="peopleDocumentType"
-                                             value="Tipo De Documento" >
+                                <p:watermark
+                                    for="peopleDocumentType"
+                                    value="Tipo De Documento" >
                                 </p:watermark>
 
                                 <h:outputLabel
-                                    for="peopleIdNumber" style="font-weight:bold"
+                                    for="peopleIdNumber"
+                                    style="font-weight: bold;"
                                     value="Número De Documento:" >
                                 </h:outputLabel>
                                 <p:inputText
@@ -96,9 +98,8 @@
                                 </p:watermark>
 
                                 <h:outputLabel
-                                    for="peopleFirstNames" 
-                                    style="font-weight:bold"
-                                    value="Nombres:" >
+                                    for="peopleFirstNames"
+                                    style="font-weight: bold;" value="Nombres:" >
                                 </h:outputLabel>
                                 <p:inputText
                                     id="peopleFirstNames" label="Nombres" 
@@ -117,7 +118,7 @@
 
                                 <h:outputLabel
                                     for="peopleLastNames" value="Apellidos:"
-                                    style="font-weight:bold" >
+                                    style="font-weight: bold;" >
                                 </h:outputLabel>
                                 <p:inputText
                                     id="peopleLastNames" label="Apellidos"
@@ -126,7 +127,8 @@
                                     size="45"
                                     value="#{registrationClientBean.people.lastNames}" 
                                     validatorMessage="Por favor ingrese solo letras">
-                                    <f:validateRegex pattern="^[ a-zA-Z]+"  >
+                                    <f:validateRegex
+                                        pattern="^[ a-zA-Z]+"  >
                                     </f:validateRegex>    
                                 </p:inputText>
                                 <p:watermark
@@ -135,8 +137,8 @@
                                 </p:watermark>
 
                                 <h:outputLabel
-                                    for="userName"  style="font-weight:bold" 
-                                    value="Nombre de Usuario:">
+                                    for="userName" style="font-weight: bold;" 
+                                    value="Nombre de Usuario:" >
                                 </h:outputLabel>
                                 <p:inputText
                                     id="userName" label="Nombre de Usuario"
@@ -151,7 +153,7 @@
 
                                 <h:outputLabel
                                     for="userPassword" value="Contraseña:"
-                                    style="font-weight:bold" >
+                                    style="font-weight: bold;" >
                                 </h:outputLabel>
                                 <p:password
                                     id="userPassword" feedback="true"
@@ -167,7 +169,7 @@
 
                                 <h:outputLabel
                                     for="userPassword2"
-                                    style="font-weight:bold"
+                                    style="font-weight: bold;"
                                     value="Confirmar Contraseña:" >
                                 </h:outputLabel>
                                 <p:password
@@ -202,7 +204,7 @@
 
                                 <h:outputLabel
                                     for="dependencyName"
-                                    style="font-weight:bold"
+                                    style="font-weight: bold;"
                                     value="Dependencia:" >
                                 </h:outputLabel>
                                 <p:selectOneMenu
@@ -218,7 +220,7 @@
                                 </p:watermark>
 
                                 <h:outputLabel
-                                    for="profileName" style="font-weight:bold"
+                                    for="profileName" style="font-weight: bold;"
                                     value="Perfil:" >
                                 </h:outputLabel>
                                 <p:selectOneMenu

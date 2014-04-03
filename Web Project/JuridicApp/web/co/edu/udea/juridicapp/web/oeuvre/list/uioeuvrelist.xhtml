@@ -16,45 +16,39 @@
         <center>
             <p:dataTable
                 emptyMessage="No se han encontrado ningún tipo de Obras."
-                id="mainTable"
-                paginator="true" 
+                id="mainTable" paginator="true" 
                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                 rowKey="#{authorOeuvre.key}"
                 rows="10" rowsPerPageTemplate="10,15,30"
-                selection="#{oeuvreListBean.selectedAuthorOeuvre}"
-                selectionMode="single"
-                style="width:98%; font-size:13px;"
-                value="#{oeuvreListBean.authorOeuvres}"
+                selection="#{authorOeuvreListBean.selectedAuthorOeuvre}"
+                selectionMode="single" style="width: 98%; font-size: 13px;"
+                value="#{authorOeuvreListBean.authorOeuvres}"
                 var="authorOeuvre" > 
 
-                <f:facet name="header" >
-                    Listado De Obras
-                </f:facet>
+                <f:facet name="header" >Listado De Obras</f:facet>
 
                 <p:column
                     filterBy="#{authorOeuvre.oeuvreType.oeuvre.title}"
-                    filterMatchMode="contains"
-                    style="font-size:15px;" >
+                    filterMatchMode="contains" style="font-size: 15px;" >
                     <f:facet id="issue" name="header" >
-                        <h:outputText value="Nombre De La Obra" >
+                        <h:outputText
+                            value="Nombre De La Obra" >
                         </h:outputText>
                     </f:facet>
                     <h:outputText
-                        style="font-size:13px;"
+                        style="font-size: 13px;"
                         value="#{authorOeuvre.oeuvreType.oeuvre.title}" >
                     </h:outputText>
                 </p:column>
 
                 <p:column
                     sortBy="#{authorOeuvre.delivering}"
-                    style="font-size:15px; text-align: center;" >
+                    style="font-size: 15px; text-align: center;" >
                     <f:facet id="year" name="header" >
-                        <h:outputText
-                            value="Fecha Entrega" >
-                        </h:outputText>  
+                        <h:outputText value="Fecha Entrega" ></h:outputText>  
                     </f:facet>
                     <h:outputText
-                        style="font-size:13px;"
+                        style="font-size: 13px;"
                         value="#{authorOeuvre.delivering}" >
                     </h:outputText>
                 </p:column>
@@ -64,13 +58,12 @@
                     filterMatchMode="exact"
                     filterOptions="#{typeBean.typesSelectItems}"
                     sortBy="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}"
-                    style="font-size:15px;" >
-                    <f:facet id="type" name="header">  
-                        <h:outputText value="Tipo" >
-                        </h:outputText>  
+                    style="font-size: 15px;" >
+                    <f:facet id="type" name="header" >  
+                        <h:outputText value="Tipo" ></h:outputText>  
                     </f:facet>
                     <h:outputText
-                        style="font-size:13px;"
+                        style="font-size: 13px;"
                         value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
                     </h:outputText>
                 </p:column>
@@ -79,13 +72,12 @@
                     filterBy="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}"
                     filterMatchMode="contains"
                     sortBy="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}"
-                    style="font-size:15px;" >
+                    style="font-size: 15px;" >
                     <f:facet id="author" name="header" >
-                        <h:outputText value="Autor" >
-                        </h:outputText>  
+                        <h:outputText value="Autor" ></h:outputText>  
                     </f:facet>
                     <h:outputText
-                        style="font-size:13px;"
+                        style="font-size: 13px;"
                         value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
                     </h:outputText>
                 </p:column>
@@ -94,14 +86,13 @@
                     filterBy="#{authorOeuvre.contract1.id}"
                     filterMatchMode="contains"
                     sortBy="#{authorOeuvre.contract1.id}"
-                    style="font-size:15px; text-align: center;" >
+                    style="font-size: 15px; text-align: center;" >
                     <f:facet id="contract" name="header" > 
-                        <h:outputText value="N° Contrato" >
-                        </h:outputText>
+                        <h:outputText value="N° Contrato" ></h:outputText>
                     </f:facet>
                     <h:outputText
                         value="#{authorOeuvre.contract1.id}"
-                        style="font-size:13px;" >
+                        style="font-size: 13px;" >
                     </h:outputText>
                 </p:column>
 
@@ -110,37 +101,33 @@
                     filterOptions="#{acquisitionBean.acquisitionsSelectItems}"
                     filterMatchMode="exact"
                     sortBy="#{authorOeuvre.acquisition1.type}"
-                    style="font-size:15px; text-align: center;" >
+                    style="font-size: 15px;" >
                     <f:facet id="isbn" name="header" > 
-                        <h:outputText value="Acquisición" >
-                        </h:outputText>
+                        <h:outputText value="Acquisición" ></h:outputText>
                     </f:facet>
                     <h:outputText
-                        style="font-size:13px;"
+                        style="font-size: 13px;"
                         value="#{authorOeuvre.acquisition1.type}" >
                     </h:outputText>                    
                 </p:column>
 
-                <p:column style="font-size:15px; text-align: center;" >
+                <p:column style="font-size: 15px; text-align: center;" >
                     <f:facet id="isbn" name="header" > 
-                        <h:outputText value="ISBN" >
-                        </h:outputText>
+                        <h:outputText value="I.S.B.N." ></h:outputText>
                     </f:facet>
                     <h:outputText
-                        style="font-size:13px;"
-                        value="#{authorOeuvre.isbn}" >
+                        style="font-size: 13px;" value="#{authorOeuvre.isbn}" >
                     </h:outputText>
                 </p:column>
 
                 <p:column
                     sortBy="#{authorOeuvre.dnda.number}"
-                    style="font-size:15px; text-align: center;" >
+                    style="font-size: 15px; text-align: center;" >
                     <f:facet id="dnda" name="header" >
-                        <h:outputText value="DNDA" >
-                        </h:outputText>  
+                        <h:outputText value="D.N.D.A." ></h:outputText>  
                     </f:facet>
                     <h:outputText
-                        style="font-size:13px;"
+                        style="font-size: 13px;"
                         value="#{authorOeuvre.dnda.number}" >
                     </h:outputText>
                 </p:column>
@@ -150,39 +137,34 @@
                     filterMatchMode="exact"
                     filterOptions="#{supportBean.supportsSelectItems}"
                     sortBy="#{authorOeuvre.supportType.type}"
-                    style="font-size:15px; text-align: center;" >
+                    style="font-size: 15px; text-align: center;" >
                     <f:facet id="support" name="header" >
-                        <h:outputText value="Soporte" >
-                        </h:outputText>  
+                        <h:outputText value="Soporte" ></h:outputText>  
                     </f:facet>
                     <h:outputText
-                        style="font-size:13px;"
+                        style="font-size: 13px;"
                         value="#{authorOeuvre.supportType.type}" >
                     </h:outputText>
                 </p:column>
 
                 <f:facet id="button" name="footer" >
                     <p:commandButton
-                        action="#{oeuvreSelectorBean.onSelectedAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
-                        icon="ui-icon-search"
-                        id="viewDetailsButton"
+                        action="#{authorOeuvreSelectorBean.onSelectedAuthorOeuvre(authorOeuvreListBean.selectedAuthorOeuvre)}"
+                        icon="ui-icon-search" id="viewDetailsButton"
                         oncomplete="onSelectedAuthorOeuvreRequest(xhr, status, args)"
-                        update=":mainForm:growl"
-                        value="Ver más detalles" >
+                        update=":mainForm:growl" value="Ver más detalles" >
                     </p:commandButton>
 
                     <p:commandButton
-                        action="#{contractBean.onViewContractForAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
-                        icon="ui-icon-newwin"
-                        id="viewContractButton"
+                        action="#{contractBean.onViewContractForAuthorOeuvre(authorOeuvreListBean.selectedAuthorOeuvre)}"
+                        icon="ui-icon-newwin" id="viewContractButton"
                         oncomplete="onViewContractRequest(xhr, status, args)"                                  
                         value="Ver contrato" >
                     </p:commandButton>
 
                     <p:commandButton
-                        action="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(oeuvreListBean.selectedAuthorOeuvre)}"
-                        icon="ui-icon-document"
-                        id="viewProductsFilesButton"
+                        action="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(authorOeuvreListBean.selectedAuthorOeuvre)}"
+                        icon="ui-icon-document" id="viewProductsFilesButton"
                         oncomplete="onViewProductRequest(xhr,status,args)"
                         value="Ver producto" >
                     </p:commandButton>
@@ -215,7 +197,7 @@
                         </p:graphicImage>  
                         <p:dataExporter
                             encoding="UTF-8" fileName="ObrasCompletas"
-                            preProcessor="#{oeuvreListBean.preProcessForPDFFile}"
+                            preProcessor="#{authorOeuvreListBean.preProcessForPDFFile}"
                             target="mainTable" type="pdf" >
                         </p:dataExporter>
                     </h:commandLink>
@@ -244,7 +226,7 @@
                         </p:graphicImage>
                         <p:dataExporter
                             encoding="UTF-8" fileName="Obras" pageOnly="true"
-                            preProcessor="#{oeuvreListBean.preProcessForPDFFile}"
+                            preProcessor="#{authorOeuvreListBean.preProcessForPDFFile}"
                             target="mainTable" type="pdf"  >
                         </p:dataExporter>
                     </h:commandLink>

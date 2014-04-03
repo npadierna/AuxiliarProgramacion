@@ -1,8 +1,10 @@
-package co.edu.udea.juridicapp.web.bean.oeuvre.create;
+package co.edu.udea.juridicapp.web.bean.authoroeuvre.create;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorDAO;
 import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.dao.ICommentDAO;
+import co.edu.udea.juridicapp.persistence.dao.IContractDAO;
+import co.edu.udea.juridicapp.persistence.dao.IDndaDAO;
 import co.edu.udea.juridicapp.persistence.dao.IOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.dao.IOeuvreTypeDAO;
 import co.edu.udea.juridicapp.persistence.entity.Acquisition;
@@ -35,7 +37,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.servlet.http.Part;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ import org.springframework.stereotype.Component;
 @Component()
 @Scope(value = "session")
 @SessionScoped()
-public final class CreatorOeuvreBean implements Serializable {
+public final class AuthorOeuvreCreatorBean implements Serializable {
 
     private static final long serialVersionUID = 2901939557872617472L;
     @Autowired()
@@ -60,19 +61,29 @@ public final class CreatorOeuvreBean implements Serializable {
     @Autowired()
     private ICommentDAO commentDAO;
     @Autowired()
+    private IContractDAO contractDAO;
+    @Autowired()
+    private IDndaDAO dndaDAO;
+    @Autowired()
     private IOeuvreDAO oeuvreDAO;
     @Autowired()
     private IOeuvreTypeDAO oeuvreTypeDAO;
     private List<AuthorOeuvre> authorsOeuvres;
     private List<Author> foundAuthors;
     private List<Comment> comments;
+    private List<Contract> contracts;
+    private List<String> contractsNumbersList;
+    private Oeuvre oeuvre;
     private String commentText;
+    private String contractNumber;
+    private String dndaNumber;
     private String documentType;
     private String idNumber;
-    private Oeuvre oeuvre;
-    private Part file;
+    private UploadedFile contractUploadedFile;
+    // TODO: Elimnar este atributo y sus Getter y setter.
+    private Date date;
 
-    public CreatorOeuvreBean() {
+    public AuthorOeuvreCreatorBean() {
         super();
     }
 
@@ -103,6 +114,33 @@ public final class CreatorOeuvreBean implements Serializable {
         this.comments = comments;
     }
 
+    public List<Contract> getContracts() {
+
+        return (this.contracts);
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
+    public List<String> getContractsNumbersList() {
+
+        return (this.contractsNumbersList);
+    }
+
+    public void setContractsNumbersList(List<String> contractsNumbersList) {
+        this.contractsNumbersList = contractsNumbersList;
+    }
+
+    public Oeuvre getOeuvre() {
+
+        return (this.oeuvre);
+    }
+
+    public void setOeuvre(Oeuvre oeuvre) {
+        this.oeuvre = oeuvre;
+    }
+
     public String getCommentText() {
 
         return (this.commentText);
@@ -110,6 +148,24 @@ public final class CreatorOeuvreBean implements Serializable {
 
     public void setCommentText(String commentText) {
         this.commentText = commentText;
+    }
+
+    public String getContractNumber() {
+
+        return (this.contractNumber);
+    }
+
+    public void setContractNumber(String contractNumber) {
+        this.contractNumber = contractNumber;
+    }
+
+    public String getDndaNumber() {
+
+        return (this.dndaNumber);
+    }
+
+    public void setDndaNumber(String dndaNumber) {
+        this.dndaNumber = dndaNumber;
     }
 
     public String getDocumentType() {
@@ -130,13 +186,21 @@ public final class CreatorOeuvreBean implements Serializable {
         this.idNumber = idNumber;
     }
 
-    public Oeuvre getOeuvre() {
+    public UploadedFile getContractUploadedFile() {
 
-        return (this.oeuvre);
+        return (this.contractUploadedFile);
     }
 
-    public void setOeuvre(Oeuvre oeuvre) {
-        this.oeuvre = oeuvre;
+    public void setContractUploadedFile(UploadedFile contractUploadedFile) {
+        this.contractUploadedFile = contractUploadedFile;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public void addAuthor(Author author) {
@@ -159,11 +223,79 @@ public final class CreatorOeuvreBean implements Serializable {
     public void addComment(ActionEvent actionEvent) {
         Comment c = new Comment();
         c.setDateTime(new Date());
-        c.setText(this.getCommentText());
+        c.setText(this.getCommentText().trim());
 
         this.getComments().add(c);
 
         this.setCommentText("");
+    }
+
+    public void addContract(ActionEvent actionEvent) {
+        FacesMessage msg;
+
+        this.setContractNumber(this.getContractNumber().trim());
+        this.setDndaNumber(this.getDndaNumber().trim());
+
+        if (this.getContractNumber().equals("")) {
+            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Campos Vacíos",
+                    "El campos de Número de Contrato no puede estar vacío.");
+
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+
+            return;
+        }
+
+        Contract contract = this.contractDAO.findContract(
+                this.getContractNumber());
+        if (contract != null) {
+            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Contrato Existente",
+                    "El Contrato con número: " + this.getContractNumber()
+                    + ", ya existe dentro del Sistema.");
+
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            this.setContractNumber("");
+            this.setDndaNumber("");
+
+            return;
+        }
+
+        Dnda dnda = this.dndaDAO.findDnda(this.getDndaNumber());
+        if (dnda != null) {
+            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "D.N.D.A. Existente", "El número de D.N.D.A.: "
+                    + this.getDndaNumber() + ", ya existe dentro del Sistema.");
+
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            this.setContractNumber("");
+            this.setDndaNumber("");
+
+            return;
+        }
+
+        if (!this.getDndaNumber().equals("")) {
+            dnda = new Dnda(this.getDndaNumber());
+        }
+
+        contract = new Contract(this.getContractNumber());
+        contract.setContractFile(this.getContractUploadedFile());
+        contract.setDnda(dnda);
+
+        if (!this.findContractInContractList(contract)) {
+            this.getContracts().add(contract);
+            this.getContractsNumbersList().add(contract.getId());
+            this.setContractNumber("");
+            this.setDndaNumber("");
+        } else {
+            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Datos Repetidos",
+                    "Alguno de los datos ingresados ya corresponden a un registro de la tabla inferior.");
+
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            this.setContractNumber("");
+            this.setDndaNumber("");
+        }
     }
 
     public void findAuthor(ActionEvent actionEvent) {
@@ -177,13 +309,33 @@ public final class CreatorOeuvreBean implements Serializable {
             } else {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
                         "Autor No Existente",
-                        "No se ha encontrado algún Author con los datos:\n\n"
+                        "No se ha encontrado algún Autor con los datos:\n\n"
                         + "Tipo De Documento: " + this.getDocumentType()
                         + "\nNúmero De Documento: " + this.getIdNumber());
 
                 FacesContext.getCurrentInstance().addMessage(null, msg);
+                this.setIdNumber("");
             }
         }
+    }
+
+    private boolean findContractInContractList(Contract contract) {
+        for (Contract c : this.getContracts()) {
+            if (c.getId().equals(contract.getId())) {
+
+                return (true);
+            }
+
+            if ((c.getDnda() != null) && (contract.getDnda() != null)) {
+                if (c.getDnda().getNumber().equals(contract.getDnda()
+                        .getNumber())) {
+
+                    return (true);
+                }
+            }
+        }
+
+        return (false);
     }
 
     public void removeAuthorOeuvre(AuthorOeuvre author) {
@@ -194,10 +346,15 @@ public final class CreatorOeuvreBean implements Serializable {
         this.getComments().remove(comment);
     }
 
+    public void removeContract(Contract contract) {
+        this.getContracts().remove(contract);
+        this.getContractsNumbersList().remove(contract.getId());
+    }
+
     public void saveAuthorsOeuvres(ActionEvent actionEvent) {
         if (this.getAuthorsOeuvres().isEmpty()) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "No Obras Creadas",
+                    "No hay Obras Creadas",
                     "No se ha creado ninguna Obra de ningún tipo asociada a algún Author.");
 
             FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -240,6 +397,10 @@ public final class CreatorOeuvreBean implements Serializable {
             authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);
             authorOeuvre.setOeuvreType(oeuvreType);
 
+            // TODO: Corregir esto cuando se sepa cómo tratar las fechas.
+            authorOeuvre.setBeginning(new Date());
+            authorOeuvre.setDelivering(new Date());
+
             this.authorOeuvreDAO.saveAuthorOeuvre(authorOeuvre);
         }
     }
@@ -247,7 +408,6 @@ public final class CreatorOeuvreBean implements Serializable {
     public void onHandleContractFileUpload(FileUploadEvent fileUploadEvent) {
         UploadedFile contractFile = fileUploadEvent.getFile();
         String name = contractFile.getFileName();
-         System.out.println("ENTRO!!!!!");
 
         File targetFolder = new File("D:/tmp/"
                 + this.getOeuvre().getTitle() + "/contracts");
@@ -266,97 +426,18 @@ public final class CreatorOeuvreBean implements Serializable {
             outputStream.flush();
             outputStream.close();
         } catch (IOException ex) {
-            Logger.getLogger(CreatorOeuvreBean.class.getName()).log(
+            Logger.getLogger(AuthorOeuvreCreatorBean.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
     }
-
-    public Part getFile() {
-        return file;
-    }
-
-    public void setFile(Part file) {
-        this.file = file;
-    }
-
-    public void subir(ActionEvent actionEvent) throws IOException {
-        FacesMessage m = null;
-       
-       /* if (this.file != null) {
-            System.out.println("ENTRO!!!!!");
-            UploadedFile contractFile = this.getFile();
-            String name = contractFile.getFileName();
-
-            File targetFolder = new File("D:/tmp/"
-                    + this.getOeuvre().getTitle() + "/contracts");
-            try {
-                InputStream inputStream = this.file.getInputstream();
-                OutputStream outputStream = new FileOutputStream(new File(targetFolder,
-                        this.file.getFileName()));
-
-                int read = 0;
-                byte[] bytes = new byte[2048];
-                while ((read = inputStream.read(bytes)) != -1) {
-                    outputStream.write(bytes, 0, read);
-                }
-
-                inputStream.close();
-                outputStream.flush();
-                outputStream.close();
-               m = new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Archivo Adjuntado",
-                    "El archivo ha sido subido correctamente.");
-            } catch (IOException ex) {
-                Logger.getLogger(CreatorOeuvreBean.class.getName()).log(
-                        Level.SEVERE, null, ex);
-              m =  new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Error Al Subir.",
-                    "Ha ocurrido un error inesperado, comuniquese con soporte.");
-            }
-        }else{
-            m = new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Ningun Archivo",
-                    "No sé ha subido ningún archivo.");
-        }
-          FacesContext.getCurrentInstance().addMessage(null, m);*/
-        if( this.file != null){
-        System.out.println("ENTRO!!!");
-        InputStream inputStream = file.getInputStream();          
-        FileOutputStream outputStream = new FileOutputStream(getFilename(file));  
-          
-        byte[] buffer = new byte[4096];          
-        int bytesRead = 0;  
-        while(true) {                          
-            bytesRead = inputStream.read(buffer);  
-            if(bytesRead > 0) {  
-                outputStream.write(buffer, 0, bytesRead);  
-            }else {  
-                break;  
-            }                         
-        }
-        outputStream.close();  
-        inputStream.close();  
-         
-
-        }else{
-
-        }
-    }
-    
-    private static String getFilename(Part part) {  
-        for (String cd : part.getHeader("content-disposition").split(";")) {  
-            if (cd.trim().startsWith("filename")) {  
-                String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");  
-                return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.  
-            }  
-        }  
-        return null;  
-    }  
 
     @PostConstruct()
     private void createFields() {
         this.setAuthorsOeuvres(new ArrayList<AuthorOeuvre>());
         this.setComments(new ArrayList<Comment>());
+        this.setContracts(new ArrayList<Contract>());
+        this.setContractsNumbersList(new ArrayList<String>());
+        this.setContractUploadedFile(null);
         this.setFoundAuthors(new ArrayList<Author>());
         this.setOeuvre(new Oeuvre());
         this.getOeuvre().setDependency(new Dependency());

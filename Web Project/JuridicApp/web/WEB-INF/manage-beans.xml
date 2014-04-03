@@ -5,7 +5,21 @@
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
                 http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd" >
 
-     <managed-bean>
+    <managed-bean>
+        <managed-bean-name>acquisitionBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.acquisition.AcquisitionBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>adminCreatorEntityBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.admin.AdminCreatorEntityBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>registrationAuthorBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.author.registration.RegistrationAuthorBean
@@ -13,9 +27,23 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>adminCreatorEntityBean</managed-bean-name>
+        <managed-bean-name>authorOeuvreListBean</managed-bean-name>
         <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.admin.creator.AdminCreatorEntityBean
+            co.edu.udea.juridicapp.web.bean.authoroeuvre.AuthorOeuvreListBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>authorOeuvreSelectorBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.authoroeuvre.AuthorOeuvreSelectorBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>authorOeuvreCreatorBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.authoroeuvre.create.AuthorOeuvreCreatorBean
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
@@ -41,23 +69,9 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>oeuvreListBean</managed-bean-name>
+        <managed-bean-name>contractBean</managed-bean-name>
         <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.oeuvre.OeuvreListBean
-        </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>oeuvreSelectorBean</managed-bean-name>
-        <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.oeuvre.OeuvreSelectorBean
-        </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>creatorOeuvreBean</managed-bean-name>
-        <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.oeuvre.create.CreatorOeuvreBean
+            co.edu.udea.juridicapp.web.bean.contract.ContractBean
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
@@ -66,8 +80,22 @@
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.dependency.DependencyBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>dependencyCreatorBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.dependency.DependencyCreatorBean
+        </managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>authorOeuvreFileBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.product.AuthorOeuvreFileBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>    
     <managed-bean>
         <managed-bean-name>profileBean</managed-bean-name>
         <managed-bean-class>
@@ -76,46 +104,46 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>titleBean</managed-bean-name>
-        <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.title.TitleBean
-        </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
         <managed-bean-name>supportBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.support.SupportBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>supportCreatorBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.support.SupportCreatorBean
+        </managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>titleBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.title.TitleBean
+        </managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>titleCreatorBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.title.TitleCreatorBean
+        </managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>typeBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.type.TypeBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>contractBean</managed-bean-name>
+        <managed-bean-name>typeCreatorBean</managed-bean-name>
         <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.contract.ContractBean
+            co.edu.udea.juridicapp.web.bean.type.TypeCreatorBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>authorOeuvreFileBean</managed-bean-name>
-        <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.product.AuthorOeuvreFileBean
-        </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>acquisitionBean</managed-bean-name>
-        <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.acquisition.AcquisitionBean
-        </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 
     <!-- Tester -->

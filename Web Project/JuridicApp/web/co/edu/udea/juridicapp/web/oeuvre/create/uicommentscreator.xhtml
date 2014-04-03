@@ -10,75 +10,64 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:c="http://java.sun.com/jsp/jstl/core" >
 
-    <p:panel header="Añadir Comentarios"
-             id="adderCommentsPanel" >
-        <center>
+    <center>
+        <p:panel header="Añadir Comentarios" id="adderCommentsPanel" >
             <h:panelGrid cellpadding="10" columns="2"
                          id="commentTyperPanelGrid" >
-                <h:outputText value="Observaciones o comentarios:" >
+                <h:outputText
+                    value="Observaciones o comentarios:" >
                 </h:outputText>
                 <p:inputTextarea
-                    autoResize="false" cols="30"
-                    counter="counterComents"
+                    autoResize="false" cols="30" counter="counterComents"
                     counterTemplate="{0} Caracteres Restantes."
                     maxlength="250" rows="5"
-                    value="#{creatorOeuvreBean.commentText}" >
+                    value="#{authorOeuvreCreatorBean.commentText}" >
                 </p:inputTextarea>
             </h:panelGrid>
-            <h:outputText id="counterComents" >
-            </h:outputText>
-        </center>
-        <center>
-            <p:commandButton
-                actionListener="#{creatorOeuvreBean.addComment}"
-                icon="ui-icon-circle-plus"
-                id="addCommentButton"
-                update=":mainForm:adderCommentsPanel"
-                value="Añadir Comentario" >
-            </p:commandButton>
-        </center>
+            <p><h:outputText id="counterComents" ></h:outputText></p>
 
-        <p:panel id="addCommentsPanel" >
-            <p:spacer height="20px" ></p:spacer>
+            <p>
+                <p:commandButton
+                    actionListener="#{authorOeuvreCreatorBean.addComment}"
+                    icon="ui-icon-circle-plus" id="addCommentButton"
+                    update=":mainForm:adderCommentsPanel"
+                    value="Añadir Comentario" >
+                </p:commandButton>
+            </p>
 
-            <p:dataTable
-                emptyMessage="No se han añadido Comentarios."
-                id="addCommentsTable"
-                value="#{creatorOeuvreBean.comments}"
-                var="comment" >
+            <p:panel header="Comentarios Añadidos" id="addCommentsPanel" >
+                <p:dataTable
+                    emptyMessage="No se han añadido Comentarios."
+                    id="addCommentsTable"
+                    value="#{authorOeuvreCreatorBean.comments}" var="comment" >
 
-                <p:column>
-                    <f:facet name="header" >
-                        <h:outputText value="Texto De Comentario" >
+                    <p:column>
+                        <f:facet name="header" >
+                            <h:outputText
+                                value="Texto De Comentario" >
+                            </h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{comment.text}" ></h:outputText>
+                    </p:column>
+
+                    <p:column style="text-align: center;" width="250" >
+                        <f:facet name="header" >
+                            <h:outputText value="Fecha / Hora" ></h:outputText>
+                        </f:facet>
+                        <h:outputText
+                            value="#{comment.dateTime}" >
                         </h:outputText>
-                    </f:facet>
-                    <h:outputText
-                        value="#{comment.text}" >
-                    </h:outputText>
-                </p:column>
+                    </p:column>
 
-                <p:column>
-                    <f:facet name="header" >
-                        <h:outputText value="Fecha / Hora" >
-                        </h:outputText>
-                    </f:facet>
-                    <h:outputText
-                        value="#{comment.dateTime}" >
-                    </h:outputText>
-                </p:column>
-
-                <p:column>
-                    <center>
+                    <p:column style="text-align: center;" width="100" >
                         <p:commandButton
-                            action="#{creatorOeuvreBean.removeComment(comment)}"
-                            icon="ui-icon-closethick"
-                            id="removeCommentButton"
-                            update="addCommentsTable"
-                            value="Eliminar" >
+                            action="#{authorOeuvreCreatorBean.removeComment(comment)}"
+                            icon="ui-icon-closethick" id="removeCommentButton"
+                            update="addCommentsTable" value="Eliminar" >
                         </p:commandButton>
-                    </center>
-                </p:column>
-            </p:dataTable>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
         </p:panel>
-    </p:panel>
+    </center>
 </ui:composition>

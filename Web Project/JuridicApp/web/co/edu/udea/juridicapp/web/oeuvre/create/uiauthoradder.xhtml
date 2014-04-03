@@ -12,40 +12,36 @@
 
     <center>
         <p:panel id="authorsAdderPanel" >
-            <p:panel
-                header="Añadir Autores"
-                id="authorsFinderPanel" >
+
+            <p:growl id="growlAuthorAdder" life="3000" showDetail="true" ></p:growl>
+
+            <p:panel header="Añadir Autor" >
                 <h:panelGrid
-                    cellpadding="7" columns="3" >
+                    cellpadding="10" columns="3" id="authorPanelGrid" >
                     <h:outputLabel
-                        for="authorDocumentType"
-                        style="font-weight:bold"
+                        for="authorDocumentType" style="font-weight: bold;"
                         value="Tipo De Documento:" >
                     </h:outputLabel>
                     <p:selectOneMenu
                         id="authorDocumentType"
                         label="Tipo Documento" required="true"
-                        value="#{creatorOeuvreBean.documentType}" >
+                        value="#{authorOeuvreCreatorBean.documentType}" >
                         <f:selectItems
                             value="#{registrationClientBean.documentsType}" >
                         </f:selectItems>
                     </p:selectOneMenu>
                     <p:watermark
-                        for="authorDocumentType"
-                        value="Tipo de Documento" >
+                        for="authorDocumentType" value="Tipo de Documento" >
                     </p:watermark>
 
                     <h:outputLabel
-                        for="authorIdNumber"
-                        style="font-weight:bold"
+                        for="authorIdNumber" style="font-weight: bold;"
                         value="Número De Documento:" >
                     </h:outputLabel>
                     <p:inputText 
-                        id="authorIdNumber"
-                        label="Número de Documento"
-                        maxlength="20"
-                        size="30"
-                        value="#{creatorOeuvreBean.idNumber}" >
+                        id="authorIdNumber" label="Número de Documento"
+                        maxlength="20" size="30"
+                        value="#{authorOeuvreCreatorBean.idNumber}" >
                     </p:inputText>
                     <p:watermark
                         for="authorIdNumber" value="Obligatorio" >
@@ -53,22 +49,18 @@
                 </h:panelGrid>
 
                 <p:commandButton
-                    actionListener="#{creatorOeuvreBean.findAuthor}"
-                    icon="ui-icon-search"
-                    id="findAuthorsButton"
-                    update="authorsFinderPanel"
-                    value="Buscar Autor" >
+                    actionListener="#{authorOeuvreCreatorBean.findAuthor}"
+                    icon="ui-icon-search" id="findAuthorsButton"
+                    update="authorsAdderPanel" value="Buscar Autor" >
                 </p:commandButton>
 
                 <p:panel id="resultsSearchingPanel" >
-                    <p:spacer
-                        height="20px" >
-                    </p:spacer>
+                    <p:spacer height="20px" ></p:spacer>
 
                     <p:dataTable
                         emptyMessage="No se han encontrado Autores."
                         id="authorFoundTable"
-                        value="#{creatorOeuvreBean.foundAuthors}"
+                        value="#{authorOeuvreCreatorBean.foundAuthors}"
                         var="foundAuthor" >
 
                         <p:column>
@@ -136,125 +128,115 @@
                             </center>
                         </p:column>
 
-                        <p:column>
-                            <center>
-                                <p:commandButton
-                                    action="#{creatorOeuvreBean.addAuthor(foundAuthor)}"
-                                    icon="ui-icon-circle-plus"
-                                    id="addAuthorButton"
-                                    style="font-size: 13px;"
-                                    update=":mainForm:authorsAdderPanel"
-                                    value="Añadir" >
-                                </p:commandButton>
-                            </center>
+                        <p:column style="text-align: center;" >
+                            <p:commandButton
+                                action="#{authorOeuvreCreatorBean.addAuthor(foundAuthor)}"
+                                icon="ui-icon-circle-plus"
+                                id="addAuthorButton" style="font-size: 13px;"
+                                update=":mainForm:authorsAdderPanel"
+                                value="Añadir" >
+                            </p:commandButton>
                         </p:column>
                     </p:dataTable>
                 </p:panel>
             </p:panel>
-    </center>
 
-    <p:spacer height="25px" ></p:spacer>
+            <p:panel header="Autores Añadidos"
+                     id="addedAuthorsOeuvresPanel" >
+                <p:dataTable
+                    emptyMessage="No se han añadido Autores."
+                    id="addedAuthorsOeuvresTable" style="font-size: 15px;"
+                    value="#{authorOeuvreCreatorBean.authorsOeuvres}"
+                    var="authorOeuvre" >
+                    <p:column>
+                        <f:facet name="header" >
+                            <h:outputText
+                                value="Tipo De Documento" >
+                            </h:outputText>
+                        </f:facet>
+                        <center>
+                            <h:outputText
+                                value="#{authorOeuvre.authorOeuvrePK.documentType}" >
+                            </h:outputText>
+                        </center>
+                    </p:column>
 
-    <center>
-        <p:panel header="Autores Añadidos"
-                 id="addedAuthorsOeuvresPanel" >
-            <p:dataTable
-                emptyMessage="No se han añadido Autores."
-                id="addedAuthorsOeuvresTable"
-                style="font-size:15px;"
-                value="#{creatorOeuvreBean.authorsOeuvres}"
-                var="authorOeuvre" >
-                <p:column>
-                    <f:facet name="header" >
-                        <h:outputText
-                            value="Tipo De Documento" >
-                        </h:outputText>
-                    </f:facet>
-                    <center>
-                        <h:outputText
-                            value="#{authorOeuvre.authorOeuvrePK.documentType}" >
-                        </h:outputText>
-                    </center>
-                </p:column>
+                    <p:column>
+                        <f:facet name="header" >
+                            <h:outputText
+                                value="Número De Documento" >
+                            </h:outputText>
+                        </f:facet>
+                        <center>
+                            <h:outputText
+                                value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
+                            </h:outputText>
+                        </center>
+                    </p:column>
 
-                <p:column>
-                    <f:facet name="header" >
-                        <h:outputText
-                            value="Número De Documento" >
-                        </h:outputText>
-                    </f:facet>
-                    <center>
-                        <h:outputText
-                            value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
-                        </h:outputText>
-                    </center>
-                </p:column>
+                    <p:column>
+                        <f:facet name="header" >
+                            <h:outputText
+                                value="Nombre Completo" >
+                            </h:outputText>
+                        </f:facet>
+                        <center>
+                            <h:outputText
+                                value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
+                            </h:outputText>
+                        </center>
+                    </p:column>
 
-                <p:column>
-                    <f:facet name="header" >
-                        <h:outputText
-                            value="Nombre Completo" >
-                        </h:outputText>
-                    </f:facet>
-                    <center>
-                        <h:outputText
-                            value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
-                        </h:outputText>
-                    </center>
-                </p:column>
+                    <p:column>
+                        <f:facet name="header" >
+                            <h:outputText
+                                value="Número Celular" >
+                            </h:outputText>
+                        </f:facet>
+                        <center>
+                            <h:outputText
+                                value="#{authorOeuvre.author.mobileNumber}" >
+                            </h:outputText>
+                        </center>
+                    </p:column>
 
-                <p:column>
-                    <f:facet name="header" >
-                        <h:outputText
-                            value="Número Celular" >
-                        </h:outputText>
-                    </f:facet>
-                    <center>
-                        <h:outputText
-                            value="#{authorOeuvre.author.mobileNumber}" >
-                        </h:outputText>
-                    </center>
-                </p:column>
+                    <p:column>
+                        <f:facet name="header" >
+                            <h:outputText
+                                value="Teléfono Fijo" >
+                            </h:outputText>
+                        </f:facet>
+                        <center>
+                            <h:outputText
+                                value="#{authorOeuvre.author.phoneNumber}" >
+                            </h:outputText>
+                        </center>
+                    </p:column>
 
-                <p:column>
-                    <f:facet name="header" >
-                        <h:outputText
-                            value="Teléfono Fijo" >
-                        </h:outputText>
-                    </f:facet>
-                    <center>
-                        <h:outputText
-                            value="#{authorOeuvre.author.phoneNumber}" >
-                        </h:outputText>
-                    </center>
-                </p:column>
+                    <p:column>
+                        <f:facet name="header" >
+                            <h:outputText
+                                value="Correo Electrónico" >
+                            </h:outputText>
+                        </f:facet>
+                        <center>
+                            <h:outputText
+                                value="#{authorOeuvre.author.people.email}" >
+                            </h:outputText>
+                        </center>
+                    </p:column>
 
-                <p:column>
-                    <f:facet name="header" >
-                        <h:outputText
-                            value="Correo Electrónico" >
-                        </h:outputText>
-                    </f:facet>
-                    <center>
-                        <h:outputText
-                            value="#{authorOeuvre.author.people.email}" >
-                        </h:outputText>
-                    </center>
-                </p:column>
-
-                <p:column>
-                    <center>
+                    <p:column style="text-align: center;" width="100" >
                         <p:commandButton
-                            action="#{creatorOeuvreBean.removeAuthorOeuvre(authorOeuvre)}"
+                            action="#{authorOeuvreCreatorBean.removeAuthorOeuvre(authorOeuvre)}"
                             icon="ui-icon-closethick"
                             id="deleteAuthorOeuvreButton"
                             update="addedAuthorsOeuvresTable"
                             value="Eliminar" >
                         </p:commandButton>
-                    </center>
-                </p:column>
-            </p:dataTable>
-        </p:panel>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
         </p:panel>
     </center>
 </ui:composition>

@@ -25,27 +25,31 @@
 
                     <h:panelGrid cellpadding="7" columns="3" >
                         <h:outputLabel for="authorDocumentType"
-                                       style="font-weight:bold"
+                                       style="font-weight: bold;"
                                        value="Tipo De Documento:" >
                         </h:outputLabel>
-                        <p:selectOneMenu id="authorDocumentType"
-                                         label="Tipo Documento" required="true"
-                                         value="#{authorFinderTesterBean.documentType}" >
-                            <f:selectItems value="#{registrationClientBean.documentsType}" >
+                        <p:selectOneMenu
+                            id="authorDocumentType"
+                            label="Tipo Documento" required="true"
+                            value="#{authorFinderTesterBean.documentType}" >
+                            <f:selectItems
+                                value="#{registrationClientBean.documentsType}" >
                             </f:selectItems>
                         </p:selectOneMenu>
-                        <p:watermark for="authorDocumentType"
-                                     value="Tipo de Documento" >
+                        <p:watermark
+                            for="authorDocumentType"
+                            value="Tipo de Documento" >
                         </p:watermark>
 
-                        <h:outputLabel for="authorIdNumber"
-                                       style="font-weight:bold"
-                                       value="Número De Documento:" >
+                        <h:outputLabel
+                            for="authorIdNumber" style="font-weight: bold;"
+                            value="Número De Documento:" >
                         </h:outputLabel>
-                        <p:inputText id="authorIdNumber"
-                                     label="Número de Documento" maxlength="20"
-                                     size="45"
-                                     value="#{authorFinderTesterBean.idNumber}" >
+                        <p:inputText
+                            id="authorIdNumber"
+                            label="Número de Documento" maxlength="20"
+                            size="45"
+                            value="#{authorFinderTesterBean.idNumber}" >
                         </p:inputText>
                         <p:watermark for="authorIdNumber" value="Obligatorio" >
                         </p:watermark>

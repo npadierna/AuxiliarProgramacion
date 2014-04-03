@@ -1,4 +1,4 @@
-package co.edu.udea.juridicapp.web.bean.admin.creator;
+package co.edu.udea.juridicapp.web.bean.admin;
 
 import java.io.Serializable;
 import javax.annotation.PostConstruct;

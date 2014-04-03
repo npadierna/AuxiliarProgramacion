@@ -28,7 +28,7 @@
                 <p:commandButton
                     icon="ui-icon-arrowthick-1-w" id="home"
                     onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';" 
-                    style="font-size:15px;" value="Volver a la Administración" >
+                    style="font-size: 15px;" value="Volver a la Administración" >
                 </p:commandButton>
             </p:layoutUnit>
 
@@ -52,25 +52,25 @@
                 <h:form>
                     <p:panel
                         header="Crear Soporte Para Obra" id="supportCreatorPanel"
-                        style="font-weight:bold" >
+                        style="font-weight: bold;" >
 
                         <center>
                             <h:panelGrid cellpadding="5" columns="3" >
                                 <p:growl
-                                    id="growlLogin" life="3000" showDetail="true" >
+                                    id="growlLogin" life="3000"
+                                    showDetail="true" >
                                 </p:growl>
 
                                 <h:outputLabel
-                                    for="supportType"
-                                    style="font-weight:bold" 
+                                    for="supportType" style="font-weight: bold;" 
                                     value="Tipo De Soporte:" >
                                 </h:outputLabel>
                                 <p:inputText
                                     id="supportType" label="Tipo de Soporte"
                                     maxlength="25" required="true"  
-                                    requiredMessage="Por favor ingrese el tipo de soporte." 
+                                    requiredMessage="Por favor ingrese el nombre para el Soporte." 
                                     size="30"
-                                    value="#{supportBean.support.type}" >
+                                    value="#{supportCreatorBean.newSupport.type}" >
                                 </p:inputText>
                                 <p:watermark
                                     for="supportType" value="Nombre del Soporte" >
@@ -78,13 +78,13 @@
 
                                 <h:outputLabel
                                     for="supportDescription"
-                                    style="font-weight:bold"
+                                    style="font-weight: bold;"
                                     value="Descripción:" >
                                 </h:outputLabel>
                                 <p:inputTextarea
                                     cols="30" id="supportDescription"
                                     maxlength="150" required="false" rows="7"
-                                    value="#{supportBean.support.description}" >
+                                    value="#{supportCreatorBean.newSupport.description}" >
                                 </p:inputTextarea>
                                 <p:watermark
                                     for="supportDescription"
@@ -93,9 +93,9 @@
                             </h:panelGrid>
 
                             <p:commandButton
-                                actionListener="#{supportBean.save}"
+                                actionListener="#{supportCreatorBean.saveSupport}"
                                 id="saveTitleButton" icon="ui-icon-disk"
-                                update="growlLogin" value="Guardar" >
+                                update="supportCreatorPanel" value="Guardar" >
                             </p:commandButton>
 
                             <p:spacer width="25px" ></p:spacer>

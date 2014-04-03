@@ -1,4 +1,4 @@
-package co.edu.udea.juridicapp.web.bean.oeuvre;
+package co.edu.udea.juridicapp.web.bean.authoroeuvre;
 
 import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @Component()
 @Scope(value = "session")
 @SessionScoped()
-public final class OeuvreListBean implements Serializable {
+public final class AuthorOeuvreListBean implements Serializable {
 
     private static final long serialVersionUID = 2915088641135538176L;
     @Autowired()
@@ -29,7 +29,7 @@ public final class OeuvreListBean implements Serializable {
     private List<AuthorOeuvre> authorsOeuvresFiltered;
     private AuthorOeuvre selectedAuthorOeuvre;
 
-    public OeuvreListBean() {
+    public AuthorOeuvreListBean() {
         super();
     }
 
