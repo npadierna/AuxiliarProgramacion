@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core" >
 
     <h:head lang="es" >
         <meta content="text/html" http-equiv="Content-Type" ></meta>
@@ -95,12 +95,13 @@
                                 </h:outputLabel>
                                 <p:inputText
                                     id="peopleIdNumber"
-                                    label="Número de Documento" 
+                                    label="Número de Documento" maxlength="20"
                                     required="true" 
                                     requiredMessage="Por favor ingrese el número de documento." 
-                                    size="45" value="#{registrationAuthorBean.idNumber}" 
+                                    size="30" value="#{registrationAuthorBean.idNumber}" 
                                     validatorMessage="Por favor ingrese solo números" >
-                                    <f:validateRegex pattern="[0-9]+" >
+                                    <f:validateRegex
+                                        pattern="[0-9]+" >
                                     </f:validateRegex>
                                 </p:inputText>
                                 <p:watermark
@@ -113,9 +114,9 @@
                                 </h:outputLabel>
                                 <p:inputText
                                     id="peopleFirstNames" label="Nombres" 
-                                    required="true" 
+                                    maxlength="35" required="true" 
                                     requiredMessage="Por favor ingrese los nombres completos." 
-                                    size="45" 
+                                    size="40"
                                     value="#{registrationAuthorBean.people.firstNames}"
                                     validatorMessage="Por favor ingrese solo letras" >
                                     <f:validateRegex pattern="^[ a-zA-Z]+"  >
@@ -132,9 +133,9 @@
                                 </h:outputLabel>
                                 <p:inputText
                                     id="peopleLastNames" label="Apellidos"
-                                    required="true" 
+                                    maxlength="35" required="true" 
                                     requiredMessage="Por favor ingrese los apellidos completos." 
-                                    size="45"
+                                    size="40"
                                     value="#{registrationAuthorBean.people.lastNames}" 
                                     validatorMessage="Por favor ingrese solo letras" >
                                     <f:validateRegex pattern="^[ a-zA-Z]+"  >
@@ -150,9 +151,8 @@
                                     style="font-weight: bold;" >
                                 </h:outputLabel>
                                 <p:inputText
-                                    id="peopleEmail"
-                                    label="Correo Electrónico"
-                                    size="45" 
+                                    id="peopleEmail" maxlength="35"
+                                    label="Correo Electrónico" size="40" 
                                     value="#{registrationAuthorBean.people.email}" 
                                     validatorMessage="El correo ingresado no es válido" >
                                     <f:validateRegex
@@ -168,9 +168,9 @@
                                     value="Número De Teléfono:" >
                                 </h:outputLabel>
                                 <p:inputText
-                                    id="phoneNumber"
-                                    label="Número de Teléfono" 
-                                    size="45" value="#{registrationAuthorBean.author.phoneNumber}" 
+                                    id="phoneNumber" label="Número de Teléfono"
+                                    maxlength="10" size="15"
+                                    value="#{registrationAuthorBean.author.phoneNumber}" 
                                     validatorMessage="Por favor ingrese solo números" >
                                     <f:validateRegex pattern="[0-9]+" >
                                     </f:validateRegex>
@@ -184,11 +184,12 @@
                                     value="Número De Teléfono Móvil:" >
                                 </h:outputLabel>
                                 <p:inputText
-                                    id="mobileNumber"
+                                    id="mobileNumber" maxlength="12"
                                     label="Número de Teléfono Móvil" 
-                                    size="45" value="#{registrationAuthorBean.author.mobileNumber}" 
+                                    size="15" value="#{registrationAuthorBean.author.mobileNumber}" 
                                     validatorMessage="Por favor ingrese solo números" >
-                                    <f:validateRegex pattern="[0-9]+" >
+                                    <f:validateRegex
+                                        pattern="[0-9]+" >
                                     </f:validateRegex>
                                 </p:inputText>
                                 <p:watermark

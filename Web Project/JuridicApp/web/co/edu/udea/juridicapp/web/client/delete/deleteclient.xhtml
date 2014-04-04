@@ -94,7 +94,8 @@
                                             value="#{deleteClientBean.idNumber}" >
                                         </p:inputText>
                                         <p:watermark
-                                            for="clientIdNumber" value="Obligatorio" >
+                                            for="clientIdNumber"
+                                            value="Obligatorio" >
                                         </p:watermark>
                                     </h:panelGrid>
 
@@ -119,7 +120,7 @@
                                             </h:outputLabel>
                                             <p:inputText
                                                 id="documentType"
-                                                readonly="true" 
+                                                readonly="true" size="30"
                                                 value="#{deleteClientBean.people.peoplePK.documentType}">
                                             </p:inputText>
 
@@ -128,7 +129,7 @@
                                             </h:outputLabel>
                                             <p:inputText  
                                                 id="idNumber"  
-                                                readonly="true" 
+                                                readonly="true" size="30"
                                                 value="#{deleteClientBean.people.peoplePK.idNumber}">
                                             </p:inputText>
 
@@ -138,7 +139,7 @@
                                             <p:inputText
                                                 id="fullName" 
                                                 disabled="false"
-                                                readonly="true" 
+                                                readonly="true" size="30"
                                                 value="#{deleteClientBean.people.firstNames}"> 
                                             </p:inputText>
 
@@ -147,23 +148,24 @@
                                             <p:inputText
                                                 id="lastNames" 
                                                 disabled="false"
-                                                readonly="true" 
+                                                readonly="true" size="30"
                                                 value="#{deleteClientBean.people.lastNames}"> 
                                             </p:inputText>
 
-                                            <h:outputText value="E-mail: " >
+                                            <h:outputText
+                                                value="E-mail: " >
                                             </h:outputText>
                                             <p:inputText
                                                 id="email" 
                                                 disabled="false"        
-                                                readonly="true" 
+                                                readonly="true" size="30"
                                                 value="#{deleteClientBean.people.email}">
                                             </p:inputText>
                                         </h:panelGrid>
 
                                         <center>
                                             <p:commandButton
-                                                actionListener="#{deleteClientBean.isEmpty}"
+                                                actionListener="#{deleteClientBean.checkEmpty}"
                                                 id="deleteMemberButton"   
                                                 oncomplete="confirmation.show()"
                                                 update ="deletedMemberForm" 

@@ -38,6 +38,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultUploadedFile;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -210,7 +211,8 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
         authorOeuvre.setAuthor(author);
         authorOeuvre.setAcquisition1(new Acquisition());
         authorOeuvre.setContract1(new Contract());
-        authorOeuvre.setDnda(new Dnda());
+        authorOeuvre.setDnda(null);
+        authorOeuvre.setProductFile(new DefaultUploadedFile());
         authorOeuvre.setTitle(new Title());
         authorOeuvre.setSupportType(new Support());
 
@@ -366,6 +368,7 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
         if (this.getOeuvre().getDescription().equals("")) {
             this.getOeuvre().setDescription(null);
         }
+
         Long idOeuvre = this.oeuvreDAO.saveOeuvre(this.getOeuvre());
 
         for (Comment c : this.getComments()) {
@@ -374,6 +377,20 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
             c.setCommentPK(commentPK);
 
             this.commentDAO.saveComment(c);
+        }
+
+        for (Contract c : this.getContracts()) {
+            if (c.getDnda() != null) {
+                this.dndaDAO.saveDnda(c.getDnda());
+            }
+
+            if ((c.getContractFile() == null)
+                    || (c.getContractFile().getFileName().equals(""))) {
+                c.setRoute(null);
+            } else {
+                c.setRoute(c.getContractFile().getFileName());
+            }
+            this.contractDAO.saveContract(c);
         }
 
         for (AuthorOeuvre authorOeuvre : this.getAuthorsOeuvres()) {
@@ -401,8 +418,18 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
             authorOeuvre.setBeginning(new Date());
             authorOeuvre.setDelivering(new Date());
 
+            authorOeuvre.setRoute(authorOeuvre.getProductFile().getFileName());
+            authorOeuvre.setAcquisition1(new Acquisition(
+                    authorOeuvre.getAuthorOeuvrePK().getAcquisition()));
+            authorOeuvre.setContract1(new Contract(
+                    authorOeuvre.getAuthorOeuvrePK().getContract()));
+
             this.authorOeuvreDAO.saveAuthorOeuvre(authorOeuvre);
         }
+    }
+
+    public void addProductFileToOeuvre(AuthorOeuvre authorOeuvre) {
+        authorOeuvre.setProductFile(this.getContractUploadedFile());
     }
 
     public void onHandleContractFileUpload(FileUploadEvent fileUploadEvent) {

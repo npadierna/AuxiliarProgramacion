@@ -131,7 +131,7 @@
             <p:commandButton
                 actionListener="#{authorOeuvreCreatorBean.saveAuthorsOeuvres}"
                 id="saveOeuvreButton" icon="ui-icon-disk"
-                onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';"
+                oncomplete="handleOeuvreCreatedRequest(xhr, status, args)"
                 value="Guardar" >
             </p:commandButton>
         </p:panel>

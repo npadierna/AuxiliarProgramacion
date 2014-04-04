@@ -55,7 +55,7 @@
                     <h:outputLabel value="Soporte De Contrato:" ></h:outputLabel>
                     <p:fileUpload
                         allowTypes="/(\.|\/)(pdf|docx?|gif|jpe?g|png)$/"
-                        id="contractFileUpload"
+                        fileLimit="1" id="contractFileUpload"
                         mode="simple" update="contractAdderPanelGrid"
                         value="#{authorOeuvreCreatorBean.contractUploadedFile}" >
                     </p:fileUpload>

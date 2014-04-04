@@ -24,7 +24,7 @@
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.author.registration.RegistrationAuthorBean
         </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>authorOeuvreListBean</managed-bean-name>
@@ -46,6 +46,13 @@
             co.edu.udea.juridicapp.web.bean.authoroeuvre.create.AuthorOeuvreCreatorBean
         </managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>deleteClientBean</managed-bean-name>
+        <managed-bean-class>
+            co.edu.udea.juridicapp.web.bean.client.delete.DeleteClientBean
+        </managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>loginClientBean</managed-bean-name>

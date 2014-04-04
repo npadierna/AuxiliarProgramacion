@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,8 @@ import org.springframework.stereotype.Component;
  * @author Neiber Padierna P&eacute;rez
  */
 @Component()
-@Scope(value = "session")
-@SessionScoped()
+@Scope(value = "request")
+@RequestScoped()
 public class DeleteClientBean implements Serializable {
 
     private static final long serialVersionUID = 3157147504987197440L;
@@ -79,18 +79,19 @@ public class DeleteClientBean implements Serializable {
         this.client = client;
     }
 
-    public void isEmpty(ActionEvent actionEvent) {
-        FacesMessage m = null;
+    public void checkEmpty(ActionEvent actionEvent) {
         if (this.peopleDAO.findPeople(new PeoplePK(this.getDocumentType(),
                 this.getIdNumber())) == null) {
-            m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Datos Inválidos", "Primero debes buscar el Usuario");
+
+            FacesContext.getCurrentInstance().addMessage(null, m);
         }
-        FacesContext.getCurrentInstance().addMessage(null, m);
     }
 
     public void findClient(ActionEvent actionEvent) {
-        FacesMessage m = null;
+        FacesMessage m;
+
         if ((this.getDocumentType() != null) && (this.getIdNumber() != null)) {
             People p = this.peopleDAO.findPeople(
                     new PeoplePK(this.getDocumentType(), this.getIdNumber()));

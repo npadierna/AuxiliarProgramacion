@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,8 @@ import org.springframework.stereotype.Component;
  * @author Neiber Padierna P&eacute;rez
  */
 @Component()
-@Scope(value = "session")
-@SessionScoped()
+@Scope(value = "request")
+@RequestScoped()
 public class RegistrationAuthorBean implements Serializable {
 
     private static final long serialVersionUID = 3457147504987197440L;
