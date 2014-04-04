@@ -312,8 +312,8 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
                         "Autor No Existente",
                         "No se ha encontrado algún Autor con los datos:\n\n"
-                        + "Tipo De Documento: " + this.getDocumentType()
-                        + "\nNúmero De Documento: " + this.getIdNumber());
+                        + "Tipo de Documento: " + this.getDocumentType()
+                        + "\nNúmero de Documento: " + this.getIdNumber());
 
                 FacesContext.getCurrentInstance().addMessage(null, msg);
                 this.setIdNumber("");

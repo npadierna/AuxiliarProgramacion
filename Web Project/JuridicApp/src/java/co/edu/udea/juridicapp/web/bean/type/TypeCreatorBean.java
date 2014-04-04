@@ -54,7 +54,7 @@ public final class TypeCreatorBean implements Serializable {
                         + this.getNewType().getName() + ".");
             } else {
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Datos Inválidos", "Ya existe un Tipo De Obra: "
+                        "Datos Inválidos", "Ya existe un Tipo de Obra: "
                         + this.getNewType().getName() + ".");
             }
 

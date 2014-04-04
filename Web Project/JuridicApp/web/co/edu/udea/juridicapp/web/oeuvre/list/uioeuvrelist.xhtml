@@ -25,14 +25,14 @@
                 value="#{authorOeuvreListBean.authorOeuvres}"
                 var="authorOeuvre" > 
 
-                <f:facet name="header" >Listado De Obras</f:facet>
+                <f:facet name="header" >Listado de Obras</f:facet>
 
                 <p:column
                     filterBy="#{authorOeuvre.oeuvreType.oeuvre.title}"
                     filterMatchMode="contains" style="font-size: 15px;" >
                     <f:facet id="issue" name="header" >
                         <h:outputText
-                            value="Nombre De La Obra" >
+                            value="Nombre de la Obra" >
                         </h:outputText>
                     </f:facet>
                     <h:outputText
@@ -103,7 +103,7 @@
                     sortBy="#{authorOeuvre.acquisition1.type}"
                     style="font-size: 15px;" >
                     <f:facet id="isbn" name="header" > 
-                        <h:outputText value="Acquisición" ></h:outputText>
+                        <h:outputText value="Adquisición" ></h:outputText>
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
@@ -175,7 +175,7 @@
         <p:spacer width="15px" ></p:spacer>
 
         <h:panelGrid columns="2" >
-            <p:panel header="Exportar todas las Obras" >
+            <p:panel header="Exportar todas las obras" >
                 <center>
                     <h:commandLink>
                         <p:graphicImage
@@ -183,7 +183,7 @@
                             value="/faces/co/edu/udea/juridicapp/util/images/download_excel.png" >
                         </p:graphicImage>  
                         <p:dataExporter
-                            encoding="UTF-8" fileName="ObrasCompletas"
+                            encoding="ISO-8859-1" fileName="ObrasCompletas"
                             target="mainTable" type="xls" >
                         </p:dataExporter>
                     </h:commandLink>
@@ -196,7 +196,7 @@
                             value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.png" >
                         </p:graphicImage>  
                         <p:dataExporter
-                            encoding="UTF-8" fileName="ObrasCompletas"
+                            encoding="ISO-8859-1" fileName="ObrasCompletas"
                             preProcessor="#{authorOeuvreListBean.preProcessForPDFFile}"
                             target="mainTable" type="pdf" >
                         </p:dataExporter>
@@ -212,7 +212,7 @@
                             value="/faces/co/edu/udea/juridicapp/util/images/download_excel.png" > 
                         </p:graphicImage>
                         <p:dataExporter
-                            encoding="UTF-8" fileName="ObrasCompletas"
+                            encoding="ISO-8859-1" fileName="ObrasCompletas"
                             pageOnly="true" target="mainTable" type="xls" >
                         </p:dataExporter>
                     </h:commandLink>
@@ -225,7 +225,8 @@
                             value="/faces/co/edu/udea/juridicapp/util/images/download_pdf.png" > 
                         </p:graphicImage>
                         <p:dataExporter
-                            encoding="UTF-8" fileName="Obras" pageOnly="true"
+                            encoding="ISO-8859-1" fileName="Obras"
+                            pageOnly="true"
                             preProcessor="#{authorOeuvreListBean.preProcessForPDFFile}"
                             target="mainTable" type="pdf"  >
                         </p:dataExporter>

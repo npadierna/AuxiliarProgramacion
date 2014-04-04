@@ -105,8 +105,8 @@ public class DeleteClientBean implements Serializable {
                 m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                         "Cliente No Existe", "No se ha encontrado algún Cliente "
                         + "con : \n\n"
-                        + "Tipo De Documento: " + this.getDocumentType()
-                        + "\nNúmero De Documento: " + this.getIdNumber());
+                        + "Tipo de Documento: " + this.getDocumentType()
+                        + "\nNúmero de Documento: " + this.getIdNumber());
             }
         } else {
             m = new FacesMessage(FacesMessage.SEVERITY_ERROR,

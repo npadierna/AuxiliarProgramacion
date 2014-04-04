@@ -16,7 +16,7 @@
         <p:panel id="contractsAdderPanel" >
             <p:panel header="Añadir Contrato" >
                 <h:panelGrid cellpadding="10" columns="3" id="contractPanelGrid" >
-                    <h:outputLabel value="N° De Contrato:" ></h:outputLabel>
+                    <h:outputLabel value="N° de Contrato:" ></h:outputLabel>
                     <p:inputText
                         id="contractId" maxlength="30" size="30"
                         value="#{authorOeuvreCreatorBean.contractNumber}" >
@@ -25,7 +25,7 @@
                         for="contractId" value="Número del Contrato" >
                     </p:watermark>
 
-                    <h:outputText value="Fecha De Inicio:" ></h:outputText>
+                    <h:outputText value="Fecha de Inicio:" ></h:outputText>
                     <p:calendar
                         effect="explode" id="beginningDate" size="15"
                         value="#{authorOeuvreCreatorBean.date}" >
@@ -34,7 +34,7 @@
                         for="beginningDate" value="Fecha de Inicio" >
                     </p:watermark>
 
-                    <h:outputText value="Fecha De Entrega:" ></h:outputText>
+                    <h:outputText value="Fecha de Entrega:" ></h:outputText>
                     <p:calendar
                         effect="explode" id="deliveringDate" size="15"
                         value="#{authorOeuvreCreatorBean.date}" >
@@ -52,7 +52,7 @@
                         for="contractDNDA" value="Número de DNDA" >
                     </p:watermark>
 
-                    <h:outputLabel value="Soporte De Contrato:" ></h:outputLabel>
+                    <h:outputLabel value="Soporte de Contrato:" ></h:outputLabel>
                     <p:fileUpload
                         allowTypes="/(\.|\/)(pdf|docx?|gif|jpe?g|png)$/"
                         fileLimit="1" id="contractFileUpload"
@@ -83,7 +83,7 @@
                     <p:column style="text-align: center;" >
                         <f:facet id="issue" name="header" >
                             <h:outputText
-                                value="N° De Contrato" >
+                                value="N° de Contrato" >
                             </h:outputText>
                         </f:facet>
                         <h:outputLabel value="#{contract.id}" ></h:outputLabel>

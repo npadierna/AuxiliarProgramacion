@@ -1,25 +1,18 @@
 package co.edu.udea.juridicapp.service.config.impl;
 
 import co.edu.udea.juridicapp.persistence.dao.IAcquisitionDAO;
-import co.edu.udea.juridicapp.persistence.dao.IAuthorDAO;
-import co.edu.udea.juridicapp.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.juridicapp.persistence.dao.IDependencyDAO;
 import co.edu.udea.juridicapp.persistence.dao.IProfileDAO;
 import co.edu.udea.juridicapp.persistence.dao.ITitleDAO;
 import co.edu.udea.juridicapp.persistence.dao.ISupportDAO;
 import co.edu.udea.juridicapp.persistence.dao.ITypeDAO;
-import co.edu.udea.juridicapp.persistence.dao.IClientDAO;
 import co.edu.udea.juridicapp.persistence.entity.Acquisition;
-import co.edu.udea.juridicapp.persistence.entity.Author;
-import co.edu.udea.juridicapp.persistence.entity.AuthorOeuvre;
 import co.edu.udea.juridicapp.persistence.entity.Dependency;
 import co.edu.udea.juridicapp.persistence.entity.Profile;
 import co.edu.udea.juridicapp.persistence.entity.Title;
 import co.edu.udea.juridicapp.persistence.entity.Support;
 import co.edu.udea.juridicapp.persistence.entity.Type;
-import co.edu.udea.juridicapp.persistence.entity.Client;
 import co.edu.udea.juridicapp.service.config.IFirstRunConfiguration;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -32,8 +25,6 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     @Autowired()
     private IAcquisitionDAO acquisitionDAO;
     @Autowired()
-    private IAuthorOeuvreDAO authorOeuvreDAO;
-    @Autowired()
     private IDependencyDAO dependencyDAO;
     @Autowired()
     private IProfileDAO profileDAO;
@@ -43,8 +34,6 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     private ISupportDAO supportDAO;
     @Autowired()
     private ITypeDAO typeDAO;
-    @Autowired()
-    private IClientDAO clientDAO;
 
     @Override()
     public void createDefaultData() {
@@ -65,19 +54,19 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         System.out.println(" + Creating the default \"ACQUISITION\" data.");
 
         if (this.acquisitionDAO.countAcquisitions() == 0) {
-            Acquisition acquisition = new Acquisition("Contrato De Cesión De Derechos");
+            Acquisition acquisition = new Acquisition("Contrato de Cesión de Derechos");
             this.acquisitionDAO.saveAcquisition(acquisition);
 
-            acquisition = new Acquisition("Contrato De Obra Por Encargo");
+            acquisition = new Acquisition("Contrato de Obra Por Encargo");
             this.acquisitionDAO.saveAcquisition(acquisition);
 
-            acquisition = new Acquisition("Presunción Legal Plan De Trabajo");
+            acquisition = new Acquisition("Presunción Legal Plan de Trabajo");
             this.acquisitionDAO.saveAcquisition(acquisition);
 
             acquisition = new Acquisition("Autorización");
             this.acquisitionDAO.saveAcquisition(acquisition);
 
-            acquisition = new Acquisition("Licencia De Software");
+            acquisition = new Acquisition("Licencia de Software");
             this.acquisitionDAO.saveAcquisition(acquisition);
 
             acquisition = new Acquisition("Licencia Creative Commons");
@@ -94,8 +83,40 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
         System.out.println(" + Creating the default \"DEPENDENCY\" data.");
 
         if (this.dependencyDAO.countDependencies() == 0) {
-            Dependency dependency = new Dependency("DRAI Facultad De Ingeniería");
-            dependency.setDescription("Departamentos de Recursos y Apoyo Didáctico (D.R.A.I.) para la Facultad de Ingeniería.");
+            Dependency dependency = new Dependency("Ingeniería de Sistemas");
+            dependency.setDescription("Departamento de Ingeniería de Sistemas de la Universidad de Antioquia.");
+            this.dependencyDAO.saveDependency(dependency);
+            
+            dependency = new Dependency("Ingeniería Industrial");
+            dependency.setDescription("Departamento de Ingeniería Industrial de la Universidad de Antioquia.");
+            this.dependencyDAO.saveDependency(dependency);
+            
+            dependency = new Dependency("Ingeniería Ambiental");
+            dependency.setDescription("Departamento de Ingeniería Ambiental de la Universidad de Antioquia.");
+            this.dependencyDAO.saveDependency(dependency);
+            
+            dependency = new Dependency("Ingeniería De Telecomunicaciones");
+            dependency.setDescription("Departamento de Ingeniería de Telecomunicaciones de la Universidad de Antioquia.");
+            this.dependencyDAO.saveDependency(dependency);
+
+            dependency = new Dependency("Facultad de Comunicaciones");
+            dependency.setDescription("Facultad de Comunicaciones de la Universidad de Antioquia.");
+            this.dependencyDAO.saveDependency(dependency);
+
+            dependency = new Dependency("Facultad de Ingeniería");
+            dependency.setDescription("Facultad de Ingeniería de la Universidad de Antioquia.");
+            this.dependencyDAO.saveDependency(dependency);
+
+            dependency = new Dependency("Facultad de Educación");
+            dependency.setDescription("Facultad de Educación de la Universidad de Antioquia.");
+            this.dependencyDAO.saveDependency(dependency);
+
+            dependency = new Dependency("D.R.A.I.");
+            dependency.setDescription("Departamento de Recursos de Apoyo e Informática de la Universidad de Antioquia.");
+            this.dependencyDAO.saveDependency(dependency);
+
+            dependency = new Dependency("Proyectos Especiales");
+            dependency.setDescription("Proyectos Especiales avalados por la Universidad de Antioquia.");
             this.dependencyDAO.saveDependency(dependency);
         }
     }
@@ -109,7 +130,7 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
             profile.setDescription("Administrador del Sistema.");
             this.profileDAO.saveProfile(profile);
 
-            profile = new Profile("Gestor De Contratos");
+            profile = new Profile("Gestor de Contratos");
             profile.setDescription("Gestor de Contratos u Obras en el Sistema.");
             this.profileDAO.saveProfile(profile);
 
@@ -140,24 +161,24 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
             title.setDescription("Profesor Ad Honórem.");
             this.titleDAO.saveTitle(title);
 
-            title = new Title("Profesor De Cátedra");
-            title.setDescription("Profesor De Cátedra.");
+            title = new Title("Profesor de Cátedra");
+            title.setDescription("Profesor de Cátedra.");
             this.titleDAO.saveTitle(title);
 
-            title = new Title("Estudiante De Pregrado");
-            title.setDescription("Estudiante De Pregrado.");
+            title = new Title("Estudiante de Pregrado");
+            title.setDescription("Estudiante de Pregrado.");
             this.titleDAO.saveTitle(title);
 
-            title = new Title("Estudiante De Postgrado");
-            title.setDescription("Estudiante De Postgrado.");
+            title = new Title("Estudiante de Postgrado");
+            title.setDescription("Estudiante de Postgrado.");
             this.titleDAO.saveTitle(title);
 
-            title = new Title("Empleado De Carrera");
-            title.setDescription("Empleado De Carrera.");
+            title = new Title("Empleado de Carrera");
+            title.setDescription("Empleado de Carrera.");
             this.titleDAO.saveTitle(title);
 
-            title = new Title("Empleado De Libre Nombramiento");
-            title.setDescription("Empleado De Libre Nombramiento.");
+            title = new Title("Empleado de Libre Nombramiento");
+            title.setDescription("Empleado de Libre Nombramiento.");
             this.titleDAO.saveTitle(title);
 
             title = new Title("Empleado Provisional");
@@ -206,8 +227,8 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
             type.setDescription("Escrito.");
             this.typeDAO.saveType(type);
 
-            type = new Type("Programa De Ordenador (Software)");
-            type.setDescription("Programa De Ordenador (Software).");
+            type = new Type("Programa de Ordenador (Software)");
+            type.setDescription("Programa de Ordenador (Software).");
             this.typeDAO.saveType(type);
 
             type = new Type("Audiovisual, Multimedia");
@@ -222,8 +243,8 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
             type.setDescription("Composición Musical.");
             this.typeDAO.saveType(type);
 
-            type = new Type("Obra De Bellas Artes");
-            type.setDescription("Obra De Bellas Artes.");
+            type = new Type("Obra de Bellas Artes");
+            type.setDescription("Obra de Bellas Artes.");
             this.typeDAO.saveType(type);
 
             type = new Type("Obra Fotográfica");
@@ -240,6 +261,10 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
 
             type = new Type("Otro");
             type.setDescription("Otro.");
+            this.typeDAO.saveType(type);
+
+            type = new Type("Aula Semilla");
+            type.setDescription("Aula Semilla.");
             this.typeDAO.saveType(type);
         }
     }

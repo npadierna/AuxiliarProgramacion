@@ -51,11 +51,11 @@
 
             <p:layoutUnit position="center" >
                 <h:form id="mainForm" >
-                    <p:panel header="Descripción De La Obra" >
+                    <p:panel header="Descripción de la Obra" >
                         <p:tabView id="mainTabView" >
                             <p:tab id="oeuvre" title="Obra" >
                                 <center>
-                                    <p:fieldset legend="Datos De La Obra" >
+                                    <p:fieldset legend="Datos de la Obra" >
                                         <h:panelGrid cellpadding="10" columns="2" >
                                             <h:outputText
                                                 value="Nombre de la Obra:" >
@@ -84,7 +84,7 @@
 
                                     <p:spacer width="10px" ></p:spacer>
 
-                                    <p:fieldset legend="Datos De La Dependencia" >
+                                    <p:fieldset legend="Datos de la Dependencia" >
                                         <h:panelGrid columns="2" cellpadding="10" >
                                             <h:outputText
                                                 value="Dependencia Acádemica:" >
@@ -113,7 +113,7 @@
                                         var="authorOeuvre" >
 
                                         <f:facet name="header" >
-                                            Listado De Autores
+                                            Listado de Autores
                                         </f:facet>
 
                                         <p:column
@@ -121,7 +121,7 @@
                                             <f:facet
                                                 id="documentType" name="header">  
                                                 <h:outputText 
-                                                    value="Tipo De Documento" >
+                                                    value="Tipo de Documento" >
                                                 </h:outputText>  
                                             </f:facet>
                                             <h:outputText
@@ -135,7 +135,7 @@
                                             <f:facet
                                                 id="documentNumber" name="header">  
                                                 <h:outputText 
-                                                    value="Número De Documento" >
+                                                    value="Número de Documento" >
                                                 </h:outputText>  
                                             </f:facet>
                                             <h:outputText 
@@ -162,7 +162,7 @@
                                             <f:facet
                                                 id="fullName" name="header" >
                                                 <h:outputText 
-                                                    value="Vínculo Con Universidad" >
+                                                    value="Vínculo con la Universidad" >
                                                 </h:outputText>  
                                             </f:facet>
                                             <h:outputText
@@ -189,7 +189,7 @@
                                             <f:facet
                                                 id="fullName" name="header" >
                                                 <h:outputText 
-                                                    value="Acquisición" >
+                                                    value="Forma de Adquisición" >
                                                 </h:outputText>  
                                             </f:facet>
                                             <h:outputText
@@ -201,7 +201,8 @@
                                         <p:column style="font-size: 15px;" >
                                             <f:facet
                                                 id="fullName" name="header" >
-                                                <h:outputText value="Tipo" >
+                                                <h:outputText
+                                                    value="Tipo de Obra" >
                                                 </h:outputText>  
                                             </f:facet>
                                             <h:outputText 
@@ -221,6 +222,20 @@
                                             <h:outputText
                                                 style="font-size: 13px;"
                                                 value="#{authorOeuvre.isbn}" >
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column
+                                            style="font-size: 15px; text-align: center;" >
+                                            <f:facet
+                                                id="fullName" name="header" >
+                                                <h:outputText
+                                                    value="D.N.D.A." >
+                                                </h:outputText>
+                                            </f:facet>
+                                            <h:outputText
+                                                style="font-size: 13px;"
+                                                value="#{authorOeuvre.dnda.number}" >
                                             </h:outputText>
                                         </p:column>
 
@@ -266,7 +281,8 @@
                                         value="#{authorOeuvreSelectorBean.oeuvreComments}"
                                         var="comment" >
 
-                                        <p:column headerText="Comentario" >
+                                        <p:column headerText="Comentario"
+                                                  style="font-size: 13px;" >
                                             <h:outputText
                                                 value="#{comment.text}" >
                                             </h:outputText>
@@ -274,7 +290,7 @@
 
                                         <p:column
                                             headerText="Fecha"
-                                            style="text-align: center;"
+                                            style="text-align: center; font-size: 13px;"
                                             width="250" >
                                             <h:outputText
                                                 value="#{authorOeuvreSelectorBean.applyFormatForDate(comment.dateTime)}" >

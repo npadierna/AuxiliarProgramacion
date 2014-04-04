@@ -32,10 +32,10 @@
                     <h:panelGrid cellpadding="5" columns="3" >
                         <h:outputLabel
                             for="userName"
-                            value="Nombre De Usuario: *" >
+                            value="Nombre de Usuario: *" >
                         </h:outputLabel>
                         <p:inputText
-                            id="userName" label="Nombre De Usuario." 
+                            id="userName" label="Nombre de Usuario." 
                             required="true"
                             requiredMessage="Por favor ingrese su nombre de usuario." 
                             validatorMessage="Nombre de usuario inválido." 
@@ -68,6 +68,13 @@
                         icon="ui-icon-person" id="loginButton"
                         oncomplete="handleLoginRequest(xhr, status, args)"
                         update=":loginForm" value="Iniciar Sesión" >
+                    </p:commandButton>
+
+                    <p:spacer width="30px" ></p:spacer>
+
+                    <p:commandButton
+                        icon="ui-icon-key" id="restorePasswordButton"
+                        value="Recuperar Contraseña" >
                     </p:commandButton>
                 </p:panel>
             </center>

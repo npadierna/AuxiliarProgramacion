@@ -10,11 +10,11 @@ import java.util.List;
  */
 public enum DocumentTypeClientEnum {
 
-    CEDULA_DE_CIUDADANIA("Cédula De Ciudadanía"),
-    CEDULA_DE_EXTRANJERIA("Cédula De Extranjería"),
-    NUMERO_IDENTIFICACION_PERSONAL("Número Único De Identificación Personal"),
+    CEDULA_DE_CIUDADANIA("Cédula de Ciudadanía"),
+    CEDULA_DE_EXTRANJERIA("Cédula de Extranjería"),
+    NUMERO_IDENTIFICACION_PERSONAL("Número Único de Identificación Personal"),
     REGISTRO_CIVIL("Registro Civil"),
-    TARJETA_DE_IDENTIDAD("Tarjeta De Identidad");
+    TARJETA_DE_IDENTIDAD("Tarjeta de Identidad");
     private String documentType;
 
     private DocumentTypeClientEnum(String documentType) {

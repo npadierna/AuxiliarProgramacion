@@ -21,26 +21,27 @@
     <h:body>
         <h:form id="authorsOeuvresAdderForm" >
             <center>
-                <p:panel header="Añadir Obras A Autores"
-                         id="authorsOeuvresAdderPanel" >
+                <p:panel
+                    header="Añadir Obras A Autores" id="authorsOeuvresAdderPanel" >
 
-                    <p:dataTable emptyMessage="No se han añadido Autores."
-                                 id="addedAuthorsOeuvresTable"
-                                 style="font-size:13px"
-                                 value="#{authorFinderTesterBean.authorsOeuvres}"
-                                 var="authorOeuvre" >
+                    <p:dataTable
+                        emptyMessage="No se han añadido Autores."
+                        id="addedAuthorsOeuvresTable"
+                        style="font-size:13px"
+                        value="#{authorFinderTesterBean.authorsOeuvres}"
+                        var="authorOeuvre" >
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="+" >
-                                </h:outputText>
+                                <h:outputText value="+" ></h:outputText>
                             </f:facet>
                             <p:rowToggler></p:rowToggler>
                         </p:column>
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="Tipo De Documento" >
+                                <h:outputText
+                                    value="Tipo De Documento" >
                                 </h:outputText>
                             </f:facet>
                             <h:outputText value="#{authorOeuvre.authorOeuvrePK.documentType}" >
@@ -49,7 +50,8 @@
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="Número De Documento" >
+                                <h:outputText
+                                    value="Número de Documento" >
                                 </h:outputText>
                             </f:facet>
                             <h:outputText value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
@@ -58,7 +60,8 @@
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="Nombre Completo" >
+                                <h:outputText
+                                    value="Nombre Completo" >
                                 </h:outputText>
                             </f:facet>
                             <h:outputText value="#{authorOeuvre.author.people.lastNames} #{authorOeuvre.author.people.firstNames}" >
@@ -67,37 +70,44 @@
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="N° Contrato" >
+                                <h:outputText
+                                    value="N° Contrato" >
                                 </h:outputText>
                             </f:facet>
-                            <p:inputText maxlength="30" required="true" size="20"
+                            <p:inputText
+                                maxlength="30" required="true" size="20"
                                          value="#{authorOeuvre.authorOeuvrePK.contract}" >
                             </p:inputText>
                         </p:column>
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="Fecha De Inicio" >
+                                <h:outputText
+                                    value="Fecha de Inicio" >
                                 </h:outputText>
                             </f:facet>
-                            <p:calendar effect="explode" size="5"
-                                        value="#{authorOeuvre.beginning}" >
+                            <p:calendar
+                                effect="explode" size="5"
+                                value="#{authorOeuvre.beginning}" >
                             </p:calendar>
                         </p:column>
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="Fecha De Entrega" >
+                                <h:outputText
+                                    value="Fecha  Entrega" >
                                 </h:outputText>
                             </f:facet>
-                            <p:calendar effect="explode" size="5"
-                                        value="#{authorOeuvre.delivering}" >
+                            <p:calendar
+                                effect="explode" size="5"
+                                value="#{authorOeuvre.delivering}" >
                             </p:calendar>
                         </p:column>
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="Tipo De Obra" >
+                                <h:outputText
+                                    value="Tipo  Obra" >
                                 </h:outputText>
                             </f:facet>
                             <p:selectOneMenu id="authorOeuvreType"
@@ -111,7 +121,7 @@
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="Soporte De La Obra" >
+                                <h:outputText value="Soporte  la Obra" >
                                 </h:outputText>
                             </f:facet>
                             <p:selectOneMenu id="authorOeuvreSupport"
@@ -125,7 +135,7 @@
 
                         <p:column>
                             <f:facet name="header" >
-                                <h:outputText value="Vínculo Con La Universidad" >
+                                <h:outputText value="Vínculo con la Universidad" >
                                 </h:outputText>
                             </f:facet>
                             <p:selectOneMenu id="authorOeuvreTitle"

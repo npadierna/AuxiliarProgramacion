@@ -22,30 +22,24 @@
         res-type="javax.sql.DataSource" statement-timeout-in-seconds="-1"
         steady-pool-size="8" validate-atmost-once-period-in-seconds="0"
         wrap-jdbc-objects="false" >
-        <property name="serverName"
-                  value="localhost" >
+        
+        <property name="serverName"value="localhost" ></property>
+        <property name="portNumber" value="" ></property>
+        <property name="databaseName" value="JuridicApp" ></property>
+        <property name="User" value="root" ></property>
+        <property name="Password" value="230491" ></property>
+        <property
+            name="URL"
+            value="jdbc:mysql://localhost:3306/JuridicApp" >
         </property>
-        <property name="portNumber"
-                  value="" >
-        </property>
-        <property name="databaseName"
-                  value="JuridicApp" >
-        </property>
-        <property name="User"
-                  value="root" >
-        </property>
-        <property name="Password"
-                  value="230491" >
-        </property>
-        <property name="URL"
-                  value="jdbc:mysql://localhost:3306/JuridicApp" >
-        </property>
-        <property name="driverClass"
-                  value="com.mysql.jdbc.Driver" >
+        <property
+            name="driverClass"
+            value="com.mysql.jdbc.Driver" >
         </property>
     </jdbc-connection-pool>
 
-    <jdbc-resource enabled="true" jndi-name="jndi/juridicapp" object-type="user"
-                   pool-name="mysql_JuridicApp_rootPool" >
+    <jdbc-resource
+        enabled="true" jndi-name="jndi/juridicapp" object-type="user"
+        pool-name="mysql_JuridicApp_rootPool" >
     </jdbc-resource>
 </resources>
