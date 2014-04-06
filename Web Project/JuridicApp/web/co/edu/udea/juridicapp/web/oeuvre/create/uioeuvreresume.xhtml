@@ -27,7 +27,7 @@
                 value="#{authorOeuvreCreatorBean.authorsOeuvres}"
                 var="authorOeuvre" > 
 
-                <f:facet name="header" >Obras Creadas Por Autores</f:facet>
+                <f:facet name="header" >Obras Creadas por Autores</f:facet>
 
                 <p:column style="font-size: 15px;" >
                     <f:facet id="author" name="header" >
@@ -41,7 +41,7 @@
 
                 <p:column style="font-size: 15px; text-align: center;" >
                     <f:facet id="contract" name="header" > 
-                        <h:outputText value="N° Contrato" ></h:outputText> 
+                        <h:outputText value="N° de Contrato" ></h:outputText> 
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
@@ -55,7 +55,7 @@
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.beginning}" >
+                        value="#{authorOeuvre.contract1.beginning}" >
                     </h:outputText>
                 </p:column>
 
@@ -67,13 +67,13 @@
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.delivering}" >
+                        value="#{authorOeuvre.contract1.delivering}" >
                     </h:outputText>
                 </p:column>
 
                 <p:column style="font-size: 15px; text-align: center;" >
                     <f:facet id="type" name="header" >
-                        <h:outputText value="Tipo" ></h:outputText>
+                        <h:outputText value="Tipo de Obra" ></h:outputText>
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"

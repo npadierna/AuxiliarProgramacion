@@ -155,13 +155,6 @@
 
     <!-- Tester -->
     <managed-bean>
-        <managed-bean-name>authorFinderTesterBean</managed-bean-name>
-        <managed-bean-class>
-            co.edu.udea.juridicapp.web.bean.tester.AuthorFinderTesterBean
-        </managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
         <managed-bean-name>uploaderFileTesterBean</managed-bean-name>
         <managed-bean-class>
             co.edu.udea.juridicapp.web.bean.tester.UploaderFileTesterBean

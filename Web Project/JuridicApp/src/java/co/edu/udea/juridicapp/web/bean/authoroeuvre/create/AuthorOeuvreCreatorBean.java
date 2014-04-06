@@ -81,8 +81,8 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
     private String documentType;
     private String idNumber;
     private UploadedFile contractUploadedFile;
-    // TODO: Elimnar este atributo y sus Getter y setter.
-    private Date date;
+    private Date beginningDate;
+    private Date deliveringDate;
 
     public AuthorOeuvreCreatorBean() {
         super();
@@ -196,12 +196,22 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
         this.contractUploadedFile = contractUploadedFile;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getBeginningDate() {
+
+        return (this.beginningDate);
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setBeginningDate(Date beginningDate) {
+        this.beginningDate = beginningDate;
+    }
+
+    public Date getDeliveringDate() {
+
+        return (this.deliveringDate);
+    }
+
+    public void setDeliveringDate(Date deliveringDate) {
+        this.deliveringDate = deliveringDate;
     }
 
     public void addAuthor(Author author) {
@@ -283,6 +293,8 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
         contract = new Contract(this.getContractNumber());
         contract.setContractFile(this.getContractUploadedFile());
         contract.setDnda(dnda);
+        contract.setBeginning(this.getBeginningDate());
+        contract.setDelivering(this.getDeliveringDate());
 
         if (!this.findContractInContractList(contract)) {
             this.getContracts().add(contract);
@@ -402,7 +414,7 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
                 this.oeuvreTypeDAO.saveOeuvreType(oeuvreType);
             }
 
-            // TODO: Buscar el DNDA y el número del contrato.
+            // TODO: Buscar el D.N.D.A. y el número del contrato.
 //            if (this.dnd)
             if (authorOeuvre.getIsbn() != null) {
                 authorOeuvre.setIsbn(authorOeuvre.getIsbn().trim());
@@ -413,11 +425,6 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
 
             authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);
             authorOeuvre.setOeuvreType(oeuvreType);
-
-            // TODO: Corregir esto cuando se sepa cómo tratar las fechas.
-            authorOeuvre.setBeginning(new Date());
-            authorOeuvre.setDelivering(new Date());
-
             authorOeuvre.setRoute(authorOeuvre.getProductFile().getFileName());
             authorOeuvre.setAcquisition1(new Acquisition(
                     authorOeuvre.getAuthorOeuvrePK().getAcquisition()));

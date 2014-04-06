@@ -65,10 +65,17 @@
                                             </h:outputText>
 
                                             <h:outputText
+                                                value="Fecha de Inicio:" >
+                                            </h:outputText>
+                                            <h:outputText
+                                                value="#{authorOeuvreSelectorBean.selectedAuthorOeuvre.contract1.beginning}" >
+                                            </h:outputText>
+
+                                            <h:outputText
                                                 value="Fecha de Entrega:" >
                                             </h:outputText>
                                             <h:outputText
-                                                value="#{authorOeuvreSelectorBean.selectedAuthorOeuvre.delivering}" >
+                                                value="#{authorOeuvreSelectorBean.selectedAuthorOeuvre.contract1.delivering}" >
                                             </h:outputText>
 
                                             <h:outputText 
@@ -104,8 +111,7 @@
                                         paginator="true"
                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                         rowKey="#{authorOeuvre.key}"
-                                        rows="5"
-                                        rowsPerPageTemplate="5,7,10"
+                                        rows="5" rowsPerPageTemplate="5,7,10"
                                         selection="#{authorOeuvreSelectorBean.selectedAuthorOeuvre}"
                                         selectionMode="single"
                                         style="width: 98%; font-size: 13px;"
@@ -176,7 +182,7 @@
                                             <f:facet
                                                 id="fullName" name="header" >
                                                 <h:outputText 
-                                                    value="N° Contrato" >
+                                                    value="N° de Contrato" >
                                                 </h:outputText>  
                                             </f:facet>
                                             <h:outputText

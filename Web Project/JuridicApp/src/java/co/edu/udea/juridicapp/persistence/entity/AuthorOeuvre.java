@@ -1,7 +1,6 @@
 package co.edu.udea.juridicapp.persistence.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -12,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -43,10 +40,6 @@ import org.primefaces.model.UploadedFile;
             query = "SELECT a FROM AuthorOeuvre a WHERE a.authorOeuvrePK.acquisition = :acquisition"),
     @NamedQuery(name = "AuthorOeuvre.findByIsbn",
             query = "SELECT a FROM AuthorOeuvre a WHERE a.isbn = :isbn"),
-    @NamedQuery(name = "AuthorOeuvre.findByBeginning",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.beginning = :beginning"),
-    @NamedQuery(name = "AuthorOeuvre.findByDelivering",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.delivering = :delivering"),
     @NamedQuery(name = "AuthorOeuvre.findByRoute",
             query = "SELECT a FROM AuthorOeuvre a WHERE a.route = :route")})
 @Table(name = "AUTHOR_OEUVRE")
@@ -59,16 +52,6 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     @Size(max = 35)
     @Column(name = "isbn")
     private String isbn;
-    @Basic(optional = false)
-    @NotNull()
-    @Column(name = "beginning")
-    @Temporal(TemporalType.DATE)
-    private Date beginning;
-    @Basic(optional = false)
-    @NotNull()
-    @Column(name = "delivering")
-    @Temporal(TemporalType.DATE)
-    private Date delivering;
     @Basic(optional = false)
     @NotNull()
     @Size(min = 1, max = 300)
@@ -94,17 +77,14 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     @ManyToOne(optional = false)
     private Author author;
     @JoinColumn(name = "dnda", referencedColumnName = "number")
-    @ManyToOne()
+    @ManyToOne
     private Dnda dnda;
     @JoinColumn(name = "support_type", referencedColumnName = "type")
     @ManyToOne(optional = false)
     private Support supportType;
     @JoinColumns({
-        @JoinColumn(name = "oeuvre_type_id", referencedColumnName = "oeuvre_id",
-                insertable = false, updatable = false),
-        @JoinColumn(name = "oeuvre_type_name",
-                referencedColumnName = "type_name", insertable = false,
-                updatable = false)})
+        @JoinColumn(name = "oeuvre_type_id", referencedColumnName = "oeuvre_id", insertable = false, updatable = false),
+        @JoinColumn(name = "oeuvre_type_name", referencedColumnName = "type_name", insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private OeuvreType oeuvreType;
     @Transient()
@@ -118,11 +98,8 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
         this.authorOeuvrePK = authorOeuvrePK;
     }
 
-    public AuthorOeuvre(AuthorOeuvrePK authorOeuvrePK, Date beginning,
-            Date delivering, String route) {
+    public AuthorOeuvre(AuthorOeuvrePK authorOeuvrePK, String route) {
         this.authorOeuvrePK = authorOeuvrePK;
-        this.beginning = beginning;
-        this.delivering = delivering;
         this.route = route;
     }
 
@@ -149,24 +126,6 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
-    }
-
-    public Date getBeginning() {
-
-        return (this.beginning);
-    }
-
-    public void setBeginning(Date beginning) {
-        this.beginning = beginning;
-    }
-
-    public Date getDelivering() {
-
-        return (this.delivering);
-    }
-
-    public void setDelivering(Date delivering) {
-        this.delivering = delivering;
     }
 
     public String getRoute() {

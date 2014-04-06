@@ -42,14 +42,14 @@
                 </p:column>
 
                 <p:column
-                    sortBy="#{authorOeuvre.delivering}"
+                    sortBy="#{authorOeuvre.contract1.delivering}"
                     style="font-size: 15px; text-align: center;" >
                     <f:facet id="year" name="header" >
-                        <h:outputText value="Fecha Entrega" ></h:outputText>  
+                        <h:outputText value="Fecha de Entrega" ></h:outputText>  
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.delivering}" >
+                        value="#{authorOeuvre.contract1.delivering}" >
                     </h:outputText>
                 </p:column>
 
@@ -60,7 +60,7 @@
                     sortBy="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}"
                     style="font-size: 15px;" >
                     <f:facet id="type" name="header" >  
-                        <h:outputText value="Tipo" ></h:outputText>  
+                        <h:outputText value="Tipo de Obra" ></h:outputText>  
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
@@ -88,7 +88,7 @@
                     sortBy="#{authorOeuvre.contract1.id}"
                     style="font-size: 15px; text-align: center;" >
                     <f:facet id="contract" name="header" > 
-                        <h:outputText value="N° Contrato" ></h:outputText>
+                        <h:outputText value="N° de Contrato" ></h:outputText>
                     </f:facet>
                     <h:outputText
                         value="#{authorOeuvre.contract1.id}"
@@ -103,7 +103,9 @@
                     sortBy="#{authorOeuvre.acquisition1.type}"
                     style="font-size: 15px;" >
                     <f:facet id="isbn" name="header" > 
-                        <h:outputText value="Adquisición" ></h:outputText>
+                        <h:outputText
+                            value="Forma de Adquisición" >
+                        </h:outputText>
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"

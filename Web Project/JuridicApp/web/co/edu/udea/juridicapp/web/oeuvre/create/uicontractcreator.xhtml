@@ -27,8 +27,9 @@
 
                     <h:outputText value="Fecha de Inicio:" ></h:outputText>
                     <p:calendar
-                        effect="explode" id="beginningDate" size="15"
-                        value="#{authorOeuvreCreatorBean.date}" >
+                        effect="explode" id="beginningDate" navigator="true"
+                        pattern="dd/MM/yyyy" readonly="true" size="15"
+                        value="#{authorOeuvreCreatorBean.beginningDate}" >
                     </p:calendar>
                     <p:watermark
                         for="beginningDate" value="Fecha de Inicio" >
@@ -36,8 +37,9 @@
 
                     <h:outputText value="Fecha de Entrega:" ></h:outputText>
                     <p:calendar
-                        effect="explode" id="deliveringDate" size="15"
-                        value="#{authorOeuvreCreatorBean.date}" >
+                        effect="explode" id="deliveringDate" navigator="true"
+                        pattern="dd/MM/yyyy" readonly="true" size="15"
+                        value="#{authorOeuvreCreatorBean.deliveringDate}" >
                     </p:calendar>
                     <p:watermark
                         for="deliveringDate" value="Fecha de Entrega" >
@@ -49,10 +51,10 @@
                         value="#{authorOeuvreCreatorBean.dndaNumber}" >
                     </p:inputText>
                     <p:watermark
-                        for="contractDNDA" value="Número de DNDA" >
+                        for="contractDNDA" value="Número de D.N.D.A." >
                     </p:watermark>
 
-                    <h:outputLabel value="Soporte de Contrato:" ></h:outputLabel>
+                    <h:outputLabel value="Soporte del Contrato:" ></h:outputLabel>
                     <p:fileUpload
                         allowTypes="/(\.|\/)(pdf|docx?|gif|jpe?g|png)$/"
                         fileLimit="1" id="contractFileUpload"
@@ -60,8 +62,7 @@
                         value="#{authorOeuvreCreatorBean.contractUploadedFile}" >
                     </p:fileUpload>
                     <p:watermark
-                        for="contractFileUpload"
-                        value="Soporte digital del Contrato" >
+                        for="contractFileUpload" value="Soporte del Contrato" >
                     </p:watermark>
                 </h:panelGrid>
 

@@ -57,7 +57,7 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
             Acquisition acquisition = new Acquisition("Contrato de Cesión de Derechos");
             this.acquisitionDAO.saveAcquisition(acquisition);
 
-            acquisition = new Acquisition("Contrato de Obra Por Encargo");
+            acquisition = new Acquisition("Contrato de Obra por Encargo");
             this.acquisitionDAO.saveAcquisition(acquisition);
 
             acquisition = new Acquisition("Presunción Legal Plan de Trabajo");

@@ -54,7 +54,7 @@
 
                 <p:column>
                     <f:facet name="header" >
-                        <h:outputText value="N° Contrato" ></h:outputText>
+                        <h:outputText value="N° de Contrato" ></h:outputText>
                     </f:facet>
                     <center>
                         <p:selectOneMenu
@@ -74,7 +74,7 @@
                     </f:facet>
                     <center>
                         <p:selectOneMenu
-                            id="authorOeuvreType" label="Tipo de la Obra"
+                            id="authorOeuvreType" label="Tipo de Obra"
                             required="true"
                             value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
                             <f:selectItems
@@ -126,8 +126,8 @@
                     </f:facet>
                     <center>
                         <p:selectOneMenu
-                            id="authorOeuvreTitle" label="Vínculo con Universidad"
-                            required="true"
+                            id="authorOeuvreTitle"
+                            label="Vínculo la con Universidad" required="true"
                             value="#{authorOeuvre.title.profile}" >
                             <f:selectItems 
                                 value="#{titleBean.titlesNames}" >
@@ -145,7 +145,7 @@
                                 cellpadding="7" columns="6"
                                 style="font-size: 15px" >
                                 <h:outputText
-                                    value="ISBN:" ></h:outputText>
+                                    value="I.S.B.N.:" ></h:outputText>
                                 <p:inputText
                                     id="authorOeuvreISBN" maxlength="35"
                                     required="false" size="35"
@@ -155,7 +155,7 @@
                                     for="authorOeuvreISBN" value="Opcional" >
                                 </p:watermark>
 
-                                <h:outputText value="DNDA:" ></h:outputText>
+                                <h:outputText value="D.N.D.A.:" ></h:outputText>
                                 <p:inputText
                                     id="authorOeuvreDNDA" maxlength="30"
                                     required="false" size="30"
