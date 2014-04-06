@@ -106,6 +106,8 @@ CREATE  TABLE IF NOT EXISTS `JuridicApp`.`CONTRACT` (
   `id` VARCHAR(30) NOT NULL COMMENT 'Número de contrato suscrito.' ,
   `route` VARCHAR(200) NULL ,
   `dnda` VARCHAR(30) NULL ,
+  `beginning` DATE NOT NULL ,
+  `delivering` DATE NOT NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
   INDEX `fk_CONTRACT_DNDA1_idx` (`dnda` ASC) ,
@@ -150,7 +152,7 @@ ENGINE = InnoDB;
 -- Table `JuridicApp`.`TYPE`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `JuridicApp`.`TYPE` (
-  `name` VARCHAR(45) NOT NULL COMMENT 'Tipo de obra.\n\n - Escrito.\n - Programa De Ordenador (Software).\n - Audiovisual, Multimedia.\n - Exposición (Conferencia).\n - Composición Musical.\n - Obra De Bellas Artes.\n - Obra Fotográfica.\n - Ilustración (Mapa).\n - Obra Derivada.\n - Otro.' ,
+  `name` VARCHAR(45) NOT NULL COMMENT 'Tipo de obra.\n\n - Escrito.\n - Programa De Ordenador (Software).\n - Audiovisual, Multimedia.\n - Exposición (Conferencia).\n - Composición Musical.\n - Obra De Bellas Artes.\n - Obra Fotográfica.\n - Ilustración (Mapa).\n - Obra Derivada.\n - Otro.\n - Aula Semill /* comment truncated */ /*a.*/' ,
   `description` VARCHAR(150) NULL ,
   PRIMARY KEY (`name`) )
 ENGINE = InnoDB;
@@ -190,8 +192,6 @@ CREATE  TABLE IF NOT EXISTS `JuridicApp`.`AUTHOR_OEUVRE` (
   `support_type` VARCHAR(25) NOT NULL ,
   `dnda` VARCHAR(30) NULL ,
   `isbn` VARCHAR(35) NULL ,
-  `beginning` DATE NOT NULL ,
-  `delivering` DATE NOT NULL ,
   `title` VARCHAR(35) NOT NULL ,
   `route` VARCHAR(300) NOT NULL ,
   PRIMARY KEY (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`) ,

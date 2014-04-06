@@ -100,20 +100,20 @@ INSERT INTO `JuridicApp`.`DNDA` (`number`)
 -- -----------------------------------------------------
 -- Table `JuridicApp`.`CONTRACT`
 -- -----------------------------------------------------
--- INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
---    VALUES (NULL, NULL, NULL);
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
-    VALUES ('12345', NULL, '12345');
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
-    VALUES ('23456', NULL, NULL);
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
-    VALUES ('34567', NULL, '23456');
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
-    VALUES ('45678', NULL, '34567');
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
-    VALUES ('56789', NULL, NULL);
-INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`)
-    VALUES ('67890', NULL, '45678');
+-- INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`, `beginning`, `delivering`)
+--    VALUES (NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`, `beginning`, `delivering`)
+    VALUES ('12345', NULL, '12345', '2014-03-03', '2014-03-03');
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`, `beginning`, `delivering`)
+    VALUES ('23456', NULL, NULL, '2014-02-02', '2014-02-02');
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`, `beginning`, `delivering`)
+    VALUES ('34567', NULL, '23456', '2014-01-01', '2014-01-01');
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`, `beginning`, `delivering`)
+    VALUES ('45678', NULL, '34567', '2014-04-04', '2014-04-04');
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`, `beginning`, `delivering`)
+    VALUES ('56789', NULL, NULL, '2014-05-05', '2014-05-05');
+INSERT INTO `JuridicApp`.`CONTRACT` (`id`, `route`, `dnda`, `beginning`, `delivering`)
+    VALUES ('67890', NULL, '45678', '2014-06-06', '2014-06-06');
 
 
 -- -----------------------------------------------------
@@ -193,24 +193,24 @@ INSERT INTO `JuridicApp`.`OEUVRE_TYPE` (`oeuvre_id`, `type_name`)
 -- -----------------------------------------------------
 -- Table `JuridicApp`.`AUTHOR_OEUVRE`
 -- -----------------------------------------------------
--- INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`, `route`)
---    VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`, `route`)
-    VALUES (1, 'Composición Musical', 'Cédula de Extranjería', '1035859551', '12345', 'Autorización', 'Digital', '56789', '123456789', '2014-03-03', '2014-03-03', 'Externo', 'file_name_1.pdf');
-INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`, `route`)
-    VALUES (2, 'Exposición (Conferencia)', 'Número Único de Identificación Personal', '1037622083', '23456', 'Contrato de Obra Por Encargo', 'Físico', NULL, '987654321', '2014-03-03', '2014-03-03', 'Empleado de Carrera', 'file_name_2.iso');
-INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`, `route`)
-    VALUES (2, 'Escrito', 'Número Único de Identificación Personal', '1037622083', '23456', 'Licencia de Software', 'Digital', NULL, NULL, '2014-03-03', '2014-03-03', 'Empleado Provisional', 'file_name_3.rar');
-INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`, `route`)
-    VALUES (3, 'Obra Derivada', 'Tarjeta de Identidad', '1039456678', '34567',  'Licencia Creative Commons', 'Digital', '67890', '654987321', '2014-03-03', '2014-03-03', 'Empleado Provisional', 'file_name_4.png');
-INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`, `route`)
-    VALUES (4, 'Programa de Ordenador (Software)', 'Cédula de Ciudadanía', '1022095657', '56789', 'Autorización', 'Físico', NULL, NULL, '2014-03-03', '2014-03-03', 'Profesor Visitante', 'file_name_5.docx');
-INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`, `route`)
-    VALUES (4, 'Audiovisual, Multimedia', 'Cédula de Ciudadanía', '1022095657', '56789', 'Presunción Legal Plan de Trabajo', 'Digital', '09876', '321654987', '2014-03-03', '2014-03-03', 'Profesor Visitante', 'file_name_6.zip');
-INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`, `route`)
-    VALUES (4, 'Escrito', 'Cédula de Extranjería', '1035859551', '67890',  'Licencia Creative Commons', 'Digital', NULL, '951847263', '2014-03-03', '2014-03-03', 'No Aplica', 'file_name_7.pptx');
-INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `beginning`, `delivering`, `title`, `route`)
-    VALUES (5, 'Obra Fotográfica', 'Tarjeta de Identidad', '1039456678', '67890', 'Contrato de Cesión de Derechos', 'Físico', '98765', NULL, '2014-03-03', '2014-03-03', 'Empleado de Libre Nombramiento', 'file_name_8.xls');
+-- INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
+--    VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
+    VALUES (1, 'Composición Musical', 'Cédula de Extranjería', '1035859551', '12345', 'Autorización', 'Digital', '56789', '123456789', 'Externo', 'file_name_1.pdf');
+INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
+    VALUES (2, 'Exposición (Conferencia)', 'Número Único de Identificación Personal', '1037622083', '23456', 'Contrato de Obra Por Encargo', 'Físico', NULL, '987654321', 'Empleado de Carrera', 'file_name_2.iso');
+INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
+    VALUES (2, 'Escrito', 'Número Único de Identificación Personal', '1037622083', '23456', 'Licencia de Software', 'Digital', NULL, NULL, 'Empleado Provisional', 'file_name_3.rar');
+INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
+    VALUES (3, 'Obra Derivada', 'Tarjeta de Identidad', '1039456678', '34567',  'Licencia Creative Commons', 'Digital', '67890', '654987321', 'Empleado Provisional', 'file_name_4.png');
+INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
+    VALUES (4, 'Programa de Ordenador (Software)', 'Cédula de Ciudadanía', '1022095657', '56789', 'Autorización', 'Físico', NULL, NULL, 'Profesor Visitante', 'file_name_5.docx');
+INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
+    VALUES (4, 'Audiovisual, Multimedia', 'Cédula de Ciudadanía', '1022095657', '56789', 'Presunción Legal Plan de Trabajo', 'Digital', '09876', '321654987', 'Profesor Visitante', 'file_name_6.zip');
+INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
+    VALUES (4, 'Escrito', 'Cédula de Extranjería', '1035859551', '67890',  'Licencia Creative Commons', 'Digital', NULL, '951847263', 'No Aplica', 'file_name_7.pptx');
+INSERT INTO `JuridicApp`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
+    VALUES (5, 'Obra Fotográfica', 'Tarjeta de Identidad', '1039456678', '67890', 'Contrato de Cesión de Derechos', 'Físico', '98765', NULL, 'Empleado de Libre Nombramiento', 'file_name_8.xls');
 
 
 -- -----------------------------------------------------
