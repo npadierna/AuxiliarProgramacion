@@ -114,7 +114,7 @@ public class RecoverClientPasswordBean implements Serializable {
                         "Enviando Correo Electrónico",
                         "Se está enviando un correo electrónico con su contraseña");
                 this.sent = true;
-                this.send(this.email,c.getPassword( ));
+                this.send(this.email,c.getPassword( ), p);
             } else {
                 message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                         "Campos Inválidos",
@@ -131,9 +131,13 @@ public class RecoverClientPasswordBean implements Serializable {
         this.setIdNumber("");
     }
     
-    public void send( String email, String password) {
+    public void send( String email, String password, People p) {
         this.mailSender = new MailSender("miguelcold8@gmail.com","coldlomejor",
-        email,"Obras Recuperación de Contraseña", "Su contraseña es: " + password);
+        email,"Obras Recuperación de Contraseña", "<h1>Cordial saludo " + 
+                p.getFirstNames( ) + ".</h1>" + "<br></br><h3>Usted ha solicitado la"
+                + " recuperación de su contraseña para ingresar a nuestro sistema"
+                + ", le recordamos por medio de este correo que su contraseña es: " 
+                + password + "</h3><br></br> <h3>Que tenga un buen día.</h3>");
     }
     
     @PostConstruct()

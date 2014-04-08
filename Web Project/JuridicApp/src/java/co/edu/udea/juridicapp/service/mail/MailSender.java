@@ -1,12 +1,16 @@
 package co.edu.udea.juridicapp.service.mail;
 
+import java.util.Date;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 /**
  *
@@ -45,10 +49,21 @@ public class MailSender {
             Session session = Session.getInstance(props, auth);
             // session.setDebug(true);
             MimeMessage msg = new MimeMessage(session);
-            msg.setText(this.body);
+            //msg.setText(this.body);
             msg.setSubject(this.subject);
             msg.setFrom(new InternetAddress(this.myEmail));
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(this.userEmail));
+            
+            
+            // Se crea el contenido del mensaje
+            MimeBodyPart mimebodypart = new MimeBodyPart();
+            mimebodypart.setText( this.body );
+            mimebodypart.setContent( this.body , "text/html");
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(mimebodypart);            
+            msg.setContent(multipart);            
+            msg.setSentDate(new Date());
+            
             Transport.send(msg);
             System.out.println("Email enviado");
         } catch (Exception mex) {
