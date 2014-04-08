@@ -3,6 +3,7 @@ package co.edu.udea.juridicapp.web.bean.client.update;
 import co.edu.udea.juridicapp.persistence.dao.IPeopleDAO;
 import co.edu.udea.juridicapp.persistence.dao.IClientDAO;
 import co.edu.udea.juridicapp.persistence.entity.Client;
+import co.edu.udea.juridicapp.persistence.entity.People;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -155,7 +156,7 @@ public final class UpdateClientBean implements Serializable {
         if (!userName.equals(loggedClient.getUserName())) {
             List<Client> foundClientsByClient = this.clientDAO
                     .executeNamedQueryForClients("Client.findByUserName",
-                    "userName", userName);
+                            "userName", userName);
 
             if (foundClientsByClient.isEmpty()) {
                 loggedClient.setUserName(userName);

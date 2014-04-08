@@ -67,7 +67,7 @@ public final class LoginClientBean implements Serializable {
     }
 
     public boolean isLogged() {
-        
+
         return (this.loggedIn);
     }
 
@@ -100,7 +100,7 @@ public final class LoginClientBean implements Serializable {
                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@",
                         this.getLoggedClient().getPeople().getFirstNames()
                         .concat(" ").concat(this.getLoggedClient().getPeople()
-                        .getLastNames()));
+                                .getLastNames()));
 
                 this.loggedIn = true;
             }

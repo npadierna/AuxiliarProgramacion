@@ -27,7 +27,7 @@
         <property name="portNumber" value="" ></property>
         <property name="databaseName" value="JuridicApp" ></property>
         <property name="User" value="root" ></property>
-        <property name="Password" value="230491" ></property>
+        <property name="Password" value="coldlomejor" ></property>
         <property
             name="URL"
             value="jdbc:mysql://localhost:3306/JuridicApp" >

@@ -69,15 +69,29 @@
                         oncomplete="handleLoginRequest(xhr, status, args)"
                         update=":loginForm" value="Iniciar Sesión" >
                     </p:commandButton>
-
                     <p:spacer width="30px" ></p:spacer>
-
                     <p:commandButton
-                        icon="ui-icon-key" id="restorePasswordButton"
-                        value="Recuperar Contraseña" >
+                        icon="ui-icon-key" id="recoverPasswordButton"
+                        onclick="location.href ='/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/recoverclientpassword.xhtml';"
+                        value="Recuperar Contraseña">
                     </p:commandButton>
+
                 </p:panel>
-            </center>
+
+                <h:panelGrid  columns="2">
+
+                    <p:graphicImage
+                        height="250px" width="200px"
+                        value="/co/edu/udea/juridicapp/util/images/udea.png" > 
+                    </p:graphicImage>
+
+                    <p:graphicImage
+                        height="200px" width="250px"
+                        value="/co/edu/udea/juridicapp/util/images/ude@-01.png" > 
+                    </p:graphicImage>
+
+                </h:panelGrid>
+            </center>       
         </h:form>
     </h:body>
 </html>

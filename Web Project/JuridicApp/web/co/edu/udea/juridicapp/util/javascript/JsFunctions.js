@@ -4,9 +4,19 @@ function onViewContractRequest(xhr, status, args) {
     }
 }
 
+function recoverPasswordRequest(xhr, status, args) {
+     location.href ='/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/recoverclientpassword.xhtml';
+}
+
 function onViewProductRequest(xhr, status, args) {
     if (args.selectedProduct) {
         window.open('/Juridicapp/faces/co/edu/udea/juridicapp/web/product/authoroeuvrefilelist.xhtml', 'Productos');
+    }
+}
+
+function handleSentRequest(xhr, status, args) {
+    if (args.sent) {
+        location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/index.xhtml';
     }
 }
 

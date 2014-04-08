@@ -22,11 +22,13 @@ public class AuthorizationListener implements PhaseListener {
         String currentPage = facesContext.getViewRoot().getViewId();
         boolean isLoginPage = (currentPage.lastIndexOf("login.xhtml") > -1)
                 ? true : false;
+        boolean isRecoverPage = (currentPage.lastIndexOf("recoverclientpassword.xhtml") > -1)
+                ? true : false;
         HttpSession sesion = (HttpSession) facesContext.getExternalContext()
                 .getSession(true);
         Object usuario = sesion.getAttribute("usuario");
 
-        if ((isLoginPage == false) && (usuario == null)
+        if ((isLoginPage == false && isRecoverPage == false) && (usuario == null)
                 && !(currentPage.endsWith(".js"))) {
             NavigationHandler navigationHandler = facesContext.getApplication()
                     .getNavigationHandler();
