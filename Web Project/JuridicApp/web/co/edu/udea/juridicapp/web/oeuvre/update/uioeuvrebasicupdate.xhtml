@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core" >
+
+    <center>
+        <p:panel header="Datos Básicos de la Obra" >
+            <h:panelGrid
+                cellpadding="10" columns="2" >
+                <h:outputLabel
+                    for="dependenciesName" style="font-weight: bold;"
+                    value="Nombre de la Dependencia:" >
+                </h:outputLabel>
+                <p:inputText
+                    id="dependenciesName" label="Nombre de la Dependencia Encargada"
+                    readonly="true"
+                    size="50" value="#{authorOeuvreUpdateBean.oeuvre.dependency.name}" >
+                </p:inputText>
+
+                <h:outputText 
+                  style="font-weight: bold;" 
+                    value="Nombre de la Obra:" >
+                </h:outputText>
+                <p:inputText
+                    id="oeuvreNameInputText" label="Nombre de la Obra" readonly="true"
+                    size="50" value="#{authorOeuvreUpdateBean.oeuvre.title}" >
+                </p:inputText>
+
+                <h:outputText
+                    style="font-weight: bold;" value="Descripción:" >
+                </h:outputText>
+                <p:inputTextarea
+                    autoResize="false" cols="50" readonly="true"
+                    id="descriptionInputTextArea" maxlength="250" rows="5"
+                    value="#{authorOeuvreUpdateBean.oeuvre.description}" >
+                </p:inputTextarea>
+            </h:panelGrid>
+        </p:panel>
+    </center>
+</ui:composition>

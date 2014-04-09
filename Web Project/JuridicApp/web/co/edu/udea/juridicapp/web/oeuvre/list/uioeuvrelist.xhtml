@@ -150,6 +150,17 @@
                 </p:column>
 
                 <f:facet id="button" name="footer" >
+                    <c:if
+                        test="${loginClientBean.loggedClient.title.title != 'Consultor'}" >
+                        <p:commandButton
+                            action="#{authorOeuvreUpdateBean.onEditAuthorOeuvre(authorOeuvreListBean.selectedAuthorOeuvre)}"
+                            icon="ui-icon-search" id="onEditButton"
+                            oncomplete="onEditAuthorOeuvreRequest(xhr, status, args)"
+                            update=":mainForm:growl" value="Editar Obra" >
+                        </p:commandButton>
+                    </c:if>
+
+
                     <p:commandButton
                         action="#{authorOeuvreSelectorBean.onSelectedAuthorOeuvre(authorOeuvreListBean.selectedAuthorOeuvre)}"
                         icon="ui-icon-search" id="viewDetailsButton"

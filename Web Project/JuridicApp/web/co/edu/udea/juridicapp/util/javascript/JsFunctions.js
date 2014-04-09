@@ -48,6 +48,12 @@ function onSelectedAuthorOeuvreRequest(xhr, status, args) {
     }
 }
 
+function onEditAuthorOeuvreRequest(xhr, status, args) {
+    if (args.onEdit) {
+        location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/update/updateauthoroeuvre.xhtml';
+    }
+}
+
 function createAuthorRequest(xhr, status, args) {
     location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/admin/creator/entitiescreator.xhtml';
 }
