@@ -35,7 +35,7 @@
             <property name="hibernate.connection.username"
                       value="root" />
             <property name="hibernate.connection.password"
-                      value="coldlomejor" />
+                      value="203491" />
             <property name="hibernate.show_sql"
                       value="true" />
             <property name="hibernate.archive.autodetection"

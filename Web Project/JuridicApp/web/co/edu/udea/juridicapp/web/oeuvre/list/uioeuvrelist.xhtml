@@ -183,9 +183,14 @@
                     </p:commandButton>
 
                     <p:commandButton
-                        action="#{authorOeuvreSelectorBean.createRequestForServlet(authorOeuvreListBean.selectedAuthorOeuvre)}"
-                        icon="ui-icon-document" id="viewSingleReportButton"
-                        value="Ver reporte simple" >
+                        action="#{authorOeuvreSelectorBean.createRequestForServletFullReport}"
+                        icon="ui-icon-document" id="viewFullReportButton"
+                        type="submit" value="Ver reporte completo"
+                        oncomplete="location.href = '/Juridicapp/jasper/co/edu/udea/juridicapp/service/report/oeuvre/fulloevurereport?oeuvreid';" >
+                        <f:param
+                            id="oeuvreIdParam" name="oeuvreId"
+                            value="#{authorOeuvreListBean.selectedAuthorOeuvre.authorOeuvrePK.oeuvreTypeId}" >
+                        </f:param>
                     </p:commandButton>
                 </f:facet>
             </p:dataTable>

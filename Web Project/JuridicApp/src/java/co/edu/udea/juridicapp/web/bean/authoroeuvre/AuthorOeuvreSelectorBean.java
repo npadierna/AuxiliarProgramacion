@@ -18,8 +18,11 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -108,20 +111,17 @@ public final class AuthorOeuvreSelectorBean implements Serializable {
         return (this.dateFormat.format(date));
     }
 
-    public void createRequestForServlet(AuthorOeuvre authorOeuvre)
-            throws IOException {
-        // Esta chimbada no funciona.
-
+    public void createRequestForServletFullReport()
+            throws IOException, ServletException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
+        HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+        HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
 
-        HttpServletRequest httpRequest = (HttpServletRequest) externalContext
-                .getRequest();
-        httpRequest.setAttribute(SingleOeuvreReportServlet.SELECTED_OEUVRE_ID,
-                authorOeuvre.getAuthorOeuvrePK().getOeuvreTypeId());
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jasper/co/edu/udea/juridicapp/service/report/oeuvre/fulloevurereport");
+        requestDispatcher.forward(request, response);
 
-        externalContext.setRequest(httpRequest);
-        externalContext.dispatch("/Juridicapp/jasper/co/edu/udea/juridicapp/service/report/oeuvre/singleoevurereport");
+        facesContext.responseComplete();
     }
 
     private void findAuthorsOeuvres() {
