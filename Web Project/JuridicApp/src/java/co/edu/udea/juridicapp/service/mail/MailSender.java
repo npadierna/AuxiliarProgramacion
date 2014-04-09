@@ -34,6 +34,7 @@ public class MailSender {
         this.userEmail = userEmail;
         this.subject = subject;
         this.body = body;
+
         Properties props = new Properties();
         props.put("mail.smtp.user", this.myEmail);
         props.put("mail.smtp.host", SMTPserver);
@@ -41,8 +42,10 @@ public class MailSender {
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.socketFactory.port", port);
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.socketFactory.fallback", "false");
+
         SecurityManager security = System.getSecurityManager();
         try {
             Authenticator auth = new MailAutenticator(myEmail, password);
@@ -52,18 +55,18 @@ public class MailSender {
             //msg.setText(this.body);
             msg.setSubject(this.subject);
             msg.setFrom(new InternetAddress(this.myEmail));
-            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(this.userEmail));
-            
-            
+            msg.addRecipient(Message.RecipientType.TO,
+                    new InternetAddress(this.userEmail));
+
             // Se crea el contenido del mensaje
             MimeBodyPart mimebodypart = new MimeBodyPart();
-            mimebodypart.setText( this.body );
-            mimebodypart.setContent( this.body , "text/html");
+            mimebodypart.setText(this.body);
+            mimebodypart.setContent(this.body, "text/html");
             Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(mimebodypart);            
-            msg.setContent(multipart);            
+            multipart.addBodyPart(mimebodypart);
+            msg.setContent(multipart);
             msg.setSentDate(new Date());
-            
+
             Transport.send(msg);
             System.out.println("Email enviado");
         } catch (Exception mex) {

@@ -8,8 +8,9 @@
 
     <import resource="juridicDAOsContext.xml" ></import>
     
-    <bean name="firstRunConfiguration"
-          class="co.edu.udea.juridicapp.service.config.impl.FirstRunConfigurationImpl"
-          scope="singleton" >
+    <bean
+        class="co.edu.udea.juridicapp.service.config.impl.FirstRunConfigurationImpl"
+        name="firstRunConfiguration"
+        scope="singleton" >
     </bean>
 </beans>

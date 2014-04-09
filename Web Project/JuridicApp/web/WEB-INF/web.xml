@@ -83,6 +83,26 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Full Oeuvre Report</servlet-name>
+        <servlet-class>
+            co.edu.udea.juridicapp.service.report.oeuvre.FullOeuvreReportServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Full Oeuvre Report</servlet-name>
+        <url-pattern>/jasper/co/edu/udea/juridicapp/service/report/oeuvre/fulloevurereport</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Single Oeuvre Report</servlet-name>
+        <servlet-class>
+            co.edu.udea.juridicapp.service.report.oeuvre.SingleOeuvreReportServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Single Oeuvre Report</servlet-name>
+        <url-pattern>/jasper/co/edu/udea/juridicapp/service/report/oeuvre/singleoevurereport</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>15</session-timeout>
     </session-config>

@@ -77,14 +77,17 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     @ManyToOne(optional = false)
     private Author author;
     @JoinColumn(name = "dnda", referencedColumnName = "number")
-    @ManyToOne
+    @ManyToOne()
     private Dnda dnda;
     @JoinColumn(name = "support_type", referencedColumnName = "type")
     @ManyToOne(optional = false)
     private Support supportType;
     @JoinColumns({
-        @JoinColumn(name = "oeuvre_type_id", referencedColumnName = "oeuvre_id", insertable = false, updatable = false),
-        @JoinColumn(name = "oeuvre_type_name", referencedColumnName = "type_name", insertable = false, updatable = false)})
+        @JoinColumn(name = "oeuvre_type_id", referencedColumnName = "oeuvre_id",
+                insertable = false, updatable = false),
+        @JoinColumn(name = "oeuvre_type_name",
+                referencedColumnName = "type_name", insertable = false,
+                updatable = false)})
     @ManyToOne(optional = false)
     private OeuvreType oeuvreType;
     @Transient()

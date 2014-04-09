@@ -21,6 +21,20 @@
     <h:body>
         <h:form id="loginForm" >
             <center>
+
+                <h:panelGrid  columns="2" >
+                    <p:graphicImage
+                        value="/co/edu/udea/juridicapp/util/images/udea.png" > 
+                    </p:graphicImage>
+
+                    <p:graphicImage
+                        height="170px" width="303px"
+                        value="/co/edu/udea/juridicapp/util/images/ude@-01.png" > 
+                    </p:graphicImage>
+                </h:panelGrid>
+
+                <p:spacer height="25px" ></p:spacer>
+                
                 <p:panel id="loginPanel" style="width: 800px;" >
                     <p:growl
                         id="growlLogin" life="3000" showDetail="true" >
@@ -72,25 +86,10 @@
                     <p:spacer width="30px" ></p:spacer>
                     <p:commandButton
                         icon="ui-icon-key" id="recoverPasswordButton"
-                        onclick="location.href ='/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/recoverclientpassword.xhtml';"
+                        onclick="location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/recoverclientpassword.xhtml';"
                         value="Recuperar Contraseña">
                     </p:commandButton>
-
                 </p:panel>
-
-                <h:panelGrid  columns="2">
-
-                    <p:graphicImage
-                        height="250px" width="200px"
-                        value="/co/edu/udea/juridicapp/util/images/udea.png" > 
-                    </p:graphicImage>
-
-                    <p:graphicImage
-                        height="200px" width="250px"
-                        value="/co/edu/udea/juridicapp/util/images/ude@-01.png" > 
-                    </p:graphicImage>
-
-                </h:panelGrid>
             </center>       
         </h:form>
     </h:body>

@@ -123,7 +123,7 @@ public class Contract implements IEntityContext, Serializable {
 
     @XmlTransient()
     public List<AuthorOeuvre> getAuthorOeuvreList() {
-        
+
         return (this.authorOeuvreList);
     }
 
@@ -169,33 +169,33 @@ public class Contract implements IEntityContext, Serializable {
     @Override()
     public int hashCode() {
         int hash = 0;
-        
+
         hash += (this.getId() != null ? this.getId().hashCode() : 0);
-        
+
         return (hash);
     }
 
     @Override()
     public boolean equals(Object object) {
         if (!(object instanceof Contract)) {
-            
+
             return (false);
         }
-        
+
         Contract other = (Contract) object;
         if (((this.getId() == null) && (other.getId() != null))
                 || ((this.getId() != null)
                 && !(this.getId().equals(other.getId())))) {
-        
+
             return (false);
         }
-        
+
         return (true);
     }
 
     @Override()
     public String toString() {
-        
+
         return ("co.edu.udea.juridicapp.persistence.entity.Contract[ id="
                 + this.getId() + " ]");
     }

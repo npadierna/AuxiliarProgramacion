@@ -170,6 +170,12 @@
                         oncomplete="onViewProductRequest(xhr,status,args)"
                         value="Ver producto" >
                     </p:commandButton>
+
+                    <p:commandButton
+                        action="#{authorOeuvreSelectorBean.createRequestForServlet(authorOeuvreListBean.selectedAuthorOeuvre)}"
+                        icon="ui-icon-document" id="viewSingleReportButton"
+                        value="Ver reporte simple" >
+                    </p:commandButton>
                 </f:facet>
             </p:dataTable>
         </center>
