@@ -112,7 +112,8 @@ public final class RegistrationClientBean implements Serializable {
                 && (this.client.getUserName() != null)
                 && (this.client.getPassword() != null)
                 && (this.getDependencyName() != null)
-                && (this.getProfileName() != null)) {
+                && (this.getProfileName() != null)
+                && (this.getPeople().getEmail( ) != null)) {
             this.client.setPeoplePK(new PeoplePK(this.documentType,
                     this.idNumber.trim()));
             this.client.setDependency(this.dependencyDAO.findDependency(
