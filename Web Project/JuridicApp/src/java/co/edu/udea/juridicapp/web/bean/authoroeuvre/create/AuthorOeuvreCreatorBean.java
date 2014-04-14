@@ -37,6 +37,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultUploadedFile;
 import org.primefaces.model.UploadedFile;
@@ -55,6 +56,7 @@ import org.springframework.stereotype.Component;
 public final class AuthorOeuvreCreatorBean implements Serializable {
 
     private static final long serialVersionUID = 2901939557872617472L;
+    private static final String ON_CREATED = "onCreated";
     @Autowired()
     private IAuthorDAO authorDAO;
     @Autowired()
@@ -83,9 +85,11 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
     private UploadedFile contractUploadedFile;
     private Date beginningDate;
     private Date deliveringDate;
+    private boolean onCreated;
 
     public AuthorOeuvreCreatorBean() {
         super();
+        this.onCreated = false;
     }
 
     public List<AuthorOeuvre> getAuthorsOeuvres() {
@@ -366,16 +370,20 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
     }
 
     public void saveAuthorsOeuvres(ActionEvent actionEvent) {
+        RequestContext context = RequestContext.getCurrentInstance();
+        FacesMessage m = null;
         if (this.getAuthorsOeuvres().isEmpty()) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+            m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "No hay Obras Creadas",
                     "No se ha creado ninguna Obra de ningún tipo asociada a algún Author.");
 
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            FacesContext.getCurrentInstance().addMessage(null, m);
 
             return;
         }
-
+        m = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Creando la Obra",
+                "Este proceso puede tardar un momento...");
         this.getOeuvre().setDescription(this.getOeuvre().getDescription().trim());
         if (this.getOeuvre().getDescription().equals("")) {
             this.getOeuvre().setDescription(null);
@@ -433,6 +441,10 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
 
             this.authorOeuvreDAO.saveAuthorOeuvre(authorOeuvre);
         }
+        this.onCreated = true;
+        FacesContext.getCurrentInstance().addMessage(null, m);
+        context.addCallbackParam(AuthorOeuvreCreatorBean.ON_CREATED,
+                this.onCreated);
     }
 
     public void addProductFileToOeuvre(AuthorOeuvre authorOeuvre) {

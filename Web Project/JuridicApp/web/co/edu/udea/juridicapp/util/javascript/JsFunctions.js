@@ -5,7 +5,7 @@ function onViewContractRequest(xhr, status, args) {
 }
 
 function recoverPasswordRequest(xhr, status, args) {
-     location.href ='/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/recoverclientpassword.xhtml';
+    location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/client/update/recoverclientpassword.xhtml';
 }
 
 function onViewProductRequest(xhr, status, args) {
@@ -39,8 +39,18 @@ function handleLoginRequest(xhr, status, args) {
 }
 
 function handleOeuvreCreatedRequest(xhr, status, args) {
-    location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';
+    if (args.onCreated) {
+        location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';
+    }
 }
+
+
+function handleOeuvreUpdateRequest(xhr, status, args) {
+    //if (args.onUpdate) {
+    location.href = '/Juridicapp/faces/co/edu/udea/juridicapp/web/oeuvre/list/oeuvrelist.xhtml';
+    // }
+}
+
 
 function onSelectedAuthorOeuvreRequest(xhr, status, args) {
     if (args.onSelected) {

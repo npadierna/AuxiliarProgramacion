@@ -45,6 +45,7 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
 
     private static final long serialVersionUID = 4901939557872617472L;
     private static final String ON_EDIT = "onEdit";
+    private static final String ON_UPDATE = "onUpdate";
     public static final String FORMAT_FOR_DATE = "yyyy-MM-dd hh:mm aaa";
     @Autowired()
     private IAuthorDAO authorDAO;
@@ -78,10 +79,12 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
     private Date beginningDate;
     private Date deliveringDate;
     private boolean onEdit;
+    private boolean onUpdate;
 
     public AuthorOeuvreUpdateBean() {
         super();
         this.onEdit = false;
+        this.onUpdate = false;
     }
 
     public IDndaDAO getDndaDAO() {
@@ -232,6 +235,7 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
     }
 
     public void removeComment(Comment comment) {
+        System.out.println(comment.getText());
         this.getOeuvreDeleteComments().add(comment);
         this.getOeuvreComments().remove(comment);
     }
@@ -278,22 +282,23 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
     }
 
     public void updateAuthorsOeuvres(ActionEvent actionEvent) {
-        /*if (this.getAuthorsOeuvres().isEmpty()) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+        RequestContext context = RequestContext.getCurrentInstance();
+        FacesMessage m = null;
+        if (this.getAuthorsOeuvres().isEmpty()) {
+            m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "No hay Obras Creadas",
                     "No se ha creado ninguna Obra de ningún tipo asociada a algún Author.");
 
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            FacesContext.getCurrentInstance().addMessage(null, m);
 
             return;
         }
+        m = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Actualizando la Obra",
+                "Este proceso puede tardar un momento...");
+        this.setOeuvre(this.getSelectedAuthorOeuvre().getOeuvreType().getOeuvre());
 
-        this.getOeuvre().setDescription(this.getOeuvre().getDescription().trim());
-        if (this.getOeuvre().getDescription().equals("")) {
-            this.getOeuvre().setDescription(null);
-        }
-
-        Long idOeuvre = this.oeuvreDAO.saveOeuvre(this.getOeuvre());
+        Long idOeuvre = this.oeuvreDAO.updateOeuvre(this.getOeuvre()).getId();
 
         for (Comment c : this.getOeuvreComments()) {
             CommentPK commentPK = new CommentPK();
@@ -302,11 +307,14 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
 
             this.commentDAO.saveComment(c);
         }
-        System.out.println("Borrando Comentarios...");
-        for (Comment c : this.getOeuvreDeleteComments()) {
-            this.commentDAO.deleteComment(c);
+
+        if (this.getOeuvreDeleteComments() != null) {
+            System.out.println("Borrando Comentarios...");
+            for (Comment c : this.getOeuvreDeleteComments()) {
+                this.commentDAO.deleteComment(c);
+            }
+            System.out.println("Comentarios Borrados...");
         }
-        System.out.println("Comentarios Borrados...");
 
         for (Contract c : this.getContracts()) {
             if (c.getDnda() != null) {
@@ -339,23 +347,29 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
                     authorOeuvre.setIsbn(null);
                 }
             }
+           
 
-            authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);
-            authorOeuvre.setOeuvreType(oeuvreType);
-            authorOeuvre.setRoute(authorOeuvre.getProductFile().getFileName());
-            authorOeuvre.setAcquisition1(new Acquisition(
-                    authorOeuvre.getAuthorOeuvrePK().getAcquisition()));
-            authorOeuvre.setContract1(new Contract(
-                    authorOeuvre.getAuthorOeuvrePK().getContract()));
+            /*authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);
+             authorOeuvre.setOeuvreType(oeuvreType);
+             authorOeuvre.setRoute(authorOeuvre.getProductFile().getFileName());
+             authorOeuvre.setAcquisition1(new Acquisition(
+             authorOeuvre.getAuthorOeuvrePK().getAcquisition()));
+             authorOeuvre.setContract1(new Contract(
+             authorOeuvre.getAuthorOeuvrePK().getContract()));
 
-            this.authorOeuvreDAO.updateAuthorOeuvre(authorOeuvre);
-        }*/
+             this.authorOeuvreDAO.updateAuthorOeuvre(authorOeuvre);*/
+        }
+         this.onUpdate = true;
+            FacesContext.getCurrentInstance().addMessage(null, m);
+            context.addCallbackParam(AuthorOeuvreUpdateBean.ON_UPDATE,
+                    this.onUpdate);
     }
 
     @PostConstruct()
     private void createFields() {
         this.setAuthorsOeuvres(new ArrayList<AuthorOeuvre>());
         this.setOeuvreComments(new ArrayList<Comment>());
+        this.setOeuvreDeleteComments(new ArrayList<Comment>());
         this.setContracts(new ArrayList<Contract>());
         this.setContractsNumbersList(new ArrayList<String>());
         this.setContractUploadedFile(null);
