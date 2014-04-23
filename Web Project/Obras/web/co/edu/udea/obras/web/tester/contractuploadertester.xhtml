@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://java.sun.com/jsf/core" >
+
+    <h:head lang="es" >
+        <meta content="text/html" http-equiv="Content-Type" ></meta>
+        <meta charset="UTF-8" ></meta>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:body>
+        <center>
+            <h:form id="contractUploaderForm" >
+                <p:growl
+                    id="growlMessage" showDetail="true" life="3000" >
+                </p:growl>
+
+                <p:panel>
+                    <p:panel header="Añadir Contratos"
+                             id="adderContractsPanel" >
+                        <center>
+                            <h:panelGrid cellpadding="10" columns="3"
+                                         id="contractPanelGrid" >
+                                <h:outputLabel
+                                    value="N° de Contrato:" >
+                                </h:outputLabel>
+                                <p:inputText
+                                    id="contractId" required="true"
+                                    value="#{contractUploaderBean.contract.id}" >
+                                </p:inputText>
+                                <p:watermark
+                                    for="contractId" value="Número del Contrato" >
+                                </p:watermark>
+
+                                <h:outputLabel value="D.N.D.A.:" ></h:outputLabel>
+                                <p:inputText
+                                    id="contractDNDA"
+                                    value="#{contractUploaderBean.contract.dnda.number}" >
+                                </p:inputText>
+                                <p:watermark
+                                    for="contractDNDA" value="Número de D.N.D.A." >
+                                </p:watermark>
+
+                                <h:outputLabel
+                                    value="Soporte del Contrato:" >
+                                </h:outputLabel>
+                                <p:fileUpload
+                                    allowTypes="/(\.|\/)(pdf|docx?|gif|jpe?g|png)$/"
+                                    id="contractFileUpload"
+                                    mode="simple" update="contractAdderPanelGrid"
+                                    value="#{contractUploaderBean.contract.contractFile}" >
+                                </p:fileUpload>
+                                <p:watermark
+                                    for="contractFileUpload"
+                                    value="Soporte del Contrato" >
+                                </p:watermark>
+                            </h:panelGrid>
+                        </center>
+                        <center>
+                            <p:commandButton
+                                actionListener="#{contractUploaderBean.addContract}"
+                                ajax="false"
+                                icon="ui-icon-arrowthickstop-1-n"
+                                id="contractUploadButton"
+                                update=":contractUploaderForm:adderContractsPanel"
+                                value="Subir" >
+                            </p:commandButton>
+                        </center>
+                </p:panel>
+
+                <p:spacer height="20px" ></p:spacer>
+
+                <p:panel id="contractsAddedPanel" >
+                    <p:dataTable
+                        emptyMessage="No se han añadido Contratos."
+                        id="addedContractsTable"
+                        value="#{contractUploaderBean.contracts}"
+                        var="contract" >
+
+                        <p:column>
+                            <f:facet id="issue" name="header" >
+                                <h:outputText value="N° de Contrato" >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{contract.id}" >
+                            </h:outputLabel>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet id="issue" name="header" >
+                                <h:outputText value="D.N.D.A." >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{contract.dnda.number}" >
+                            </h:outputLabel>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet id="issue" name="header" >
+                                <h:outputText value="Nombre Del Soporte" >
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{contract.contractFile.fileName}" >
+                            </h:outputLabel>
+                        </p:column>
+
+                        <p:column>
+                            <center>
+                                <p:commandButton
+                                    action="#{contractUploaderBean.deleteContract(contract)}"
+                                    icon="ui-icon-closethick"
+                                    id="removeContractButton"
+                                    value="Eliminar" >
+                                </p:commandButton>
+                            </center>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+                </p:panel>
+            </h:form>
+        </center>
+    </h:body>
+</html>

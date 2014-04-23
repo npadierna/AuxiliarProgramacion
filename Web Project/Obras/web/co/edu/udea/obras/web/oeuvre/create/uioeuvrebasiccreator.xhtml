@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core" >
+
+    <center>
+        <p:panel header="Datos Básicos de la Obra" >
+            <h:panelGrid
+                cellpadding="10" columns="3" >
+                <h:outputLabel
+                    for="dependenciesNameList" style="font-weight: bold;"
+                    value="Nombre de la Dependencia:" >
+                </h:outputLabel>
+                <p:selectOneMenu
+                    id="dependenciesNameList" label="Nombres de Dependencias"
+                    required="true"
+                    value="#{authorOeuvreCreatorBean.oeuvre.dependency.name}" >
+                    <f:selectItems
+                        value="#{dependencyBean.dependenciesNames}" >
+                    </f:selectItems>
+                </p:selectOneMenu>
+                <p:watermark
+                    for="dependenciesNameList"
+                    value="Nombre de la Dependencia Académica encargada." >
+                </p:watermark>
+
+                <h:outputText 
+                    style="font-weight: bold;" value="Nombre de la Obra:" >
+                </h:outputText>
+                <p:inputText
+                    id="oeuvreNameInputText" label="Nombre de la Obra"
+                    maxlength="55" required="true" 
+                    size="50" value="#{authorOeuvreCreatorBean.oeuvre.title}" >
+                    <f:validateRegex pattern="^[ a-zA-Z0-9]+" ></f:validateRegex>  
+                </p:inputText>
+                <p:watermark
+                    for="oeuvreNameInputText" value="Nombre" >
+                </p:watermark>
+
+                <h:outputText
+                    style="font-weight: bold;" value="Descripción:" >
+                </h:outputText>
+                <p:inputTextarea
+                    autoResize="false" cols="50"
+                    counter="counter" counterTemplate="{0} Caracteres Restantes."
+                    id="descriptionInputTextArea" maxlength="250" rows="5"
+                    value="#{authorOeuvreCreatorBean.oeuvre.description}" >
+                </p:inputTextarea>
+            </h:panelGrid>
+            <p:watermark
+                for="descriptionInputTextArea"
+                value="Descripción breve de la Obra." >
+            </p:watermark>
+
+            <h:outputText id="counter" ></h:outputText>
+        </p:panel>
+    </center>
+</ui:composition>

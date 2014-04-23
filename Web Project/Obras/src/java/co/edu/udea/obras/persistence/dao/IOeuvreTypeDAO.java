@@ -1,0 +1,30 @@
+package co.edu.udea.obras.persistence.dao;
+
+import co.edu.udea.obras.persistence.entity.OeuvreType;
+import co.edu.udea.obras.persistence.entity.OeuvreTypePK;
+import java.util.List;
+
+/**
+ *
+ * @author Miguel Ossa Ruiz
+ * @author Neiber Padierna P&eacute;rez
+ */
+public interface IOeuvreTypeDAO {
+
+    public OeuvreType deleteOeuvreType(OeuvreType oeuvreType);
+
+    public List<OeuvreType> findAllOeuvresTypes();
+
+    public List<OeuvreType> findOeuvresTypesByAttributes(Object... attributes);
+
+    public OeuvreType findOeuvreType(OeuvreTypePK key);
+
+    public OeuvreTypePK saveOeuvreType(OeuvreType oeuvreType);
+
+    public OeuvreType updateOeuvreType(OeuvreType oeuvreType);
+
+    public long countOeuvresTypes();
+
+    public List<OeuvreType> executeNamedQueryForOeuvresTypes(String namedQuery,
+            String parameterName, Object parameterValue);
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" >
+
+    <h:head lang="es" >
+        <meta content="text/html" http-equiv="Content-Type" ></meta>
+        <meta charset="UTF-8" ></meta>
+        <script type="text/javascript"
+                src="../../../util/javascript/JsFunctions.js" >
+        </script>
+        <title>Crear Nueva Obra</title>
+
+        <f:facet name="oeuvreCreator" ></f:facet>
+    </h:head>
+
+    <h:body>
+        <p:layout fullPage="true" >
+            <p:layoutUnit
+                closable="false" collapsible="false" position="south"
+                resizable="false" size="60" >
+
+                <p:commandButton
+                    icon="ui-icon-home" id="home"
+                    onclick="location.href = '/obras/faces/co/edu/udea/obras/web/oeuvre/list/oeuvrelist.xhtml';" 
+                    value="Volver al Listado de Obras" style="font-size: 15px;" >
+                </p:commandButton>
+            </p:layoutUnit>
+
+            <p:layoutUnit
+                closable="false" collapsible="true" effect="drop"
+                header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}"
+                position="north" resizable="false" size="130" >
+
+                <h:form id="logoutAndUpdateInfoForm" >
+                    <p align="center" >
+
+                    <p:spacer height="5px" width="15px" ></p:spacer>
+
+                    <p:commandButton
+                        icon="ui-icon-arrowrefresh-1-s"
+                        onclick="location.href = '/obras/faces/co/edu/udea/obras/web/client/update/updateinfoclient.xhtml';"
+                        style="font-size: 15px;"
+                        value="Actualizar Datos" >
+                    </p:commandButton>
+
+                    <p:spacer height="5px" width="15px" ></p:spacer>
+
+                    <p:commandButton
+                        actionListener="#{loginClientBean.logOut}"
+                        icon="ui-icon-circle-close"
+                        onclick="location.href = '/obras/faces/co/edu/udea/obras/web/index.xhtml';"
+                        oncomplete="handleLogoutRequest(xhr, status, args)"
+                        style="font-size: 15px;" value="Cerrar Sesión" >
+                    </p:commandButton>
+                    </p>
+                </h:form>
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="center"  >
+                <p:growl
+                    id="growlChangePassword" life="3000" showDetail="true" >
+                </p:growl>
+
+                <h:form id="mainForm" enctype="multipart/form-data" >
+                    <p:panel header="Crear Nueva Obra" >
+                        <p:wizard
+                            backLabel="Atrás" id="viewWizard"
+                            nextLabel="Siguiente"  >
+
+                            <p:tab id="oeuvre" title="Obra" >
+                                <ui:include
+                                    src="uioeuvrebasiccreator.xhtml" >
+                                </ui:include>
+                            </p:tab>
+                            
+                            <p:tab id="authors" title="Author(es)" >
+                                <ui:include
+                                    src="uiauthoradder.xhtml" >
+                                </ui:include>
+                            </p:tab>
+
+                            <p:tab id="contracts" title="Contrato(s)" >
+                                <ui:include
+                                    src="uicontractcreator.xhtml" >
+                                </ui:include>
+                            </p:tab>
+                            
+                            <p:tab id="authorOeuvre"
+                                   title="Asociar Obra(s) A Autor(es)" >
+                                <ui:include
+                                    src="uiauthoroeuvrecreator.xhtml" >
+                                </ui:include>
+                            </p:tab>
+
+                            <p:tab id="file" title="Archivo(s) de Soporte" >
+                                <ui:include
+                                    src="uiproductuploadercreator.xhtml" >
+                                </ui:include>
+                            </p:tab>
+
+                            <p:tab id="coments" title="Comentario(s)" >
+                                <ui:include
+                                    src="uicommentscreator.xhtml" >
+                                </ui:include>
+                            </p:tab>
+
+                            <p:tab id="confirmation" title="Confirmación" >
+                                <ui:include
+                                    src="uioeuvreresume.xhtml" >
+                                </ui:include>
+                            </p:tab>
+                        </p:wizard>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

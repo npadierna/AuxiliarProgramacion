@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd" >
+
+    <bean
+        name="acquisitionDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.AcquisitionDAO" >
+    </bean>
+
+    <bean
+        name="authorDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.AuthorDAO" >
+    </bean>
+
+    <bean
+        name="authorOeuvreDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.AuthorOeuvreDAO" >
+    </bean>
+
+    <bean
+        name="clientDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.ClientDAO" >
+    </bean>
+
+    <bean
+        name="commentDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.CommentDAO" >
+    </bean>
+
+    <bean
+        name="contractDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.ContractDAO" >
+    </bean>
+
+    <bean
+        name="dependencyDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.DependencyDAO" >
+    </bean>
+
+    <bean
+        name="dndaDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.DndaDAO" >
+    </bean>
+
+    <bean
+        name="oeuvreDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.OeuvreDAO" >
+    </bean>
+
+    <bean
+        name="oeuvreTypeDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.OeuvreTypeDAO" >
+    </bean>
+
+    <bean
+        name="peopleDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.PeopleDAO" >
+    </bean>
+
+    <bean
+        name="profileDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.ProfileDAO" >
+    </bean>
+
+    <bean
+        name="supportDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.SupportDAO" >
+    </bean>
+
+    <bean
+        name="titleDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.TitleDAO" >
+    </bean>
+
+    <bean
+        name="typeDAO"
+        class="co.edu.udea.obras.persistence.dao.impl.TypeDAO" >
+    </bean>
+</beans>

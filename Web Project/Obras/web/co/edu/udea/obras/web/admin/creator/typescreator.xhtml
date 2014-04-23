@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head lang="es" >
+        <meta content="text/html" http-equiv="Content-Type" ></meta>
+        <meta charset="UTF-8" ></meta>
+        <script type="text/javascript"
+                src="../../../util/javascript/JsFunctions.js" >
+        </script>
+        <title>Crear Tipo de Obra</title>
+
+        <f:facet name="typesCreator" ></f:facet>
+    </h:head>
+
+    <h:body>
+        <p:layout fullPage="true" >
+            <p:layoutUnit
+                closable="false" collapsible="false" position="south"
+                resizable="false" size="60" >
+
+                <p:commandButton
+                    icon="ui-icon-arrowthick-1-w" id="home"
+                    onclick="location.href = '/obras/faces/co/edu/udea/obras/web/admin/creator/entitiescreator.xhtml';" 
+                    style="font-size: 15px;" value="Volver a la Administración" >
+                </p:commandButton>
+            </p:layoutUnit>
+
+            <p:layoutUnit
+                closable="false" collapsible="true" effect="drop"
+                header="#{updateClientBean.loggedClient.people.firstNames} #{updateClientBean.loggedClient.people.lastNames}" 
+                position="north" resizable="false" size="120" >
+
+                <center>
+                    <p:panel id="memberManagementPanel" >
+                        <center>
+                            <ui:include
+                                src="../../client/update/logoutinfoclient.xhtml" >
+                            </ui:include>
+                        </center>
+                    </p:panel>
+                </center>
+            </p:layoutUnit>  
+
+            <p:layoutUnit position="center" >
+                <h:form>
+                    <p:panel
+                        header="Crear Tipo de Obra" id="typeCreatorPanel"
+                        style="font-weight: bold;" >
+
+                        <center>
+                            <h:panelGrid cellpadding="5" columns="3" >
+                                <p:growl
+                                    id="growlLogin" life="3000"
+                                    showDetail="true" >
+                                </p:growl>
+
+                                <h:outputLabel
+                                    for="oeuvreType" style="font-weight: bold;" 
+                                    value="Tipo de Obra:" >
+                                </h:outputLabel>
+                                <p:inputText
+                                    id="oeuvreType" label="Tipo de Obra"
+                                    maxlength="45" required="true"  
+                                    requiredMessage="Por favor ingrese el nombre para el Tipo de Obra." 
+                                    size="55" value="#{typeCreatorBean.newType.name}" >
+                                </p:inputText>
+                                <p:watermark
+                                    for="oeuvreType" value="Nombre del Tipo de Obra" >
+                                </p:watermark>
+
+                                <h:outputLabel
+                                    for="oeuvreTypeDescription"
+                                    style="font-weight: bold;" 
+                                    value="Descripción:" >
+                                </h:outputLabel>
+                                <p:inputTextarea
+                                    cols="55" id="oeuvreTypeDescription"
+                                    maxlength="150" rows="4"
+                                    value="#{typeCreatorBean.newType.description}" >
+                                </p:inputTextarea>
+                                <p:watermark
+                                    for="oeuvreTypeDescription"
+                                    value="Descripción breve" >
+                                </p:watermark>
+                            </h:panelGrid>
+
+                            <p:commandButton
+                                actionListener="#{typeCreatorBean.saveType}"
+                                icon="ui-icon-disk" id="saveTitleButton"
+                                update="typeCreatorPanel" value="Guardar" >
+                            </p:commandButton>
+
+                            <p:spacer width="25px" ></p:spacer>
+
+                            <p:commandButton
+                                icon="ui-icon-refresh" id="clearButton" 
+                                update="typeCreatorPanel" type="reset"
+                                process="@this" ajax="true" value="Limpiar" >
+
+                                <p:resetInput
+                                    target="oeuvreType" >
+                                </p:resetInput>
+                                <p:resetInput
+                                    target="oeuvreTypeDescription" >
+                                </p:resetInput>
+                            </p:commandButton>
+                        </center>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

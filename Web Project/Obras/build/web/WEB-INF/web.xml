@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" >
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/manage-beans.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>home</param-value>
+    </context-param>
+    <display-name>Obr@s</display-name>
+    <filter>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>
+            org.primefaces.webapp.filter.FileUploadFilter
+        </filter-class>
+        <init-param>
+            <param-name>thresholdSize</param-name>
+            <param-value>512000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>uploadDirectory</param-name>
+            <param-value>/home/rebien/Documentos/Obras/temp</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            co.edu.udea.obras.config.FirstRunServlet
+        </listener-class>
+    </listener>
+    <persistence-unit-ref>
+        <description>Persistence Unit for Obr@s</description>
+        <persistence-unit-ref-name>jndi/obras</persistence-unit-ref-name>
+        <persistence-unit-name>ObrasPU</persistence-unit-name>
+    </persistence-unit-ref>
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Full Oeuvre Report</servlet-name>
+        <servlet-class>
+            co.edu.udea.obras.service.report.oeuvre.FullOeuvreReportServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Full Oeuvre Report</servlet-name>
+        <url-pattern>/jasper/co/edu/udea/obras/service/report/oeuvre/fulloevurereport</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Single Oeuvre Report</servlet-name>
+        <servlet-class>
+            co.edu.udea.obras.service.report.oeuvre.SingleOeuvreReportServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Single Oeuvre Report</servlet-name>
+        <url-pattern>/jasper/co/edu/udea/obras/service/report/oeuvre/singleoevurereport</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>
+            faces/co/edu/udea/obras/web/index.xhtml
+        </welcome-file>
+    </welcome-file-list>
+</web-app>
