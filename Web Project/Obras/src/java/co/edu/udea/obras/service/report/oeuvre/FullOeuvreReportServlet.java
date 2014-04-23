@@ -1,14 +1,15 @@
 package co.edu.udea.obras.service.report.oeuvre;
 
+import co.edu.udea.obras.web.bean.authoroeuvre.AuthorOeuvreSelectorBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +23,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 /**
  *
@@ -31,6 +34,12 @@ import net.sf.jasperreports.engine.util.JRLoader;
 public class FullOeuvreReportServlet extends HttpServlet {
 
     public static final String OEUVRE_ID = "oeuvre_id";
+    @Autowired()
+    private AuthorOeuvreSelectorBean authorOeuvreSelectorBean;
+
+    public FullOeuvreReportServlet() {
+        super();
+    }
 
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException,
@@ -38,17 +47,11 @@ public class FullOeuvreReportServlet extends HttpServlet {
         response.setContentType("application/pdf");
 
         ServletOutputStream servletOutputStream = response.getOutputStream();
-        Enumeration<String> parameters = request.getParameterNames();
-        String authorOeuvreSelected = request.getParameter("mainForm:mainTable_selection");
 
-        if ((authorOeuvreSelected == null) || (authorOeuvreSelected.equals(""))) {
-            authorOeuvreSelected = request.getParameter("oeuvreid");
-        }
-
-        // TODO: Arreglar ese parámetro.
         Map jasperParamsMap = new HashMap();
         jasperParamsMap.put(FullOeuvreReportServlet.OEUVRE_ID,
-                4L);
+                this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
+                .getOeuvreType().getOeuvre().getId());
 
         Connection connection = this.stablishConnection();
         JasperReport jasperRerport = (JasperReport) JRLoader.loadObject(
@@ -93,12 +96,12 @@ public class FullOeuvreReportServlet extends HttpServlet {
         }
     }
 
-    private Long obtainOeuvreId(String authorOeuvreString) {
-        int index1 = authorOeuvreString.indexOf("=");
-        int index2 = authorOeuvreString.indexOf(",");
+    @Override()
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
 
-        return (Long.parseLong(authorOeuvreString.substring(index1 + 1,
-                index2)));
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
     }
 
     private Connection stablishConnection() {

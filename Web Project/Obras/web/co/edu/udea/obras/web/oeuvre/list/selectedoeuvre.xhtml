@@ -270,10 +270,16 @@
 
                                             <p:commandButton
                                                 action="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(authorOeuvreListBean.selectedAuthorOeuvre)}"
-                                                icon="ui-icon-document"
+                                                icon="ui-icon-folder-collapsed"
                                                 id="viewProductsFilesButton"
                                                 oncomplete="onViewProductRequest(xhr,status,args)"
                                                 value="Ver producto" >
+                                            </p:commandButton>
+
+                                            <p:commandButton
+                                                icon="ui-icon-document" id="viewSingleReportButton"
+                                                type="submit" value="Ver reporte simple"
+                                                oncomplete="location.href = '/obras/jasper/co/edu/udea/obras/service/report/oeuvre/singleoevurereport';" >
                                             </p:commandButton>
                                         </f:facet>
                                     </p:dataTable>

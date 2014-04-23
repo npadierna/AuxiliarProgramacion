@@ -37,7 +37,6 @@ public class AuthorOeuvreFileBean implements Serializable {
     private StreamedContent productFile;
     private boolean selectedProduct;
 
-
     public AuthorOeuvreFileBean() {
         super();
         this.selectedProduct = false;
@@ -48,8 +47,8 @@ public class AuthorOeuvreFileBean implements Serializable {
         return (this.authorOeuvreSelected);
     }
 
-    public void setAuthorOeuvre(AuthorOeuvre authorOeuvre) {
-        this.authorOeuvreSelected = authorOeuvre;
+    public void setAuthorOeuvreSelected(AuthorOeuvre authorOeuvreSelected) {
+        this.authorOeuvreSelected = authorOeuvreSelected;
     }
 
     public StreamedContent getProductFile() {
@@ -73,9 +72,9 @@ public class AuthorOeuvreFileBean implements Serializable {
 
     public void onSelectedAuthorOeuvre(
             AuthorOeuvre authorOeuvreSelected) {
-         RequestContext context = RequestContext.getCurrentInstance();
+        RequestContext context = RequestContext.getCurrentInstance();
         if (authorOeuvreSelected != null) {
-            this.setAuthorOeuvre(authorOeuvreSelected);
+            this.setAuthorOeuvreSelected(authorOeuvreSelected);
             this.getAuthorOeuvreFileList().clear();
             this.getAuthorOeuvreFileList().add(this.getAuthorOeuvreSelected());
 
@@ -90,7 +89,7 @@ public class AuthorOeuvreFileBean implements Serializable {
 
                     this.setProductFile(new DefaultStreamedContent(inputStream,
                             externalContext.getMimeType(f.getName()), f.getName()));
-                     
+
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(AuthorOeuvreFileBean.class.getName())
                             .log(Level.SEVERE, null, ex);
@@ -102,7 +101,9 @@ public class AuthorOeuvreFileBean implements Serializable {
         } else {
             this.selectedProduct = false;
         }
-        context.addCallbackParam(AuthorOeuvreFileBean.SELECTED_PRODUCT, this.selectedProduct);
+
+        context.addCallbackParam(AuthorOeuvreFileBean.SELECTED_PRODUCT,
+                this.selectedProduct);
     }
 
     @PostConstruct()

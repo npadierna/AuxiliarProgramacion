@@ -371,7 +371,8 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
 
     public void saveAuthorsOeuvres(ActionEvent actionEvent) {
         RequestContext context = RequestContext.getCurrentInstance();
-        FacesMessage m = null;
+        FacesMessage m;
+
         if (this.getAuthorsOeuvres().isEmpty()) {
             m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "No hay Obras Creadas",
@@ -381,9 +382,9 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
 
             return;
         }
+
         m = new FacesMessage(FacesMessage.SEVERITY_INFO,
-                "Creando la Obra",
-                "Este proceso puede tardar un momento...");
+                "Creando la Obra", "Este proceso puede tardar un momento...");
         this.getOeuvre().setDescription(this.getOeuvre().getDescription().trim());
         if (this.getOeuvre().getDescription().equals("")) {
             this.getOeuvre().setDescription(null);
@@ -422,8 +423,17 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
                 this.oeuvreTypeDAO.saveOeuvreType(oeuvreType);
             }
 
-            // TODO: Buscar el D.N.D.A. y el número del contrato.
-//            if (this.dnd)
+            if (authorOeuvre.getDndaNumber() != null) {
+                authorOeuvre.setDndaNumber(authorOeuvre.getDndaNumber().trim());
+
+                if (!authorOeuvre.getDndaNumber().equals("")) {
+                    Dnda dnda = new Dnda(authorOeuvre.getDndaNumber());
+
+                    authorOeuvre.setDnda(dnda);
+                    this.dndaDAO.saveDnda(dnda);
+                }
+            }
+
             if (authorOeuvre.getIsbn() != null) {
                 authorOeuvre.setIsbn(authorOeuvre.getIsbn().trim());
                 if (authorOeuvre.getIsbn().equals("")) {

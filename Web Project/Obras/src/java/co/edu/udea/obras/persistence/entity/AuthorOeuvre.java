@@ -92,6 +92,8 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     private OeuvreType oeuvreType;
     @Transient()
     private UploadedFile productFile;
+    @Transient()
+    private String dndaNumber;
 
     public AuthorOeuvre() {
         super();
@@ -210,6 +212,15 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
 
     public void setProductFile(UploadedFile productFile) {
         this.productFile = productFile;
+    }
+
+    public String getDndaNumber() {
+
+        return (this.dndaNumber);
+    }
+
+    public void setDndaNumber(String dndaNumber) {
+        this.dndaNumber = dndaNumber;
     }
 
     @Override()

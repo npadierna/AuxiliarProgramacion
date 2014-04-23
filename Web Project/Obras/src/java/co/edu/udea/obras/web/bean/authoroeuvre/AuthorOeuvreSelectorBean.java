@@ -4,7 +4,6 @@ import co.edu.udea.obras.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.obras.persistence.dao.ICommentDAO;
 import co.edu.udea.obras.persistence.entity.AuthorOeuvre;
 import co.edu.udea.obras.persistence.entity.Comment;
-import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -14,12 +13,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -103,22 +97,13 @@ public final class AuthorOeuvreSelectorBean implements Serializable {
                 this.onSelected);
     }
 
+    public void onViewFullReport(AuthorOeuvre authorOeuvreSelected) {
+        this.setSelectedAuthorOeuvre(authorOeuvreSelected);
+    }
+
     public String applyFormatForDate(Date date) {
 
         return (this.dateFormat.format(date));
-    }
-
-    public void createRequestForServletFullReport()
-            throws IOException, ServletException {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-        HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jasper/co/edu/udea/obras/service/report/oeuvre/fulloevurereport");
-        requestDispatcher.forward(request, response);
-
-        facesContext.responseComplete();
     }
 
     private void findAuthorsOeuvres() {

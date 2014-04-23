@@ -190,20 +190,17 @@
 
                     <p:commandButton
                         action="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(authorOeuvreListBean.selectedAuthorOeuvre)}"
-                        icon="ui-icon-document" id="viewProductsFilesButton"
+                        icon="ui-icon-folder-collapsed"
+                        id="viewProductsFilesButton"
                         oncomplete="onViewProductRequest(xhr,status,args)"
                         value="Ver producto" >
                     </p:commandButton>
 
                     <p:commandButton
-                        action="#{authorOeuvreSelectorBean.createRequestForServletFullReport}"
+                        action="#{authorOeuvreSelectorBean.onViewFullReport(authorOeuvreListBean.selectedAuthorOeuvre)}"
                         icon="ui-icon-document" id="viewFullReportButton"
                         type="submit" value="Ver reporte completo"
-                        oncomplete="location.href = '/obras/jasper/co/edu/udea/obras/service/report/oeuvre/fulloevurereport?oeuvreid';" >
-                        <f:param
-                            id="oeuvreIdParam" name="oeuvreId"
-                            value="#{authorOeuvreListBean.selectedAuthorOeuvre.authorOeuvrePK.oeuvreTypeId}" >
-                        </f:param>
+                        oncomplete="location.href = '/obras/jasper/co/edu/udea/obras/service/report/oeuvre/fulloevurereport';" >
                     </p:commandButton>
                 </f:facet>
             </p:dataTable>

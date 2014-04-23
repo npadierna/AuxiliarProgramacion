@@ -1,14 +1,15 @@
 package co.edu.udea.obras.service.report.oeuvre;
 
+import co.edu.udea.obras.web.bean.authoroeuvre.AuthorOeuvreSelectorBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +23,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 /**
  *
@@ -36,6 +39,8 @@ public class SingleOeuvreReportServlet extends HttpServlet {
     public static final String AUTHOR_OEUVRE_TYPE_NAME = "author_oeuvre_type_name";
     public static final String CONTRACT_ID = "contract";
     public static final String OEUVRE_ID = "oeuvre_id";
+    @Autowired()
+    private AuthorOeuvreSelectorBean authorOeuvreSelectorBean;
 
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException,
@@ -43,32 +48,31 @@ public class SingleOeuvreReportServlet extends HttpServlet {
         response.setContentType("application/pdf");
 
         ServletOutputStream servletOutputStream = response.getOutputStream();
-        Enumeration<String> parameters = request.getParameterNames();
-        String authorOeuvreSelected = request.getParameter("mainForm:mainTable_selection");
-
-        // TODO: Modificar esto.
-        if ((authorOeuvreSelected == null) || (authorOeuvreSelected.equals(""))) {
-            authorOeuvreSelected = request.getParameter("oeuvreid");
-        }
 
         Map jasperParamsMap = new HashMap();
         jasperParamsMap.put(SingleOeuvreReportServlet.ACQUISITION_TYPE,
-                null);
+                this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
+                .getAcquisition1().getType());
         jasperParamsMap.put(SingleOeuvreReportServlet.AUTHOR_OEUVRE_DOCUMENT_TYPE,
-                null);
+                this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
+                .getAuthor().getPeoplePK().getDocumentType());
         jasperParamsMap.put(SingleOeuvreReportServlet.AUTHOR_OEUVRE_ID_NUMBER,
-                null);
+                this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
+                .getAuthor().getPeoplePK().getIdNumber());
         jasperParamsMap.put(SingleOeuvreReportServlet.AUTHOR_OEUVRE_TYPE_NAME,
-                null);
+                this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
+                .getOeuvreType().getType().getName());
         jasperParamsMap.put(SingleOeuvreReportServlet.CONTRACT_ID,
-                null);
+                this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
+                .getContract1().getId());
         jasperParamsMap.put(SingleOeuvreReportServlet.OEUVRE_ID,
-                null);
+                this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
+                .getOeuvreType().getOeuvre().getId());
 
         Connection connection = this.stablishConnection();
         JasperReport jasperRerport = (JasperReport) JRLoader.loadObject(
                 super.getServletContext()
-                .getRealPath("/co/edu/udea/obras/report/oeuvre/singleoeuvreObr@sReport.jasper"));
+                .getRealPath("/co/edu/udea/obras/report/oeuvre/singleoeuvre/Obr@sReport.jasper"));
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperRerport,
                 jasperParamsMap, connection);
 
@@ -106,6 +110,14 @@ public class SingleOeuvreReportServlet extends HttpServlet {
             Logger.getLogger(SingleOeuvreReportServlet.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override()
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
     }
 
     private Connection stablishConnection() {

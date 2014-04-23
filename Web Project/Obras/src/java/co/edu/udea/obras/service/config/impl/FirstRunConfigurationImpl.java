@@ -1,31 +1,42 @@
 package co.edu.udea.obras.service.config.impl;
 
 import co.edu.udea.obras.persistence.dao.IAcquisitionDAO;
+import co.edu.udea.obras.persistence.dao.IClientDAO;
 import co.edu.udea.obras.persistence.dao.IDependencyDAO;
+import co.edu.udea.obras.persistence.dao.IPeopleDAO;
 import co.edu.udea.obras.persistence.dao.IProfileDAO;
 import co.edu.udea.obras.persistence.dao.ITitleDAO;
 import co.edu.udea.obras.persistence.dao.ISupportDAO;
 import co.edu.udea.obras.persistence.dao.ITypeDAO;
 import co.edu.udea.obras.persistence.entity.Acquisition;
+import co.edu.udea.obras.persistence.entity.Client;
 import co.edu.udea.obras.persistence.entity.Dependency;
+import co.edu.udea.obras.persistence.entity.People;
+import co.edu.udea.obras.persistence.entity.PeoplePK;
 import co.edu.udea.obras.persistence.entity.Profile;
 import co.edu.udea.obras.persistence.entity.Title;
 import co.edu.udea.obras.persistence.entity.Support;
 import co.edu.udea.obras.persistence.entity.Type;
 import co.edu.udea.obras.service.config.IFirstRunConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Miguel Ossa Ruiz
  * @author Neiber Padierna P&eacute;rez
  */
+@Component()
 public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
 
     @Autowired()
     private IAcquisitionDAO acquisitionDAO;
     @Autowired()
+    private IClientDAO clientDAO;
+    @Autowired()
     private IDependencyDAO dependencyDAO;
+    @Autowired()
+    private IPeopleDAO peopleDAO;
     @Autowired()
     private IProfileDAO profileDAO;
     @Autowired()
@@ -86,15 +97,15 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
             Dependency dependency = new Dependency("Ingeniería de Sistemas");
             dependency.setDescription("Departamento de Ingeniería de Sistemas de la Universidad de Antioquia.");
             this.dependencyDAO.saveDependency(dependency);
-            
+
             dependency = new Dependency("Ingeniería Industrial");
             dependency.setDescription("Departamento de Ingeniería Industrial de la Universidad de Antioquia.");
             this.dependencyDAO.saveDependency(dependency);
-            
+
             dependency = new Dependency("Ingeniería Ambiental");
             dependency.setDescription("Departamento de Ingeniería Ambiental de la Universidad de Antioquia.");
             this.dependencyDAO.saveDependency(dependency);
-            
+
             dependency = new Dependency("Ingeniería De Telecomunicaciones");
             dependency.setDescription("Departamento de Ingeniería de Telecomunicaciones de la Universidad de Antioquia.");
             this.dependencyDAO.saveDependency(dependency);
@@ -270,5 +281,23 @@ public class FirstRunConfigurationImpl implements IFirstRunConfiguration {
     }
 
     private void tester() {
+        PeoplePK peoplePK = new PeoplePK("Cédula de Ciudadanía", "1234567890");
+
+        Client client = new Client(peoplePK, "person.mock", "test");
+        client.setDependency(this.dependencyDAO.findDependency("D.R.A.I."));
+        client.setTitle(this.profileDAO.findProfile("Consultor"));
+
+        People people = new People(peoplePK, "Person", "Mock");
+        people.setClient(client);
+
+//        this.peopleDAO.savePeople(people);
+
+        Type type = new Type("Test");
+        type.setDescription("Test");
+        this.typeDAO.saveType(type);
+
+        this.clientDAO.deleteClient(client);
+//        this.peopleDAO.deletePeople(people);
+        this.typeDAO.deleteType(new Type("Test"));
     }
 }

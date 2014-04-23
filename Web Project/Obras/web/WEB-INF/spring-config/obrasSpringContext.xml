@@ -22,9 +22,9 @@
 
     <context:annotation-config />
     <context:component-scan
-        base-package="co.edu.udea.obras.persistence.dao" />
+        base-package="co.edu.udea.obras.persistence" />
     <context:component-scan
-        base-package="co.edu.udea.obras.persistence.entity" />
+        base-package="co.edu.udea.obras.service.report" />
     <context:component-scan
         base-package="co.edu.udea.obras.web.bean" />
 
