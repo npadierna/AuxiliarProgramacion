@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 @RequestScoped()
 public final class DependencyCreatorBean implements Serializable {
 
+    private static final long serialVersionUID = 2693090919841893376L;
     @Autowired()
     private IDependencyDAO dependencyDAO;
     private Dependency newDependency;

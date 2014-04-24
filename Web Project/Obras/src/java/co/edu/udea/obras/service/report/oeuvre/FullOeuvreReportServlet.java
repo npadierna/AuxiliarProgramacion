@@ -2,6 +2,7 @@ package co.edu.udea.obras.service.report.oeuvre;
 
 import co.edu.udea.obras.web.bean.authoroeuvre.AuthorOeuvreSelectorBean;
 import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -31,8 +32,10 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
  * @author Miguel Ossa Ruiz
  * @author Neiber Padierna P&eacute;rez
  */
-public class FullOeuvreReportServlet extends HttpServlet {
+public class FullOeuvreReportServlet extends HttpServlet
+        implements Serializable {
 
+    private static final long serialVersionUID = 7324905274180794368L;
     public static final String OEUVRE_ID = "oeuvre_id";
     @Autowired()
     private AuthorOeuvreSelectorBean authorOeuvreSelectorBean;
@@ -48,13 +51,13 @@ public class FullOeuvreReportServlet extends HttpServlet {
 
         ServletOutputStream servletOutputStream = response.getOutputStream();
 
-        Map jasperParamsMap = new HashMap();
+        Map<String, Object> jasperParamsMap = new HashMap<>();
         jasperParamsMap.put(FullOeuvreReportServlet.OEUVRE_ID,
                 this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
                 .getOeuvreType().getOeuvre().getId());
 
         Connection connection = this.stablishConnection();
-        JasperReport jasperRerport = (JasperReport) JRLoader.loadObject(
+        JasperReport jasperRerport = (JasperReport) JRLoader.loadObjectFromFile(
                 super.getServletContext()
                 .getRealPath("/co/edu/udea/obras/report/oeuvre/fulloeuvre/Obr@sReport.jasper"));
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperRerport,

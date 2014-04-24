@@ -2,6 +2,7 @@ package co.edu.udea.obras.service.report.oeuvre;
 
 import co.edu.udea.obras.web.bean.authoroeuvre.AuthorOeuvreSelectorBean;
 import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -31,8 +32,10 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
  * @author Miguel Ossa Ruiz
  * @author Neiber Padierna P&eacute;rez
  */
-public class SingleOeuvreReportServlet extends HttpServlet {
+public class SingleOeuvreReportServlet extends HttpServlet
+        implements Serializable {
 
+    private static final long serialVersionUID = 7423979878025392128L;
     public static final String ACQUISITION_TYPE = "acquisition";
     public static final String AUTHOR_OEUVRE_DOCUMENT_TYPE = "author_oeuvre_document_type";
     public static final String AUTHOR_OEUVRE_ID_NUMBER = "author_oeuvre_id_number";
@@ -49,7 +52,7 @@ public class SingleOeuvreReportServlet extends HttpServlet {
 
         ServletOutputStream servletOutputStream = response.getOutputStream();
 
-        Map jasperParamsMap = new HashMap();
+        Map<String, Object> jasperParamsMap = new HashMap<>();
         jasperParamsMap.put(SingleOeuvreReportServlet.ACQUISITION_TYPE,
                 this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
                 .getAcquisition1().getType());
@@ -70,7 +73,7 @@ public class SingleOeuvreReportServlet extends HttpServlet {
                 .getOeuvreType().getOeuvre().getId());
 
         Connection connection = this.stablishConnection();
-        JasperReport jasperRerport = (JasperReport) JRLoader.loadObject(
+        JasperReport jasperRerport = (JasperReport) JRLoader.loadObjectFromFile(
                 super.getServletContext()
                 .getRealPath("/co/edu/udea/obras/report/oeuvre/singleoeuvre/Obr@sReport.jasper"));
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperRerport,

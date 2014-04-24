@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 @SessionScoped()
 public class ContractUploaderBean implements Serializable {
 
+    private static final long serialVersionUID = 1507851977412493312L;
     @Autowired()
     private IContractDAO contractDAO;
     @Autowired()
@@ -54,10 +55,10 @@ public class ContractUploaderBean implements Serializable {
         FacesMessage msg;
 
         if (this.getContract().getKey().equals("") || this.getContract().getKey() == null) {
-            
+
             return;
         }
-        
+
         if (this.contractDAO.findContract(this.getContract().getKey()) != null) {
             msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Contrato Existente",
