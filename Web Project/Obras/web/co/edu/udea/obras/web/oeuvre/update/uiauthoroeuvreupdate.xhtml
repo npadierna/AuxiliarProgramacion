@@ -11,8 +11,9 @@
     xmlns:c="http://java.sun.com/jsp/jstl/core" >
 
     <center>
-        <p:panel header="Asociar Obras A Autores"
-                 id="authorsOeuvresAdderPanel" >
+        <p:panel
+            header="Asociar Obras A Autores"
+            id="authorsOeuvresAdderPanel" >
 
             <p:dataTable
                 emptyMessage="No se han añadido Autores."
@@ -134,7 +135,7 @@
                                 <p:inputText
                                     id="authorOeuvreDNDA" maxlength="30"
                                     required="false" size="30"
-                                    value="#{authorOeuvre.dnda.number}" >
+                                    value="#{authorOeuvre.dndaNumber}" >
                                 </p:inputText>
                                 <p:watermark 
                                     for="authorOeuvreDNDA" value="Opcional" >

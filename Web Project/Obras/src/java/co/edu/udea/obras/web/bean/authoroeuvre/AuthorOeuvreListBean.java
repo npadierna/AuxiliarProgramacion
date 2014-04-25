@@ -28,15 +28,17 @@ public final class AuthorOeuvreListBean implements Serializable {
     private List<AuthorOeuvre> authorOeuvres;
     private List<AuthorOeuvre> authorsOeuvresFiltered;
     private AuthorOeuvre selectedAuthorOeuvre;
+    private boolean mustUpdate;
 
     public AuthorOeuvreListBean() {
         super();
     }
 
     public List<AuthorOeuvre> getAuthorOeuvres() {
-        if (this.authorOeuvreDAO.countAuthorsOeuvres()
-                != this.authorOeuvres.size()) {
+        if ((this.authorOeuvreDAO.countAuthorsOeuvres()
+                != this.authorOeuvres.size()) || (this.isMustUpdate())) {
             this.createFields();
+            this.setMustUpdate(false);
         }
 
         return (this.authorOeuvres);
@@ -63,6 +65,15 @@ public final class AuthorOeuvreListBean implements Serializable {
 
     public void setSelectedAuthorOeuvre(AuthorOeuvre selectedAuthorOeuvre) {
         this.selectedAuthorOeuvre = selectedAuthorOeuvre;
+    }
+
+    public boolean isMustUpdate() {
+
+        return (this.mustUpdate);
+    }
+
+    public synchronized void setMustUpdate(boolean mustUpdate) {
+        this.mustUpdate = mustUpdate;
     }
 
     public void preProcessForPDFFile(Object document) {

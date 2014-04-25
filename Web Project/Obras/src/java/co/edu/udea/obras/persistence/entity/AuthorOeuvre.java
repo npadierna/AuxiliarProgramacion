@@ -2,6 +2,7 @@ package co.edu.udea.obras.persistence.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -77,7 +78,7 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     @ManyToOne(optional = false)
     private Author author;
     @JoinColumn(name = "dnda", referencedColumnName = "number")
-    @ManyToOne()
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     private Dnda dnda;
     @JoinColumn(name = "support_type", referencedColumnName = "type")
     @ManyToOne(optional = false)

@@ -24,12 +24,12 @@
                     size="50" value="#{authorOeuvreUpdateBean.oeuvre.dependency.name}" >
                 </p:inputText>
 
-                <h:outputText 
-                  style="font-weight: bold;" 
+                <h:outputText
+                    style="font-weight: bold;" 
                     value="Nombre de la Obra:" >
                 </h:outputText>
                 <p:inputText
-                    id="oeuvreNameInputText" label="Nombre de la Obra" readonly="true"
+                    id="oeuvreNameInputText" label="Nombre de la Obra"
                     size="50" value="#{authorOeuvreUpdateBean.oeuvre.title}" >
                 </p:inputText>
 
@@ -37,7 +37,7 @@
                     style="font-weight: bold;" value="Descripción:" >
                 </h:outputText>
                 <p:inputTextarea
-                    autoResize="false" cols="50" readonly="true"
+                    autoResize="false" cols="50" readonly="false"
                     id="descriptionInputTextArea" maxlength="250" rows="5"
                     value="#{authorOeuvreUpdateBean.oeuvre.description}" >
                 </p:inputTextarea>

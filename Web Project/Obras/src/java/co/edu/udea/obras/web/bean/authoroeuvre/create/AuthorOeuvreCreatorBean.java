@@ -38,7 +38,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultUploadedFile;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +81,7 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
     private String dndaNumber;
     private String documentType;
     private String idNumber;
-    private UploadedFile contractUploadedFile;
+    private UploadedFile uploadedFile;
     private Date beginningDate;
     private Date deliveringDate;
     private boolean onCreated;
@@ -191,13 +190,13 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
         this.idNumber = idNumber;
     }
 
-    public UploadedFile getContractUploadedFile() {
+    public UploadedFile getUploadedFile() {
 
-        return (this.contractUploadedFile);
+        return (this.uploadedFile);
     }
 
-    public void setContractUploadedFile(UploadedFile contractUploadedFile) {
-        this.contractUploadedFile = contractUploadedFile;
+    public void setUploadedFile(UploadedFile uploadedFile) {
+        this.uploadedFile = uploadedFile;
     }
 
     public Date getBeginningDate() {
@@ -237,13 +236,16 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
     }
 
     public void addComment(ActionEvent actionEvent) {
-        Comment c = new Comment();
-        c.setDateTime(new Date());
-        c.setText(this.getCommentText().trim());
+        this.setCommentText(this.getCommentText().trim());
+        if (!this.getCommentText().equals("")) {
+            Comment c = new Comment();
+            c.setDateTime(new Date());
+            c.setText(this.getCommentText());
 
-        this.getComments().add(c);
+            this.getComments().add(c);
 
-        this.setCommentText("");
+            this.setCommentText("");
+        }
     }
 
     public void addContract(ActionEvent actionEvent) {
@@ -295,7 +297,7 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
         }
 
         contract = new Contract(this.getContractNumber());
-        contract.setContractFile(this.getContractUploadedFile());
+        contract.setContractFile(this.getUploadedFile());
         contract.setDnda(dnda);
         contract.setBeginning(this.getBeginningDate());
         contract.setDelivering(this.getDeliveringDate());
@@ -411,7 +413,11 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
             } else {
                 c.setRoute(c.getContractFile().getFileName());
             }
+            c.setBeginning(this.getBeginningDate());
+            c.setDelivering(this.getDeliveringDate());
             this.contractDAO.saveContract(c);
+
+            this.saveFileUpload(c.getContractFile(), true);
         }
 
         for (AuthorOeuvre authorOeuvre : this.getAuthorsOeuvres()) {
@@ -443,34 +449,45 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
 
             authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);
             authorOeuvre.setOeuvreType(oeuvreType);
-            authorOeuvre.setRoute(authorOeuvre.getProductFile().getFileName());
             authorOeuvre.setAcquisition1(new Acquisition(
                     authorOeuvre.getAuthorOeuvrePK().getAcquisition()));
             authorOeuvre.setContract1(new Contract(
                     authorOeuvre.getAuthorOeuvrePK().getContract()));
 
             this.authorOeuvreDAO.saveAuthorOeuvre(authorOeuvre);
+
+            this.saveFileUpload(authorOeuvre.getProductFile(), false);
         }
         this.onCreated = true;
+
         FacesContext.getCurrentInstance().addMessage(null, m);
         context.addCallbackParam(AuthorOeuvreCreatorBean.ON_CREATED,
                 this.onCreated);
     }
 
     public void addProductFileToOeuvre(AuthorOeuvre authorOeuvre) {
-        authorOeuvre.setProductFile(this.getContractUploadedFile());
+        authorOeuvre.setProductFile(this.getUploadedFile());
+        authorOeuvre.setRoute(authorOeuvre.getProductFile().getFileName());
     }
 
-    public void onHandleContractFileUpload(FileUploadEvent fileUploadEvent) {
-        UploadedFile contractFile = fileUploadEvent.getFile();
-        String name = contractFile.getFileName();
+    private void saveFileUpload(UploadedFile uploadedFile,
+            boolean isContract) {
+        String name = uploadedFile.getFileName();
 
-        File targetFolder = new File("D:/tmp/"
-                + this.getOeuvre().getTitle() + "/contracts");
+        File targetFolder;
+        if (isContract) {
+            targetFolder = new File("/home/rebien/Documentos/Obras/"
+                    + this.getOeuvre().getId() + "/contracts");
+        } else {
+            targetFolder = new File("/home/rebien/Documentos/Obras/"
+                    + this.getOeuvre().getId() + "/products");
+        }
+
+        targetFolder.mkdirs();
         try {
-            InputStream inputStream = fileUploadEvent.getFile().getInputstream();
+            InputStream inputStream = uploadedFile.getInputstream();
             OutputStream outputStream = new FileOutputStream(new File(targetFolder,
-                    fileUploadEvent.getFile().getFileName()));
+                    uploadedFile.getFileName()));
 
             int read = 0;
             byte[] bytes = new byte[2048];
@@ -493,9 +510,11 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
         this.setComments(new ArrayList<Comment>());
         this.setContracts(new ArrayList<Contract>());
         this.setContractsNumbersList(new ArrayList<String>());
-        this.setContractUploadedFile(null);
+        this.setUploadedFile(null);
         this.setFoundAuthors(new ArrayList<Author>());
         this.setOeuvre(new Oeuvre());
         this.getOeuvre().setDependency(new Dependency());
+        this.setBeginningDate(new Date());
+        this.setDeliveringDate(new Date());
     }
 }

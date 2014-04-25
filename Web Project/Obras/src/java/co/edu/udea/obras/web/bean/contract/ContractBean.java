@@ -43,6 +43,7 @@ public final class ContractBean implements Serializable {
 
     public ContractBean() {
         super();
+
         this.selectedContract = false;
     }
 
@@ -75,6 +76,7 @@ public final class ContractBean implements Serializable {
 
     public void onViewContractForAuthorOeuvre(AuthorOeuvre authorOeuvre) {
         RequestContext context = RequestContext.getCurrentInstance();
+
         if (authorOeuvre != null) {
             this.setAuthorOeuvre(authorOeuvre);
             this.setContract(this.contractDAO.findContract(authorOeuvre
@@ -83,7 +85,10 @@ public final class ContractBean implements Serializable {
             if (this.getContract().getRoute() != null) {
                 InputStream inputStream;
                 try {
-                    File f = new File(this.getContract().getRoute());
+                    File f = new File("/home/rebien/Documentos/Obras/"
+                            .concat(Long.toString(authorOeuvre.getOeuvreType()
+                            .getOeuvre().getId())).concat("/contracts/").
+                            concat(this.getContract().getRoute()));
                     inputStream = new FileInputStream(f);
                     ExternalContext externalContext = FacesContext.getCurrentInstance()
                             .getExternalContext();
@@ -94,7 +99,6 @@ public final class ContractBean implements Serializable {
                 } catch (IOException ex) {
                     Logger.getLogger(AuthorOeuvreFileBean.class.getName())
                             .log(Level.SEVERE, null, ex);
-
                 }
             } else {
                 this.selectedContract = true;
