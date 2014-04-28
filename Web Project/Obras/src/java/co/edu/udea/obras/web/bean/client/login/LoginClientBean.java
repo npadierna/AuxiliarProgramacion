@@ -3,15 +3,11 @@ package co.edu.udea.obras.web.bean.client.login;
 import co.edu.udea.obras.persistence.dao.IClientDAO;
 import co.edu.udea.obras.persistence.entity.Client;
 import java.io.Serializable;
-import java.util.Map;
-import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
-import org.primefaces.context.ApplicationContext;
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -86,7 +82,7 @@ public final class LoginClientBean implements Serializable {
     }
 
     public void logIn(ActionEvent actionEvent) {
-        RequestContext context = RequestContext.getCurrentInstance();
+        RequestContext requestContext = RequestContext.getCurrentInstance();        
         FacesMessage msg = null;
 
         this.loggedIn = false;
@@ -114,7 +110,7 @@ public final class LoginClientBean implements Serializable {
         this.setPassword("");
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        context.addCallbackParam(LoginClientBean.LOGGED_IN_KEY, this.loggedIn);
+        requestContext.addCallbackParam(LoginClientBean.LOGGED_IN_KEY, this.loggedIn);
     }
 
     public void logOut(ActionEvent actionEvent) {

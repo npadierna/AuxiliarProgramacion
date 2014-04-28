@@ -73,6 +73,10 @@ public class AuthorOeuvreFileBean implements Serializable {
     public void onSelectedAuthorOeuvre(
             AuthorOeuvre authorOeuvreSelected) {
         RequestContext context = RequestContext.getCurrentInstance();
+        ExternalContext externalContext = FacesContext.getCurrentInstance()
+                .getExternalContext();
+        String directory = (String) externalContext.getInitParameter("directory");
+
         if (authorOeuvreSelected != null) {
             this.setAuthorOeuvreSelected(authorOeuvreSelected);
             this.getAuthorOeuvreFileList().clear();
@@ -81,14 +85,13 @@ public class AuthorOeuvreFileBean implements Serializable {
             if (this.getAuthorOeuvreSelected().getRoute() != null) {
                 InputStream inputStream;
                 try {
-                    File f = new File("/home/rebien/Documentos/Obras/"
-                            .concat(Long.toString(this.getAuthorOeuvreSelected()
-                            .getOeuvreType().getOeuvre().getId()))
-                            .concat("/products/").concat(
-                            this.getAuthorOeuvreSelected().getRoute()));
+                    File f = new File(directory.concat(Long.toString(
+                            this.getAuthorOeuvreSelected().getOeuvreType()
+                            .getOeuvre().getId())).concat(File.separator)
+                            .concat("products").concat(File.separator)
+                            .concat(this.getAuthorOeuvreSelected().getRoute()));
+
                     inputStream = new FileInputStream(f);
-                    ExternalContext externalContext = FacesContext.getCurrentInstance()
-                            .getExternalContext();
 
                     this.setProductFile(new DefaultStreamedContent(inputStream,
                             externalContext.getMimeType(f.getName()), f.getName()));

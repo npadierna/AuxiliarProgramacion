@@ -76,6 +76,9 @@ public final class ContractBean implements Serializable {
 
     public void onViewContractForAuthorOeuvre(AuthorOeuvre authorOeuvre) {
         RequestContext context = RequestContext.getCurrentInstance();
+        ExternalContext externalContext = FacesContext.getCurrentInstance()
+                .getExternalContext();
+        String directory = (String) externalContext.getInitParameter("directory");
 
         if (authorOeuvre != null) {
             this.setAuthorOeuvre(authorOeuvre);
@@ -85,13 +88,12 @@ public final class ContractBean implements Serializable {
             if (this.getContract().getRoute() != null) {
                 InputStream inputStream;
                 try {
-                    File f = new File("/home/rebien/Documentos/Obras/"
-                            .concat(Long.toString(authorOeuvre.getOeuvreType()
-                            .getOeuvre().getId())).concat("/contracts/").
-                            concat(this.getContract().getRoute()));
+                    File f = new File(directory.concat(Long.toString(
+                            authorOeuvre.getOeuvreType().getOeuvre().getId()))
+                            .concat(File.separator).concat("contracts")
+                            .concat(File.separator)
+                            .concat(this.getContract().getRoute()));
                     inputStream = new FileInputStream(f);
-                    ExternalContext externalContext = FacesContext.getCurrentInstance()
-                            .getExternalContext();
 
                     this.setContractFile(new DefaultStreamedContent(inputStream,
                             externalContext.getMimeType(f.getName()), f.getName()));

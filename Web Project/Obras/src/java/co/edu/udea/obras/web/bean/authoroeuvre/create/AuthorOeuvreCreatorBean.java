@@ -35,6 +35,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.context.RequestContext;
@@ -472,15 +473,17 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
 
     private void saveFileUpload(UploadedFile uploadedFile,
             boolean isContract) {
-        String name = uploadedFile.getFileName();
+        ExternalContext externalContext = FacesContext.getCurrentInstance()
+                .getExternalContext();
+        String directory = (String) externalContext.getInitParameter("directory");
 
         File targetFolder;
         if (isContract) {
-            targetFolder = new File("/home/rebien/Documentos/Obras/"
-                    + this.getOeuvre().getId() + "/contracts");
+            targetFolder = new File(directory.concat(this.getOeuvre().getId()
+                    .toString()).concat(File.separator).concat("contracts"));
         } else {
-            targetFolder = new File("/home/rebien/Documentos/Obras/"
-                    + this.getOeuvre().getId() + "/products");
+            targetFolder = new File(directory.concat(this.getOeuvre().getId()
+                    .toString()).concat(File.separator).concat("products"));
         }
 
         targetFolder.mkdirs();
