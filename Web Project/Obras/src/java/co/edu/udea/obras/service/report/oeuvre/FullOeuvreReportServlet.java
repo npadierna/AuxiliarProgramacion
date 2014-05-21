@@ -4,18 +4,19 @@ import co.edu.udea.obras.web.bean.authoroeuvre.AuthorOeuvreSelectorBean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -39,6 +40,8 @@ public class FullOeuvreReportServlet extends HttpServlet
     public static final String OEUVRE_ID = "oeuvre_id";
     @Autowired()
     private AuthorOeuvreSelectorBean authorOeuvreSelectorBean;
+    @Resource(name = "jndi/obras")
+    private DataSource obrasDataSource;
 
     public FullOeuvreReportServlet() {
         super();
@@ -56,21 +59,26 @@ public class FullOeuvreReportServlet extends HttpServlet
                 this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
                 .getOeuvreType().getOeuvre().getId());
 
-        Connection connection = this.stablishConnection();
-        JasperReport jasperRerport = (JasperReport) JRLoader.loadObjectFromFile(
-                super.getServletContext()
-                .getRealPath("/co/edu/udea/obras/report/oeuvre/fulloeuvre/Obr@sReport.jasper"));
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperRerport,
-                jasperParamsMap, connection);
-
-        JRExporter jRExporter = new JRPdfExporter();
-        jRExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-        jRExporter.setParameter(JRExporterParameter.OUTPUT_STREAM,
-                servletOutputStream);
-        jRExporter.exportReport();
-
         try {
-            connection.close();
+            Connection connection = this.obrasDataSource.getConnection();
+            JasperReport jasperRerport = (JasperReport) JRLoader.loadObjectFromFile(
+                    super.getServletContext()
+                    .getRealPath("/co/edu/udea/obras/report/oeuvre/fulloeuvre/Obr@sReport.jasper"));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperRerport,
+                    jasperParamsMap, connection);
+
+            JRExporter jRExporter = new JRPdfExporter();
+            jRExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+            jRExporter.setParameter(JRExporterParameter.OUTPUT_STREAM,
+                    servletOutputStream);
+            jRExporter.exportReport();
+
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(FullOeuvreReportServlet.class.getName())
+                        .log(Level.SEVERE, null, ex);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(FullOeuvreReportServlet.class.getName())
                     .log(Level.SEVERE, null, ex);
@@ -105,20 +113,5 @@ public class FullOeuvreReportServlet extends HttpServlet
 
         SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
                 config.getServletContext());
-    }
-
-    private Connection stablishConnection() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-
-            return (DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/Obras", "root",
-                    "230491"));
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(FullOeuvreReportServlet.class.getName())
-                    .log(Level.SEVERE, null, ex);
-        }
-
-        return (null);
     }
 }
