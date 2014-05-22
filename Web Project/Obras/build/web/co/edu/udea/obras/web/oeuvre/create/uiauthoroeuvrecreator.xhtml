@@ -11,8 +11,7 @@
     xmlns:c="http://java.sun.com/jsp/jstl/core" >
 
     <center>
-        <p:panel header="Asociar Obras A Autores"
-                 id="authorsOeuvresAdderPanel" >
+        <p:panel header="Asociar Obras A Autores" id="authorsOeuvresAdderPanel" >
 
             <p:dataTable
                 emptyMessage="No se han añadido Autores."
@@ -60,7 +59,7 @@
                         <p:selectOneMenu
                             id="authorOeuvreContract" label="Número de Contrato"
                             required="true"
-                            value="#{authorOeuvre.authorOeuvrePK.contract}" >
+                            value="#{authorOeuvre.contract.id}" >
                             <f:selectItems
                                 value="#{authorOeuvreCreatorBean.contractsNumbersList}" >
                             </f:selectItems>
@@ -94,7 +93,7 @@
                         <p:selectOneMenu
                             id="authorOeuvreAcquisition"
                             label="Forma de Adquisición" required="true"
-                            value="#{authorOeuvre.authorOeuvrePK.acquisition}" >
+                            value="#{authorOeuvre.acquisition.type}" >
                             <f:selectItems
                                 value="#{acquisitionBean.acquisitionsNames}" >
                             </f:selectItems>
@@ -159,9 +158,9 @@
                                 <p:inputText
                                     id="authorOeuvreDNDA" maxlength="30"
                                     required="false" size="30"
-                                    value="#{authorOeuvre.dnda.number}" >
+                                    value="#{authorOeuvre.dndaNumber}" >
                                 </p:inputText>
-                                <p:watermark 
+                                <p:watermark
                                     for="authorOeuvreDNDA" value="Opcional" >
                                 </p:watermark>
                             </h:panelGrid>

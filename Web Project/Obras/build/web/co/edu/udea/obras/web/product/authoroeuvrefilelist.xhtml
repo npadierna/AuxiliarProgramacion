@@ -50,7 +50,7 @@
                             </f:facet>
                             <h:outputText
                                 style="font-size: 13px;"
-                                value="#{authorOeuvreFile.contract1.id}" >
+                                value="#{authorOeuvreFile.contract.id}" >
                             </h:outputText>
                         </p:column>
 
@@ -62,7 +62,7 @@
                             </f:facet>
                             <h:outputText
                                 style="font-size: 13px;"
-                                value="#{authorOeuvreFile.acquisition1.type}" >
+                                value="#{authorOeuvreFile.acquisition.type}" >
                             </h:outputText>
                         </p:column>
 
@@ -74,19 +74,31 @@
                             </f:facet>
                             <h:outputText
                                 style="font-size: 13px;"
-                                value="#{authorOeuvreFile.authorOeuvrePK.oeuvreTypeName}" >
+                                value="#{authorOeuvreFile.oeuvreType.oeuvreTypePK.typeName}" >
                             </h:outputText>
                         </p:column>
 
                         <p:column style="font-size: 15px; text-align: center;" >
                             <f:facet id="route" name="header" >
                                 <h:outputText
-                                    value="Archivo / Localización" >
+                                    value="Nombre de Archivo" >
                                 </h:outputText>  
                             </f:facet>
                             <h:outputText
                                 style="font-size: 13px;"
                                 value="#{authorOeuvreFile.route}" >
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column style="font-size: 15px; text-align: center;" >
+                            <f:facet id="route" name="header" >
+                                <h:outputText
+                                    value="Localización Física o Descripción" >
+                                </h:outputText>  
+                            </f:facet>
+                            <h:outputText
+                                style="font-size: 13px;"
+                                value="#{authorOeuvreFile.locationSupport}" >
                             </h:outputText>
                         </p:column>
 

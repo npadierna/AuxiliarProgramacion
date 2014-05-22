@@ -33,7 +33,7 @@
                         <h:outputText value="N° de Contrato" ></h:outputText>
                     </f:facet>
                     <h:outputText
-                        value="#{authorOeuvre.authorOeuvrePK.contract}" >
+                        value="#{authorOeuvre.contract.id}" >
                     </h:outputText>
                 </p:column>
 
@@ -68,25 +68,29 @@
                     </h:outputText>
                 </p:column>
 
+
                 <p:column style="text-align: center;" >
                     <f:facet name="header" >
                         <h:outputText
                             value="Adjuntar Producto" >
                         </h:outputText>
                     </f:facet>
-                    <p:fileUpload
-                        allowTypes="/(\.|\/)(iso|rar|zip|pdf|gif|jpe?g|png)$/"
-                        cancelLabel="Cancelar" dragDropSupport="false"
-                        id="productFileUpload" label="Seleccionar"
-                        mode="simple" multiple="false" required="true"
-                        sizeLimit="5120000" uploadLabel="Cargar"
-                        value="#{authorOeuvreCreatorBean.contractUploadedFile}" >
-                    </p:fileUpload>
-                    <p:commandButton
-                        actionListener="#{authorOeuvreCreatorBean.addProductFileToOeuvre(authorOeuvre)}"
-                        ajax="false" icon="ui-icon-arrowthickstop-1-n"
-                        value="Subir" >
-                    </p:commandButton>
+                    <c:if
+                        test="${authorOeuvre.supportType.type == 'Digital'}" >
+                        <p:fileUpload
+                            allowTypes="/(\.|\/)(iso|rar|zip|pdf|gif|jpe?g|png)$/"
+                            cancelLabel="Cancelar" dragDropSupport="false"
+                            id="productFileUpload" label="Seleccionar"
+                            mode="simple" multiple="false" required="true"
+                            sizeLimit="5120000" uploadLabel="Cargar"
+                            value="#{authorOeuvreCreatorBean.uploadedFile}" >
+                        </p:fileUpload>
+                        <p:commandButton
+                            actionListener="#{authorOeuvreCreatorBean.addProductFileToOeuvre(authorOeuvre)}"
+                            ajax="false" icon="ui-icon-arrowthickstop-1-n"
+                            value="Subir" >
+                        </p:commandButton>
+                    </c:if>
                 </p:column>
             </p:dataTable>
         </p:panel>

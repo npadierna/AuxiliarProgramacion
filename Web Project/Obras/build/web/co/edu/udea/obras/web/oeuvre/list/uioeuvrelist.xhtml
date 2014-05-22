@@ -28,16 +28,15 @@
                 <f:facet name="header" >Listado de Obras</f:facet>
 
                 <p:column
-                    filterBy="#{authorOeuvre.oeuvreType.oeuvre.id}"
-                    filterMatchMode="contains" style="font-size: 15px;" >
+                    filterBy="#{authorOeuvre.id}"
+                    filterMatchMode="contains"
+                    style="font-size: 15px; text-align: center;" >
                     <f:facet id="issue" name="header" >
-                        <h:outputText
-                            value="Consecutivo" >
-                        </h:outputText>
+                        <h:outputText value="Consecutivo" ></h:outputText>
                     </f:facet>
                     <h:outputText
-                        style="font-size: 13px; text-align: center;"
-                        value="#{authorOeuvre.oeuvreType.oeuvre.id}" >
+                        style="font-size: 13px;"
+                        value="#{authorOeuvre.id}" >
                     </h:outputText>
                 </p:column>
 
@@ -56,29 +55,29 @@
                 </p:column>
 
                 <p:column
-                    sortBy="#{authorOeuvre.contract1.delivering}"
+                    sortBy="#{authorOeuvre.contract.delivering}"
                     style="font-size: 15px; text-align: center;" >
                     <f:facet id="year" name="header" >
                         <h:outputText value="Fecha de Entrega" ></h:outputText>  
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.contract1.delivering}" >
+                        value="#{authorOeuvre.contract.delivering}" >
                     </h:outputText>
                 </p:column>
 
                 <p:column
-                    filterBy="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}"
+                    filterBy="#{authorOeuvre.oeuvreType.oeuvreTypePK.typeName}"
                     filterMatchMode="exact"
                     filterOptions="#{typeBean.typesSelectItems}"
-                    sortBy="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}"
+                    sortBy="#{authorOeuvre.oeuvreType.oeuvreTypePK.typeName}"
                     style="font-size: 15px;" >
                     <f:facet id="type" name="header" >  
                         <h:outputText value="Tipo de Obra" ></h:outputText>  
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
+                        value="#{authorOeuvre.oeuvreType.oeuvreTypePK.typeName}" >
                     </h:outputText>
                 </p:column>
 
@@ -97,24 +96,24 @@
                 </p:column>
 
                 <p:column 
-                    filterBy="#{authorOeuvre.contract1.id}"
+                    filterBy="#{authorOeuvre.contract.id}"
                     filterMatchMode="contains"
-                    sortBy="#{authorOeuvre.contract1.id}"
+                    sortBy="#{authorOeuvre.contract.id}"
                     style="font-size: 15px; text-align: center;" >
                     <f:facet id="contract" name="header" > 
                         <h:outputText value="N° de Contrato" ></h:outputText>
                     </f:facet>
                     <h:outputText
-                        value="#{authorOeuvre.contract1.id}"
+                        value="#{authorOeuvre.contract.id}"
                         style="font-size: 13px;" >
                     </h:outputText>
                 </p:column>
 
                 <p:column
-                    filterBy="#{authorOeuvre.acquisition1.type}"
+                    filterBy="#{authorOeuvre.acquisition.type}"
                     filterOptions="#{acquisitionBean.acquisitionsSelectItems}"
                     filterMatchMode="exact"
-                    sortBy="#{authorOeuvre.acquisition1.type}"
+                    sortBy="#{authorOeuvre.acquisition.type}"
                     style="font-size: 15px;" >
                     <f:facet id="isbn" name="header" > 
                         <h:outputText
@@ -123,7 +122,7 @@
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.acquisition1.type}" >
+                        value="#{authorOeuvre.acquisition.type}" >
                     </h:outputText>                    
                 </p:column>
 
@@ -190,20 +189,17 @@
 
                     <p:commandButton
                         action="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(authorOeuvreListBean.selectedAuthorOeuvre)}"
-                        icon="ui-icon-document" id="viewProductsFilesButton"
+                        icon="ui-icon-folder-collapsed"
+                        id="viewProductsFilesButton"
                         oncomplete="onViewProductRequest(xhr,status,args)"
                         value="Ver producto" >
                     </p:commandButton>
 
                     <p:commandButton
-                        action="#{authorOeuvreSelectorBean.createRequestForServletFullReport}"
+                        action="#{authorOeuvreSelectorBean.onViewFullReport(authorOeuvreListBean.selectedAuthorOeuvre)}"
                         icon="ui-icon-document" id="viewFullReportButton"
                         type="submit" value="Ver reporte completo"
-                        oncomplete="location.href = '/obras/jasper/co/edu/udea/obras/service/report/oeuvre/fulloevurereport?oeuvreid';" >
-                        <f:param
-                            id="oeuvreIdParam" name="oeuvreId"
-                            value="#{authorOeuvreListBean.selectedAuthorOeuvre.authorOeuvrePK.oeuvreTypeId}" >
-                        </f:param>
+                        oncomplete="location.href = '/obras/jasper/co/edu/udea/obras/service/report/oeuvre/fulloevurereport';" >
                     </p:commandButton>
                 </f:facet>
             </p:dataTable>

@@ -187,12 +187,14 @@
                              message="Sí elimina al usuario, este no podrá volver a ingresar al sistema."
                              severity="alert">
                 <center>
-                    <p:commandButton actionListener="#{deleteClientBean.deleteClient}" 
-                                     value="Sí" 
-                                     update=":deletedMemberForm" 
-                                     oncomplete="confirmation.hide( )"/>
-                    <p:commandButton value="No" 
-                                     onclick="confirmation.hide()" />
+                    <p:commandButton
+                        actionListener="#{deleteClientBean.deleteClient}" 
+                        value="Sí" update=":deletedMemberForm" 
+                        oncomplete="confirmation.hide()" >
+                    </p:commandButton>
+                    <p:commandButton
+                        value="No" onclick="confirmation.hide();" >
+                    </p:commandButton>
                 </center>
             </p:confirmDialog> 
         </h:body>
