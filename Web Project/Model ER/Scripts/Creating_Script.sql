@@ -2,8 +2,6 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `Obras` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `Obras` ;
 
 -- -----------------------------------------------------
 -- Table `Obras`.`PEOPLE`
@@ -189,11 +187,13 @@ CREATE  TABLE IF NOT EXISTS `Obras`.`AUTHOR_OEUVRE` (
   `id_number` VARCHAR(20) NOT NULL ,
   `contract` VARCHAR(30) NOT NULL ,
   `acquisition` VARCHAR(35) NOT NULL ,
+  `consecutive` BIGINT NOT NULL AUTO_INCREMENT ,
+  `isbn` VARCHAR(35) NULL ,
+  `route` VARCHAR(100) NULL ,
+  `location_support` VARCHAR(300) NULL ,
   `support_type` VARCHAR(25) NOT NULL ,
   `dnda` VARCHAR(30) NULL ,
-  `isbn` VARCHAR(35) NULL ,
   `title` VARCHAR(35) NOT NULL ,
-  `route` VARCHAR(300) NOT NULL ,
   PRIMARY KEY (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`) ,
   INDEX `fk_AUTHOR_WORK_WORK_TYPE1_idx` (`oeuvre_type_id` ASC, `oeuvre_type_name` ASC) ,
   INDEX `fk_AUTHOR_WORK_SUPPORT1_idx` (`support_type` ASC) ,
@@ -279,8 +279,6 @@ CREATE  TABLE IF NOT EXISTS `Obras`.`CLIENT` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-USE `Obras` ;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

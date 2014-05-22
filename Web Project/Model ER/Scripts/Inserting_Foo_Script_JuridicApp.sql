@@ -193,24 +193,24 @@ INSERT INTO `Obras`.`OEUVRE_TYPE` (`oeuvre_id`, `type_name`)
 -- -----------------------------------------------------
 -- Table `Obras`.`AUTHOR_OEUVRE`
 -- -----------------------------------------------------
--- INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
---    VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
-    VALUES (1, 'Composición Musical', 'Cédula de Extranjería', '1035859551', '12345', 'Autorización', 'Digital', '56789', '123456789', 'Externo', 'file_name_1.pdf');
-INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
-    VALUES (2, 'Exposición (Conferencia)', 'Número Único de Identificación Personal', '1037622083', '23456', 'Contrato de Obra Por Encargo', 'Físico', NULL, '987654321', 'Empleado de Carrera', 'file_name_2.iso');
-INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
-    VALUES (2, 'Escrito', 'Número Único de Identificación Personal', '1037622083', '23456', 'Licencia de Software', 'Digital', NULL, NULL, 'Empleado Provisional', 'file_name_3.rar');
-INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
-    VALUES (3, 'Obra Derivada', 'Tarjeta de Identidad', '1039456678', '34567',  'Licencia Creative Commons', 'Digital', '67890', '654987321', 'Empleado Provisional', 'file_name_4.png');
-INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
-    VALUES (4, 'Programa de Ordenador (Software)', 'Cédula de Ciudadanía', '1022095657', '56789', 'Autorización', 'Físico', NULL, NULL, 'Profesor Visitante', 'file_name_5.docx');
-INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
-    VALUES (4, 'Audiovisual, Multimedia', 'Cédula de Ciudadanía', '1022095657', '56789', 'Presunción Legal Plan de Trabajo', 'Digital', '09876', '321654987', 'Profesor Visitante', 'file_name_6.zip');
-INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
-    VALUES (4, 'Escrito', 'Cédula de Extranjería', '1035859551', '67890',  'Licencia Creative Commons', 'Digital', NULL, '951847263', 'No Aplica', 'file_name_7.pptx');
-INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`)
-    VALUES (5, 'Obra Fotográfica', 'Tarjeta de Identidad', '1039456678', '67890', 'Contrato de Cesión de Derechos', 'Físico', '98765', NULL, 'Empleado de Libre Nombramiento', 'file_name_8.xls');
+-- INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `isbn`, `route`, `location_support`, `support_type`, `dnda`, `title`)
+--    VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`, `location_support`)
+    VALUES (1, 'Composición Musical', 'Cédula de Extranjería', '1035859551', '12345', 'Autorización', 'Digital', '56789', '123456789', 'Externo', 'file_name_1.pdf', NULL);
+INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`, `location_support`)
+    VALUES (2, 'Exposición (Conferencia)', 'Número Único de Identificación Personal', '1037622083', '23456', 'Contrato de Obra Por Encargo', 'Físico', NULL, '987654321', 'Empleado de Carrera', NULL, 'Carrera 84B #64-495 Bloque 5, Piso 2, Oficina 5-204');
+INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`, `location_support`)
+    VALUES (2, 'Escrito', 'Número Único de Identificación Personal', '1037622083', '23456', 'Licencia de Software', 'Digital', NULL, NULL, 'Empleado Provisional', 'file_name_3.rar', 'Ubicando al interior de la Biblioteca principal en el piso 2.');
+INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`, `location_support`)
+    VALUES (3, 'Obra Derivada', 'Tarjeta de Identidad', '1039456678', '34567',  'Licencia Creative Commons', 'Digital', '67890', '654987321', 'Empleado Provisional', 'file_name_4.png', NULL);
+INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`, `location_support`)
+    VALUES (4, 'Programa de Ordenador (Software)', 'Cédula de Ciudadanía', '1022095657', '56789', 'Autorización', 'Físico', NULL, NULL, 'Profesor Visitante', NULL, 'Resguardado bajo llave en el Bloque 2, Piso 5, Oficina 2-504 en el Campus.');
+INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`, `location_support`)
+    VALUES (4, 'Audiovisual, Multimedia', 'Cédula de Ciudadanía', '1022095657', '56789', 'Presunción Legal Plan de Trabajo', 'Digital', '09876', '321654987', 'Profesor Visitante', 'file_name_6.zip', NULL);
+INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`, `location_support`)
+    VALUES (4, 'Escrito', 'Cédula de Extranjería', '1035859551', '67890',  'Licencia Creative Commons', 'Digital', NULL, '951847263', 'No Aplica', 'file_name_7.pptx', 'Acceso restringido en el Museo principal en el interior del Campus.');
+INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`, `location_support`)
+    VALUES (5, 'Obra Fotográfica', 'Tarjeta de Identidad', '1039456678', '67890', 'Contrato de Cesión de Derechos', 'Físico', '98765', NULL, 'Empleado de Libre Nombramiento', 'file_name_8.xls', NULL);
 
 
 -- -----------------------------------------------------
