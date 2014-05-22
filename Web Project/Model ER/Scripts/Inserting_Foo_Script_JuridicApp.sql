@@ -193,8 +193,8 @@ INSERT INTO `Obras`.`OEUVRE_TYPE` (`oeuvre_id`, `type_name`)
 -- -----------------------------------------------------
 -- Table `Obras`.`AUTHOR_OEUVRE`
 -- -----------------------------------------------------
--- INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `isbn`, `route`, `location_support`, `support_type`, `dnda`, `title`)
---    VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+-- INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`id`, `isbn`, `route`, `location_support`, `oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `title`, `dnda`)
+--    VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`, `location_support`)
     VALUES (1, 'Composición Musical', 'Cédula de Extranjería', '1035859551', '12345', 'Autorización', 'Digital', '56789', '123456789', 'Externo', 'file_name_1.pdf', NULL);
 INSERT INTO `Obras`.`AUTHOR_OEUVRE` (`oeuvre_type_id`, `oeuvre_type_name`, `document_type`, `id_number`, `contract`, `acquisition`, `support_type`, `dnda`, `isbn`, `title`, `route`, `location_support`)
