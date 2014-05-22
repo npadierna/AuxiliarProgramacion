@@ -219,12 +219,11 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
     }
 
     public void addAuthor(Author author) {
-        AuthorOeuvre authorOeuvre = new AuthorOeuvre(-1L, null,
-                author.getPeoplePK().getDocumentType(),
-                author.getPeoplePK().getIdNumber(), null, null);
+        AuthorOeuvre authorOeuvre = new AuthorOeuvre();
         authorOeuvre.setAuthor(author);
-        authorOeuvre.setAcquisition1(new Acquisition());
-        authorOeuvre.setContract1(new Contract());
+        authorOeuvre.setAuthor(author);
+        authorOeuvre.setAcquisition(new Acquisition());
+        authorOeuvre.setContract(new Contract());
         authorOeuvre.setDnda(null);
         authorOeuvre.setProductFile(new DefaultUploadedFile());
         authorOeuvre.setTitle(new Title());
@@ -423,7 +422,7 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
 
         for (AuthorOeuvre authorOeuvre : this.getAuthorsOeuvres()) {
             OeuvreTypePK oeuvreTypePK = new OeuvreTypePK(idOeuvre,
-                    authorOeuvre.getAuthorOeuvrePK().getOeuvreTypeName());
+                    authorOeuvre.getOeuvreType().getType().getName());
             OeuvreType oeuvreType = new OeuvreType(oeuvreTypePK);
 
             if (this.oeuvreTypeDAO.findOeuvreType(oeuvreTypePK) == null) {
@@ -448,12 +447,12 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
                 }
             }
 
-            authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);
+//            authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);
             authorOeuvre.setOeuvreType(oeuvreType);
-            authorOeuvre.setAcquisition1(new Acquisition(
-                    authorOeuvre.getAuthorOeuvrePK().getAcquisition()));
-            authorOeuvre.setContract1(new Contract(
-                    authorOeuvre.getAuthorOeuvrePK().getContract()));
+//            authorOeuvre.setAcquisition(new Acquisition(
+//                    authorOeuvre.getAuthorOeuvrePK().getAcquisition()));
+//            authorOeuvre.setContract(new Contract(
+//                    authorOeuvre.getAuthorOeuvrePK().getContract()));
 
             this.authorOeuvreDAO.saveAuthorOeuvre(authorOeuvre);
 
@@ -475,7 +474,7 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
             boolean isContract) {
         ExternalContext externalContext = FacesContext.getCurrentInstance()
                 .getExternalContext();
-        String directory = (String) externalContext.getInitParameter("directory");
+        String directory = externalContext.getInitParameter("directory");
 
         File targetFolder;
         if (isContract) {

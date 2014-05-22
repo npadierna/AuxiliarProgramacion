@@ -2,7 +2,6 @@ package co.edu.udea.obras.persistence.dao;
 
 import co.edu.udea.obras.persistence.entity.Author;
 import co.edu.udea.obras.persistence.entity.AuthorOeuvre;
-import co.edu.udea.obras.persistence.entity.AuthorOeuvrePK;
 import java.util.List;
 
 /**
@@ -18,13 +17,13 @@ public interface IAuthorOeuvreDAO {
 
     public List<AuthorOeuvre> findAuthorsOeuvresByAttributes(Object... attributes);
 
-    public AuthorOeuvre findAuthorOeuvre(AuthorOeuvrePK key);
+    public AuthorOeuvre findAuthorOeuvre(Long key);
 
     public List<AuthorOeuvre> findAuthorsOeuvresByAuthor(Author author);
 
     public List<AuthorOeuvre> findAuthorsOeuvresByOeuvreId(Long oeuvreId);
 
-    public AuthorOeuvrePK saveAuthorOeuvre(AuthorOeuvre authorOeuvre);
+    public Long saveAuthorOeuvre(AuthorOeuvre authorOeuvre);
 
     public AuthorOeuvre updateAuthorOeuvre(AuthorOeuvre authorOeuvre);
 

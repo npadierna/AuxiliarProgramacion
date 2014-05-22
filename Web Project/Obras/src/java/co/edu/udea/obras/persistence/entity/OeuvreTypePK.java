@@ -90,6 +90,7 @@ public class OeuvreTypePK implements Serializable {
     public String toString() {
 
         return ("co.edu.udea.obras.persistence.entity.OeuvreTypePK[ oeuvreId="
-                + this.getOeuvreId() + ", typeName=" + this.getTypeName() + " ]");
+                + this.getOeuvreId() + ", typeName=" + this.getTypeName()
+                + " ]");
     }
 }

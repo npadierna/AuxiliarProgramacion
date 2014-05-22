@@ -80,8 +80,7 @@ public final class AuthorOeuvreSelectorBean implements Serializable {
         if (selectedAuthorOeuvre != null) {
             this.setSelectedAuthorOeuvre(selectedAuthorOeuvre);
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cargando...",
-                    selectedAuthorOeuvre.getAuthorOeuvrePK()
-                    .getOeuvreTypeName());
+                    selectedAuthorOeuvre.getOeuvreType().getType().getName());
             this.onSelected = true;
 
             this.findAuthorsOeuvres();
@@ -108,14 +107,14 @@ public final class AuthorOeuvreSelectorBean implements Serializable {
 
     private void findAuthorsOeuvres() {
         this.setAuthorsOeuvres(this.authorOeuvreDAO.findAuthorsOeuvresByOeuvreId(
-                this.getSelectedAuthorOeuvre().getAuthorOeuvrePK()
-                .getOeuvreTypeId()));
+                this.getSelectedAuthorOeuvre().getOeuvreType().getOeuvreTypePK()
+                .getOeuvreId()));
     }
 
     private void findOeuvreComments() {
         this.setOeuvreComments(this.commentDAO.findCommnetsByOeuvreId(
-                this.getSelectedAuthorOeuvre().getAuthorOeuvrePK()
-                .getOeuvreTypeId()));
+                this.getSelectedAuthorOeuvre().getOeuvreType().getOeuvreTypePK()
+                .getOeuvreId()));
     }
 
     @PostConstruct()

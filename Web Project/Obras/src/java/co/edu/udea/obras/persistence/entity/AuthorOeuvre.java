@@ -2,10 +2,11 @@ package co.edu.udea.obras.persistence.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -13,7 +14,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.primefaces.model.UploadedFile;
@@ -27,68 +27,59 @@ import org.primefaces.model.UploadedFile;
 @NamedQueries({
     @NamedQuery(name = "AuthorOeuvre.findAll",
             query = "SELECT a FROM AuthorOeuvre a"),
-    @NamedQuery(name = "AuthorOeuvre.findByOeuvreTypeId",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.authorOeuvrePK.oeuvreTypeId = :oeuvreTypeId"),
-    @NamedQuery(name = "AuthorOeuvre.findByOeuvreTypeName",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.authorOeuvrePK.oeuvreTypeName = :oeuvreTypeName"),
-    @NamedQuery(name = "AuthorOeuvre.findByDocumentType",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.authorOeuvrePK.documentType = :documentType"),
-    @NamedQuery(name = "AuthorOeuvre.findByIdNumber",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.authorOeuvrePK.idNumber = :idNumber"),
-    @NamedQuery(name = "AuthorOeuvre.findByContract",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.authorOeuvrePK.contract = :contract"),
-    @NamedQuery(name = "AuthorOeuvre.findByAcquisition",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.authorOeuvrePK.acquisition = :acquisition"),
+    @NamedQuery(name = "AuthorOeuvre.findById",
+            query = "SELECT a FROM AuthorOeuvre a WHERE a.id = :id"),
     @NamedQuery(name = "AuthorOeuvre.findByIsbn",
             query = "SELECT a FROM AuthorOeuvre a WHERE a.isbn = :isbn"),
     @NamedQuery(name = "AuthorOeuvre.findByRoute",
-            query = "SELECT a FROM AuthorOeuvre a WHERE a.route = :route")})
+            query = "SELECT a FROM AuthorOeuvre a WHERE a.route = :route"),
+    @NamedQuery(name = "AuthorOeuvre.findByLocationSupport",
+            query = "SELECT a FROM AuthorOeuvre a WHERE a.locationSupport = :locationSupport")})
 @Table(name = "AUTHOR_OEUVRE")
 @XmlRootElement()
 public class AuthorOeuvre implements IEntityContext, Serializable {
 
     private static final long serialVersionUID = 5346671195390452736L;
-    @EmbeddedId()
-    protected AuthorOeuvrePK authorOeuvrePK;
+    @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Long id;
     @Size(max = 35)
     @Column(name = "isbn")
     private String isbn;
-    @Basic(optional = false)
-    @NotNull()
-    @Size(min = 1, max = 300)
+    @Size(max = 100)
     @Column(name = "route")
     private String route;
-    @JoinColumn(name = "acquisition", referencedColumnName = "type",
-            insertable = false, updatable = false)
+    @Size(max = 300)
+    @Column(name = "location_support")
+    private String locationSupport;
+    @JoinColumn(name = "acquisition", referencedColumnName = "type")
     @ManyToOne(optional = false)
-    private Acquisition acquisition1;
-    @JoinColumn(name = "contract", referencedColumnName = "id",
-            insertable = false, updatable = false)
+    private Acquisition acquisition;
+    @JoinColumn(name = "contract", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Contract contract1;
+    private Contract contract;
     @JoinColumn(name = "title", referencedColumnName = "profile")
     @ManyToOne(optional = false)
     private Title title;
     @JoinColumns({
         @JoinColumn(name = "document_type",
-                referencedColumnName = "document_type", insertable = false,
-                updatable = false),
-        @JoinColumn(name = "id_number", referencedColumnName = "id_number",
-                insertable = false, updatable = false)})
+                referencedColumnName = "document_type"),
+        @JoinColumn(name = "id_number", referencedColumnName = "id_number")})
     @ManyToOne(optional = false)
     private Author author;
     @JoinColumn(name = "dnda", referencedColumnName = "number")
-    @ManyToOne(cascade = {CascadeType.REFRESH})
+    @ManyToOne()
     private Dnda dnda;
     @JoinColumn(name = "support_type", referencedColumnName = "type")
     @ManyToOne(optional = false)
     private Support supportType;
     @JoinColumns({
-        @JoinColumn(name = "oeuvre_type_id", referencedColumnName = "oeuvre_id",
-                insertable = false, updatable = false),
+        @JoinColumn(name = "oeuvre_type_id",
+                referencedColumnName = "oeuvre_id"),
         @JoinColumn(name = "oeuvre_type_name",
-                referencedColumnName = "type_name", insertable = false,
-                updatable = false)})
+                referencedColumnName = "type_name")})
     @ManyToOne(optional = false)
     private OeuvreType oeuvreType;
     @Transient()
@@ -100,29 +91,17 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
         super();
     }
 
-    public AuthorOeuvre(AuthorOeuvrePK authorOeuvrePK) {
-        this.authorOeuvrePK = authorOeuvrePK;
+    public AuthorOeuvre(Long id) {
+        this.id = id;
     }
 
-    public AuthorOeuvre(AuthorOeuvrePK authorOeuvrePK, String route) {
-        this.authorOeuvrePK = authorOeuvrePK;
-        this.route = route;
+    public Long getId() {
+
+        return (this.id);
     }
 
-    public AuthorOeuvre(long oeuvreTypeId, String oeuvreTypeName,
-            String documentType, String idNumber, String contract,
-            String acquisition) {
-        this.authorOeuvrePK = new AuthorOeuvrePK(oeuvreTypeId, oeuvreTypeName,
-                documentType, idNumber, contract, acquisition);
-    }
-
-    public AuthorOeuvrePK getAuthorOeuvrePK() {
-
-        return (this.authorOeuvrePK);
-    }
-
-    public void setAuthorOeuvrePK(AuthorOeuvrePK authorOeuvrePK) {
-        this.authorOeuvrePK = authorOeuvrePK;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getIsbn() {
@@ -143,22 +122,31 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
         this.route = route;
     }
 
-    public Acquisition getAcquisition1() {
+    public String getLocationSupport() {
 
-        return (this.acquisition1);
+        return (this.locationSupport);
     }
 
-    public void setAcquisition1(Acquisition acquisition1) {
-        this.acquisition1 = acquisition1;
+    public void setLocationSupport(String locationSupport) {
+        this.locationSupport = locationSupport;
     }
 
-    public Contract getContract1() {
+    public Acquisition getAcquisition() {
 
-        return (this.contract1);
+        return (this.acquisition);
     }
 
-    public void setContract1(Contract contract1) {
-        this.contract1 = contract1;
+    public void setAcquisition(Acquisition acquisition) {
+        this.acquisition = acquisition;
+    }
+
+    public Contract getContract() {
+
+        return (this.contract);
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 
     public Title getTitle() {
@@ -225,18 +213,18 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     }
 
     @Override()
-    public AuthorOeuvrePK getKey() {
+    public Long getKey() {
 
-        return (this.getAuthorOeuvrePK());
+        return (this.getId());
     }
 
     @Override()
     public void setKey(Object key) {
-        if (key instanceof String) {
-            this.setAuthorOeuvrePK((AuthorOeuvrePK) key);
+        if (key instanceof Long) {
+            this.setId((Long) key);
         } else {
             throw new IllegalArgumentException("The key is not valid. Required: "
-                    + AuthorOeuvrePK.class.getSimpleName() + ", received: "
+                    + Long.class.getSimpleName() + ", received: "
                     + key.getClass().getSimpleName());
         }
     }
@@ -245,8 +233,7 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     public int hashCode() {
         int hash = 0;
 
-        hash += (this.getAuthorOeuvrePK() != null
-                ? this.getAuthorOeuvrePK().hashCode() : 0);
+        hash += (this.getId() != null ? getId().hashCode() : 0);
 
         return (hash);
     }
@@ -259,10 +246,9 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
         }
 
         AuthorOeuvre other = (AuthorOeuvre) object;
-        if (((this.getAuthorOeuvrePK() == null)
-                && (other.getAuthorOeuvrePK() != null))
-                || ((this.getAuthorOeuvrePK() != null)
-                && !(this.getAuthorOeuvrePK().equals(other.getAuthorOeuvrePK())))) {
+        if (((this.getId() == null) && (other.getId() != null))
+                || ((this.getId() != null)
+                && !(this.getId().equals(other.getId())))) {
 
             return (false);
         }
@@ -273,7 +259,7 @@ public class AuthorOeuvre implements IEntityContext, Serializable {
     @Override()
     public String toString() {
 
-        return ("co.edu.udea.obras.persistence.entity.AuthorOeuvre[ authorOeuvrePK="
-                + this.getAuthorOeuvrePK() + " ]");
+        return ("co.edu.udea.obras.persistence.entity.AuthorOeuvre[ id="
+                + this.getId() + " ]");
     }
 }

@@ -117,7 +117,7 @@ public class Comment implements IEntityContext, Serializable {
 
     @Override()
     public void setKey(Object key) {
-        if (key instanceof String) {
+        if (key instanceof CommentPK) {
             this.setCommentPK((CommentPK) key);
         } else {
             throw new IllegalArgumentException("The key is not valid. Required: "
@@ -130,8 +130,8 @@ public class Comment implements IEntityContext, Serializable {
     public int hashCode() {
         int hash = 0;
 
-        hash += (this.getCommentPK() != null
-                ? this.getCommentPK().hashCode() : 0);
+        hash += (this.getCommentPK() != null ? this.getCommentPK().hashCode()
+                : 0);
 
         return (hash);
     }

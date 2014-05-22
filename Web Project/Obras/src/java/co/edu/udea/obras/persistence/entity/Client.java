@@ -59,8 +59,9 @@ public class Client implements IEntityContext, Serializable {
         @JoinColumn(name = "document_type",
                 referencedColumnName = "document_type", insertable = false,
                 updatable = false),
-        @JoinColumn(name = "id_number", referencedColumnName = "id_number",
-                insertable = false, updatable = false)})
+        @JoinColumn(name = "id_number",
+                referencedColumnName = "id_number", insertable = false,
+                updatable = false)})
     @OneToOne(optional = false)
     private People people;
 
@@ -144,7 +145,7 @@ public class Client implements IEntityContext, Serializable {
 
     @Override()
     public void setKey(Object key) {
-        if (key instanceof String) {
+        if (key instanceof PeoplePK) {
             this.setPeoplePK((PeoplePK) key);
         } else {
             throw new IllegalArgumentException("The key is not valid. Required: "

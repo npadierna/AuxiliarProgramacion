@@ -102,7 +102,7 @@ public class OeuvreType implements IEntityContext, Serializable {
 
     @Override()
     public void setKey(Object key) {
-        if (key instanceof String) {
+        if (key instanceof OeuvreTypePK) {
             this.setOeuvreTypePK((OeuvreTypePK) key);
         } else {
             throw new IllegalArgumentException("The key is not valid. Required: "

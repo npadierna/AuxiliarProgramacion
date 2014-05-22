@@ -159,8 +159,7 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
         if (selectedAuthorOeuvre != null) {
             this.setSelectedAuthorOeuvre(selectedAuthorOeuvre);
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cargando...",
-                    selectedAuthorOeuvre.getAuthorOeuvrePK()
-                    .getOeuvreTypeName());
+                    selectedAuthorOeuvre.getOeuvreType().getType().getName());
 
             this.onEdit = true;
             this.setOeuvre(this.getSelectedAuthorOeuvre().getOeuvreType()
@@ -180,8 +179,8 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
 
     private void findAuthorsOeuvres() {
         this.setAuthorsOeuvres(this.authorOeuvreDAO.findAuthorsOeuvresByOeuvreId(
-                this.getSelectedAuthorOeuvre().getAuthorOeuvrePK()
-                .getOeuvreTypeId()));
+                this.getSelectedAuthorOeuvre().getOeuvreType().getOeuvreTypePK()
+                .getOeuvreId()));
 
         for (AuthorOeuvre authorOeuvre : this.getAuthorsOeuvres()) {
             if (authorOeuvre.getDnda() != null) {
@@ -192,8 +191,8 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
 
     private void findOeuvreComments() {
         this.setOeuvreComments(this.commentDAO.findCommnetsByOeuvreId(
-                this.getSelectedAuthorOeuvre().getAuthorOeuvrePK()
-                .getOeuvreTypeId()));
+                this.getSelectedAuthorOeuvre().getOeuvreType().getOeuvreTypePK()
+                .getOeuvreId()));
     }
 
     public String applyFormatForDate(Date date) {

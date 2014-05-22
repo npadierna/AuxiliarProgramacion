@@ -68,14 +68,14 @@
                                                 value="Fecha de Inicio:" >
                                             </h:outputText>
                                             <h:outputText
-                                                value="#{authorOeuvreSelectorBean.selectedAuthorOeuvre.contract1.beginning}" >
+                                                value="#{authorOeuvreSelectorBean.selectedAuthorOeuvre.contract.beginning}" >
                                             </h:outputText>
 
                                             <h:outputText
                                                 value="Fecha de Entrega:" >
                                             </h:outputText>
                                             <h:outputText
-                                                value="#{authorOeuvreSelectorBean.selectedAuthorOeuvre.contract1.delivering}" >
+                                                value="#{authorOeuvreSelectorBean.selectedAuthorOeuvre.contract.delivering}" >
                                             </h:outputText>
 
                                             <h:outputText 
@@ -132,7 +132,7 @@
                                             </f:facet>
                                             <h:outputText
                                                 style="font-size: 13px;"
-                                                value="#{authorOeuvre.authorOeuvrePK.documentType}" >
+                                                value="#{authorOeuvre.author.peoplePK.documentType}" >
                                             </h:outputText>
                                         </p:column>
 
@@ -146,7 +146,7 @@
                                             </f:facet>
                                             <h:outputText 
                                                 style="font-size: 13px;"
-                                                value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
+                                                value="#{authorOeuvre.author.peoplePK.idNumber}" >
                                             </h:outputText>
                                         </p:column>
 
@@ -187,7 +187,7 @@
                                             </f:facet>
                                             <h:outputText
                                                 style="font-size: 13px;"
-                                                value="#{authorOeuvre.contract1.id}" >
+                                                value="#{authorOeuvre.contract.id}" >
                                             </h:outputText>
                                         </p:column>
 
@@ -200,7 +200,7 @@
                                             </f:facet>
                                             <h:outputText
                                                 style="font-size: 13px;"
-                                                value="#{authorOeuvre.acquisition1.type}" >
+                                                value="#{authorOeuvre.acquisition.type}" >
                                             </h:outputText>
                                         </p:column>
 

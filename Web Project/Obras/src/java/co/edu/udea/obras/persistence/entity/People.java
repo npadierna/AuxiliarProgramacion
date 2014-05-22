@@ -138,7 +138,7 @@ public class People implements IEntityContext, Serializable {
 
     @Override()
     public void setKey(Object key) {
-        if (key instanceof String) {
+        if (key instanceof PeoplePK) {
             this.setPeoplePK((PeoplePK) key);
         } else {
             throw new IllegalArgumentException("The key is not valid. Required: "

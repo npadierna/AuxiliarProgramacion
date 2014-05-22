@@ -27,19 +27,18 @@
 
                 <f:facet name="header" >Listado de Obras</f:facet>
 
-<!--                <p:column
-                    filterBy=""
-                    filterMatchMode="contains" style="font-size: 15px;" >
+                <p:column
+                    filterBy="#{authorOeuvre.id}"
+                    filterMatchMode="contains"
+                    style="font-size: 15px; text-align: center;" >
                     <f:facet id="issue" name="header" >
-                        <h:outputText
-                            value="Consecutivo" >
-                        </h:outputText>
+                        <h:outputText value="Consecutivo" ></h:outputText>
                     </f:facet>
                     <h:outputText
-                        style="font-size: 13px; text-align: center;"
-                        value="" >
+                        style="font-size: 13px;"
+                        value="#{authorOeuvre.id}" >
                     </h:outputText>
-                </p:column>-->
+                </p:column>
 
                 <p:column
                     filterBy="#{authorOeuvre.oeuvreType.oeuvre.title}"
@@ -56,29 +55,29 @@
                 </p:column>
 
                 <p:column
-                    sortBy="#{authorOeuvre.contract1.delivering}"
+                    sortBy="#{authorOeuvre.contract.delivering}"
                     style="font-size: 15px; text-align: center;" >
                     <f:facet id="year" name="header" >
                         <h:outputText value="Fecha de Entrega" ></h:outputText>  
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.contract1.delivering}" >
+                        value="#{authorOeuvre.contract.delivering}" >
                     </h:outputText>
                 </p:column>
 
                 <p:column
-                    filterBy="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}"
+                    filterBy="#{authorOeuvre.oeuvreType.oeuvreTypePK.typeName}"
                     filterMatchMode="exact"
                     filterOptions="#{typeBean.typesSelectItems}"
-                    sortBy="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}"
+                    sortBy="#{authorOeuvre.oeuvreType.oeuvreTypePK.typeName}"
                     style="font-size: 15px;" >
                     <f:facet id="type" name="header" >  
                         <h:outputText value="Tipo de Obra" ></h:outputText>  
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
+                        value="#{authorOeuvre.oeuvreType.oeuvreTypePK.typeName}" >
                     </h:outputText>
                 </p:column>
 
@@ -97,24 +96,24 @@
                 </p:column>
 
                 <p:column 
-                    filterBy="#{authorOeuvre.contract1.id}"
+                    filterBy="#{authorOeuvre.contract.id}"
                     filterMatchMode="contains"
-                    sortBy="#{authorOeuvre.contract1.id}"
+                    sortBy="#{authorOeuvre.contract.id}"
                     style="font-size: 15px; text-align: center;" >
                     <f:facet id="contract" name="header" > 
                         <h:outputText value="N° de Contrato" ></h:outputText>
                     </f:facet>
                     <h:outputText
-                        value="#{authorOeuvre.contract1.id}"
+                        value="#{authorOeuvre.contract.id}"
                         style="font-size: 13px;" >
                     </h:outputText>
                 </p:column>
 
                 <p:column
-                    filterBy="#{authorOeuvre.acquisition1.type}"
+                    filterBy="#{authorOeuvre.acquisition.type}"
                     filterOptions="#{acquisitionBean.acquisitionsSelectItems}"
                     filterMatchMode="exact"
-                    sortBy="#{authorOeuvre.acquisition1.type}"
+                    sortBy="#{authorOeuvre.acquisition.type}"
                     style="font-size: 15px;" >
                     <f:facet id="isbn" name="header" > 
                         <h:outputText
@@ -123,7 +122,7 @@
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.acquisition1.type}" >
+                        value="#{authorOeuvre.acquisition.type}" >
                     </h:outputText>                    
                 </p:column>
 

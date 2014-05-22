@@ -75,7 +75,7 @@ public class AuthorOeuvreFileBean implements Serializable {
         RequestContext context = RequestContext.getCurrentInstance();
         ExternalContext externalContext = FacesContext.getCurrentInstance()
                 .getExternalContext();
-        String directory = (String) externalContext.getInitParameter("directory");
+        String directory = externalContext.getInitParameter("directory");
 
         if (authorOeuvreSelected != null) {
             this.setAuthorOeuvreSelected(authorOeuvreSelected);

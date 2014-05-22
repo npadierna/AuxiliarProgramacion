@@ -31,7 +31,7 @@ public enum DocumentTypeClientEnum {
     }
 
     public static List<String> obtainDocumentsTypeList() {
-        List<String> documentsTypeList = new ArrayList<>();
+        List<String> documentsTypeList = new ArrayList<String>();
 
         for (DocumentTypeClientEnum e : DocumentTypeClientEnum.values()) {
             documentsTypeList.add(e.getDocumentType());

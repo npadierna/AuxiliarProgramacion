@@ -3,7 +3,6 @@ package co.edu.udea.obras.persistence.dao.impl;
 import co.edu.udea.obras.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.obras.persistence.entity.Author;
 import co.edu.udea.obras.persistence.entity.AuthorOeuvre;
-import co.edu.udea.obras.persistence.entity.AuthorOeuvrePK;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -46,7 +45,7 @@ public class AuthorOeuvreDAO extends AbstractEntityDAO
     }
 
     @Override()
-    public AuthorOeuvre findAuthorOeuvre(AuthorOeuvrePK key) {
+    public AuthorOeuvre findAuthorOeuvre(Long key) {
 
         return ((AuthorOeuvre) super.find(AuthorOeuvre.class, key));
     }
@@ -74,9 +73,9 @@ public class AuthorOeuvreDAO extends AbstractEntityDAO
 
     @Override()
     @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
-    public AuthorOeuvrePK saveAuthorOeuvre(AuthorOeuvre authorOeuvre) {
+    public Long saveAuthorOeuvre(AuthorOeuvre authorOeuvre) {
 
-        return ((AuthorOeuvrePK) super.save(authorOeuvre));
+        return ((Long) super.save(authorOeuvre));
     }
 
     @Override()

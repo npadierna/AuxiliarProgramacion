@@ -63,7 +63,7 @@ public class Contract implements IEntityContext, Serializable {
     @Column(name = "delivering")
     @Temporal(TemporalType.DATE)
     private Date delivering;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contract1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contract")
     private List<AuthorOeuvre> authorOeuvreList;
     @JoinColumn(name = "dnda", referencedColumnName = "number")
     @ManyToOne()

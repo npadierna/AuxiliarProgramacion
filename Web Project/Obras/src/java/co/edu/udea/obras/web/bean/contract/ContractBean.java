@@ -78,12 +78,12 @@ public final class ContractBean implements Serializable {
         RequestContext context = RequestContext.getCurrentInstance();
         ExternalContext externalContext = FacesContext.getCurrentInstance()
                 .getExternalContext();
-        String directory = (String) externalContext.getInitParameter("directory");
+        String directory = externalContext.getInitParameter("directory");
 
         if (authorOeuvre != null) {
             this.setAuthorOeuvre(authorOeuvre);
             this.setContract(this.contractDAO.findContract(authorOeuvre
-                    .getAuthorOeuvrePK().getContract()));
+                    .getContract().getId()));
 
             if (this.getContract().getRoute() != null) {
                 InputStream inputStream;

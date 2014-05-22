@@ -59,10 +59,10 @@ public class SingleOeuvreReportServlet extends HttpServlet
 
         ServletOutputStream servletOutputStream = response.getOutputStream();
 
-        Map<String, Object> jasperParamsMap = new HashMap<>();
+        Map<String, Object> jasperParamsMap = new HashMap<String, Object>();
         jasperParamsMap.put(SingleOeuvreReportServlet.ACQUISITION_TYPE,
                 this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
-                .getAcquisition1().getType());
+                .getAcquisition().getType());
         jasperParamsMap.put(SingleOeuvreReportServlet.AUTHOR_OEUVRE_DOCUMENT_TYPE,
                 this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
                 .getAuthor().getPeoplePK().getDocumentType());
@@ -74,7 +74,7 @@ public class SingleOeuvreReportServlet extends HttpServlet
                 .getOeuvreType().getType().getName());
         jasperParamsMap.put(SingleOeuvreReportServlet.CONTRACT_ID,
                 this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
-                .getContract1().getId());
+                .getContract().getId());
         jasperParamsMap.put(SingleOeuvreReportServlet.OEUVRE_ID,
                 this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
                 .getOeuvreType().getOeuvre().getId());

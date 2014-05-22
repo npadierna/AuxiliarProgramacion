@@ -5,14 +5,9 @@ import co.edu.udea.obras.persistence.entity.IEntityContext;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
-import javax.persistence.LockTimeoutException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PessimisticLockException;
 import javax.persistence.Query;
-import javax.persistence.QueryTimeoutException;
-import javax.persistence.TransactionRequiredException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -52,7 +47,7 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
                 this.getEntityManager().remove(found);
             }
             this.getEntityManager().flush();
-        } catch (IllegalArgumentException | TransactionRequiredException e) {
+        } catch (Exception e) {
             AbstractEntityDAO.LOG.logp(Level.SEVERE,
                     AbstractEntityDAO.class.getName(),
                     "public IEntityContext delete(IEntityContext entity)",
@@ -72,7 +67,7 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
             query = this.getEntityManager().createQuery("FROM "
                     + clazz.getSimpleName());
             entities = (List<IEntityContext>) query.getResultList();
-        } catch (IllegalArgumentException | IllegalStateException | LockTimeoutException | PessimisticLockException | QueryTimeoutException | TransactionRequiredException e) {
+        } catch (Exception e) {
             AbstractEntityDAO.LOG.logp(Level.SEVERE,
                     AbstractEntityDAO.class.getName(),
                     "public Object findAll(Class clazz)",
@@ -145,7 +140,7 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
         try {
             this.getEntityManager().persist(entity);
             this.getEntityManager().flush();
-        } catch (EntityExistsException | IllegalArgumentException | TransactionRequiredException e) {
+        } catch (Exception e) {
             AbstractEntityDAO.LOG.logp(Level.SEVERE,
                     AbstractEntityDAO.class.getName(),
                     "public Object save(IEntityContext entity)",
@@ -161,7 +156,7 @@ public abstract class AbstractEntityDAO implements IEntityDAO {
         try {
             this.getEntityManager().merge(entity);
             this.getEntityManager().flush();
-        } catch (IllegalArgumentException | TransactionRequiredException e) {
+        } catch (Exception e) {
             AbstractEntityDAO.LOG.logp(Level.SEVERE,
                     AbstractEntityDAO.class.getName(),
                     "public IEntityContext update(IEntityContext entity)",

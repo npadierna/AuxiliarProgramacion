@@ -59,7 +59,7 @@
                         <p:selectOneMenu
                             id="authorOeuvreContract" label="Número de Contrato"
                             required="true"
-                            value="#{authorOeuvre.authorOeuvrePK.contract}" >
+                            value="#{authorOeuvre.contract.id}" >
                             <f:selectItems
                                 value="#{authorOeuvreCreatorBean.contractsNumbersList}" >
                             </f:selectItems>
@@ -93,7 +93,7 @@
                         <p:selectOneMenu
                             id="authorOeuvreAcquisition"
                             label="Forma de Adquisición" required="true"
-                            value="#{authorOeuvre.authorOeuvrePK.acquisition}" >
+                            value="#{authorOeuvre.acquisition.type}" >
                             <f:selectItems
                                 value="#{acquisitionBean.acquisitionsNames}" >
                             </f:selectItems>

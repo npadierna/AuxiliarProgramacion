@@ -43,7 +43,7 @@ public class Acquisition implements IEntityContext, Serializable {
     @Size(max = 150)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acquisition1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acquisition")
     private List<AuthorOeuvre> authorOeuvreList;
 
     public Acquisition() {

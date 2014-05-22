@@ -54,7 +54,7 @@ public class FullOeuvreReportServlet extends HttpServlet
 
         ServletOutputStream servletOutputStream = response.getOutputStream();
 
-        Map<String, Object> jasperParamsMap = new HashMap<>();
+        Map<String, Object> jasperParamsMap = new HashMap<String, Object>();
         jasperParamsMap.put(FullOeuvreReportServlet.OEUVRE_ID,
                 this.authorOeuvreSelectorBean.getSelectedAuthorOeuvre()
                 .getOeuvreType().getOeuvre().getId());

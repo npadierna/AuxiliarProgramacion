@@ -37,7 +37,7 @@ public class UploaderFileTesterBean implements Serializable {
 
     public void onHandleUploadFileEvent(AuthorOeuvre authorOeuvre) {
         try {
-            this.saveFileIntoDisc(authorOeuvre.getContract1().getContractFile());
+            this.saveFileIntoDisc(authorOeuvre.getContract().getContractFile());
         } catch (IOException ex) {
             Logger.getLogger(UploaderFileTesterBean.class.getName()).log(
                     Level.SEVERE, null, ex);
