@@ -114,8 +114,12 @@ public class AuthorOeuvreFileBean implements Serializable {
     }
 
     public boolean hastAttachedFile(AuthorOeuvre authorOeuvre) {
-
-        return (true);
+        if ((this.getAuthorOeuvreSelected().getRoute() != null)
+                && !(this.getAuthorOeuvreSelected().getRoute().equals(""))) {
+            return (true);
+        } else {
+            return (false);
+        }
     }
 
     @PostConstruct()
