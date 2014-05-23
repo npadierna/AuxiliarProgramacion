@@ -6,7 +6,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui"  xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <h:head lang="es" >
         <meta content="text/html" http-equiv="Content-Type" ></meta>
@@ -58,6 +58,18 @@
                         oncomplete="handleLogoutRequest(xhr, status, args)"
                         style="font-size: 15px;" value="Cerrar Sesión" >
                     </p:commandButton>
+                    <p:spacer height="5px" width="15px" ></p:spacer>
+                    <p:commandButton
+                        action="#{contractBean.onViewContractForAuthorOeuvre(authorOeuvreListBean.selectedAuthorOeuvre)}"
+                        icon="ui-icon-person" id="createAuthorButton"
+                        onclick="window.open('/obras/faces/co/edu/udea/obras/web/admin/creator/authorscreator.xhtml', 'Author');"
+                        style="font-size: 15px;"
+                        value="Crear Nuevo Autor" >
+                    </p:commandButton>
+
+                    <p:spacer
+                        height="5px" width="15px" >
+                    </p:spacer>
                     </p>
                 </h:form>
             </p:layoutUnit>  
@@ -78,7 +90,7 @@
                                     src="uioeuvrebasiccreator.xhtml" >
                                 </ui:include>
                             </p:tab>
-                            
+
                             <p:tab id="authors" title="Author(es)" >
                                 <ui:include
                                     src="uiauthoradder.xhtml" >
@@ -90,7 +102,7 @@
                                     src="uicontractcreator.xhtml" >
                                 </ui:include>
                             </p:tab>
-                            
+
                             <p:tab id="authorOeuvre"
                                    title="Asociar Obra(s) A Autor(es)" >
                                 <ui:include

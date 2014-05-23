@@ -451,6 +451,7 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
             this.saveFileUpload(authorOeuvre.getProductFile(), false);
         }
         this.onCreated = true;
+        createFields();
 
         FacesContext.getCurrentInstance().addMessage(null, m);
         context.addCallbackParam(AuthorOeuvreCreatorBean.ON_CREATED,
