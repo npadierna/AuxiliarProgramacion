@@ -2,8 +2,10 @@ package co.edu.udea.obras.web.bean.authoroeuvre;
 
 import co.edu.udea.obras.persistence.dao.IAuthorOeuvreDAO;
 import co.edu.udea.obras.persistence.dao.ICommentDAO;
+import co.edu.udea.obras.persistence.dao.IOeuvreTypeDAO;
 import co.edu.udea.obras.persistence.entity.AuthorOeuvre;
 import co.edu.udea.obras.persistence.entity.Comment;
+import co.edu.udea.obras.persistence.entity.OeuvreType;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,9 +35,9 @@ public final class AuthorOeuvreSelectorBean implements Serializable {
     private static final String OEUVRE_SELECTED = "onSelected";
     public static final String FORMAT_FOR_DATE = "yyyy-MM-dd hh:mm aaa";
     @Autowired()
-    private IAuthorOeuvreDAO authorOeuvreDAO;
-    @Autowired()
     private ICommentDAO commentDAO;
+    @Autowired()
+    private IOeuvreTypeDAO oeuvreTypeDAO;
     private boolean onSelected;
     private AuthorOeuvre selectedAuthorOeuvre;
     private List<AuthorOeuvre> authorsOeuvres;
@@ -106,9 +108,10 @@ public final class AuthorOeuvreSelectorBean implements Serializable {
     }
 
     private void findAuthorsOeuvres() {
-        this.setAuthorsOeuvres(this.authorOeuvreDAO.findAuthorsOeuvresByOeuvreId(
+        this.setAuthorsOeuvres(this.oeuvreTypeDAO.executeNamedQueryForOeuvresTypes(
+                "OeuvreType.findByOeuvreId", "oeuvreId",
                 this.getSelectedAuthorOeuvre().getOeuvreType().getOeuvreTypePK()
-                .getOeuvreId()));
+                .getOeuvreId()).get(0).getAuthorOeuvreList());
     }
 
     private void findOeuvreComments() {

@@ -40,7 +40,8 @@ public class RegistrationAuthorBean implements Serializable {
     }
 
     public List<String> getDocumentsType() {
-        return documentsType;
+
+        return (this.documentsType);
     }
 
     public void setDocumentsType(List<String> documentsType) {
@@ -48,7 +49,8 @@ public class RegistrationAuthorBean implements Serializable {
     }
 
     public People getPeople() {
-        return people;
+
+        return (this.people);
     }
 
     public void setPeople(People people) {
@@ -56,7 +58,8 @@ public class RegistrationAuthorBean implements Serializable {
     }
 
     public String getDocumentType() {
-        return documentType;
+
+        return (this.documentType);
     }
 
     public void setDocumentType(String documentType) {
@@ -64,7 +67,8 @@ public class RegistrationAuthorBean implements Serializable {
     }
 
     public String getIdNumber() {
-        return idNumber;
+
+        return (this.idNumber);
     }
 
     public void setIdNumber(String idNumber) {
@@ -72,7 +76,8 @@ public class RegistrationAuthorBean implements Serializable {
     }
 
     public Author getAuthor() {
-        return author;
+
+        return (this.author);
     }
 
     public void setAuthor(Author author) {
@@ -80,7 +85,9 @@ public class RegistrationAuthorBean implements Serializable {
     }
 
     public void saveAuthor(ActionEvent actionEvent) {
-         FacesMessage m = null;
+        FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardando...!!",
+                this.people.getFirstNames());
+
         if ((this.getDocumentType() != null) && (this.getIdNumber() != null)) {
             this.author.setPeoplePK(new PeoplePK(this.documentType,
                     this.idNumber.trim()));
@@ -91,31 +98,32 @@ public class RegistrationAuthorBean implements Serializable {
             People p = this.peopleDAO.findPeople(new PeoplePK(this.documentType, this.idNumber));
 
             if (p == null) {
-                m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardando...!!",
-                        this.people.getFirstNames());
                 this.peopleDAO.savePeople(this.people);
-                
-            } else {
+
+            } else if (p.getAuthor() != null) {
                 m = new FacesMessage(FacesMessage.SEVERITY_WARN,
                         "Datos Inválidos",
                         "Este Autor ya existe");
+            } else {
+                p.setAuthor(author);
+                this.peopleDAO.updatePeople(people);
             }
         } else {
             m = new FacesMessage(FacesMessage.SEVERITY_WARN,
                     "Datos Inválidos",
                     "Hay Campos obligatorios que están vacios");
         }
-        FacesContext.getCurrentInstance().addMessage(null, m);
+
         this.setAuthor(new Author());
         this.setPeople(new People());
         this.setDocumentType("");
         this.setIdNumber("");
+
+        FacesContext.getCurrentInstance().addMessage(null, m);
     }
 
     @PostConstruct()
     private void createFields() {
-        FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-
         this.setPeople(new People());
         this.setAuthor(new Author());
 

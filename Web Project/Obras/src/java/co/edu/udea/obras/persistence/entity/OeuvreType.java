@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -34,7 +35,8 @@ public class OeuvreType implements IEntityContext, Serializable {
     private static final long serialVersionUID = 5359015147593081856L;
     @EmbeddedId()
     protected OeuvreTypePK oeuvreTypePK;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "oeuvreType")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "oeuvreType",
+            fetch = FetchType.EAGER)
     private List<AuthorOeuvre> authorOeuvreList;
     @JoinColumn(name = "type_name", referencedColumnName = "name",
             insertable = false, updatable = false)

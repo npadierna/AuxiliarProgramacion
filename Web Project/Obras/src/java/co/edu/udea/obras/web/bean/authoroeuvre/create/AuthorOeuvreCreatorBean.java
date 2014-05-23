@@ -225,6 +225,7 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
         authorOeuvre.setAcquisition(new Acquisition());
         authorOeuvre.setContract(new Contract());
         authorOeuvre.setDnda(null);
+        authorOeuvre.setOeuvreType(new OeuvreType(new OeuvreTypePK()));
         authorOeuvre.setProductFile(new DefaultUploadedFile());
         authorOeuvre.setTitle(new Title());
         authorOeuvre.setSupportType(new Support());
@@ -421,12 +422,11 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
         }
 
         for (AuthorOeuvre authorOeuvre : this.getAuthorsOeuvres()) {
-            OeuvreTypePK oeuvreTypePK = new OeuvreTypePK(idOeuvre,
-                    authorOeuvre.getOeuvreType().getType().getName());
-            OeuvreType oeuvreType = new OeuvreType(oeuvreTypePK);
+            authorOeuvre.getOeuvreType().getOeuvreTypePK().setOeuvreId(idOeuvre);
 
-            if (this.oeuvreTypeDAO.findOeuvreType(oeuvreTypePK) == null) {
-                this.oeuvreTypeDAO.saveOeuvreType(oeuvreType);
+            if (this.oeuvreTypeDAO.findOeuvreType(authorOeuvre.getOeuvreType()
+                    .getOeuvreTypePK()) == null) {
+                this.oeuvreTypeDAO.saveOeuvreType(authorOeuvre.getOeuvreType());
             }
 
             if (authorOeuvre.getDndaNumber() != null) {
@@ -446,14 +446,6 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
                     authorOeuvre.setIsbn(null);
                 }
             }
-
-//            authorOeuvre.getAuthorOeuvrePK().setOeuvreTypeId(idOeuvre);
-            authorOeuvre.setOeuvreType(oeuvreType);
-//            authorOeuvre.setAcquisition(new Acquisition(
-//                    authorOeuvre.getAuthorOeuvrePK().getAcquisition()));
-//            authorOeuvre.setContract(new Contract(
-//                    authorOeuvre.getAuthorOeuvrePK().getContract()));
-
             this.authorOeuvreDAO.saveAuthorOeuvre(authorOeuvre);
 
             this.saveFileUpload(authorOeuvre.getProductFile(), false);
@@ -491,7 +483,7 @@ public final class AuthorOeuvreCreatorBean implements Serializable {
             OutputStream outputStream = new FileOutputStream(new File(targetFolder,
                     uploadedFile.getFileName()));
 
-            int read = 0;
+            int read;
             byte[] bytes = new byte[2048];
             while ((read = inputStream.read(bytes)) != -1) {
                 outputStream.write(bytes, 0, read);

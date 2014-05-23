@@ -12,6 +12,7 @@ import co.edu.udea.obras.persistence.entity.CommentPK;
 import co.edu.udea.obras.persistence.entity.Dependency;
 import co.edu.udea.obras.persistence.entity.Dnda;
 import co.edu.udea.obras.persistence.entity.Oeuvre;
+import co.edu.udea.obras.persistence.entity.OeuvreType;
 import co.edu.udea.obras.web.bean.authoroeuvre.AuthorOeuvreListBean;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -53,6 +54,8 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
     private ICommentDAO commentDAO;
     @Autowired()
     private IOeuvreDAO oeuvreDAO;
+    @Autowired()
+    private IOeuvreTypeDAO oeuvreTypeDAO;
     private List<AuthorOeuvre> authorsOeuvres;
     private List<Comment> oeuvreComments;
     private List<Comment> oeuvreDeleteComments;
@@ -178,15 +181,32 @@ public final class AuthorOeuvreUpdateBean implements Serializable {
     }
 
     private void findAuthorsOeuvres() {
-        this.setAuthorsOeuvres(this.authorOeuvreDAO.findAuthorsOeuvresByOeuvreId(
+        List<OeuvreType> oeuvreTypes = this.oeuvreTypeDAO.executeNamedQueryForOeuvresTypes(
+                "OeuvreType.findByOeuvreId", "oeuvreId",
                 this.getSelectedAuthorOeuvre().getOeuvreType().getOeuvreTypePK()
-                .getOeuvreId()));
+                .getOeuvreId());
 
-        for (AuthorOeuvre authorOeuvre : this.getAuthorsOeuvres()) {
-            if (authorOeuvre.getDnda() != null) {
-                authorOeuvre.setDndaNumber(authorOeuvre.getDnda().getNumber());
+        this.setAuthorsOeuvres(new ArrayList<AuthorOeuvre>());
+        for (OeuvreType oeuvreType : oeuvreTypes) {
+            for (AuthorOeuvre authorOeuvre : oeuvreType.getAuthorOeuvreList()) {
+                if (authorOeuvre.getDnda() != null) {
+                    authorOeuvre.setDndaNumber(authorOeuvre.getDnda().getNumber());
+                }
+
+                this.getAuthorsOeuvres().add(authorOeuvre);
             }
         }
+
+//        this.setAuthorsOeuvres(this.oeuvreTypeDAO.executeNamedQueryForOeuvresTypes(
+//                "OeuvreType.findByOeuvreId", "oeuvreId",
+//                this.getSelectedAuthorOeuvre().getOeuvreType().getOeuvreTypePK()
+//                .getOeuvreId()).get(0).getAuthorOeuvreList());
+//
+//        for (AuthorOeuvre authorOeuvre : this.getAuthorsOeuvres()) {
+//            if (authorOeuvre.getDnda() != null) {
+//                authorOeuvre.setDndaNumber(authorOeuvre.getDnda().getNumber());
+//            }
+//        }
     }
 
     private void findOeuvreComments() {

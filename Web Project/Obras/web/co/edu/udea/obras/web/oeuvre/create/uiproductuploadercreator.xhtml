@@ -21,6 +21,14 @@
 
                 <p:column>
                     <f:facet name="header" >
+                        <h:outputText value="+" >
+                        </h:outputText>
+                    </f:facet>
+                    <p:rowToggler></p:rowToggler>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header" >
                         <h:outputText value="Nombre Completo" ></h:outputText>
                     </f:facet>
                     <h:outputText
@@ -42,7 +50,7 @@
                         <h:outputText value="Tipo de Obra" ></h:outputText>
                     </f:facet>
                     <h:outputText
-                        value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
+                        value="#{authorOeuvre.oeuvreType.oeuvreTypePK.typeName}" >
                     </h:outputText>
                 </p:column>
 
@@ -64,10 +72,9 @@
                         </h:outputText>
                     </f:facet>
                     <h:outputText
-                        value="#{authorOeuvre.authorOeuvrePK.acquisition}" >
+                        value="#{authorOeuvre.acquisition.type}" >
                     </h:outputText>
                 </p:column>
-
 
                 <p:column style="text-align: center;" >
                     <f:facet name="header" >
@@ -75,23 +82,49 @@
                             value="Adjuntar Producto" >
                         </h:outputText>
                     </f:facet>
-                    <c:if
-                        test="${authorOeuvre.supportType.type == 'Digital'}" >
-                        <p:fileUpload
-                            allowTypes="/(\.|\/)(iso|rar|zip|pdf|gif|jpe?g|png)$/"
-                            cancelLabel="Cancelar" dragDropSupport="false"
-                            id="productFileUpload" label="Seleccionar"
-                            mode="simple" multiple="false" required="true"
-                            sizeLimit="5120000" uploadLabel="Cargar"
-                            value="#{authorOeuvreCreatorBean.uploadedFile}" >
-                        </p:fileUpload>
-                        <p:commandButton
-                            actionListener="#{authorOeuvreCreatorBean.addProductFileToOeuvre(authorOeuvre)}"
-                            ajax="false" icon="ui-icon-arrowthickstop-1-n"
-                            value="Subir" >
-                        </p:commandButton>
-                    </c:if>
+                    <p:fileUpload
+                        allowTypes="/(\.|\/)(iso|rar|zip|pdf|gif|jpe?g|png)$/"
+                        cancelLabel="Cancelar" dragDropSupport="false"
+                        id="productFileUpload" label="Seleccionar"
+                        mode="simple" multiple="false" required="true"
+                        sizeLimit="5120000" uploadLabel="Cargar"
+                        value="#{authorOeuvreCreatorBean.uploadedFile}" >
+                    </p:fileUpload>
+                    <p:commandButton
+                        actionListener="#{authorOeuvreCreatorBean.addProductFileToOeuvre(authorOeuvre)}"
+                        ajax="false" icon="ui-icon-arrowthickstop-1-n"
+                        value="Subir" >
+                    </p:commandButton>
                 </p:column>
+
+                <p:rowExpansion>
+                    <center>
+                        <p:panel>
+                            <p:spacer height="10px" ></p:spacer>
+
+                            <h:panelGrid 
+                                cellpadding="7" columns="1"
+                                style="font-size: 15px" >
+                                <h:outputText
+                                    value="Localización Física o Descripción:" >
+                                </h:outputText>
+                                <p:inputTextarea
+                                    autoResize="false" cols="120"
+                                    counter="counter" counterTemplate="{0} Caracteres Restantes."
+                                    id="locationDescriptionInputTextArea"
+                                    maxlength="300" rows="3"
+                                    value="#{authorOeuvre.locationSupport}" >
+                                </p:inputTextarea>
+                                <p:watermark
+                                    for="locationDescriptionInputTextArea"
+                                    value="Opcional" >
+                                </p:watermark>
+                                <h:outputText id="counter" ></h:outputText>
+                            </h:panelGrid>
+                            <p:spacer height="10px" ></p:spacer>
+                        </p:panel>
+                    </center>
+                </p:rowExpansion>
             </p:dataTable>
         </p:panel>
     </center>

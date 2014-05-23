@@ -29,6 +29,14 @@
 
                 <f:facet name="header" >Obras Creadas por Autores</f:facet>
 
+                <p:column>
+                    <f:facet name="header" >
+                        <h:outputText value="+" >
+                        </h:outputText>
+                    </f:facet>
+                    <p:rowToggler></p:rowToggler>
+                </p:column>
+
                 <p:column style="font-size: 15px;" >
                     <f:facet id="author" name="header" >
                         <h:outputText value="Autor" ></h:outputText>  
@@ -45,29 +53,7 @@
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.authorOeuvrePK.contract}" >
-                    </h:outputText>
-                </p:column>
-
-                <p:column style="font-size: 15px; text-align: center;" >
-                    <f:facet id="beginningDate" name="header" >
-                        <h:outputText value="Fecha de Inicio" ></h:outputText>  
-                    </f:facet>
-                    <h:outputText
-                        style="font-size: 13px;"
-                        value="#{authorOeuvre.contract1.beginning}" >
-                    </h:outputText>
-                </p:column>
-
-                <p:column style="font-size: 15px; text-align: center;" >
-                    <f:facet id="deliveringDate" name="header" >
-                        <h:outputText
-                            value="Fecha de Finalización" >
-                        </h:outputText>  
-                    </f:facet>
-                    <h:outputText
-                        style="font-size: 13px;"
-                        value="#{authorOeuvre.contract1.delivering}" >
+                        value="#{authorOeuvre.contract.id}" >
                     </h:outputText>
                 </p:column>
 
@@ -77,7 +63,7 @@
                     </f:facet>
                     <h:outputText
                         style="font-size: 13px;"
-                        value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
+                        value="#{authorOeuvre.oeuvreType.oeuvreTypePK.typeName}" >
                     </h:outputText>
                 </p:column>
 
@@ -125,7 +111,30 @@
                         value="#{authorOeuvre.route}" >
                     </h:outputText>
                 </p:column>
+
+                <p:rowExpansion>
+                    <center>
+                        <p:panel>
+                            <p:spacer height="10px" ></p:spacer>
+
+                            <h:panelGrid 
+                                cellpadding="7" columns="1"
+                                style="font-size: 15px" >
+                                <h:outputText
+                                    value="Localización Física o Descripción:" >
+                                </h:outputText>
+                                <p:inputTextarea
+                                    autoResize="false" cols="120"
+                                    id="locationDescriptionInputTextArea"
+                                    maxlength="300" readonly="true" rows="3"
+                                    value="#{authorOeuvre.locationSupport}" >
+                                </p:inputTextarea>
+                            </h:panelGrid>
+                        </p:panel>
+                    </center>
+                </p:rowExpansion>
             </p:dataTable>
+
             <br></br>
 
             <p:commandButton

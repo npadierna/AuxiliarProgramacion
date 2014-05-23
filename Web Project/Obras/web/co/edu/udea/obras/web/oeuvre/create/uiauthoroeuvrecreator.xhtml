@@ -19,7 +19,7 @@
                 value="#{authorOeuvreCreatorBean.authorsOeuvres}"
                 var="authorOeuvre" >
 
-                <p:column styleClass="myTable" >
+                <p:column>
                     <f:facet name="header" >
                         <h:outputText value="+" >
                         </h:outputText>
@@ -35,7 +35,7 @@
                     </f:facet>
                     <center>
                         <h:outputText
-                            value="#{authorOeuvre.authorOeuvrePK.idNumber}" >
+                            value="#{authorOeuvre.author.peoplePK.idNumber}" >
                         </h:outputText>
                     </center>
                 </p:column>
@@ -75,7 +75,7 @@
                         <p:selectOneMenu
                             id="authorOeuvreType" label="Tipo de Obra"
                             required="true"
-                            value="#{authorOeuvre.authorOeuvrePK.oeuvreTypeName}" >
+                            value="#{authorOeuvre.oeuvreType.oeuvreTypePK.typeName}" >
                             <f:selectItems
                                 value="#{typeBean.typesNames}" >
                             </f:selectItems>

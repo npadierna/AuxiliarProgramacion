@@ -1,5 +1,6 @@
 package co.edu.udea.obras.web.bean.client.delete;
 
+import co.edu.udea.obras.persistence.dao.IClientDAO;
 import co.edu.udea.obras.persistence.dao.IPeopleDAO;
 import co.edu.udea.obras.persistence.entity.Client;
 import co.edu.udea.obras.persistence.entity.People;
@@ -28,9 +29,10 @@ public class DeleteClientBean implements Serializable {
 
     private static final long serialVersionUID = 3157147504987197440L;
     @Autowired()
+    private IClientDAO clientDAO;
+    @Autowired()
     private IPeopleDAO peopleDAO;
     private List<String> documentsType;
-    private People people;
     private String documentType;
     private String idNumber;
     private Client client;
@@ -47,16 +49,9 @@ public class DeleteClientBean implements Serializable {
         this.documentsType = documentsType;
     }
 
-    public People getPeople() {
-        return people;
-    }
-
-    public void setPeople(People people) {
-        this.people = people;
-    }
-
     public String getDocumentType() {
-        return documentType;
+
+        return (this.documentType);
     }
 
     public void setDocumentType(String documentType) {
@@ -64,7 +59,8 @@ public class DeleteClientBean implements Serializable {
     }
 
     public String getIdNumber() {
-        return idNumber;
+
+        return (this.idNumber);
     }
 
     public void setIdNumber(String idNumber) {
@@ -72,7 +68,8 @@ public class DeleteClientBean implements Serializable {
     }
 
     public Client getClient() {
-        return client;
+
+        return (this.client);
     }
 
     public void setClient(Client client) {
@@ -93,14 +90,14 @@ public class DeleteClientBean implements Serializable {
         FacesMessage m;
 
         if ((this.getDocumentType() != null) && (this.getIdNumber() != null)) {
-            People p = this.peopleDAO.findPeople(
+            Client c = this.clientDAO.findClient(
                     new PeoplePK(this.getDocumentType(), this.getIdNumber()));
 
-            if (p != null) {
+            if (c != null) {
                 m = new FacesMessage(FacesMessage.SEVERITY_INFO,
                         "Buscando Cliente", "Esto puede tardar un momento...");
-                this.setPeople(p);
-                this.setClient(p.getClient());
+
+                this.setClient(c);
             } else {
                 m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                         "Cliente No Existe", "No se ha encontrado algún Cliente "
@@ -112,35 +109,43 @@ public class DeleteClientBean implements Serializable {
             m = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Datos Inválidos", "Los datos ingresados no son válidos");
         }
+
         FacesContext.getCurrentInstance().addMessage(null, m);
     }
 
     public void deleteClient(ActionEvent actionEvent) {
         FacesMessage m;
-        People p = this.peopleDAO.findPeople(new PeoplePK(this.getDocumentType(),
+        People people = this.peopleDAO.findPeople(new PeoplePK(this.getDocumentType(),
                 this.getIdNumber()));
-        if (p == null) {
+
+        if (people == null) {
             m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al Eliminar!!",
                     "El Usuario no existe");
         } else {
+            this.setClient(people.getClient());
+
+            if (people.getAuthor() == null) {
+                this.peopleDAO.deletePeople(people);
+            } else {
+                this.clientDAO.deleteClient(people.getClient());
+                people.setClient(null);
+                this.peopleDAO.updatePeople(people);
+            }
+
             m = new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Eliminando...!!",
-                    "Eliminando a " + this.people.getFirstNames());
-            this.peopleDAO.deletePeople(this.people);
+                    "Eliminando a " + people.getFirstNames());
         }
 
-        FacesContext.getCurrentInstance().addMessage(null, m);
         this.setClient(new Client());
-        this.setPeople(new People());
         this.setDocumentType("");
         this.setIdNumber("");
+
+        FacesContext.getCurrentInstance().addMessage(null, m);
     }
 
     @PostConstruct()
     private void createFields() {
-        FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-
-        this.setPeople(new People());
         this.setClient(new Client());
 
         this.documentsType = DocumentTypeClientEnum.obtainDocumentsTypeList();

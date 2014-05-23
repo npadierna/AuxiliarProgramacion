@@ -21,8 +21,6 @@ public interface IAuthorOeuvreDAO {
 
     public List<AuthorOeuvre> findAuthorsOeuvresByAuthor(Author author);
 
-    public List<AuthorOeuvre> findAuthorsOeuvresByOeuvreId(Long oeuvreId);
-
     public Long saveAuthorOeuvre(AuthorOeuvre authorOeuvre);
 
     public AuthorOeuvre updateAuthorOeuvre(AuthorOeuvre authorOeuvre);

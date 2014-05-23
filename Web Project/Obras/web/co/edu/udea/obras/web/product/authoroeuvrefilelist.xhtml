@@ -6,7 +6,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui"  xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <h:head lang="es" >
         <meta content="text/html" http-equiv="Content-Type" ></meta>
@@ -102,17 +102,19 @@
                             </h:outputText>
                         </p:column>
 
-                        <f:facet id="button" name="footer" >
-                            <p:commandButton
-                                actionListener="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(authorOeuvreFile)}"
-                                ajax="false" icon="ui-icon-arrowthickstop-1-s"
-                                id="downloadFileButton"
-                                value="Descargar archivo" >
-                                <p:fileDownload
-                                    value="#{authorOeuvreFileBean.productFile}" >
-                                </p:fileDownload>
-                            </p:commandButton>
-                        </f:facet>
+                        <c:if test="#{authorOeuvreFileBean.hastAttachedFile(authorOeuvreFile)}" >
+                            <f:facet id="button" name="footer" >
+                                <p:commandButton
+                                    actionListener="#{authorOeuvreFileBean.onSelectedAuthorOeuvre(authorOeuvreFile)}"
+                                    ajax="false" icon="ui-icon-arrowthickstop-1-s"
+                                    id="downloadFileButton"
+                                    value="Descargar archivo" >
+                                    <p:fileDownload
+                                        value="#{authorOeuvreFileBean.productFile}" >
+                                    </p:fileDownload>
+                                </p:commandButton>
+                            </f:facet>
+                        </c:if>
                     </p:dataTable>
                 </center>
             </p:panel>

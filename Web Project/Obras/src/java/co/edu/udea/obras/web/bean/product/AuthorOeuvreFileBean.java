@@ -82,7 +82,8 @@ public class AuthorOeuvreFileBean implements Serializable {
             this.getAuthorOeuvreFileList().clear();
             this.getAuthorOeuvreFileList().add(this.getAuthorOeuvreSelected());
 
-            if (this.getAuthorOeuvreSelected().getRoute() != null) {
+            if ((this.getAuthorOeuvreSelected().getRoute() != null)
+                    && !(this.getAuthorOeuvreSelected().getRoute().equals(""))) {
                 InputStream inputStream;
                 try {
                     File f = new File(directory.concat(Long.toString(
@@ -110,6 +111,11 @@ public class AuthorOeuvreFileBean implements Serializable {
 
         context.addCallbackParam(AuthorOeuvreFileBean.SELECTED_PRODUCT,
                 this.selectedProduct);
+    }
+
+    public boolean hastAttachedFile(AuthorOeuvre authorOeuvre) {
+
+        return (true);
     }
 
     @PostConstruct()

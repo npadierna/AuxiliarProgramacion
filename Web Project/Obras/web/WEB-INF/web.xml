@@ -29,7 +29,7 @@
     <context-param>
         <description>Local directory for saving Obr@s's files.</description>
         <param-name>directory</param-name>
-        <param-value>C:/tmp</param-value>
+        <param-value>/home/rebien/Documentos/Obras/</param-value>
     </context-param>
     <display-name>Obr@s</display-name>
     <filter>
@@ -43,7 +43,7 @@
         </init-param>
         <init-param>
             <param-name>uploadDirectory</param-name>
-            <param-value>C:/tmp</param-value>
+            <param-value>/home/rebien/Documentos/Obras/temp</param-value>
         </init-param>
     </filter>
     <filter-mapping>

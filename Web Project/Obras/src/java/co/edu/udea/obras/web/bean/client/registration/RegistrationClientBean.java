@@ -107,13 +107,15 @@ public final class RegistrationClientBean implements Serializable {
     }
 
     public void doRegistration(ActionEvent actionEvent) {
-        FacesMessage msg = null;
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
+                this.people.getFirstNames());
+
         if ((this.getDocumentType() != null) && (this.getIdNumber() != null)
                 && (this.client.getUserName() != null)
                 && (this.client.getPassword() != null)
                 && (this.getDependencyName() != null)
                 && (this.getProfileName() != null)
-                && (this.getPeople().getEmail( ) != null)) {
+                && (this.getPeople().getEmail() != null)) {
             this.client.setPeoplePK(new PeoplePK(this.documentType,
                     this.idNumber.trim()));
             this.client.setDependency(this.dependencyDAO.findDependency(
@@ -129,25 +131,30 @@ public final class RegistrationClientBean implements Serializable {
 
             if (p == null) {
                 this.peopleDAO.savePeople(this.people);
-                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardado!!",
-                        this.people.getFirstNames());
-            } else {
+            } else if (p.getClient() != null) {
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
                         "Datos Inválidos",
                         "Este usuario ya existe");
+            } else {
+                p.setClient(this.client);
+                this.peopleDAO.updatePeople(people);
             }
         } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_WARN,
                     "Datos Inválidos",
                     "Hay Campos obligatorios que están vacios");
         }
+
+        this.setClient(new Client());
+        this.setPeople(new People());
+        this.setDocumentType("");
+        this.setIdNumber("");
+
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     @PostConstruct()
     private void createFields() {
-        FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-
         this.setPeople(new People());
         this.setClient(new Client());
 

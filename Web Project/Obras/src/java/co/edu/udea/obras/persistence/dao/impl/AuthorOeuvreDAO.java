@@ -65,13 +65,6 @@ public class AuthorOeuvreDAO extends AbstractEntityDAO
     }
 
     @Override()
-    public List<AuthorOeuvre> findAuthorsOeuvresByOeuvreId(Long oeuvreId) {
-
-        return (this.executeNamedQueryForAuthorsOeuvres(
-                "AuthorOeuvre.findByOeuvreTypeId", "oeuvreTypeId", oeuvreId));
-    }
-
-    @Override()
     @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     public Long saveAuthorOeuvre(AuthorOeuvre authorOeuvre) {
 
